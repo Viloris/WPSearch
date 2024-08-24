@@ -171,7 +171,7 @@ const handleMessage = async (request) => {
             if (!isEnabled) return empty;
             if (prevSelectedText.length === 0) return empty;
             else return prevSelectedText;
-        case "translateSelectedText": {
+        case "wpSearchSelectedText": {
             if (!isEnabled) return empty;
             const selectedText = getSelectedText();
             if (selectedText.length === 0) return;
