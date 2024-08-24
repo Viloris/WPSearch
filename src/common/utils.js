@@ -1,7 +1,7 @@
 import React from "react";
 import browser from "webextension-polyfill";
 import { getSettings } from "../settings/settings";
-import WP_LANG from "../settings/wikipedias.json";
+import WP_LANG from "../settings/.json";
 
 export function splitLine(text) {
     const regex = /(\n)/g;

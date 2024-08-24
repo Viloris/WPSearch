@@ -1,5 +1,5 @@
 import browser from "webextension-polyfill";
-import WP_LANG from "../settings/wikipedias.json";
+import WP_LANG from "../settings/wikipedia.json";
 const alphabeticallySort = (a, b) => a.name.localeCompare(b.name);
 
 const langListGoogle = [
