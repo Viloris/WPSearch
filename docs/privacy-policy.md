@@ -14,7 +14,7 @@ Wikipedia Search is owned and operated by [Viloris](https://github.com/Viloris) 
 
 ## 2. Handling user data with Wikipedia Search
 
-To provide translation and pronunciation functions, Wikipedia Search retrieves the input/selected text and sends the request to Wikipedia's API.
+To provide search functionality, Wikipedia Search retrieves the input/selected text and sends the request to Wikipedia's API.
 
 **We do not access/collect any of these data.**
 
