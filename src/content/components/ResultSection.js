@@ -21,17 +21,13 @@ export default function ResultSection(props) {
     );
 }
 
-function resultFooter(isError, resultText) {
+function resultHeader(urlToWikipedia, wikipedia) {
     return (
-        <div
-            style={{
-                display: "flex",
-                justifyContent: "right",
-                alignItems: "center"
-            }}
-        >
-            {!isError && renderCopyButton(resultText)}
-        </div>
+        <p>
+            <a href={urlToWikipedia} target="_blank">
+                {wikipedia}:
+            </a>
+        </p>
     );
 }
 
@@ -47,13 +43,17 @@ function resultContent(resultText) {
     );
 }
 
-function resultHeader(urlToWikipedia, wikipedia) {
+function resultFooter(isError, resultText) {
     return (
-        <p>
-            <a href={urlToWikipedia} target="_blank">
-                {wikipedia}:
-            </a>
-        </p>
+        <div
+            style={{
+                display: "flex",
+                justifyContent: "right",
+                alignItems: "center"
+            }}
+        >
+            {!isError && renderCopyButton(resultText)}
+        </div>
     );
 }
 
