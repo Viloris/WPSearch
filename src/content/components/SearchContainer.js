@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import browser from "webextension-polyfill";
-import { getSettings } from "src/settings/settings";
+import { getSettings } from "src/settings/settings.js";
 import SearchButton from "./SearchButton";
 import ResultPanel from "./ResultPanel";
 import "../styles/SearchContainer.scss";

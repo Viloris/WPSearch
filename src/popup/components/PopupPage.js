@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import browser from "webextension-polyfill";
 import log from "loglevel";
-import { initSettings, getSettings, setSettings } from "src/settings/settings";
+import {
+    initSettings,
+    getSettings,
+    setSettings
+} from "src/settings/settings.js";
 import { updateLogLevel, overWriteLogLevel } from "src/common/log";
 import Header from "./Header";
 import InputArea from "./InputArea";
