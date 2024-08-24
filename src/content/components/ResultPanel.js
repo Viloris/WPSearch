@@ -40,11 +40,11 @@ export default class ResultPanel extends Component {
     };
 
     handleDragStart = (e) => {
-        if (e.target.className !== "simple-translate-move") return;
+        if (e.target.className !== "simple-wikipedia-search-move") return;
         this.isDragging = true;
 
         const rect = document
-            .querySelector(".simple-translate-panel")
+            .querySelector(".simple-wikipedia-search-panel")
             .getBoundingClientRect();
         this.dragOffsets = {
             x: e.clientX - rect.left,
@@ -56,7 +56,7 @@ export default class ResultPanel extends Component {
     handleDragOver = (e) => {
         if (!this.isDragging) return;
         e.preventDefault();
-        const panel = document.querySelector(".simple-translate-panel");
+        const panel = document.querySelector(".simple-wikipedia-search-panel");
         panel.style.top = `${e.clientY - this.dragOffsets.y}px`;
         panel.style.left = `${e.clientX - this.dragOffsets.x}px`;
     };
@@ -66,7 +66,7 @@ export default class ResultPanel extends Component {
         e.preventDefault();
         this.isDragging = false;
 
-        const panel = document.querySelector(".simple-translate-panel");
+        const panel = document.querySelector(".simple-wikipedia-search-panel");
         panel.style.top = `${e.clientY - this.dragOffsets.y}px`;
         panel.style.left = `${e.clientX - this.dragOffsets.x}px`;
     };
@@ -220,23 +220,23 @@ export default class ResultPanel extends Component {
 
         return (
             <div
-                className={`simple-translate-panel ${
+                className={`simple-wikipedia-search-panel ${
                     shouldShow ? "isShow" : ""
                 }`}
                 ref="panel"
                 style={panelStyles}
             >
                 <div
-                    className="simple-translate-result-wrapper"
+                    className="simple-wikipedia-search-result-wrapper"
                     ref="wrapper"
                     style={wrapperStyles}
                 >
                     <div
-                        className="simple-translate-move"
+                        className="simple-wikipedia-search-move"
                         draggable="true"
                         ref="move"
                     />
-                    <div className="simple-translate-result-contents">
+                    <div className="simple-wikipedia-search-result-contents">
                         <ResultSection
                             mainLangText={mainLangText}
                             resultTextMain={resultTextMain}
@@ -275,6 +275,8 @@ export default class ResultPanel extends Component {
 function ErrorSection(props) {
     const { errorMessageMain, isError } = props;
     if (isError)
-        return <p className="simple-translate-error">{errorMessageMain}</p>;
+        return (
+            <p className="simple-wikipedia-search-error">{errorMessageMain}</p>
+        );
     return null;
 }
