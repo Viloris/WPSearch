@@ -4,7 +4,6 @@ import { getSettings } from "src/settings/settings";
 import "../styles/ResultPanel.scss";
 import { getBackgroundColor } from "../../settings/defaultColors";
 import ResultSection from "./ResultSection";
-import CopyButton from "../../common/CopyButton";
 import {
     getMainLangText,
     getSecondLangText,
@@ -210,14 +209,6 @@ export default class ResultPanel extends Component {
         const mainLangText = getMainLangText();
         const secondLangText = getSecondLangText();
 
-        function renderCopyButton(text) {
-            return (
-                <div className="copyButton">
-                    <CopyButton text={text} />
-                </div>
-            );
-        }
-
         return (
             <div
                 className={`simple-wikipedia-search-panel ${
@@ -239,11 +230,10 @@ export default class ResultPanel extends Component {
                     <div className="simple-wikipedia-search-result-contents">
                         <ResultSection
                             mainLangText={mainLangText}
-                            resultTextMain={resultTextMain}
+                            resultText={resultTextMain}
                             isError={isErrorMain}
-                            targetLang={targetLang}
-                            renderCopyButton={renderCopyButton}
-                            selectedText={selectedText}
+                            language={targetLang}
+                            searchExpression={selectedText}
                         />
 
                         <ErrorSection
@@ -251,14 +241,12 @@ export default class ResultPanel extends Component {
                             isError={isErrorMain}
                         />
                         <br />
-                        <br />
                         <ResultSection
                             mainLangText={secondLangText}
-                            resultTextMain={resultTextSecond}
+                            resultText={resultTextSecond}
                             isError={isErrorSecond}
-                            targetLang={secondTargetLang}
-                            renderCopyButton={renderCopyButton}
-                            selectedText={selectedText}
+                            language={secondTargetLang}
+                            searchExpression={selectedText}
                         />
                         <ErrorSection
                             errorMessage={errorMessageSecond}
