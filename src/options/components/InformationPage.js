@@ -3,30 +3,12 @@ import browser from "webextension-polyfill";
 import browserInfo from "browser-info";
 import queryString from "query-string";
 import OptionsContainer from "./OptionContainer";
-import {
-    // paypalLink,
-    // patreonLink,
-    // email,
-    chromeExtensionUrl,
-    firefoxAddonUrl
-} from "src/common/personalUrls";
+import { chromeExtensionUrl, firefoxAddonUrl } from "src/common/personalUrls";
 import manifest from "src/manifest-chrome.json";
 
 export default (props) => {
     const query = queryString.parse(props.location.search);
     const extensionVersion = manifest.version;
-
-    //const [sponsorsHeihgt, setSponsorsHeight] = useState();
-
-    /* useEffect(() => {
-    const setHeight = e => {
-      if (e.data[0] !== "setSponsorsHeight") return;
-      setSponsorsHeight(e.data[1]);
-    };
-    window.addEventListener("message", setHeight);
-    return () => window.removeEventListener("message", setHeight);
-  }); */
-
     const [hasPermission, requestPermission] = useAdditionalPermission();
 
     return (
@@ -42,19 +24,9 @@ export default (props) => {
                 updated={query.action === "updated"}
                 extraCaption={
                     <p className="caption">
-                        <a
-                            href="https://github.com/sienori/simple-translate/releases"
-                            target="_blank"
-                        >
+                        <a href="https://github.com/Viloris" target="_blank">
                             Version {extensionVersion}
                         </a>
-                        {/* <span>　</span>
-            <a
-              href="https://github.com/sienori/simple-translate/blob/master/BACKERS.md"
-              target="_blank"
-            >
-              {browser.i18n.getMessage("backersLabel")}
-            </a> */}
                     </p>
                 }
             />
@@ -79,63 +51,7 @@ export default (props) => {
                 </>
             )}
 
-            {/* <hr />
-            <OptionsContainer
-                title={"donationLabel"}
-                captions={["donationCaptionLabel"]}
-                type={"none"}
-            />
-            <OptionsContainer
-                title={""}
-                captions={[""]}
-                type={"none"}
-                extraCaption={
-                    <div>
-                        <a href={patreonLink} target="_blank">
-                            <img
-                                src="/icons/patreonButton.png"
-                                alt="Patreon"
-                                style={{ height: 44, marginInlineEnd: 20 }}
-                            />
-                        </a>
-                        <a href={paypalLink} target="_blank">
-                            <img src="/icons/paypalButton.png" alt="Paypal" />
-                        </a>
-                    </div>
-                }
-            />
-            <OptionsContainer
-                title={""}
-                captions={[]}
-                type={"none"}
-                extraCaption={
-                    <div>
-                        <p className="caption">
-                            <a
-                                className="amazonUrl"
-                                href={browser.i18n.getMessage("amazonUrl")}
-                                target="_blank"
-                            >
-                                {browser.i18n.getMessage("amazonTitleLabel")}
-                            </a>
-                        </p>
-                        <p className="caption">email: {email}</p>
-                    </div>
-                }
-            /> */}
             <hr />
-            {/* <OptionsContainer
-                title={"sponsorsLabel"}
-                captions={[""]}
-                type={"none"}
-                extraCaption={
-                    <iframe
-                        src="https://simple-translate.sienori.com/sponsors.html"
-                        style={{ height: sponsorsHeihgt, marginTop: 10 }}
-                    />
-                }
-            />
-            <hr /> */}
             <OptionsContainer
                 title={""}
                 captions={[]}
@@ -155,14 +71,14 @@ export default (props) => {
                                 </a>
                             )}
                             <span>　</span>
-                            <a href="https://example.com" target="_blank">
+                            <a
+                                href="https://github.com/Viloris"
+                                target="_blank"
+                            >
                                 GitHub
                             </a>
                             <span>　</span>
-                            <a
-                                href="https://simple-translate.sienori.com/privacy-policy"
-                                target="_blank"
-                            >
+                            <a href="https://example.com" target="_blank">
                                 {browser.i18n.getMessage("privacyPolicyLabel")}
                             </a>
                         </p>
