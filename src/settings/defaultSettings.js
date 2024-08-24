@@ -86,7 +86,7 @@ export default [
                 ]
             },
             {
-                id: "ifOnlyTranslateWhenModifierKeyPressed",
+                id: "ifOnlySearchWhenModifierKeyPressed",
                 title: "ifOnlySearchWhenModifierKeyPressedLabel",
                 captions: ["ifOnlySearchWhenModifierKeyPressedCaptionLabel"],
                 type: "checkbox",
@@ -120,7 +120,7 @@ export default [
                 ]
             },
             {
-                title: "disableTranslationLabel",
+                title: "disableWikipediaSearchLabel",
                 captions: [],
                 type: "none",
                 childElements: [

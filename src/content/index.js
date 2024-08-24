@@ -65,7 +65,7 @@ const handleMouseUp = async (e) => {
         if (isInContentEditable()) return;
     }
 
-    if (getSettings("ifOnlyTranslateWhenModifierKeyPressed")) {
+    if (getSettings("ifOnlySearchWhenModifierKeyPressed")) {
         const modifierKey = getSettings("modifierKey");
         switch (modifierKey) {
             case "shift":
