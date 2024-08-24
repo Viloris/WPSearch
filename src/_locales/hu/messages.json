@@ -71,7 +71,7 @@
     "dontshowbuttonCaptionlabel": {
         "message": "Ne jelenítse meg a keresés gombot vagy a keresőpanelt."
     },
-    "disableTranslationLabel": {
+    "disableWikipediaSearchLabel": {
         "message": "Keresés kikapcsolása"
     },
     "isDisabledInTextFieldsLabel": {

@@ -71,7 +71,7 @@
     "dontshowbuttonCaptionlabel": {
         "message": "Ne pas afficher le bouton de recherche ou le panneau de recherche."
     },
-    "disableTranslationLabel": {
+    "disableWikipediaSearchLabel": {
         "message": "Désactiver la recherche"
     },
     "isDisabledInTextFieldsLabel": {
