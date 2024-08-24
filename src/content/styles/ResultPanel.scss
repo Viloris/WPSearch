@@ -80,9 +80,9 @@
             margin-top: 1em;
         
               .copyButton {
-                  display: flex;
-                  flex-direction: row;
-                  justify-content: flex-start;        
+                 display: flex;
+                 flex-direction: row;
+                 justify-content: flex-end;   
                    &>* {
                     margin-inline-start: 10px;
                   }
