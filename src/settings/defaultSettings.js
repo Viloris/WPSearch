@@ -1,21 +1,16 @@
-import React from "react";
 import browser from "webextension-polyfill";
 import generateLangOptions, {
     getWikipediaLanguages
 } from "src/common/generateLangOptions";
-import { getSettings, setSettings } from "./settings";
 import {
     RESULT_FONT_COLOR_LIGHT,
     RESULT_FONT_COLOR_DARK,
-    CANDIDATE_FONT_COLOR_LIGHT,
-    CANDIDATE_FONT_COLOR_DARK,
     BG_COLOR_LIGHT,
     BG_COLOR_DARK
 } from "./defaultColors";
-//import { getSecondTargetLang, getTargetLang } from "../common/utils";
 
 const DEFAULT_LANGUAGE = "en";
-const ALTERNATIVE_LANGUAGE = "de";
+const SECOND_LANGUAGE = "de";
 
 const getDefaultLangs = () => {
     const uiLang = browser.i18n.getUILanguage();
@@ -24,48 +19,10 @@ const getDefaultLangs = () => {
     const shouldUseUiLang = langOptions.some((lang) => lang.value == uiLang);
     const targetLang = shouldUseUiLang ? uiLang : DEFAULT_LANGUAGE;
     const secondTargetLang =
-        targetLang === DEFAULT_LANGUAGE
-            ? ALTERNATIVE_LANGUAGE
-            : DEFAULT_LANGUAGE;
+        targetLang === DEFAULT_LANGUAGE ? SECOND_LANGUAGE : DEFAULT_LANGUAGE;
 
     return { targetLang, secondTargetLang };
 };
-
-/* const updateLangsWhenChangeTranslationApi = () => {
-    const translationApi = getSettings("translationApi");
-    const targetLang = getTargetLang(); //getSettings("targetLang");
-    const secondTargetLang = getSecondTargetLang(); //getSettings("secondTargetLang");
-    const currentLangs = generateLangOptions(translationApi).map(
-        (option) => option.value
-    );
-
-    const mappingLang = (lang) => {
-        switch (lang) {
-            case "en":
-                return "en-US";
-            case "en-US":
-            case "en-GB":
-                return "en";
-            case "zh":
-                return "zh-CN";
-            case "zh-CN":
-            case "zh-TW":
-                return "zh";
-            case "pt":
-                return "pt-PT";
-            case "pt-PT":
-            case "pt-BR":
-                return "pt";
-            default:
-                return currentLangs[0];
-        }
-    };
-
-    if (!currentLangs.includes(targetLang))
-        setSettings("targetLang", mappingLang(targetLang));
-    if (!currentLangs.includes(secondTargetLang))
-        setSettings("secondTargetLang", mappingLang(secondTargetLang));
-}; */
 
 const defaultLangs = getDefaultLangs();
 // MV2ではwindow.matchMediaでシステムテーマを取得していたが、MV3では簡単に実装できないためオミットする
@@ -82,7 +39,6 @@ export default [
                 type: "select",
                 default: defaultLangs.targetLang,
                 options: () => getWikipediaLanguages(),
-                /* getSettings("translationApi") */
                 useRawOptionName: true
             },
             {
@@ -92,7 +48,6 @@ export default [
                 type: "select",
                 default: defaultLangs.secondTargetLang,
                 options: () => getWikipediaLanguages(),
-                //  generateLangOptions(getSettings("translationApi")),
                 useRawOptionName: true
             }
         ]
