@@ -44,8 +44,8 @@ export default class Footer extends Component {
 }
 
 async function handleLinkClick(langCode, text) {
-    const translateUrl = `${HTTPS}${langCode}${WIKIPEDIA_URL}${text}`;
-    openUrl(encodeURI(translateUrl));
+    const wikipediaUrl = `${HTTPS}${langCode}${WIKIPEDIA_URL}${text}`;
+    openUrl(encodeURI(wikipediaUrl));
 }
 
 function WikiLink(props) {

@@ -9,12 +9,12 @@ const { HTTPS, WIKIPEDIA_URL } = config;
 export default function ResultSection(props) {
     const { resultText, isError, language, searchExpression } = props;
     const wikipedia = getWikipediaName(language);
-    const translateUrl = `${HTTPS}${language}${WIKIPEDIA_URL}${searchExpression}`;
-    const urlToWikipedia = encodeURI(translateUrl);
+    const wikipediaUrl = `${HTTPS}${language}${WIKIPEDIA_URL}${searchExpression}`;
+    const encodedUrl = encodeURI(wikipediaUrl);
 
     return (
         <>
-            {resultHeader(urlToWikipedia, wikipedia)}
+            {resultHeader(encodedUrl, wikipedia)}
             {resultContent(resultText)}
             {resultFooter(isError, resultText)}
         </>
