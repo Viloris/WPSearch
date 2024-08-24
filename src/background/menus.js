@@ -1,8 +1,7 @@
 import browser from "webextension-polyfill";
-import browserInfo from "browser-info";
 import log from "loglevel";
 import { getSettings } from "src/settings/settings";
-import { getTargetLang, tabsSendMessage } from "../common/utils";
+import { tabsSendMessage } from "../common/utils";
 
 const logDir = "background/menus";
 
@@ -20,47 +19,24 @@ export const onMenusShownListener = (info, tab) => {
 export const onMenusClickedListener = (info, tab) => {
     log.log(logDir, "onMenusClickedListener()", info, tab);
     switch (info.menuItemId) {
-        case "translateText":
-            translateText(tab);
+        case "searchText":
+            searchText(tab);
             break;
-        /* case "translateLink":
-            translateLink(info, tab);
-            break; */
     }
 };
 
 function createMenus() {
-    /*  const isValidContextsTypeTab =
-        browserInfo().name === "Firefox" && browserInfo().version >= 53; */
     browser.contextMenus.create({
-        id: "translateText",
-        title: browser.i18n.getMessage("translateTextMenu"),
+        id: "searchText",
+        title: browser.i18n.getMessage("wikipediaSearchTextMenu"),
         contexts: ["selection"]
     });
-
-    /* browser.contextMenus.create({
-        id: "translateLink",
-        title: browser.i18n.getMessage("translateLinkMenu"),
-        contexts: ["link"]
-    }); */
 }
 
 function removeMenus() {
     browser.contextMenus.removeAll();
 }
 
-function translateText(tab) {
-    tabsSendMessage(tab, "translateSelectedText");
+function searchText(tab) {
+    tabsSendMessage(tab, "wpSearchSelectedText");
 }
-
-/* function translateLink(info, tab) {
-    const targetLang = getTargetLang();
-    const encodedLinkUrl = encodeURIComponent(info.linkUrl);
-    const translationUrl = `https://translate.google.com/translate?hl=${targetLang}&tl=${targetLang}&sl=auto&u=${encodedLinkUrl}`;
-
-    browser.tabs.create({
-        url: translationUrl,
-        active: true,
-        index: tab.index + 1
-    });
-} */
