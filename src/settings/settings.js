@@ -8,7 +8,6 @@ let currentSettings = {};
 export const initSettings = async () => {
     const response = await browser.storage.local.get("Settings");
     currentSettings = response.Settings || {};
-    console.log("**", currentSettings);
     let shouldSave = false;
 
     const pushSettings = (element) => {
