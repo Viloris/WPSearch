@@ -371,9 +371,6 @@
     "wikipediaSearchTextMenu": {
         "message": "Wikipedia-Suche für ausgewählten Text"
     },
-    "translateLinkMenu": {
-        "message": "Wikipedia-Suche für ausgewählten Link"
-    },
     "openPopupDescription": {
         "message": "Toolbar-Popup öffnen"
     },
