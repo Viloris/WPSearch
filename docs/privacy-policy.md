@@ -10,17 +10,16 @@ title: Privacy Policy
 
 This page describes the Privacy Policy that applies to all information collected or submitted when you install or use Wikipedia Search.
 
-Wikipedia Search is owned and operated by [Sienori](https://github.com/sienori) - a developer from Japan (referred to herein as "we", "us", or "our"). We take the protection of your personal data very seriously and will always offer you the Wikipedia Search and its functionality with your privacy in mind.
+Wikipedia Search is owned and operated by [Viloris](https://github.com/Viloris) - a developer from Hungary (referred to herein as "we", "us", or "our"). We take the protection of your personal data very seriously and will always offer you the Wikipedia Search and its functionality with your privacy in mind.
 
 ## 2. Handling user data with Wikipedia Search
 
-To provide translation and pronunciation functions, Wikipedia Search retrieves the input/selected text and page URLs and sends the request to Google's API.
-In addition, if you change the translation engine to DeepL, Wikipedia Search will use the DeepL API for translation.
+To provide translation and pronunciation functions, Wikipedia Search retrieves the input/selected text and sends the request to Wikipedia's API.
+
 **We do not access/collect any of these data.**
 
-Please refer to the following link the privacy policy of Google and DeepL.  
-[Google Privacy Policy](https://policies.google.com/privacy)  
-[DeepL Pryvacy Policy](https://www.deepl.com/privacy)
+Please refer to the following link the privacy policy of Wikipedia.  
+[Wikipedia Privacy Policy](https://foundation.wikimedia.org/wiki/Policy:Privacy_policy)
 
 ## 3. External service
 
@@ -43,7 +42,7 @@ Please refer to the following links for information on how to handle data when i
 
 If you have questions about this Privacy Policy, please contact us at the address below:
 
-Email: sienori.firefox+stpp@gmail.com
+Email: test@example.com
 
 ## 5. Changes to Privacy Policy
 
