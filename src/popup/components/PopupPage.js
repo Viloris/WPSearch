@@ -3,7 +3,6 @@ import browser from "webextension-polyfill";
 import log from "loglevel";
 import { initSettings, getSettings, setSettings } from "src/settings/settings";
 import { updateLogLevel, overWriteLogLevel } from "src/common/log";
-import generateLangOptions from "src/common/generateLangOptions";
 import Header from "./Header";
 import InputArea from "./InputArea";
 import ResultArea from "./ResultArea";
@@ -20,13 +19,7 @@ const getTabInfo = async () => {
         )[0];
         const tabUrl = tabsSendMessage(tab, "getTabUrl");
         const selectedText = tabsSendMessage(tab, "getSelectedText");
-        /* browser.tabs.sendMessage(tab.id, {
-            message: "getSelectedText"
-        }); */
         const isEnabledOnPage = tabsSendMessage(tab, "getEnabled");
-        /* browser.tabs.sendMessage(tab.id, {
-            message: "getEnabled"
-        }); */
 
         const tabInfo = await Promise.all([
             tabUrl,
@@ -60,10 +53,8 @@ export default class PopupPage extends Component {
             targetLang: "",
             inputText: "",
             resultText: "",
-            //sourceLang: "",
             isError: false,
             errorMessage: "",
-            langList: [],
             tabUrl: "",
             isConnected: true,
             isEnabledOnPage: true,
@@ -84,16 +75,8 @@ export default class PopupPage extends Component {
         this.themeClass = getSettings("theme") + "-theme";
         document.body.classList.add(this.themeClass);
         const targetLang = getTargetLang();
-        let langHistory = getSettings("langHistory");
-        if (!langHistory) {
-            const secondLang = getSettings("secondTargetLang");
-            langHistory = [targetLang, secondLang];
-            setSettings("langHistory", langHistory);
-        }
         this.setState({
-            targetLang: targetLang,
-            langHistory: langHistory,
-            langList: generateLangOptions(getSettings("translationApi"))
+            targetLang: targetLang
         });
 
         const tabInfo = await getTabInfo();
@@ -117,22 +100,6 @@ export default class PopupPage extends Component {
         this.inputTimer = setTimeout(async () => {
             const result = await this.translateText(inputText);
         }, waitTime);
-    };
-
-    setLangHistory = (lang) => {
-        let langHistory = getSettings("langHistory") || [];
-        langHistory.push(lang);
-        if (langHistory.length > 30) langHistory = langHistory.slice(-30);
-        setSettings("langHistory", langHistory);
-        this.setState({ langHistory: langHistory });
-    };
-
-    handleLangChange = (lang) => {
-        log.info(logDir, "handleLangChange()", lang);
-        this.setState({ targetLang: lang });
-        const inputText = this.state.inputText;
-        if (inputText !== "") this.translateText(inputText, lang);
-        this.setLangHistory(lang);
     };
 
     translateText = async (expression) => {
@@ -162,12 +129,7 @@ export default class PopupPage extends Component {
                 await browser.tabs.query({ currentWindow: true, active: true })
             )[0];
             if (isEnabled) await tabsSendMessage(tab, "enableExtension");
-            /* browser.tabs.sendMessage(tab.id, {
-                    message: "enableExtension"
-                }); */ else await tabsSendMessage(tab, "disableExtension");
-            /* browser.tabs.sendMessage(tab.id, {
-                    message: "disableExtension"
-                }); */
+            else await tabsSendMessage(tab, "disableExtension");
         } catch (e) {}
     };
 
@@ -218,9 +180,3 @@ export default class PopupPage extends Component {
         );
     }
 }
-
-/* function tabsSendMessage(tab, message) {
-    return browser.tabs.sendMessage(tab.id, {
-        message
-    });
-} */
