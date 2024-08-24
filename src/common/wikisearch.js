@@ -1,7 +1,7 @@
 import log from "loglevel";
 import config from "../config.json";
 import { getSecondTargetLang, getTargetLang } from "./utils";
-const logDir = "common/translate";
+const logDir = "common/wikisearch";
 
 const { SPACE, DASH, NOT_FOUND, NO_SUMMARY, WIKIPEDIA_API_URL, HTTPS } = config;
 
