@@ -229,7 +229,7 @@ const showSearchContainer = (
     selectedText,
     selectedPosition,
     clickedPosition = null,
-    shouldTranslate = false
+    shouldWPSearch = false
 ) => {
     const element = document.getElementById("simple-wikipedia-search");
     if (element) return;
@@ -248,7 +248,7 @@ const showSearchContainer = (
             selectedText={selectedText}
             selectedPosition={selectedPosition}
             clickedPosition={clickedPosition}
-            shouldTranslate={shouldTranslate}
+            shouldWPSearch={shouldWPSearch}
         />,
         document.getElementById("simple-wikipedia-search")
     );

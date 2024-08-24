@@ -36,7 +36,7 @@ export default class SearchContainer extends Component {
     }
 
     componentDidMount = () => {
-        if (this.props.shouldTranslate) this.showPanel();
+        if (this.props.shouldWPSearch) this.showPanel();
         else this.handleTextSelect(this.props.clickedPosition);
     };
 
