@@ -98,12 +98,12 @@ export default class PopupPage extends Component {
         const waitTime = getSettings("waitTime");
         clearTimeout(this.inputTimer);
         this.inputTimer = setTimeout(async () => {
-            const result = await this.translateText(inputText);
+            const result = await this.wpSearchText(inputText);
         }, waitTime);
     };
 
-    translateText = async (expression) => {
-        log.info(logDir, "translateText()", expression);
+    wpSearchText = async (expression) => {
+        log.info(logDir, "wpSearchText()", expression);
         const replaced = expression.replaceAll("\n", "");
         const result = await browser.runtime.sendMessage({
             message: "wikipediaSearch",
