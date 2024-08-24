@@ -10,7 +10,7 @@ export default function ResultSection(props) {
             <p>{mainLangText}:</p>
             <div className="actionBar">
                 <p
-                    className="simple-translate-result"
+                    className="simple-wikipedia-search-result"
                     style={getResultFontColor()}
                     dir="auto"
                 >
