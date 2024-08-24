@@ -52,11 +52,8 @@ function WikiLink(props) {
     const { langCode, langText, text } = props;
 
     return (
-        <div className="translateLink">
-            <a
-                onClick={() => handleLinkClick(langCode, text)}
-                style={{ color: "black" }}
-            >
+        <div className="wikipediaLink">
+            <a onClick={() => handleLinkClick(langCode, text)}>
                 <div
                     style={{
                         display: "flex",

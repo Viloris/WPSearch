@@ -8,12 +8,12 @@
  //margin-right: 10px;
  // margin-top: 10px;
 margin: 15px;
-  .translateLink {
+  .wikipediaLink {
     flex-shrink: 0;
     a {
       font-style: normal;
       text-decoration: none;
-      color: black; //var(--highlight);
+      color: var(--highlight);
       cursor: pointer;
       &:hover {
         text-decoration: underline;
