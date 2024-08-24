@@ -3,7 +3,7 @@
         "message": "Wikipedia Search"
     },
     "extDescription": {
-        "message": "Traduit rapidement le texte sélectionné ou tapé sur des pages web. Supporte Google Traduction et l'API DeepL."
+        "message": "Rechercher sur Wikipedia en fonction du texte sélectionné"
     },
     "donateWithPaypalLabel": {
         "message": "Faire un don avec PayPal"
@@ -12,22 +12,13 @@
         "message": "Faire un don"
     },
     "enableOnThisPage": {
-        "message": "Active la traduction sur cette page"
+        "message": "Activer la recherche sur cette page"
     },
     "disableOnThisPage": {
-        "message": "Désactiver la traduction sur cette page"
+        "message": "Désactiver la recherche sur cette page"
     },
     "initialTextArea": {
-        "message": "Entrez le texte"
-    },
-    "showLink": {
-        "message": "Traduire cette page"
-    },
-    "openInGoogleLabel": {
-        "message": "Ouvrir dans Google Traduction"
-    },
-    "openInDeeplLabel": {
-        "message": "Ouvrir dans DeepL Traduction"
+        "message": "Entrer le texte"
     },
     "copyLabel": {
         "message": "Copier"
@@ -53,107 +44,56 @@
     "generalLabel": {
         "message": "Général"
     },
-    "translationApiLabel": {
-        "message": "Moteur de traduction"
-    },
-    "googleApiLabel": {
-        "message": "API Google Traduction"
-    },
-    "googleApiCaptionLabel": {
-        "message": "Utiliser l'API Google Traduction. Aucune inscription requise."
-    },
-    "deeplApiLabel": {
-        "message": "API DeepL"
-    },
-    "deeplApiCaptionLabel": {
-        "message": "Utilisez l'API DeepL. Vous devez vous connecter avec l'API DeepL Gratuite ou l'API DeepL Pro pour obtenir une clé d'authentification."
-    },
-    "howToUseDeeplLabel": {
-        "message": "Comment de se connecter à l'API DeepL"
-    },
-    "deeplPlanLabel": {
-        "message": "Plan de l'API DeepL"
-    },
-    "deeplPlanCaptionLabel": {
-        "message": "Sélectionnez le plan de l'API DeepL pour lequel vous vous êtes connecté."
-    },
-    "deeplFreeLabel": {
-        "message": "API DeepL Gratuite"
-    },
-    "deeplProLabel": {
-        "message": "API DeepL Pro"
-    },
-    "deeplAuthKeyLabel": {
-        "message": "Clé d'authentification"
-    },
-    "deeplAuthKeyCaptionLabel": {
-        "message": "Entrez la clé d'authentification de l'API DeepL."
-    },
     "targetLangCaptionLabel": {
         "message": "Sélectionnez la langue cible par défaut."
     },
     "webPageLabel": {
-        "message": "Page Web"
-    },
-    "ifShowCandidateLabel": {
-        "message": "Afficher les suggestions de traductions"
-    },
-    "ifShowCandidateCaptionLabel": {
-        "message": "Afficher plusieurs propositions de traduction lorsqu'un seul mot est traduit."
+        "message": "Page web"
     },
     "whenSelectTextLabel": {
-        "message": "Comportement lorsque le texte est sélectionné"
+        "message": "Comportement lors de la sélection de texte"
     },
     "ifAutoTranslateLabel": {
-        "message": "Affiche le panneau de traduction"
+        "message": "Afficher le panneau de recherche"
     },
     "ifAutoTranslateCaptionLabel": {
-        "message": "Affiche directement le panneau de traduction sans afficher le bouton."
+        "message": "Afficher directement le panneau de recherche sans afficher le bouton."
     },
     "ifShowButtonLabel": {
-        "message": "Affiche le bouton de traduction"
+        "message": "Afficher le bouton de recherche"
     },
     "ifShowButtonCaptionLabel": {
-        "message": "Affiche le bouton de traduction pour ouvrir le panneau lorsque l'on clique dessus."
+        "message": "Afficher le bouton de recherche pour ouvrir le panneau lorsqu'il est cliqué."
     },
     "dontshowbuttonlabel": {
         "message": "Ne pas afficher le bouton ou le panneau"
     },
     "dontshowbuttonCaptionlabel": {
-        "message": "Ne pas afficher le bouton de traduction ou le panneau de traduction."
-    },
-    "ifCheckLangLabel": {
-        "message": "Ne pas afficher le bouton si la traduction n'est pas requise"
-    },
-    "ifCheckLangCaptionLabel": {
-        "message": "Détecte la langue du texte sélectionné, et si c'est la même que la langue cible, le bouton ne s'affiche pas."
-    },
-    "ifChangeSecondLangOnPageCaptionLabel": {
-        "message": "Détecte la langue du texte sélectionné, et si elle est la même que la langue cible par défaut, traduire le texte dans la seconde langue."
+        "message": "Ne pas afficher le bouton de recherche ou le panneau de recherche."
     },
     "disableTranslationLabel": {
-        "message": "Désactiver la traduction"
+        "message": "Désactiver la recherche"
     },
     "isDisabledInTextFieldsLabel": {
-        "message": "Désactiver la traduction dans les champs texte"
+        "message": "Désactiver la recherche dans les champs de texte"
     },
     "isDisabledInTextFieldsCaptionLabel": {
-        "message": "Ne pas afficher le bouton ou panneau de traduction lors de la sélection du texte dans un champ texte."
+        "message": "Ne pas afficher le bouton de recherche ou le panneau lors de la sélection de texte dans un champ de texte."
     },
     "isDisabledInCodeElementLabel": {
-        "message": "Désactiver la traduction dans les balises de code"
+        "message": "Désactiver la recherche dans les balises de code"
     },
     "isDisabledInCodeElementCaptionLabel": {
-        "message": "Ne pas afficher le bouton de traduction ou le panneau lorsque vous sélectionnez du texte dans la balise code."
+        "message": "Ne pas afficher le bouton de recherche ou le panneau lors de la sélection de texte dans une balise de code."
     },
     "ifOnlyTranslateWhenModifierKeyPressedLabel": {
-        "message": "Traduire si la touche de modification est pressée"
+        "message": "Rechercher lors de l'appui sur la touche de modification"
     },
     "ifOnlyTranslateWhenModifierKeyPressedCaptionLabel": {
-        "message": "N'afficher la traduction que si la touche de modification spécifiée est enfoncée."
+        "message": "Afficher la recherche uniquement lors de l'appui sur la touche de modification spécifiée."
     },
     "modifierKeyLabel": {
-        "message": "Touche de combinaison"
+        "message": "Touche de modification"
     },
     "shiftLabel": {
         "message": "Maj"
@@ -168,40 +108,34 @@
         "message": "Commande"
     },
     "disableUrlListLabel": {
-        "message": "Liste des URL à ne pas traduction"
+        "message": "Liste d'URL pour désactiver la recherche"
     },
     "disableUrlListCaptionLabel": {
-        "message": "Si l'URL de la page correspond à la liste, la traduction sur la page web est désactivée. La liste permet les caractères \"*\"."
+        "message": "Si l'URL de la page correspond à la liste, la recherche sur la page web est désactivée. La liste permet les jokers \"*\"."
     },
     "toolbarLabel": {
-        "message": "Fenêtre popup de la barre d'outils"
-    },
-    "ifChangeSecondLangLabel": {
-        "message": "Basculer automatiquement vers la deuxième langue"
-    },
-    "ifChangeSecondLangCaptionLabel": {
-        "message": "Détecte la langue du texte entré, et si elle est la même que la langue cible par défaut, traduire le texte dans la seconde langue."
+        "message": "Popup de la barre d'outils"
     },
     "secondTargetLangLabel": {
         "message": "Deuxième langue"
     },
     "secondTargetLangCaptionLabel": {
-        "message": "Sélectionnez la seconde langue cible."
+        "message": "Sélectionnez la deuxième langue cible."
     },
     "ignoredDocumentLangLabel": {
-        "message": "Désactiver la traduction par attribut lang"
+        "message": "Désactiver la recherche par attribut lang"
     },
     "ignoredDocumentLangCaptionLabel": {
-        "message": "Désactiver la traduction si l'attribut lang de l'élément HTML de la page correspond à la liste. Entrez des balises de langue séparées par des virgules."
+        "message": "Désactiver la recherche si l'attribut lang dans l'élément html de la page correspond à la liste. Entrez des balises de langue séparées par des virgules."
     },
     "waitTimeLabel": {
-        "message": "Temps d'attente pour la traduction"
+        "message": "Temps d'attente pour la recherche"
     },
     "waitTimeCaptionLabel": {
-        "message": "Précise le temps d'attente de l'entrée d'un caractère au début de la traduction. (milliseconde)"
+        "message": "Spécifiez le temps d'attente entre la saisie d'un caractère et le début de la recherche. (millisecondes)"
     },
     "waitTime2CaptionLabel": {
-        "message": "Si vous le traduisez plusieurs fois dans un court laps de temps, il peut devenir inutilisable pendant un moment."
+        "message": "Si vous effectuez de nombreuses recherches en peu de temps, il se peut qu'il devienne inutilisable pendant un certain temps."
     },
     "menuLabel": {
         "message": "Menu contextuel"
@@ -210,22 +144,7 @@
         "message": "Afficher le menu contextuel"
     },
     "ifShowMenuCaptionLabel": {
-        "message": "Ajoute des éléments au menu contextuel affiché lorsque vous cliquez avec le bouton droit sur la page Web ou l'onglet."
-    },
-    "pageTranslationLabel": {
-        "message": "Traduction de pages"
-    },
-    "pageTranslationOpenToLabel": {
-        "message": "Onglet pour afficher les résultats de la traduction"
-    },
-    "pageTranslationOpenToCaptionLabel": {
-        "message": "Spécifiez l'onglet pour afficher les résultats de la traduction de la page."
-    },
-    "newTabLabel": {
-        "message": "Nouvel onglet"
-    },
-    "currentTabLabel": {
-        "message": "Onglet actuel"
+        "message": "Ajouter des éléments au menu contextuel affiché lors d'un clic droit sur la page web ou l'onglet."
     },
     "styleLabel": {
         "message": "Style"
@@ -237,19 +156,19 @@
         "message": "Spécifiez le schéma de couleurs."
     },
     "lightLabel": {
-        "message": "Lumière"
+        "message": "Clair"
     },
     "darkLabel": {
         "message": "Sombre"
     },
     "systemLabel": {
-        "message": "Systèmes"
+        "message": "Système"
     },
     "buttonStyleLabel": {
-        "message": "Bouton de traduction"
+        "message": "Bouton de recherche"
     },
     "buttonStyleCaptionLabel": {
-        "message": "Définit le style du bouton de traduction affiché sur la page web."
+        "message": "Spécifiez le style du bouton de recherche affiché sur la page web."
     },
     "buttonSizeLabel": {
         "message": "Taille"
@@ -261,7 +180,7 @@
         "message": "En haut à droite"
     },
     "bottomRightLabel": {
-        "message": "En Bas à Droite"
+        "message": "En bas à droite"
     },
     "topLeftLabel": {
         "message": "En haut à gauche"
@@ -282,13 +201,13 @@
         "message": "Droite"
     },
     "positionOffsetLabel": {
-        "message": "Position d'affichage - Offset"
+        "message": "Position d'affichage - Décalage"
     },
     "panelStyleLabel": {
-        "message": "Panneau de traduction"
+        "message": "Panneau de recherche"
     },
     "panelStyleCaptionLabel": {
-        "message": "Spécifie le style du panneau de traduction affiché sur la page web."
+        "message": "Spécifiez le style du panneau de recherche affiché sur la page web."
     },
     "widthLabel": {
         "message": "Largeur"
@@ -297,7 +216,7 @@
         "message": "Hauteur"
     },
     "fontSizeLabel": {
-        "message": "Taille du texte"
+        "message": "Taille de la police"
     },
     "referencePointLabel": {
         "message": "Position d'affichage - Point de référence"
@@ -306,7 +225,7 @@
         "message": "Bas du texte sélectionné"
     },
     "topSelectedTextLabel": {
-        "message": "Haut de texte sélectionné"
+        "message": "Haut du texte sélectionné"
     },
     "clickedPointLabel": {
         "message": "Point cliqué"
@@ -315,43 +234,40 @@
         "message": "Position d'affichage - Direction"
     },
     "resultFontColorLabel": {
-        "message": "Couleur du texte traduit"
+        "message": "Couleur de la police du résultat de recherche"
     },
     "isOverrideColorsLabel": {
         "message": "Remplacer les couleurs par défaut par les couleurs ci-dessous"
     },
-    "candidateFontColorLabel": {
-        "message": "Couleur du texte à traduire"
-    },
     "bgColorLabel": {
-        "message": "Couleur d'arrière-plan"
+        "message": "Couleur de fond"
     },
     "otherLabel": {
         "message": "Autre"
     },
     "isShowOptionsPageWhenUpdatedLabel": {
-        "message": "Affiche la page d'option lors de la mise à jour"
+        "message": "Afficher la page d'options lors de la mise à jour"
     },
     "isShowOptionsPageWhenUpdatedCaptionLabel": {
-        "message": "Afficher la page des options lorsque Wikipedia Search est mis à jour. Vous pouvez connaître le contenu de la mise à jour rapidement."
+        "message": "Afficher la page des options lorsque Wikipedia Search est mis à jour. Vous pouvez connaître rapidement le contenu de la mise à jour."
     },
     "isDebugModeLabel": {
         "message": "Activer le mode débogage"
     },
     "isDebugModeCaptionLabel": {
-        "message": "Lorsque le mode débogage est activé, les données sont sorties vers le débogueur."
+        "message": "Lorsque le mode débogage est activé, le journal est envoyé au débogueur."
     },
     "exportSettingsLabel": {
-        "message": "Exporter les réglages"
+        "message": "Exporter les paramètres"
     },
     "exportSettingsCaptionLabel": {
-        "message": "Enregistrez les paramètres en tant que fichier json sur l'ordinateur."
+        "message": "Enregistrer les paramètres sous forme de fichier json sur l'ordinateur."
     },
     "exportButtonLabel": {
         "message": "Exporter"
     },
     "importSettingsLabel": {
-        "message": "Importer des paramètres"
+        "message": "Importer les paramètres"
     },
     "importSettingsCaptionLabel": {
         "message": "Charger le fichier de paramètres enregistré sur l'ordinateur."
@@ -384,16 +300,16 @@
         "message": "Tapez une lettre"
     },
     "includeModifierKeysMessage": {
-        "message": "Il faut au moins utiliser Ctrl ou Alt"
+        "message": "Inclure soit Ctrl soit Alt"
     },
     "includeMacModifierKeysMessage": {
-        "message": "Il faut au moins utiliser Commond, Ctrl ou Alt"
+        "message": "Inclure soit Commande, Ctrl soit Alt"
     },
     "invalidLetterMessage": {
-        "message": "Cette lettre ne peut pas être utilisée"
+        "message": "La lettre ne peut pas être utilisée"
     },
     "invalidShortcutMessage": {
-        "message": "Ce raccourci ne peut pas être utilisé"
+        "message": "Le raccourci ne peut pas être utilisé"
     },
     "clear": {
         "message": "Effacer"
@@ -402,34 +318,31 @@
         "message": "Réinitialiser"
     },
     "informationLabel": {
-        "message": "Informations"
+        "message": "Information"
     },
     "additionalPermissionLabel": {
-        "message": "Enable translation on web pages"
+        "message": "Activer la recherche sur les pages web"
     },
     "additionalPermissionCaptionLabel": {
-        "message": "Additional permissions are required to use Wikipedia Search on web pages."
+        "message": "Des permissions supplémentaires sont requises pour utiliser la recherche Wikipedia sur les pages web."
     },
     "enableLabel": {
-        "message": "Enable"
+        "message": "Activer"
     },
     "backersLabel": {
-        "message": "Donateurs"
+        "message": "Contributeurs"
     },
     "licenseLabel": {
         "message": "Licence"
     },
     "donationLabel": {
-        "message": "Faites un don"
+        "message": "Veuillez faire un don"
     },
     "donationCaptionLabel": {
-        "message": "Merci d'utiliser Wikipedia Search. <br>Votre soutien sera un grand encouragement, car je continue à développer le module. <br> Si vous aimez Wikipedia Search, je serais ravi si vous pouviez envisager de faire un don."
-    },
-    "amazonTitleLabel": {
-        "message": "Cartes Cadeaux (amazon.co.jp)"
+        "message": "Merci d'utiliser la recherche Wikipedia.<br>Votre soutien sera un grand encouragement, alors que je continue à développer l'extension.<br>Si vous aimez la recherche Wikipedia, je serais ravi si vous pouviez envisager de faire un don."
     },
     "sponsorsLabel": {
-        "message": "Message commercial"
+        "message": "Sponsors"
     },
     "addonPageLabel": {
         "message": "Page de l'extension"
@@ -440,11 +353,8 @@
     "privacyPolicyLabel": {
         "message": "Politique de confidentialité"
     },
-    "amazonUrl": {
-        "message": "https://www.amazon.co.jp/dp/B004N3APGO?language=en_US"
-    },
     "addonUrl": {
-        "message": "https://addons.mozilla.org/en-US/firefox/addon/simple-translate/?src=optionpage"
+        "message": "https://example.com"
     },
     "networkError": {
         "message": "Erreur : Vérifiez l'état de la connexion réseau."
@@ -453,23 +363,21 @@
         "message": "Erreur : Limite d'utilisation du service atteinte. Veuillez patienter un moment et réessayer."
     },
     "deeplAuthError": {
-        "message": "Erreur : L'authentification de l'API DeepL a échouée. Veuillez définir la clé d'authentification et le plan correctement dans les paramètres."
+        "message": "Erreur : L'authentification de l'API DeepL a échoué. Veuillez définir correctement la clé d'authentification et le plan sur la page des paramètres."
     },
     "unknownError": {
-        "message": "Erreur : inconnue"
-    },
-    "translatePageMenu": {
-        "message": "Traduire cette page"
+        "message": "Erreur : Erreur inconnue"
     },
     "translateTextMenu": {
-        "message": "Traduire le texte sélectionné"
+        "message": "recherche wikipedia pour le texte sélectionné"
     },
     "translateLinkMenu": {
-        "message": "Traduire le lien sélectionné"
+        "message": "Recherche Wikipedia pour le lien sélectionné"
     },
     "openPopupDescription": {
-        "message": "Ouvrir la barre d’outil en pop-up"
+        "message": "Ouvrir la popup de la barre d'outils"
     },
+
     "lang_af": {
         "message": "Africain"
     },

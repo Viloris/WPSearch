@@ -3,31 +3,22 @@
         "message": "Wikipedia Search"
     },
     "extDescription": {
-        "message": "Rychle překládejte vybraný nebo zadaný text na webových stránkách. Podporuje Google Translate a DeepL API."
+        "message": "Vyhledávejte na Wikipedii podle vybraného textu"
     },
     "donateWithPaypalLabel": {
-        "message": "Podpořit přes PayPal"
+        "message": "Darujte přes PayPal"
     },
     "donateLabel": {
         "message": "Darovat"
     },
     "enableOnThisPage": {
-        "message": "Povolit překlad na této stránce"
+        "message": "Povolit vyhledávání na této stránce"
     },
     "disableOnThisPage": {
-        "message": "Vypnout překlad na této stránce"
+        "message": "Zakázat vyhledávání na této stránce"
     },
     "initialTextArea": {
         "message": "Zadejte text"
-    },
-    "showLink": {
-        "message": "Přeložit tuto stránku"
-    },
-    "openInGoogleLabel": {
-        "message": "Otevřít v Překladači Google"
-    },
-    "openInDeeplLabel": {
-        "message": "Otevřít v DeepL Překladači"
     },
     "copyLabel": {
         "message": "Kopírovat"
@@ -53,107 +44,56 @@
     "generalLabel": {
         "message": "Obecné"
     },
-    "translationApiLabel": {
-        "message": "Překladatelský nástroj"
-    },
-    "googleApiLabel": {
-        "message": "API překladače Google"
-    },
-    "googleApiCaptionLabel": {
-        "message": "Použít API Překladače Google. Registrace není vyžadována."
-    },
-    "deeplApiLabel": {
-        "message": "DeepL API"
-    },
-    "deeplApiCaptionLabel": {
-        "message": "Use DeepL API. You must register with DeepL API Free or DeepL API Pro to obtain an authentication key."
-    },
-    "howToUseDeeplLabel": {
-        "message": "How to register DeepL API"
-    },
-    "deeplPlanLabel": {
-        "message": "DeepL API plan"
-    },
-    "deeplPlanCaptionLabel": {
-        "message": "Select the DeepL API plan for which you registered."
-    },
-    "deeplFreeLabel": {
-        "message": "DeepL API Free"
-    },
-    "deeplProLabel": {
-        "message": "DeepL API Pro"
-    },
-    "deeplAuthKeyLabel": {
-        "message": "Autorizační klíč"
-    },
-    "deeplAuthKeyCaptionLabel": {
-        "message": "Enter the authentication key for the DeepL API."
-    },
     "targetLangCaptionLabel": {
-        "message": "Select the default target language."
+        "message": "Vyberte výchozí cílový jazyk."
     },
     "webPageLabel": {
         "message": "Webová stránka"
     },
-    "ifShowCandidateLabel": {
-        "message": "Zobrazit návrhy na překlad"
-    },
-    "ifShowCandidateCaptionLabel": {
-        "message": "Show multiple translation candidates when a single word is translated."
-    },
     "whenSelectTextLabel": {
-        "message": "Behavior when selecting text"
+        "message": "Chování při výběru textu"
     },
     "ifAutoTranslateLabel": {
-        "message": "Zobrazit panel překladu"
+        "message": "Zobrazit panel vyhledávání"
     },
     "ifAutoTranslateCaptionLabel": {
-        "message": "Directly display the translation panel without displaying the button."
+        "message": "Přímo zobrazit panel vyhledávání bez zobrazení tlačítka."
     },
     "ifShowButtonLabel": {
-        "message": "Zobrazit tlačítko pro překlad"
+        "message": "Zobrazit tlačítko vyhledávání"
     },
     "ifShowButtonCaptionLabel": {
-        "message": "Display the translation button to open the panel when clicked."
+        "message": "Zobrazte tlačítko vyhledávání pro otevření panelu po kliknutí."
     },
     "dontshowbuttonlabel": {
-        "message": "Nezobrazovat tlačítko, ani panel"
+        "message": "Nezobrazovat tlačítko ani panel"
     },
     "dontshowbuttonCaptionlabel": {
-        "message": "Don't display the translation button or the translation panel."
-    },
-    "ifCheckLangLabel": {
-        "message": "Do not display the button if translation is not required"
-    },
-    "ifCheckLangCaptionLabel": {
-        "message": "Detects the language of the selected text, and if it is the same as the target language, the button is not displayed."
-    },
-    "ifChangeSecondLangOnPageCaptionLabel": {
-        "message": "Detects the language of the selected text, and if it is the same as the default target language, translate it into the second language."
+        "message": "Nezobrazovat tlačítko ani panel vyhledávání."
     },
     "disableTranslationLabel": {
-        "message": "Zakázat překlad"
+        "message": "Zakázat vyhledávání"
     },
     "isDisabledInTextFieldsLabel": {
-        "message": "Disable translation in text fields"
+        "message": "Zakázat vyhledávání v textových polích"
     },
     "isDisabledInTextFieldsCaptionLabel": {
-        "message": "Don't display translation button or panel when selecting text in a text field."
+        "message": "Nezobrazovat tlačítko ani panel vyhledávání při výběru textu v textovém poli."
     },
     "isDisabledInCodeElementLabel": {
-        "message": "Disable translation in code tags"
+        "message": "Zakázat vyhledávání v kódu"
     },
     "isDisabledInCodeElementCaptionLabel": {
-        "message": "Don't display translation button or panel when selecting text in code tag."
+        "message": "Nezobrazovat tlačítko ani panel vyhledávání při výběru textu v kódu."
     },
     "ifOnlyTranslateWhenModifierKeyPressedLabel": {
-        "message": "Translate on modifier key pressed"
+        "message": "Vyhledávat při stisknutí klávesy s modifikátorem"
     },
     "ifOnlyTranslateWhenModifierKeyPressedCaptionLabel": {
-        "message": "Only display translation on specified modifier key pressed."
+        "message": "Zobrazovat vyhledávání pouze při stisknutí specifikované klávesy s modifikátorem."
     },
     "modifierKeyLabel": {
-        "message": "Modifier Key"
+        "message": "Klávesa s modifikátorem"
     },
     "shiftLabel": {
         "message": "Shift"
@@ -165,97 +105,76 @@
         "message": "Alt"
     },
     "cmdLabel": {
-        "message": "Příkaz"
+        "message": "Command"
     },
     "disableUrlListLabel": {
-        "message": "URL list to disable translation"
+        "message": "Seznam URL k zakázání vyhledávání"
     },
     "disableUrlListCaptionLabel": {
-        "message": "If the page URL matches the list, translation on the web page is disabled. The list allows \"*\" wildcards."
+        "message": "Pokud URL stránky odpovídá seznamu, je vyhledávání na webové stránce zakázáno. Seznam umožňuje použití zástupných znaků \"*\"."
     },
     "toolbarLabel": {
-        "message": "Toolbar popup"
-    },
-    "ifChangeSecondLangLabel": {
-        "message": "Automatically switch to the second language"
-    },
-    "ifChangeSecondLangCaptionLabel": {
-        "message": "Detects the language of the input text, and if it is the same as the default target language, translate it into the second language."
+        "message": "Vyskakovací panel nástrojů"
     },
     "secondTargetLangLabel": {
-        "message": "Second language"
+        "message": "Druhý jazyk"
     },
     "secondTargetLangCaptionLabel": {
-        "message": "Select the second target language."
+        "message": "Vyberte druhý cílový jazyk."
     },
     "ignoredDocumentLangLabel": {
-        "message": "Disable translation by lang attribute"
+        "message": "Zakázat vyhledávání podle atributu lang"
     },
     "ignoredDocumentLangCaptionLabel": {
-        "message": "Disable translation if the lang attribute in the html element of the page matches the list. Enter comma-separated language tags."
+        "message": "Zakázat vyhledávání, pokud atribut lang v HTML elementu stránky odpovídá seznamu. Zadejte jazyky oddělené čárkami."
     },
     "waitTimeLabel": {
-        "message": "Waiting time to translate"
+        "message": "Čekací doba na vyhledávání"
     },
     "waitTimeCaptionLabel": {
-        "message": "Specify the waiting time from the input of a character to the start of translation. (millisecond)"
+        "message": "Specifikujte čekací dobu od zadání znaku do zahájení vyhledávání. (v milisekundách)"
     },
     "waitTime2CaptionLabel": {
-        "message": "If you translate it many times in a short time, it may become unusable for a while."
+        "message": "Pokud vyhledáváte příliš často v krátkém čase, může být služba na chvíli nedostupná."
     },
     "menuLabel": {
-        "message": "Context menu"
+        "message": "Kontextové menu"
     },
     "ifShowMenuLabel": {
-        "message": "Zobrazit kontextovou nabídku"
+        "message": "Zobrazit kontextové menu"
     },
     "ifShowMenuCaptionLabel": {
-        "message": "Add items to the context menu displayed when right clicking on the web page or the tab."
-    },
-    "pageTranslationLabel": {
-        "message": "Page translation"
-    },
-    "pageTranslationOpenToLabel": {
-        "message": "Tab to display translation results"
-    },
-    "pageTranslationOpenToCaptionLabel": {
-        "message": "Specify the tab to display the results of the page translation."
-    },
-    "newTabLabel": {
-        "message": "Nová karta"
-    },
-    "currentTabLabel": {
-        "message": "Aktuální karta"
+        "message": "Přidat položky do kontextového menu zobrazeného při kliknutí pravým tlačítkem na webové stránce nebo na kartě."
     },
     "styleLabel": {
         "message": "Styl"
     },
     "themeLabel": {
-        "message": "Theme"
+        "message": "Motiv"
     },
     "themeCaptionLabel": {
-        "message": "Specify the color scheme."
+        "message": "Specifikujte barevné schéma."
     },
     "lightLabel": {
-        "message": "Light"
+        "message": "Světlý"
     },
     "darkLabel": {
-        "message": "Dark"
+        "message": "Tmavý"
     },
     "systemLabel": {
-        "message": "System"
+        "message": "Systém"
     },
     "buttonStyleLabel": {
-        "message": "Translation button"
+        "message": "Tlačítko vyhledávání"
     },
     "buttonStyleCaptionLabel": {
-        "message": "Specify the style of the translation button displayed on the web page."
+        "message": "Specifikujte styl tlačítka vyhledávání zobrazeného na webové stránce."
     },
     "buttonSizeLabel": {
         "message": "Velikost"
     },
     "buttonPositionLabel": {
-        "message": "Display position"
+        "message": "Pozice zobrazení"
     },
     "topRightLabel": {
         "message": "Vpravo nahoře"
@@ -282,13 +201,13 @@
         "message": "Vpravo"
     },
     "positionOffsetLabel": {
-        "message": "Display position - Offset"
+        "message": "Pozice zobrazení - Offset"
     },
     "panelStyleLabel": {
-        "message": "Translation panel"
+        "message": "Panel vyhledávání"
     },
     "panelStyleCaptionLabel": {
-        "message": "Specify the style of the translation panel displayed on the web page."
+        "message": "Specifikujte styl panelu vyhledávání zobrazeného na webové stránce."
     },
     "widthLabel": {
         "message": "Šířka"
@@ -300,64 +219,61 @@
         "message": "Velikost písma"
     },
     "referencePointLabel": {
-        "message": "Display position - Reference point"
+        "message": "Pozice zobrazení - Referenční bod"
     },
     "bottomSelectedTextLabel": {
-        "message": "Bottom of selected text"
+        "message": "Dole u vybraného textu"
     },
     "topSelectedTextLabel": {
-        "message": "Top of selected text"
+        "message": "Nahoře u vybraného textu"
     },
     "clickedPointLabel": {
-        "message": "Clicked point"
+        "message": "Kliknutý bod"
     },
     "displayDirectionLabel": {
-        "message": "Display position - Direction"
+        "message": "Pozice zobrazení - Směr"
     },
     "resultFontColorLabel": {
-        "message": "Font color of translation result"
+        "message": "Barva písma výsledku vyhledávání"
     },
     "isOverrideColorsLabel": {
-        "message": "Override default colors with colors below"
-    },
-    "candidateFontColorLabel": {
-        "message": "Font color of translation candidates"
+        "message": "Přepsat výchozí barvy níže uvedenými barvami"
     },
     "bgColorLabel": {
         "message": "Barva pozadí"
     },
     "otherLabel": {
-        "message": "Other"
+        "message": "Ostatní"
     },
     "isShowOptionsPageWhenUpdatedLabel": {
-        "message": "Display option page when updating"
+        "message": "Zobrazit stránku možností při aktualizaci"
     },
     "isShowOptionsPageWhenUpdatedCaptionLabel": {
-        "message": "Display the options page when Wikipedia Search is updated. You can know the update contents quickly."
+        "message": "Zobrazit stránku možností při aktualizaci Vyhledávání na Wikipedii. Rychle se dozvíte obsah aktualizace."
     },
     "isDebugModeLabel": {
-        "message": "Enable debug mode"
+        "message": "Povolit režim ladění"
     },
     "isDebugModeCaptionLabel": {
-        "message": "When debug mode is enabled, the log is output to the debugger."
+        "message": "Pokud je povolen režim ladění, protokol se zapisuje do debuggeru."
     },
     "exportSettingsLabel": {
-        "message": "Export settings"
+        "message": "Exportovat nastavení"
     },
     "exportSettingsCaptionLabel": {
-        "message": "Save the settings as a json file on the computer."
+        "message": "Uložit nastavení jako soubor json na počítači."
     },
     "exportButtonLabel": {
-        "message": "Export"
+        "message": "Exportovat"
     },
     "importSettingsLabel": {
-        "message": "Import Settings"
+        "message": "Importovat nastavení"
     },
     "importSettingsCaptionLabel": {
-        "message": "Load the settings file saved on the computer."
+        "message": "Načíst soubor s nastavením uložený na počítači."
     },
     "importButtonLabel": {
-        "message": "Import"
+        "message": "Importovat"
     },
     "resetSettingsLabel": {
         "message": "Obnovit nastavení"
@@ -375,28 +291,28 @@
         "message": "Klávesové zkratky"
     },
     "setKeyboardShortCutsMessage": {
-        "message": "Nastavte klávesové zkratky."
+        "message": "Nastavit klávesové zkratky."
     },
     "typeShortcutMessage": {
-        "message": "Vybrat zkratku"
+        "message": "Napište zkratku"
     },
     "typeLetterMessage": {
         "message": "Napište písmeno"
     },
     "includeModifierKeysMessage": {
-        "message": "Zahrnout Ctrl nebo Alt"
+        "message": "Zahrnout buď Ctrl nebo Alt"
     },
     "includeMacModifierKeysMessage": {
-        "message": "Include either Command, Ctrl or Alt"
+        "message": "Zahrnout buď Command, Ctrl nebo Alt"
     },
     "invalidLetterMessage": {
-        "message": "The letter can not be used"
+        "message": "Toto písmeno nelze použít"
     },
     "invalidShortcutMessage": {
-        "message": "The shortcut can not be used"
+        "message": "Tuto zkratku nelze použít"
     },
     "clear": {
-        "message": "Clear"
+        "message": "Vymazat"
     },
     "reset": {
         "message": "Obnovit"
@@ -405,70 +321,61 @@
         "message": "Informace"
     },
     "additionalPermissionLabel": {
-        "message": "Enable translation on web pages"
+        "message": "Povolit vyhledávání na webových stránkách"
     },
     "additionalPermissionCaptionLabel": {
-        "message": "Additional permissions are required to use Wikipedia Search on web pages."
+        "message": "Pro použití Vyhledávání na Wikipedii na webových stránkách jsou vyžadována další oprávnění."
     },
     "enableLabel": {
-        "message": "Enable"
+        "message": "Povolit"
     },
     "backersLabel": {
-        "message": "Backers"
+        "message": "Příznivci"
     },
     "licenseLabel": {
         "message": "Licence"
     },
     "donationLabel": {
-        "message": "Prosím přispějte nám"
+        "message": "Prosím, přispějte"
     },
     "donationCaptionLabel": {
-        "message": "Děkujeme, že používáte Wikipedia Search.<br>Vaše podpora je pro nás velkou motivací pro pokračování ve vývoji.<br>Pokud se vám Wikipedia Search líbí, budeme moc rádi pokud nám na jeho vývoj přispějete."
-    },
-    "amazonTitleLabel": {
-        "message": "amazon.co.jp eGift Cards"
+        "message": "Děkujeme, že používáte Vyhledávání na Wikipedii.<br>Vaše podpora bude velkou motivací, protože pokračuji ve vývoji tohoto doplňku.<br>Pokud se vám líbí Vyhledávání na Wikipedii, budu rád, když zvážíte přispění."
     },
     "sponsorsLabel": {
-        "message": "Sponsors"
+        "message": "Sponzoři"
     },
     "addonPageLabel": {
-        "message": "Add-on page"
+        "message": "Stránka doplňku"
     },
     "extensionPageLabel": {
-        "message": "Extension page"
+        "message": "Stránka rozšíření"
     },
     "privacyPolicyLabel": {
-        "message": "Privacy policy"
-    },
-    "amazonUrl": {
-        "message": "https://www.amazon.co.jp/dp/B004N3APGO?language=en_US"
+        "message": "Zásady ochrany osobních údajů"
     },
     "addonUrl": {
-        "message": "https://addons.mozilla.org/en-US/firefox/addon/simple-translate/?src=optionpage"
+        "message": "https://example.com"
     },
     "networkError": {
-        "message": "Error: Check network connection status."
+        "message": "Chyba: Zkontrolujte stav připojení k síti."
     },
     "unavailableError": {
-        "message": "Error: Service usage limit reached. Please wait a while and try again."
+        "message": "Chyba: Dosaženo limitu používání služby. Počkejte chvíli a zkuste to znovu."
     },
     "deeplAuthError": {
-        "message": "Error: Authentication of DeepL API failed. Please set the authentication key and plan correctly on the settings page."
+        "message": "Chyba: Autentizace DeepL API selhala. Nastavte správně autentizační klíč a plán na stránce nastavení."
     },
     "unknownError": {
-        "message": "Error: Unknown error"
-    },
-    "translatePageMenu": {
-        "message": "Přeložit tuto stránku"
+        "message": "Chyba: Neznámá chyba"
     },
     "translateTextMenu": {
-        "message": "Přeložit označený text"
+        "message": "vyhledávání na Wikipedii pro vybraný text"
     },
     "translateLinkMenu": {
-        "message": "Translate selected link"
+        "message": "Vyhledávání na Wikipedii pro vybraný odkaz"
     },
     "openPopupDescription": {
-        "message": "Open toolbar popup"
+        "message": "Otevřít vyskakovací panel nástrojů"
     },
     "lang_af": {
         "message": "Afrikaans"

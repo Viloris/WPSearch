@@ -3,7 +3,7 @@
         "message": "Wikipedia-Suche"
     },
     "extDescription": {
-        "message": "Wikipedia-Suche basierend auf dem ausgewählten Text"
+        "message": "Durchsuchen Sie Wikipedia basierend auf dem ausgewählten Text"
     },
     "donateWithPaypalLabel": {
         "message": "Mit PayPal spenden"
@@ -36,7 +36,7 @@
         "message": "Alle Sprachen"
     },
     "recentLangLabel": {
-        "message": "Letzte Sprachen"
+        "message": "Zuletzt verwendete Sprachen"
     },
     "settingsLabel": {
         "message": "Einstellungen"
@@ -45,31 +45,31 @@
         "message": "Allgemein"
     },
     "targetLangCaptionLabel": {
-        "message": "Wählen Sie die Standard-Zielsprache."
+        "message": "Wählen Sie die standardmäßige Zielsprache aus."
     },
     "webPageLabel": {
         "message": "Webseite"
     },
     "whenSelectTextLabel": {
-        "message": "Verhalten beim Auswählen von Text"
+        "message": "Verhalten beim Markieren von Text"
     },
     "ifAutoTranslateLabel": {
-        "message": "Suchfenster anzeigen"
+        "message": "Suchpanel anzeigen"
     },
     "ifAutoTranslateCaptionLabel": {
-        "message": "Suchfenster direkt anzeigen, ohne die Schaltfläche anzuzeigen."
+        "message": "Suchpanel direkt anzeigen, ohne den Button anzuzeigen."
     },
     "ifShowButtonLabel": {
-        "message": "Suchschaltfläche anzeigen"
+        "message": "Suchbutton anzeigen"
     },
     "ifShowButtonCaptionLabel": {
-        "message": "Suchschaltfläche anzeigen, um das Fenster beim Anklicken zu öffnen."
+        "message": "Suchbutton anzeigen, um das Panel bei Klick zu öffnen."
     },
     "dontshowbuttonlabel": {
-        "message": "Schaltfläche oder Fenster nicht anzeigen"
+        "message": "Keinen Button oder Panel anzeigen"
     },
     "dontshowbuttonCaptionlabel": {
-        "message": "Suchschaltfläche oder Suchfenster nicht anzeigen."
+        "message": "Suchbutton oder Suchpanel nicht anzeigen."
     },
     "disableTranslationLabel": {
         "message": "Suche deaktivieren"
@@ -78,19 +78,19 @@
         "message": "Suche in Textfeldern deaktivieren"
     },
     "isDisabledInTextFieldsCaptionLabel": {
-        "message": "Suchschaltfläche oder -fenster nicht anzeigen, wenn Text in einem Textfeld ausgewählt wird."
+        "message": "Suchbutton oder Panel nicht anzeigen, wenn Text in einem Textfeld markiert wird."
     },
     "isDisabledInCodeElementLabel": {
         "message": "Suche in Code-Tags deaktivieren"
     },
     "isDisabledInCodeElementCaptionLabel": {
-        "message": "Suchschaltfläche oder -fenster nicht anzeigen, wenn Text in einem Code-Tag ausgewählt wird."
+        "message": "Suchbutton oder Panel nicht anzeigen, wenn Text in einem Code-Tag markiert wird."
     },
     "ifOnlyTranslateWhenModifierKeyPressedLabel": {
         "message": "Suche bei gedrückter Modifikatortaste"
     },
     "ifOnlyTranslateWhenModifierKeyPressedCaptionLabel": {
-        "message": "Suche nur anzeigen, wenn eine bestimmte Modifikatortaste gedrückt wird."
+        "message": "Suche nur anzeigen, wenn die angegebene Modifikatortaste gedrückt wird."
     },
     "modifierKeyLabel": {
         "message": "Modifikatortaste"
@@ -105,13 +105,13 @@
         "message": "Alt"
     },
     "cmdLabel": {
-        "message": "Command"
+        "message": "Befehl"
     },
     "disableUrlListLabel": {
         "message": "URL-Liste zur Deaktivierung der Suche"
     },
     "disableUrlListCaptionLabel": {
-        "message": "Wenn die URL der Seite mit der Liste übereinstimmt, wird die Suche auf der Webseite deaktiviert. Die Liste erlaubt \"*\"-Wildcards."
+        "message": "Wenn die URL der Seite mit der Liste übereinstimmt, wird die Suche auf der Webseite deaktiviert. Die Liste erlaubt Wildcards „*“."
     },
     "toolbarLabel": {
         "message": "Werkzeugleisten-Popup"
@@ -120,22 +120,22 @@
         "message": "Zweite Sprache"
     },
     "secondTargetLangCaptionLabel": {
-        "message": "Wählen Sie die zweite Zielsprache."
+        "message": "Wählen Sie die zweite Zielsprache aus."
     },
     "ignoredDocumentLangLabel": {
-        "message": "Suche nach lang-Attribut deaktivieren"
+        "message": "Suche nach Sprachattribut deaktivieren"
     },
     "ignoredDocumentLangCaptionLabel": {
-        "message": "Suche deaktivieren, wenn das lang-Attribut im HTML-Element der Seite mit der Liste übereinstimmt. Geben Sie kommagetrennte Sprach-Tags ein."
+        "message": "Suche deaktivieren, wenn das Sprachattribut im HTML-Element der Seite mit der Liste übereinstimmt. Geben Sie durch Kommas getrennte Sprachcodes ein."
     },
     "waitTimeLabel": {
-        "message": "Wartezeit zur Suche"
+        "message": "Wartezeit für die Suche"
     },
     "waitTimeCaptionLabel": {
         "message": "Geben Sie die Wartezeit von der Eingabe eines Zeichens bis zum Start der Suche an. (Millisekunde)"
     },
     "waitTime2CaptionLabel": {
-        "message": "Wenn Sie innerhalb kurzer Zeit mehrmals suchen, kann es vorübergehend unbrauchbar werden."
+        "message": "Wenn Sie in kurzer Zeit mehrmals suchen, kann die Suche eine Weile nicht verfügbar sein."
     },
     "menuLabel": {
         "message": "Kontextmenü"
@@ -144,7 +144,7 @@
         "message": "Kontextmenü anzeigen"
     },
     "ifShowMenuCaptionLabel": {
-        "message": "Elemente zum Kontextmenü hinzufügen, das beim Rechtsklick auf die Webseite oder den Tab angezeigt wird."
+        "message": "Elemente zum Kontextmenü hinzufügen, das beim Rechtsklicken auf die Webseite oder den Tab angezeigt wird."
     },
     "styleLabel": {
         "message": "Stil"
@@ -153,7 +153,7 @@
         "message": "Thema"
     },
     "themeCaptionLabel": {
-        "message": "Farbschema festlegen."
+        "message": "Farbgebung festlegen."
     },
     "lightLabel": {
         "message": "Hell"
@@ -165,16 +165,16 @@
         "message": "System"
     },
     "buttonStyleLabel": {
-        "message": "Suchschaltfläche"
+        "message": "Suchbutton"
     },
     "buttonStyleCaptionLabel": {
-        "message": "Stil der Suchschaltfläche festlegen, die auf der Webseite angezeigt wird."
+        "message": "Stil des Suchbuttons festlegen, der auf der Webseite angezeigt wird."
     },
     "buttonSizeLabel": {
         "message": "Größe"
     },
     "buttonPositionLabel": {
-        "message": "Position anzeigen"
+        "message": "Anzeigeort"
     },
     "topRightLabel": {
         "message": "Oben rechts"
@@ -201,13 +201,13 @@
         "message": "Rechts"
     },
     "positionOffsetLabel": {
-        "message": "Anzeigeposition - Offset"
+        "message": "Anzeigeort - Versatz"
     },
     "panelStyleLabel": {
-        "message": "Suchfenster"
+        "message": "Suchpanel"
     },
     "panelStyleCaptionLabel": {
-        "message": "Stil des Suchfensters festlegen, das auf der Webseite angezeigt wird."
+        "message": "Stil des Suchpanels festlegen, das auf der Webseite angezeigt wird."
     },
     "widthLabel": {
         "message": "Breite"
@@ -219,25 +219,25 @@
         "message": "Schriftgröße"
     },
     "referencePointLabel": {
-        "message": "Anzeigeposition - Referenzpunkt"
+        "message": "Anzeigeort - Referenzpunkt"
     },
     "bottomSelectedTextLabel": {
-        "message": "Unterhalb des ausgewählten Textes"
+        "message": "Unterhalb des markierten Textes"
     },
     "topSelectedTextLabel": {
-        "message": "Oberhalb des ausgewählten Textes"
+        "message": "Oberhalb des markierten Textes"
     },
     "clickedPointLabel": {
-        "message": "Geklickter Punkt"
+        "message": "Angeklickter Punkt"
     },
     "displayDirectionLabel": {
-        "message": "Anzeigeposition - Richtung"
+        "message": "Anzeigeort - Richtung"
     },
     "resultFontColorLabel": {
         "message": "Schriftfarbe des Suchergebnisses"
     },
     "isOverrideColorsLabel": {
-        "message": "Standardfarben durch folgende Farben überschreiben"
+        "message": "Standardfarben mit den folgenden Farben überschreiben"
     },
     "bgColorLabel": {
         "message": "Hintergrundfarbe"
@@ -246,10 +246,10 @@
         "message": "Sonstiges"
     },
     "isShowOptionsPageWhenUpdatedLabel": {
-        "message": "Optionen-Seite beim Aktualisieren anzeigen"
+        "message": "Optionsseite bei Updates anzeigen"
     },
     "isShowOptionsPageWhenUpdatedCaptionLabel": {
-        "message": "Optionen-Seite anzeigen, wenn Wikipedia-Suche aktualisiert wird. Sie können schnell die Aktualisierungsinhalte erfahren."
+        "message": "Die Optionsseite anzeigen, wenn Wikipedia-Suche aktualisiert wird. Sie können die Update-Inhalte schnell kennenlernen."
     },
     "isDebugModeLabel": {
         "message": "Debug-Modus aktivieren"
@@ -324,7 +324,7 @@
         "message": "Suche auf Webseiten aktivieren"
     },
     "additionalPermissionCaptionLabel": {
-        "message": "Zusätzliche Berechtigungen werden benötigt, um Wikipedia Search auf Webseiten zu verwenden."
+        "message": "Zusätzliche Berechtigungen sind erforderlich, um die Wikipedia-Suche auf Webseiten zu verwenden."
     },
     "enableLabel": {
         "message": "Aktivieren"
@@ -336,13 +336,10 @@
         "message": "Lizenz"
     },
     "donationLabel": {
-        "message": "Bitte spende"
+        "message": "Bitte spenden Sie"
     },
     "donationCaptionLabel": {
-        "message": "Danke für das Benutzen von Wikipedia Search.<br>Deine Unterstützung wird ein großer Ansporn bei der Weiterentwicklung dieses Add-ons sein.<br>Wenn du Wikipedia Search magst, wäre es schön, wenn du etwas spenden würdest."
-    },
-    "amazonTitleLabel": {
-        "message": "amazon.co.jp eGeschenkekarten"
+        "message": "Vielen Dank, dass Sie Wikipedia Search verwenden.<br>Ihre Unterstützung wird ein großer Ansporn sein, während ich die Erweiterung weiterentwickle.<br>Wenn Ihnen Wikipedia-Suche gefällt, würde ich mich freuen, wenn Sie eine Spende in Betracht ziehen könnten."
     },
     "sponsorsLabel": {
         "message": "Sponsoren"
@@ -351,34 +348,31 @@
         "message": "Add-on-Seite"
     },
     "extensionPageLabel": {
-        "message": "Erweiterungs Seite"
+        "message": "Erweiterungsseite"
     },
     "privacyPolicyLabel": {
-        "message": "Datenschutzrichtlinien"
-    },
-    "amazonUrl": {
-        "message": "https://www.amazon.co.jp/dp/B004N3APGO?language=en_US"
+        "message": "Datenschutzrichtlinie"
     },
     "addonUrl": {
-        "message": "https://addons.mozilla.org/de/firefox/addon/simple-translate/?src=optionpage"
+        "message": "https://example.com"
     },
     "networkError": {
-        "message": "Fehler: Überprüfen Sie den Netzwerkstatus."
+        "message": "Fehler: Überprüfen Sie den Netzwerkverbindungsstatus."
     },
     "unavailableError": {
-        "message": "Fehler: Service-Nutzungslimit erreicht. Bitte warten Sie einen Moment und versuchen Sie es erneut."
+        "message": "Fehler: Nutzungsgrenze des Dienstes erreicht. Bitte warten Sie eine Weile und versuchen Sie es erneut."
     },
     "deeplAuthError": {
-        "message": "Fehler: Authentifizierung der DeepL-API fehlgeschlagen. Bitte erstellen Sie den Authentifizierungsschlüssel korrekt auf der Einstellungsseite."
+        "message": "Fehler: Authentifizierung des DeepL API fehlgeschlagen. Bitte legen Sie den Authentifizierungsschlüssel und Plan auf der Einstellungsseite korrekt fest."
     },
     "unknownError": {
         "message": "Fehler: Unbekannter Fehler"
     },
     "translateTextMenu": {
-        "message": "Wikipedia-Suche nach ausgewähltem Text"
+        "message": "Wikipedia-Suche für ausgewählten Text"
     },
     "translateLinkMenu": {
-        "message": "Wikipedia-Suche nach ausgewähltem Link"
+        "message": "Wikipedia-Suche für ausgewählten Link"
     },
     "openPopupDescription": {
         "message": "Toolbar-Popup öffnen"
