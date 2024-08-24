@@ -8,9 +8,9 @@ import {
     BG_COLOR_LIGHT,
     BG_COLOR_DARK
 } from "./defaultColors";
+import config from "../config.json";
 
-const DEFAULT_LANGUAGE = "en";
-const SECOND_LANGUAGE = "de";
+const { DEFAULT_LANGUAGE, SECOND_LANGUAGE } = config;
 
 const getDefaultLangs = () => {
     const uiLang = browser.i18n.getUILanguage();
@@ -71,8 +71,8 @@ export default [
                     },
                     {
                         id: "whenSelectText",
-                        title: "ifAutoTranslateLabel",
-                        captions: ["ifAutoTranslateCaptionLabel"],
+                        title: "ifAutoSearchLabel",
+                        captions: ["ifAutoSearchCaptionLabel"],
                         type: "radio",
                         value: "showPanel"
                     },
@@ -87,8 +87,8 @@ export default [
             },
             {
                 id: "ifOnlyTranslateWhenModifierKeyPressed",
-                title: "ifOnlyTranslateWhenModifierKeyPressedLabel",
-                captions: ["ifOnlyTranslateWhenModifierKeyPressedCaptionLabel"],
+                title: "ifOnlySearchWhenModifierKeyPressedLabel",
+                captions: ["ifOnlySearchWhenModifierKeyPressedCaptionLabel"],
                 type: "checkbox",
                 default: false,
                 childElements: [
