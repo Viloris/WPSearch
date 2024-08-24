@@ -37,12 +37,14 @@ export default (props) => {
         height: buttonSize,
         width: buttonSize,
         top: top + position.y,
-        left: left + position.x,
+        left: left + position.x
     };
     return (
         <div
             style={buttonStyle}
-            className={`simple-translate-button ${shouldShow ? "isShow" : ""}`}
+            className={`simple-wikipedia-search-button ${
+                shouldShow ? "isShow" : ""
+            }`}
             onClick={props.handleButtonClick}
         />
     );
