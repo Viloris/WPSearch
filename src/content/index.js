@@ -4,7 +4,7 @@ import browser from "webextension-polyfill";
 import {
     initSettings,
     getSettings,
-    handleSettingsChange,
+    handleSettingsChange
 } from "src/settings/settings";
 import { updateLogLevel, overWriteLogLevel } from "src/common/log";
 import SearchContainer from "./components/SearchContainer";
@@ -39,8 +39,8 @@ const handleMouseUp = async (e) => {
     if (inCodeElement && getSettings("isDisabledInCodeElement")) return;
 
     const isInThisElement =
-        document.querySelector("#simple-translate") &&
-        document.querySelector("#simple-translate").contains(e.target);
+        document.querySelector("#simple-wikipedia-search") &&
+        document.querySelector("#simple-wikipedia-search").contains(e.target);
     if (isInThisElement) return;
 
     removeSearchContainer();
@@ -118,14 +118,14 @@ const getSelectedPosition = () => {
         case "topSelectedText":
             selectedPosition = {
                 x: selectedRect.left + selectedRect.width / 2,
-                y: selectedRect.top,
+                y: selectedRect.top
             };
             break;
         case "bottomSelectedText":
         default:
             selectedPosition = {
                 x: selectedRect.left + selectedRect.width / 2,
-                y: selectedRect.bottom,
+                y: selectedRect.bottom
             };
             break;
     }
@@ -218,7 +218,7 @@ const disableExtensionByUrlList = () => {
 };
 
 const removeSearchContainer = async () => {
-    const element = document.getElementById("simple-translate");
+    const element = document.getElementById("simple-wikipedia-search");
     if (!element) return;
 
     ReactDOM.unmountComponentAtNode(element);
@@ -231,15 +231,16 @@ const showSearchContainer = (
     clickedPosition = null,
     shouldTranslate = false
 ) => {
-    const element = document.getElementById("simple-translate");
+    const element = document.getElementById("simple-wikipedia-search");
     if (element) return;
     if (!isEnabled) return;
 
-    const themeClass = "simple-translate-" + getSettings("theme") + "-theme";
+    const themeClass =
+        "simple-wikipedia-search-" + getSettings("theme") + "-theme";
 
     document.body.insertAdjacentHTML(
         "beforeend",
-        `<div id="simple-translate" class="${themeClass}"></div>`
+        `<div id="simple-wikipedia-search" class="${themeClass}"></div>`
     );
     ReactDOM.render(
         <SearchContainer
@@ -249,6 +250,6 @@ const showSearchContainer = (
             clickedPosition={clickedPosition}
             shouldTranslate={shouldTranslate}
         />,
-        document.getElementById("simple-translate")
+        document.getElementById("simple-wikipedia-search")
     );
 };
