@@ -1,12 +1,12 @@
 import browser from "webextension-polyfill";
 import { initSettings } from "src/settings/settings";
-import translate from "src/common/translate";
+import wikisearch from "src/common/wikisearch";
 
 export default async (data) => {
     await initSettings();
     switch (data.message) {
         case "wikipediaSearch": {
-            return await translate(data.expression);
+            return await wikisearch(data.expression);
         }
     }
 };
