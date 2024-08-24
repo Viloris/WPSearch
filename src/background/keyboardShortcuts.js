@@ -37,18 +37,18 @@ export const onCommandListener = async (command) => {
     log.log(logDir, "onCommandListener()", command);
     await initSettings();
     switch (command) {
-        case "translateSelectedText": {
-            translateSelectedText();
+        case "wpSearchSelectedText": {
+            wpSearchSelectedText();
             break;
         }
     }
 };
 
-const translateSelectedText = async () => {
+const wpSearchSelectedText = async () => {
     const tab = (
         await browser.tabs.query({ active: true, currentWindow: true })
     )[0];
     browser.tabs.sendMessage(tab.id, {
-        message: "translateSelectedText"
+        message: "wpSearchSelectedText"
     });
 };
