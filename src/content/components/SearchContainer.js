@@ -44,9 +44,10 @@ export default class SearchContainer extends Component {
         const onSelectBehavior = getSettings("whenSelectText");
         if (onSelectBehavior === "dontShowButton")
             return this.props.removeContainer();
-        if (onSelectBehavior === "showButton") this.showButton(clickedPosition);
+        if (onSelectBehavior === "showButton")
+            return this.showButton(clickedPosition);
         else if (onSelectBehavior === "showPanel")
-            this.showPanel(clickedPosition);
+            return this.showPanel(clickedPosition);
     };
 
     showButton = (clickedPosition) => {
