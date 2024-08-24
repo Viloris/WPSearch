@@ -53,10 +53,10 @@
     "whenSelectTextLabel": {
         "message": "Viselkedés a szöveg kiválasztásakor"
     },
-    "ifAutoTranslateLabel": {
+    "ifAutoSearchLabel": {
         "message": "A keresőpanel megjelenítése"
     },
-    "ifAutoTranslateCaptionLabel": {
+    "ifAutoSearchCaptionLabel": {
         "message": "Közvetlenül jelenítse meg a keresőpanelt a gomb megjelenítése nélkül."
     },
     "ifShowButtonLabel": {
@@ -86,10 +86,10 @@
     "isDisabledInCodeElementCaptionLabel": {
         "message": "Ne jelenjen meg a keresés gomb vagy a panel amikor a kijelölt szöveg egy <code> cimkében található."
     },
-    "ifOnlyTranslateWhenModifierKeyPressedLabel": {
+    "ifOnlySearchWhenModifierKeyPressedLabel": {
         "message": "Keresés a módosító billentyű lenyomásakor"
     },
-    "ifOnlyTranslateWhenModifierKeyPressedCaptionLabel": {
+    "ifOnlySearchWhenModifierKeyPressedCaptionLabel": {
         "message": "Keresés megjelenítése csak a megadott módosító billentyű lenyomásakor."
     },
     "modifierKeyLabel": {
@@ -339,7 +339,7 @@
         "message": "Adomány"
     },
     "donationCaptionLabel": {
-        "message": "Köszönöm, hogy a Wikipedia search bővítményt használja.<br>Támogatásával arra ösztönözhet, hogy tovább fejlesszem a bővítményt.<br>Ha tetszik önnek a Wikipedia search, örülnék, ha megfontolhatná az adományozást."
+        "message": "Köszönöm, hogy a Wikipedia Search bővítményt használja.<br>Támogatásával arra ösztönözhet, hogy tovább fejlesszem a bővítményt.<br>Ha tetszik önnek a Wikipedia search, örülnék, ha megfontolhatná az adományozást."
     },
     "sponsorsLabel": {
         "message": "Támogatók"
@@ -368,11 +368,8 @@
     "unknownError": {
         "message": "Hiba: Ismeretlen hiba"
     },
-    "translateTextMenu": {
+    "wikipediaSearchTextMenu": {
         "message": "Wikipédia keresés a kijelölt szövegre"
-    },
-    "translateLinkMenu": {
-        "message": "Wikipédia keresés a kijelölt hivatkozásra"
     },
     "openPopupDescription": {
         "message": "Eszköztár felugró ablak megnyitása"

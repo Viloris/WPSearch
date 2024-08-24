@@ -53,10 +53,10 @@
     "whenSelectTextLabel": {
         "message": "Behavior when selecting text"
     },
-    "ifAutoTranslateLabel": {
+    "ifAutoSearchLabel": {
         "message": "Display search panel"
     },
-    "ifAutoTranslateCaptionLabel": {
+    "ifAutoSearchCaptionLabel": {
         "message": "Directly display the search panel without displaying the button."
     },
     "ifShowButtonLabel": {
@@ -86,10 +86,10 @@
     "isDisabledInCodeElementCaptionLabel": {
         "message": "Don't display search button or panel when selecting text in code tag."
     },
-    "ifOnlyTranslateWhenModifierKeyPressedLabel": {
+    "ifOnlySearchWhenModifierKeyPressedLabel": {
         "message": "Search on modifier key pressed"
     },
-    "ifOnlyTranslateWhenModifierKeyPressedCaptionLabel": {
+    "ifOnlySearchWhenModifierKeyPressedCaptionLabel": {
         "message": "Only display search on specified modifier key pressed."
     },
     "modifierKeyLabel": {
@@ -368,7 +368,7 @@
     "unknownError": {
         "message": "Error: Unknown error"
     },
-    "translateTextMenu": {
+    "wikipediaSearchTextMenu": {
         "message": "wikipedia search for selected text"
     },
     "translateLinkMenu": {

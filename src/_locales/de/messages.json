@@ -53,10 +53,10 @@
     "whenSelectTextLabel": {
         "message": "Verhalten beim Markieren von Text"
     },
-    "ifAutoTranslateLabel": {
+    "ifAutoSearchLabel": {
         "message": "Suchpanel anzeigen"
     },
-    "ifAutoTranslateCaptionLabel": {
+    "ifAutoSearchCaptionLabel": {
         "message": "Suchpanel direkt anzeigen, ohne den Button anzuzeigen."
     },
     "ifShowButtonLabel": {
@@ -86,10 +86,10 @@
     "isDisabledInCodeElementCaptionLabel": {
         "message": "Suchbutton oder Panel nicht anzeigen, wenn Text in einem Code-Tag markiert wird."
     },
-    "ifOnlyTranslateWhenModifierKeyPressedLabel": {
+    "ifOnlySearchWhenModifierKeyPressedLabel": {
         "message": "Suche bei gedrückter Modifikatortaste"
     },
-    "ifOnlyTranslateWhenModifierKeyPressedCaptionLabel": {
+    "ifOnlySearchWhenModifierKeyPressedCaptionLabel": {
         "message": "Suche nur anzeigen, wenn die angegebene Modifikatortaste gedrückt wird."
     },
     "modifierKeyLabel": {
@@ -368,7 +368,7 @@
     "unknownError": {
         "message": "Fehler: Unbekannter Fehler"
     },
-    "translateTextMenu": {
+    "wikipediaSearchTextMenu": {
         "message": "Wikipedia-Suche für ausgewählten Text"
     },
     "translateLinkMenu": {

@@ -53,10 +53,10 @@
     "whenSelectTextLabel": {
         "message": "Comportement lors de la sélection de texte"
     },
-    "ifAutoTranslateLabel": {
+    "ifAutoSearchLabel": {
         "message": "Afficher le panneau de recherche"
     },
-    "ifAutoTranslateCaptionLabel": {
+    "ifAutoSearchCaptionLabel": {
         "message": "Afficher directement le panneau de recherche sans afficher le bouton."
     },
     "ifShowButtonLabel": {
@@ -86,10 +86,10 @@
     "isDisabledInCodeElementCaptionLabel": {
         "message": "Ne pas afficher le bouton de recherche ou le panneau lors de la sélection de texte dans une balise de code."
     },
-    "ifOnlyTranslateWhenModifierKeyPressedLabel": {
+    "ifOnlySearchWhenModifierKeyPressedLabel": {
         "message": "Rechercher lors de l'appui sur la touche de modification"
     },
-    "ifOnlyTranslateWhenModifierKeyPressedCaptionLabel": {
+    "ifOnlySearchWhenModifierKeyPressedCaptionLabel": {
         "message": "Afficher la recherche uniquement lors de l'appui sur la touche de modification spécifiée."
     },
     "modifierKeyLabel": {
@@ -368,7 +368,7 @@
     "unknownError": {
         "message": "Erreur : Erreur inconnue"
     },
-    "translateTextMenu": {
+    "wikipediaSearchTextMenu": {
         "message": "recherche wikipedia pour le texte sélectionné"
     },
     "translateLinkMenu": {
