@@ -44,17 +44,9 @@
         "build": "webpack --config webpack.config.dist.js",
         "open-analyzer": "opener http://127.0.0.1:8888/"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://example.com"
-    },
     "author": "Viloris",
     "license": "MPL-2.0",
-    "description": "A simple and powerful WebExtensions for searching on Wikipedia for text.",
-    "bugs": {
-        "url": "https://github.com/"
-    },
-    "homepage": "https://example.com",
+    "description": "A simple and powerful add-on for searching on Wikipedia.",
     "main": ".src/manifest.json",
     "keywords": [
         "webextensions",
