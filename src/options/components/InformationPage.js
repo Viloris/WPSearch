@@ -19,7 +19,7 @@ export default (props) => {
             <hr />
             <OptionsContainer
                 title={"extName"}
-                captions={[]}
+                captions={["extDescription"]}
                 type={"none"}
                 updated={query.action === "updated"}
                 extraCaption={
