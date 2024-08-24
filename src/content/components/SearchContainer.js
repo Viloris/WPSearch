@@ -6,7 +6,7 @@ import ResultPanel from "./ResultPanel";
 import "../styles/SearchContainer.scss";
 import { getTargetLang } from "../../common/utils";
 
-const translateText = async (expression) => {
+const wpSearchText = async (expression) => {
     const result = await browser.runtime.sendMessage({
         message: "wikipediaSearch",
         expression
@@ -74,7 +74,7 @@ export default class SearchContainer extends Component {
         const panelPosition = useClickedPosition
             ? clickedPosition
             : this.selectedPosition;
-        const result = await translateText(this.selectedText);
+        const result = await wpSearchText(this.selectedText);
 
         this.setState({
             shouldShowPanel: true,
