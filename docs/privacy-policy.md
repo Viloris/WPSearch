@@ -4,7 +4,7 @@ title: Privacy Policy
 
 # Privacy Policy of Wikipedia Search
 
-**Effective Date: March 3, 2022**
+**Effective Date: Aug 24, 2024**
 
 ## 1. Introduction
 
