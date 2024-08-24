@@ -1,9 +1,9 @@
-#simple-translate {
-  .simple-translate-panel {
+#simple-wikipedia-search {
+  .simple-wikipedia-search-panel {
     all: initial;
     position: fixed;
     overflow: hidden;
-    background-color: var(--simple-translate-main-bg);
+    background-color: var(--simple-wikipedia-search-main-bg);
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
     border-radius: 3px;
     z-index: 2147483646;
@@ -17,7 +17,7 @@
       visibility: visible;
     }
 
-    .simple-translate-result-wrapper {
+    .simple-wikipedia-search-result-wrapper {
       all: initial;
       position: absolute;
       font-size: inherit;
@@ -32,12 +32,12 @@
       max-height: 100%;
       overflow: auto;
 
-      .simple-translate-move {
+      .simple-wikipedia-search-move {
         height: 15px;
         cursor: grab;
       }
 
-      .simple-translate-result-contents {
+      .simple-wikipedia-search-result-contents {
         padding: 0px 18px 15px;
         p,
         a {
@@ -54,19 +54,19 @@
         }
 
         a {
-          color: var(--simple-translate-highlight);
+          color: var(--simple-wikipedia-search-highlight);
           cursor: pointer;
         }
 
         &::-moz-selection {
-          background: var(--simple-translate-line);
+          background: var(--simple-wikipedia-search-line);
         }
 
-        .simple-translate-result {
-          color: var(--simple-translate-main-text);
+        .simple-wikipedia-search-result {
+          color: var(--simple-wikipedia-search-main-text);
         }
-        .simple-translate-candidate,
-        .simple-translate-error {
+        .simple-wikipedia-search-candidate,
+        .simple-wikipedia-search-error {
           color: red;
           margin-top: 1em;
           &:empty {
