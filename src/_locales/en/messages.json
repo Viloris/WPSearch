@@ -354,7 +354,7 @@
         "message": "Privacy policy"
     },
     "addonUrl": {
-        "message": "https://example.com"
+        "message": "https://addons.mozilla.org/hu/firefox/addon/simple-wikipedia-search/"
     },
     "networkError": {
         "message": "Error: Check network connection status."

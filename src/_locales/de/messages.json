@@ -354,7 +354,7 @@
         "message": "Datenschutzrichtlinie"
     },
     "addonUrl": {
-        "message": "https://example.com"
+        "message": "https://addons.mozilla.org/hu/firefox/addon/simple-wikipedia-search/"
     },
     "networkError": {
         "message": "Fehler: Überprüfen Sie den Netzwerkverbindungsstatus."
