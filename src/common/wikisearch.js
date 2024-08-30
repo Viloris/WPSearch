@@ -1,28 +1,34 @@
 import log from "loglevel";
 import config from "../config.json";
 import { getSecondTargetLang, getTargetLang } from "./utils";
+import { getSettings } from "../settings/settings";
 const logDir = "common/wikisearch";
 
-const { SPACE, DASH, NOT_FOUND, NO_SUMMARY, WIKIPEDIA_API_URL, HTTPS } = config;
+const { SPACE, DASH, NO_SUMMARY, WIKIPEDIA_API_URL, HTTPS } = config;
 
 function handleQuery(textValue) {
     const expression = textValue.replace(SPACE, DASH);
     const targetLang = getTargetLang();
     const secondTargetLang = getSecondTargetLang();
     const query_main = getWikipediaExtract(targetLang, expression);
-    const query_second = getWikipediaExtract(secondTargetLang, expression);
+    const useTheSecondTargetLang = getSettings("shouldUseSecondTargetLang");
+    const query_second = useTheSecondTargetLang
+        ? getWikipediaExtract(secondTargetLang, expression)
+        : null;
 
-    const queryArray = [query_main, query_second];
+    const queryArray = [query_main].concat(query_second);
     return new Promise((resolve, reject) => {
         Promise.all(queryArray)
             .then((result) => {
                 resolve({
                     resultTextMain: result[0].resultText,
-                    resultTextSecond: result[1].resultText,
                     isErrorMain: result[0].isError,
-                    isErrorSecond: result[1].isError,
                     errorMessageMain: result[0].errorMessage,
-                    errorMessageSecond: result[1].errorMessage
+                    ...(useTheSecondTargetLang && {
+                        isErrorSecond: result[1].isError,
+                        resultTextSecond: result[1].resultText,
+                        errorMessageSecond: result[1].errorMessage
+                    })
                 });
             })
             .catch((error) => reject(error));
@@ -51,7 +57,7 @@ async function getWikipediaExtract(language, expression) {
             resultData.errorMessage =
                 browser.i18n.getMessage("unavailableError");
         else if (response.status === 404) {
-            resultData.resultText = NOT_FOUND;
+            resultData.resultText = browser.i18n.getMessage("NOT_FOUND");
             resultData.isError = false;
         } else
             resultData.errorMessage = `${browser.i18n.getMessage(
