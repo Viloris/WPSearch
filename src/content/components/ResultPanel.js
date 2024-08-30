@@ -10,6 +10,8 @@ import {
     getSecondTargetLang,
     getTargetLang
 } from "../../common/utils";
+import { setSettings } from "../../settings/settings";
+import InfoBar from "../../common/infoBar";
 
 export default class ResultPanel extends Component {
     constructor(props) {
@@ -19,9 +21,9 @@ export default class ResultPanel extends Component {
             panelWidth: 0,
             panelHeight: 0,
             shouldResize: true,
-            isOverflow: false
+            isOverflow: false,
+            hideInformationLabel: getSettings("hideInformationLabel")
         };
-
         this.dragOffsets = { x: 0, y: 0 };
         this.isDragging = false;
     }
@@ -169,6 +171,14 @@ export default class ResultPanel extends Component {
         });
     };
 
+    dismissHint = () => {
+        setSettings("hideInformationLabel", true);
+        this.setState({
+            hideInformationLabel: true,
+            hidePanel: true
+        });
+    };
+
     render = () => {
         const {
             shouldShow,
@@ -208,7 +218,8 @@ export default class ResultPanel extends Component {
         const secondTargetLang = getSecondTargetLang();
         const mainLangText = getMainLangText();
         const secondLangText = getSecondLangText();
-
+        const useTheSecondTargetLang = getSettings("shouldUseSecondTargetLang");
+        const information = browser.i18n.getMessage("firstInformationText");
         return (
             <div
                 className={`simple-wikipedia-search-panel ${
@@ -240,18 +251,29 @@ export default class ResultPanel extends Component {
                             errorMessage={errorMessageMain}
                             isError={isErrorMain}
                         />
-                        <br />
-                        <ResultSection
-                            mainLangText={secondLangText}
-                            resultText={resultTextSecond}
-                            isError={isErrorSecond}
-                            language={secondTargetLang}
-                            searchExpression={selectedText}
-                        />
-                        <ErrorSection
-                            errorMessage={errorMessageSecond}
-                            isError={isErrorSecond}
-                        />
+                        {!this.state.hideInformationLabel && (
+                            <InfoBar
+                                hidePanel={this.state.hidePanel}
+                                message={information}
+                                onClick={this.dismissHint}
+                            />
+                        )}
+                        {useTheSecondTargetLang && (
+                            <>
+                                <br />
+                                <ResultSection
+                                    mainLangText={secondLangText}
+                                    resultText={resultTextSecond}
+                                    isError={isErrorSecond}
+                                    language={secondTargetLang}
+                                    searchExpression={selectedText}
+                                />
+                                <ErrorSection
+                                    errorMessage={errorMessageSecond}
+                                    isError={isErrorSecond}
+                                />
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
