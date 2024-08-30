@@ -42,13 +42,22 @@ export default [
                 useRawOptionName: true
             },
             {
-                id: "secondTargetLang",
-                title: "secondTargetLangLabel",
-                captions: ["secondTargetLangCaptionLabel"],
-                type: "select",
-                default: defaultLangs.secondTargetLang,
-                options: () => getWikipediaLanguages(),
-                useRawOptionName: true
+                id: "shouldUseSecondTargetLang",
+                title: "shouldUseSecondTargetLangLabel",
+                captions: ["shouldUseSecondTargetLangCaptionLabel"],
+                type: "checkbox",
+                default: false,
+                childElements: [
+                    {
+                        id: "secondTargetLang",
+                        title: "secondTargetLangLabel",
+                        captions: ["secondTargetLangCaptionLabel"],
+                        type: "select",
+                        default: defaultLangs.secondTargetLang,
+                        options: () => getWikipediaLanguages(),
+                        useRawOptionName: true
+                    }
+                ]
             }
         ]
     },
