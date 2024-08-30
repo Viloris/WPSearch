@@ -6,6 +6,7 @@ import {
     splitLine
 } from "../../common/utils";
 import CopyButton from "../../common/CopyButton";
+import { getSettings } from "../../settings/settings";
 
 export default (props) => {
     const {
@@ -18,6 +19,7 @@ export default (props) => {
     } = props;
 
     const mainLangText = getFirstWikipedia();
+    const useTheSecondTargetLang = getSettings("shouldUseSecondTargetLang");
     const secondLangText = getSecondWikipedia();
 
     return (
@@ -31,7 +33,7 @@ export default (props) => {
             {!isErrorMain && renderCopyButton(resultTextMain)}
             {isErrorMain && <p className="error">{errorMessageMain}</p>}
             <br />
-            <p>{secondLangText}:</p>
+            {useTheSecondTargetLang && <p>{secondLangText}:</p>}
             {!isErrorSecond && (
                 <p className="resultText" dir="auto">
                     {splitLine(resultTextSecond)}
