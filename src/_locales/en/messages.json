@@ -354,7 +354,7 @@
         "message": "Privacy policy"
     },
     "addonUrl": {
-        "message": "https://addons.mozilla.org/hu/firefox/addon/simple-wikipedia-search/"
+        "message": "https://addons.mozilla.org/hu/firefox/addon/wikipedia-preview/"
     },
     "networkError": {
         "message": "Error: Check network connection status."

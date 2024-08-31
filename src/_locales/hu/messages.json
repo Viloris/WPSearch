@@ -354,7 +354,7 @@
         "message": "Adatvédelmi irányelvek"
     },
     "addonUrl": {
-        "message": "https://addons.mozilla.org/hu/firefox/addon/simple-wikipedia-search/"
+        "message": "https://addons.mozilla.org/hu/firefox/addon/wikipedia-preview/"
     },
     "networkError": {
         "message": "Hiba: Ellenőrizze a hálózati kapcsolat állapotát."

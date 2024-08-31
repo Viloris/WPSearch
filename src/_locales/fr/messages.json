@@ -354,7 +354,7 @@
         "message": "Politique de confidentialité"
     },
     "addonUrl": {
-        "message": "https://addons.mozilla.org/hu/firefox/addon/simple-wikipedia-search/"
+        "message": "https://addons.mozilla.org/hu/firefox/addon/wikipedia-preview/"
     },
     "networkError": {
         "message": "Erreur : Vérifiez l'état de la connexion réseau."
