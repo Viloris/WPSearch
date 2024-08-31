@@ -1,6 +1,6 @@
 {
     "extName": {
-        "message": "Wikipedia search"
+        "message": "Wikipedia Preview"
     },
     "extDescription": {
         "message": "Gyors keresés a Wikipédián"
@@ -108,7 +108,7 @@
         "message": "Parancs"
     },
     "disableUrlListLabel": {
-        "message": "URL-ek listája, ahol a keresés le lesz tiltásra"
+        "message": "URL-ek listája, ahol a keresés le lesz tiltva"
     },
     "disableUrlListCaptionLabel": {
         "message": "Ha az oldal URL-je illeszkedik a mintára akkor a weblapon a fordítása le lesz tiltva. A listában használható a \"*\" helyettesítőkarakter."
@@ -162,7 +162,7 @@
         "message": "Sötét"
     },
     "systemLabel": {
-        "message": "System"
+        "message": "Rendszer"
     },
     "buttonStyleLabel": {
         "message": "Keresés gomb"
@@ -237,7 +237,7 @@
         "message": "Keresés színe"
     },
     "isOverrideColorsLabel": {
-        "message": "Override default colors with colors below"
+        "message": "Az alapértelmezett színek felülbírálása az alábbi színekkel"
     },
     "bgColorLabel": {
         "message": "Háttér színe"
@@ -312,7 +312,7 @@
         "message": "Ez a billentyűparancs nem használható"
     },
     "clear": {
-        "message": "Tisztítás"
+        "message": "Törlés"
     },
     "reset": {
         "message": "Visszaállítás"
@@ -339,7 +339,7 @@
         "message": "Adomány"
     },
     "donationCaptionLabel": {
-        "message": "Köszönöm, hogy a Wikipedia Search bővítményt használja.<br>Támogatásával arra ösztönözhet, hogy tovább fejlesszem a bővítményt.<br>Ha tetszik önnek a Wikipedia search, örülnék, ha megfontolhatná az adományozást."
+        "message": "Köszönöm, hogy a Simple Wikipedia Search bővítményt használja.<br>Támogatásával arra ösztönözhet, hogy tovább fejlesszem a bővítményt.<br>Ha tetszik önnek a Simple Wikipedia Search, örülnék, ha megfontolhatná az adományozást."
     },
     "sponsorsLabel": {
         "message": "Támogatók"
@@ -373,6 +373,15 @@
     },
     "openPopupDescription": {
         "message": "Eszköztár felugró ablak megnyitása"
+    },
+    "shouldUseSecondTargetLangLabel": {
+        "message": "Keresés egy második Wikipédiában is"
+    },
+    "shouldUseSecondTargetLangCaptionLabel": {
+        "message": "Ha be van jelölve akkor ezen a nyelvű Wikipédián is fog keresni a kiegészítő"
+    },
+    "firstInformationText": {
+        "message": "A beállításokban meg tudsz adni egy második Wikipédiát is, ha egy másik nyelven is szeretnél itt találatot megjeleníteni."
     },
     "lang_af": {
         "message": "afrikaans"
@@ -721,5 +730,8 @@
     },
     "wikipedia": {
         "message": "Wikipédia"
+    },
+    "NOT_FOUND": {
+        "message": "Nincs egyezés a megadott szöveggel."
     }
 }

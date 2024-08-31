@@ -1,6 +1,6 @@
 {
     "extName": {
-        "message": "Wikipedia Search"
+        "message": "Wikipedia Preview"
     },
     "extDescription": {
         "message": "Search Wikipedia based on the selected text"
@@ -374,6 +374,15 @@
     "openPopupDescription": {
         "message": "Open toolbar popup"
     },
+    "shouldUseSecondTargetLangLabel": {
+        "message": "Search in a second Wikipedia"
+    },
+    "shouldUseSecondTargetLangCaptionLabel": {
+        "message": "If checked, it will also search in this language on Wikipedia"
+    },
+    "firstInformationText": {
+        "message": "You can also add a second Wikipedia in the preferences if you want to display results in another language."
+    },
     "lang_af": {
         "message": "Afrikaans"
     },
@@ -721,5 +730,8 @@
     },
     "wikipedia": {
         "message": "Wikipedia"
+    },
+    "NOT_FOUND": {
+        "message": "There were no results matching the query."
     }
 }
