@@ -2,19 +2,19 @@
 title: Privacy Policy
 ---
 
-# Privacy Policy of Wikipedia Search
+# Privacy Policy of Wikipedia Preview
 
 **Effective Date: Aug 24, 2024**
 
 ## 1. Introduction
 
-This page describes the Privacy Policy that applies to all information collected or submitted when you install or use Wikipedia Search.
+This page describes the Privacy Policy that applies to all information collected or submitted when you install or use Wikipedia Preview.
 
-Wikipedia Search is owned and operated by [Viloris](https://github.com/Viloris) - a developer from Hungary (referred to herein as "we", "us", or "our"). We take the protection of your personal data very seriously and will always offer you the Wikipedia Search and its functionality with your privacy in mind.
+Wikipedia Preview is owned and operated by [Viloris](https://github.com/Viloris) - a developer from Hungary (referred to herein as "we", "us", or "our"). We take the protection of your personal data very seriously and will always offer you the Wikipedia Preview and its functionality with your privacy in mind.
 
-## 2. Handling user data with Wikipedia Search
+## 2. Handling user data with Wikipedia Preview
 
-To provide search functionality, Wikipedia Search retrieves the input/selected text and sends the request to Wikipedia's API.
+To provide search functionality, Wikipedia Preview retrieves the input/selected text and sends the request to Wikipedia's API.
 
 **We do not access/collect any of these data.**
 
@@ -23,15 +23,15 @@ Please refer to the following link the privacy policy of Wikipedia.
 
 ## 3. External service
 
-Wikipedia Search uses external services in following cases:
+Wikipedia Preview uses external services in following cases:
 
 #### Accessing external sites
 
-Wikipedia Search includes links to external sites. When accessing external sites, the privacy policy of each site is applied.
+Wikipedia Preview includes links to external sites. When accessing external sites, the privacy policy of each site is applied.
 
 #### Installing and using in the browser
 
-Wikipedia Search is hosted on each browser's platform.
+Wikipedia Preview is hosted on each browser's platform.
 Please refer to the following links for information on how to handle data when installing and using the extension.
 
 [Firefox Privacy Policy](https://www.mozilla.org/en-US/privacy/firefox/)  

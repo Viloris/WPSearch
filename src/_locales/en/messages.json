@@ -249,7 +249,7 @@
         "message": "Display option page when updating"
     },
     "isShowOptionsPageWhenUpdatedCaptionLabel": {
-        "message": "Display the options page when Wikipedia Search is updated. You can know the update contents quickly."
+        "message": "Display the options page when Wikipedia Preview is updated. You can know the update contents quickly."
     },
     "isDebugModeLabel": {
         "message": "Enable debug mode"
@@ -324,7 +324,7 @@
         "message": "Enable search on web pages"
     },
     "additionalPermissionCaptionLabel": {
-        "message": "Additional permissions are required to use Wikipedia Search on web pages."
+        "message": "Additional permissions are required to use Wikipedia Preview on web pages."
     },
     "enableLabel": {
         "message": "Enable"
@@ -339,7 +339,7 @@
         "message": "Please make a donation"
     },
     "donationCaptionLabel": {
-        "message": "Thank you for using Wikipedia Search.<br>Your support will be a big encouragement, as I continue to develop the add-on.<br>If you like Wikipedia Search, I would be pleased if you could consider donating."
+        "message": "Thank you for using Wikipedia Preview.<br>Your support will be a big encouragement, as I continue to develop the add-on.<br>If you like Wikipedia Preview, I would be pleased if you could consider donating."
     },
     "sponsorsLabel": {
         "message": "Sponsors"
@@ -369,7 +369,7 @@
         "message": "Error: Unknown error"
     },
     "wikipediaSearchTextMenu": {
-        "message": "wikipedia search for selected text"
+        "message": "Wikipedia Preview for selected text"
     },
     "openPopupDescription": {
         "message": "Open toolbar popup"

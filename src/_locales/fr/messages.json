@@ -249,7 +249,7 @@
         "message": "Afficher la page d'options lors de la mise à jour"
     },
     "isShowOptionsPageWhenUpdatedCaptionLabel": {
-        "message": "Afficher la page des options lorsque Wikipedia Search est mis à jour. Vous pouvez connaître rapidement le contenu de la mise à jour."
+        "message": "Afficher la page des options lorsque Wikipedia Preview est mis à jour. Vous pouvez connaître rapidement le contenu de la mise à jour."
     },
     "isDebugModeLabel": {
         "message": "Activer le mode débogage"

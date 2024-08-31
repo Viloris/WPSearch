@@ -249,7 +249,7 @@
         "message": "Beállítás oldal megjelenítése frissítéskor"
     },
     "isShowOptionsPageWhenUpdatedCaptionLabel": {
-        "message": "Beállítás oldal megjelenítése amikor a Wikipedia search frissült. Így gyorsan áttekinthető a frissítés tartalma."
+        "message": "Beállítás oldal megjelenítése amikor a Wikipedia Preview frissült. Így gyorsan áttekinthető a frissítés tartalma."
     },
     "isDebugModeLabel": {
         "message": "Hibakeresési mód engedélyezése"
@@ -324,7 +324,7 @@
         "message": "Enable translation on web pages"
     },
     "additionalPermissionCaptionLabel": {
-        "message": "Additional permissions are required to use Wikipedia search on web pages."
+        "message": "Additional permissions are required to use Wikipedia Preview on web pages."
     },
     "enableLabel": {
         "message": "Enable"
@@ -339,7 +339,7 @@
         "message": "Adomány"
     },
     "donationCaptionLabel": {
-        "message": "Köszönöm, hogy a Simple Wikipedia Search bővítményt használja.<br>Támogatásával arra ösztönözhet, hogy tovább fejlesszem a bővítményt.<br>Ha tetszik önnek a Simple Wikipedia Search, örülnék, ha megfontolhatná az adományozást."
+        "message": "Köszönöm, hogy a Wikipedia Preview bővítményt használja.<br>Támogatásával arra ösztönözhet, hogy tovább fejlesszem a bővítményt.<br>Ha tetszik önnek a Wikipedia Preview, örülnék, ha megfontolhatná az adományozást."
     },
     "sponsorsLabel": {
         "message": "Támogatók"

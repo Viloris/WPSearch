@@ -11,7 +11,7 @@ const SideBar = (props) => (
     <div className="sideBar">
         <div className="titleContainer">
             <img src="/icons/64.png" className="logo" />
-            <span className="logoTitle">Wikipedia search</span>
+            <span className="logoTitle">Wikipedia Preview</span>
         </div>
         <ul>
             <li
