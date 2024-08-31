@@ -6,7 +6,7 @@
     "default_locale": "en",
     "browser_specific_settings": {
         "gecko": {
-            "id": "wikipedia-preview@viloris"
+            "id": "wikipedia-search@viloris"
         }
     },
     "permissions": ["storage", "contextMenus"],
