@@ -251,13 +251,14 @@ export default class ResultPanel extends Component {
                             errorMessage={errorMessageMain}
                             isError={isErrorMain}
                         />
-                        {!this.state.hideInformationLabel && (
-                            <InfoBar
-                                hidePanel={this.state.hidePanel}
-                                message={information}
-                                onClick={this.dismissHint}
-                            />
-                        )}
+                        {!this.state.hideInformationLabel &&
+                            !useTheSecondTargetLang && (
+                                <InfoBar
+                                    hidePanel={this.state.hidePanel}
+                                    message={information}
+                                    onClick={this.dismissHint}
+                                />
+                            )}
                         {useTheSecondTargetLang && (
                             <>
                                 <br />

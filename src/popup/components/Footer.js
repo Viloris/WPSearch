@@ -57,13 +57,14 @@ export default class Footer extends Component {
                         />
                     )}
                 </div>
-                {!this.state.hideInformationLabel && (
-                    <InfoBar
-                        hidePanel={this.state.hidePanel}
-                        message={information}
-                        onClick={this.dismissHint}
-                    />
-                )}
+                {!this.state.hideInformationLabel &&
+                    !useTheSecondTargetLang && (
+                        <InfoBar
+                            hidePanel={this.state.hidePanel}
+                            message={information}
+                            onClick={this.dismissHint}
+                        />
+                    )}
             </>
         );
     }
