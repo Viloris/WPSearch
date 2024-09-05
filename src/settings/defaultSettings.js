@@ -1,7 +1,5 @@
 import browser from "webextension-polyfill";
-import generateLangOptions, {
-    getWikipediaLanguages
-} from "src/common/generateLangOptions";
+import { getWikipediaLanguages } from "src/common/generateLangOptions";
 import {
     RESULT_FONT_COLOR_LIGHT,
     RESULT_FONT_COLOR_DARK,
@@ -11,16 +9,16 @@ import {
 import config from "../config.json";
 
 const { DEFAULT_LANGUAGE, SECOND_LANGUAGE } = config;
+const WIKIPEDIA_LANGUAGES = getWikipediaLanguages();
 
 const getDefaultLangs = () => {
     const uiLang = browser.i18n.getUILanguage();
-    const langOptions = generateLangOptions("google");
-
-    const shouldUseUiLang = langOptions.some((lang) => lang.value == uiLang);
+    const shouldUseUiLang = WIKIPEDIA_LANGUAGES.some(
+        (lang) => lang.value == uiLang
+    );
     const targetLang = shouldUseUiLang ? uiLang : DEFAULT_LANGUAGE;
     const secondTargetLang =
         targetLang === DEFAULT_LANGUAGE ? SECOND_LANGUAGE : DEFAULT_LANGUAGE;
-
     return { targetLang, secondTargetLang };
 };
 
@@ -38,7 +36,7 @@ export default [
                 captions: ["targetLangCaptionLabel"],
                 type: "select",
                 default: defaultLangs.targetLang,
-                options: () => getWikipediaLanguages(),
+                options: WIKIPEDIA_LANGUAGES,
                 useRawOptionName: true
             },
             {
@@ -54,7 +52,7 @@ export default [
                         captions: ["secondTargetLangCaptionLabel"],
                         type: "select",
                         default: defaultLangs.secondTargetLang,
-                        options: () => getWikipediaLanguages(),
+                        options: WIKIPEDIA_LANGUAGES,
                         useRawOptionName: true
                     }
                 ]
