@@ -12,6 +12,7 @@ import {
 } from "../../common/utils";
 import { setSettings } from "../../settings/settings";
 import InfoBar from "../../common/infoBar";
+import browser from "webextension-polyfill";
 
 export default class ResultPanel extends Component {
     constructor(props) {

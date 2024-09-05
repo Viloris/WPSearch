@@ -10,6 +10,7 @@ import {
     getWikipediaName
 } from "../../common/utils";
 import InfoBar from "../../common/infoBar";
+import browser from "webextension-polyfill";
 
 const { HTTPS, NO_SUMMARY, WIKIPEDIA_URL } = config;
 
