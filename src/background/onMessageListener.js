@@ -1,4 +1,3 @@
-import browser from "webextension-polyfill";
 import { initSettings } from "src/settings/settings";
 import wikisearch from "src/common/wikisearch";
 
