@@ -2,48 +2,46 @@ import React from "react";
 import { getResultFontColor } from "../../settings/defaultColors";
 import { getWikipediaName, splitLine } from "../../common/utils";
 import CopyButton from "../../common/CopyButton";
-import config from "../../config.json";
-
-const { HTTPS, WIKIPEDIA_URL } = config;
 
 export default function ResultSection(props) {
-    const { resultText, isError, language, searchExpression } = props;
+    const { result, isError, language } = props;
     const wikipedia = getWikipediaName(language);
-    const wikipediaUrl = `${HTTPS}${language}${WIKIPEDIA_URL}${searchExpression}`;
-    const encodedUrl = encodeURI(wikipediaUrl);
 
     return (
         <>
-            {resultHeader(encodedUrl, wikipedia)}
-            {resultContent(resultText)}
-            {resultFooter(isError, resultText)}
+            {resultHeader(result, wikipedia)}
+            {resultContent(result)}
+            {resultFooter(isError, result)}
         </>
     );
 }
 
-function resultHeader(urlToWikipedia, wikipedia) {
+function resultHeader(result, wikipedia) {
     return (
-        <p>
-            <a href={urlToWikipedia} target="_blank">
-                {wikipedia}:
-            </a>
-        </p>
+        <div>
+            <h6>{wikipedia}:</h6>
+            <h6>
+                <a href={result.url} target="_blank">
+                    {result.title}
+                </a>
+            </h6>
+        </div>
     );
 }
 
-function resultContent(resultText) {
+function resultContent(result) {
     return (
         <p
             className="simple-wikipedia-search-result"
             style={getResultFontColor()}
             dir="auto"
         >
-            {splitLine(resultText)}
+            {splitLine(result.text)}
         </p>
     );
 }
 
-function resultFooter(isError, resultText) {
+function resultFooter(isError, result) {
     return (
         <div
             style={{
@@ -52,7 +50,7 @@ function resultFooter(isError, resultText) {
                 alignItems: "center"
             }}
         >
-            {!isError && renderCopyButton(resultText)}
+            {!isError && renderCopyButton(result.text)}
         </div>
     );
 }

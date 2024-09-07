@@ -24,8 +24,8 @@ export default class SearchContainer extends Component {
             panelPosition: { x: 0, y: 0 },
             currentLang: getTargetLang(),
             resultText: "",
-            resultTextMain: "",
-            resultTextSecond: "",
+            resultMain: "",
+            resultSecond: "",
             errorMessageMain: "",
             errorMessageSecond: "",
             isErrorMain: "",
@@ -79,8 +79,8 @@ export default class SearchContainer extends Component {
         this.setState({
             shouldShowPanel: true,
             panelPosition: panelPosition,
-            resultTextMain: result?.resultTextMain,
-            resultTextSecond: result?.resultTextSecond,
+            resultMain: result?.resultMain,
+            resultSecond: result?.resultSecond,
             errorMessageMain: result?.errorMessageMain,
             errorMessageSecond: result?.errorMessageSecond,
             isErrorMain: result?.isErrorMain,
@@ -106,8 +106,8 @@ export default class SearchContainer extends Component {
                     position={this.state.panelPosition}
                     selectedText={this.state.selectedText}
                     currentLang={this.state.currentLang}
-                    resultTextMain={this.state.resultTextMain}
-                    resultTextSecond={this.state.resultTextSecond}
+                    resultMain={this.state.resultMain}
+                    resultSecond={this.state.resultSecond}
                     errorMessageMain={this.state.errorMessageMain}
                     errorMessageSecond={this.state.errorMessageSecond}
                     isErrorMain={this.state.isErrorMain}

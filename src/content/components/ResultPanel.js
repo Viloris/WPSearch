@@ -183,8 +183,8 @@ export default class ResultPanel extends Component {
     render = () => {
         const {
             shouldShow,
-            resultTextMain,
-            resultTextSecond,
+            resultMain,
+            resultSecond,
             isErrorMain,
             isErrorSecond,
             errorMessageMain,
@@ -242,7 +242,7 @@ export default class ResultPanel extends Component {
                     <div className="simple-wikipedia-search-result-contents">
                         <ResultSection
                             mainLangText={mainLangText}
-                            resultText={resultTextMain}
+                            result={resultMain}
                             isError={isErrorMain}
                             language={targetLang}
                             searchExpression={selectedText}
@@ -265,7 +265,7 @@ export default class ResultPanel extends Component {
                                 <br />
                                 <ResultSection
                                     mainLangText={secondLangText}
-                                    resultText={resultTextSecond}
+                                    result={resultSecond}
                                     isError={isErrorSecond}
                                     language={secondTargetLang}
                                     searchExpression={selectedText}
