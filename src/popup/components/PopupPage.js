@@ -114,8 +114,8 @@ export default class PopupPage extends Component {
             expression: replaced
         });
         this.setState({
-            resultTextMain: result?.resultTextMain,
-            resultTextSecond: result?.resultTextSecond,
+            resultMain: result?.resultMain,
+            resultSecond: result?.resultSecond,
             hasResult: true,
             isErrorMain: result?.isErrorMain,
             isErrorSecond: result?.isErrorSecond,
@@ -153,14 +153,14 @@ export default class PopupPage extends Component {
                     <>
                         <hr />
                         <ResultArea
-                            inputText={this.state.inputText}
-                            targetLang={this.state.targetLang}
-                            resultTextMain={this.state.resultTextMain}
-                            resultTextSecond={this.state.resultTextSecond}
-                            isErrorMain={this.state.isErrorMain}
-                            isErrorSecond={this.state.isErrorSecond}
                             errorMessageMain={this.state.errorMessageMain}
                             errorMessageSecond={this.state.errorMessageSecond}
+                            isErrorMain={this.state.isErrorMain}
+                            isErrorSecond={this.state.isErrorSecond}
+                            inputText={this.state.inputText}
+                            resultMain={this.state.resultMain}
+                            resultSecond={this.state.resultSecond}
+                            targetLang={this.state.targetLang}
                         />
                         {/* {!this.state.isErrorMain &&
                             !this.state.isErrorSecond && (
@@ -168,11 +168,11 @@ export default class PopupPage extends Component {
                                     <hr />
                                     <Footer
                                         tabUrl={this.state.tabUrl}
-                                        resultTextMain={
-                                            this.state.resultTextMain
+                                        resultMain={
+                                            this.state.resultMain
                                         }
-                                        resultTextSecond={
-                                            this.state.resultTextSecond
+                                        resultSecond={
+                                            this.state.resultSecond
                                         }
                                         inputText={this.state.inputText}
                                     />

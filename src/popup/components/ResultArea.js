@@ -15,33 +15,31 @@ const { HTTPS, WIKIPEDIA_URL } = config;
 
 export default (props) => {
     const {
-        resultTextMain,
-        resultTextSecond,
         errorMessageMain,
         errorMessageSecond,
-        inputText,
         isErrorMain,
-        isErrorSecond
+        isErrorSecond,
+        resultMain,
+        resultSecond
     } = props;
-
     const mainLangText = getFirstWikipedia();
     const useTheSecondTargetLang = getSettings("shouldUseSecondTargetLang");
     const secondLangText = getSecondWikipedia();
-    const targetLang = getTargetLang();
-    const secondTargetLang = getSecondTargetLang();
 
     return (
         <div id="resultArea">
-            {resultHeader(mainLangText, targetLang, inputText)}
-            {resultContent(isErrorMain, resultTextMain)}
-            {renderCopyButton(isErrorMain, resultTextMain)}
+            {resultHeader(mainLangText)}
+            {resultContent(isErrorMain, resultMain)}
+            {renderCopyButton(isErrorMain, resultMain)}
             {errorSection(isErrorMain, errorMessageMain)}
-            <br />
-            {useTheSecondTargetLang &&
-                resultHeader(secondLangText, secondTargetLang, inputText)}
-            {resultContent(isErrorSecond, resultTextSecond)}
-            {renderCopyButton(isErrorSecond, resultTextSecond)}
-            {errorSection(isErrorSecond, errorMessageSecond)}
+            {useTheSecondTargetLang && (
+                <>
+                    {resultHeader(secondLangText)}
+                    {resultContent(isErrorSecond, resultSecond)}
+                    {renderCopyButton(isErrorSecond, resultSecond)}
+                    {errorSection(isErrorSecond, errorMessageSecond)}
+                </>
+            )}
         </div>
     );
 };
@@ -50,32 +48,35 @@ function errorSection(isError, message) {
     if (isError) return <p className="error">{message}</p>;
 }
 
-function resultContent(isError, resultText) {
+function resultContent(isError, result) {
     if (!isError)
         return (
-            <p className="resultText" dir="auto">
-                {splitLine(resultText)}
-            </p>
+            <>
+                <h5>
+                    <a
+                        href={result?.url}
+                        target="_blank"
+                        style={{ textDecoration: "none" }}
+                    >
+                        {result.title}
+                    </a>
+                </h5>
+                <p className="resultText" dir="auto">
+                    {splitLine(result?.text)}
+                </p>
+            </>
         );
 }
 
-function resultHeader(wikipedia, language, searchExpression) {
-    const wikipediaUrl = `${HTTPS}${language}${WIKIPEDIA_URL}${searchExpression}`;
-    const encodedUrl = encodeURI(wikipediaUrl);
-    return (
-        <p>
-            <a href={encodedUrl} target="_blank">
-                {wikipedia}:
-            </a>
-        </p>
-    );
+function resultHeader(wikipedia) {
+    return <h5>{wikipedia}:</h5>;
 }
 
-function renderCopyButton(isError, text) {
+function renderCopyButton(isError, result) {
     if (!isError)
         return (
             <div className="mediaButtons">
-                <CopyButton text={text} />
+                <CopyButton text={result.text} />
             </div>
         );
 }
