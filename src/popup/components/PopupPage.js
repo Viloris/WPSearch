@@ -162,7 +162,7 @@ export default class PopupPage extends Component {
                             errorMessageMain={this.state.errorMessageMain}
                             errorMessageSecond={this.state.errorMessageSecond}
                         />
-                        {!this.state.isErrorMain &&
+                        {/* {!this.state.isErrorMain &&
                             !this.state.isErrorSecond && (
                                 <>
                                     <hr />
@@ -177,7 +177,7 @@ export default class PopupPage extends Component {
                                         inputText={this.state.inputText}
                                     />
                                 </>
-                            )}
+                            )} */}
                     </>
                 )}
             </div>
