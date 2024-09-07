@@ -2,16 +2,11 @@ import React from "react";
 import "../styles/ResultArea.scss";
 import {
     getFirstWikipedia,
-    getSecondTargetLang,
     getSecondWikipedia,
-    getTargetLang,
     splitLine
 } from "../../common/utils";
 import CopyButton from "../../common/CopyButton";
 import { getSettings } from "../../settings/settings";
-import config from "../../config.json";
-
-const { HTTPS, WIKIPEDIA_URL } = config;
 
 export default (props) => {
     const {
