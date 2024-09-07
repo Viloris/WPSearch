@@ -1,4 +1,5 @@
 import WP_LANG from "../settings/wikipedia.json";
+
 const alphabeticallySort = (a, b) => a.name.localeCompare(b.name);
 
 export function getWikipediaLanguages() {
