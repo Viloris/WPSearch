@@ -732,6 +732,6 @@
         "message": "Wikipédia"
     },
     "NOT_FOUND": {
-        "message": "Nincs egyezés a megadott szöveggel."
+        "message": "Nincs egyezés a keresett szöveggel."
     }
 }
