@@ -21,13 +21,21 @@ function handleQuery(textValue) {
         Promise.all(queryArray)
             .then((result) => {
                 resolve({
-                    resultTextMain: result[0].resultText,
-                    isErrorMain: result[0].isError,
                     errorMessageMain: result[0].errorMessage,
+                    isErrorMain: result[0].isError,
+                    resultMain: {
+                        text: result[0].resultText,
+                        title: result[0].resultTitle,
+                        url: result[0].resultUrl
+                    },
                     ...(useTheSecondTargetLang && {
+                        errorMessageSecond: result[1].errorMessage,
                         isErrorSecond: result[1].isError,
-                        resultTextSecond: result[1].resultText,
-                        errorMessageSecond: result[1].errorMessage
+                        resultSecond: {
+                            text: result[1].resultText,
+                            title: result[1].resultTitle,
+                            url: result[1].resultUrl
+                        }
                     })
                 });
             })
@@ -69,7 +77,10 @@ async function getWikipediaExtract(language, expression) {
     }
 
     const result = await response.json();
-    resultData.resultText = result?.extract || NO_SUMMARY;
+    resultData.resultText =
+        result?.extract || result?.description || NO_SUMMARY;
+    resultData.resultTitle = result?.title || "-";
+    resultData.resultUrl = result?.content_urls?.desktop?.page || NO_SUMMARY;
     log.log(logDir, "sendRequest()", resultData);
     return resultData;
 }
