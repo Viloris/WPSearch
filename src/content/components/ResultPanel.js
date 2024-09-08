@@ -262,7 +262,6 @@ export default class ResultPanel extends Component {
                             )}
                         {useTheSecondTargetLang && (
                             <>
-                                <br />
                                 <ResultSection
                                     mainLangText={secondLangText}
                                     result={resultSecond}
