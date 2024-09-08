@@ -57,6 +57,7 @@
                 a {
                     color: var(--simple-wikipedia-search-highlight);
                     cursor: pointer;
+                    font-weight: 600;
                 }
 
                 &::-moz-selection {
@@ -78,8 +79,8 @@
                 .actionBar {
                     display: flex;
                     flex-direction: row;
-                    justify-content: space-between;
-                    margin-top: 1em;
+                    justify-content: flex-end;
+                    margin-top: 0.5em;
 
                     .copyButton {
                         display: flex;
