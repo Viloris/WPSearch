@@ -1,51 +1,51 @@
 #resultArea {
-  max-height: 240px;
-  min-height: 30px;
-  overflow-y: auto;
-  word-wrap: break-word;
-  background-color: var(--main-bg);
-  margin: 10px 10px 3px;
-  margin-bottom: 10px;
-  p {
-    margin: 0;
-    padding: 0px 5px;
+    max-height: 240px;
+    min-height: 30px;
+    overflow-y: auto;
+    word-wrap: break-word;
     background-color: var(--main-bg);
+    margin: 10px 10px 3px;
+    margin-bottom: 10px;
+    p {
+        margin: 0;
+        padding: 0px 5px;
+        background-color: var(--main-bg);
 
-    &.resultText {
-      color: var(--main-text);
+        &.resultText {
+            color: var(--main-text);
+        }
+        &.candidateText,
+        &.error {
+            color: red; //var(--sub-text);
+            margin-top: 1em;
+            &:empty {
+                margin-top: 0;
+            }
+        }
     }
-    &.candidateText,
-    &.error {
-      color: red; //var(--sub-text);
-      margin-top: 1em;
-      &:empty {
-        margin-top: 0;
-      }
-    }
-  }
 
-  .wikipediaLink {
-    a {
-      font-style: normal;
-      text-decoration: none;
-      color: var(--highlight);
-      cursor: pointer;
-      &:hover {
-        text-decoration: underline;
-      }
+    .wikipediaLink {
+        a {
+            font-style: normal;
+            text-decoration: none;
+            color: var(--highlight);
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
     }
-  }
 
-  .mediaButtons {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    margin-top: 0.5em;
-    margin-bottom: 1em;
-    margin-inline-end: 5px;
-    padding-right: 10px;
-    & > * {
-      margin-inline-start: 10px;
+    .mediaButtons {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-top: 0.5em;
+        margin-bottom: 1em;
+        margin-inline-end: 5px;
+        padding-right: 10px;
+        & > * {
+            margin-inline-start: 10px;
+        }
     }
-  }
 }
