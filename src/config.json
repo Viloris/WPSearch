@@ -1,6 +1,6 @@
 {
     "SPACE": " ",
-    "DASH": "_",
+    "UNDERSCORE": "_",
     "NOT_FOUND": "NOT_FOUND",
     "API_ERROR": "something went wrong",
     "NO_SUMMARY": "NO_SUMMARY",

@@ -4,10 +4,10 @@ import { getSecondTargetLang, getTargetLang } from "./utils";
 import { getSettings } from "../settings/settings";
 const logDir = "common/wikisearch";
 
-const { SPACE, DASH, NO_SUMMARY, WIKIPEDIA_API_URL, HTTPS } = config;
+const { NO_SUMMARY, WIKIPEDIA_API_URL, HTTPS } = config;
 
 function handleQuery(textValue) {
-    const expression = textValue.replace(SPACE, DASH);
+    const expression = textValue.trim();
     const targetLang = getTargetLang();
     const secondTargetLang = getSecondTargetLang();
     const query_main = getWikipediaExtract(targetLang, expression);
