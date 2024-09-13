@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import { getSettings } from "src/settings/settings";
 import "../styles/ResultPanel.scss";
 import { getBackgroundColor } from "../../settings/defaultColors";
-import ResultSection from "./ResultSection";
 import {
     getMainLangText,
     getSecondLangText,
@@ -13,6 +12,7 @@ import {
 import { setSettings } from "../../settings/settings";
 import InfoBar from "../../common/infoBar";
 import browser from "webextension-polyfill";
+import { ResultArea } from "./resultArea";
 
 export default class ResultPanel extends Component {
     constructor(props) {
@@ -240,17 +240,11 @@ export default class ResultPanel extends Component {
                         ref="move"
                     />
                     <div className="simple-wikipedia-search-result-contents">
-                        <ResultSection
-                            mainLangText={mainLangText}
-                            result={resultMain}
-                            isError={isErrorMain}
-                            language={targetLang}
-                            searchExpression={selectedText}
-                        />
-
-                        <ErrorSection
+                        <ResultArea
                             errorMessage={errorMessageMain}
                             isError={isErrorMain}
+                            language={targetLang}
+                            result={resultMain}
                         />
                         {!this.state.hideInformationLabel &&
                             !useTheSecondTargetLang && (
@@ -261,33 +255,16 @@ export default class ResultPanel extends Component {
                                 />
                             )}
                         {useTheSecondTargetLang && (
-                            <>
-                                <ResultSection
-                                    mainLangText={secondLangText}
-                                    result={resultSecond}
-                                    isError={isErrorSecond}
-                                    language={secondTargetLang}
-                                    searchExpression={selectedText}
-                                />
-                                <ErrorSection
-                                    errorMessage={errorMessageSecond}
-                                    isError={isErrorSecond}
-                                />
-                            </>
+                            <ResultArea
+                                errorMessage={errorMessageSecond}
+                                isError={isErrorSecond}
+                                language={secondTargetLang}
+                                result={resultSecond}
+                            />
                         )}
                     </div>
                 </div>
             </div>
         );
     };
-}
-
-/* If API error */
-function ErrorSection(props) {
-    const { errorMessageMain, isError } = props;
-    if (isError)
-        return (
-            <p className="simple-wikipedia-search-error">{errorMessageMain}</p>
-        );
-    return null;
 }
