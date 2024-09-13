@@ -3,17 +3,18 @@ import { getWikipediaName } from "../../common/utils";
 import CopyButton from "../../common/CopyButton";
 import { resultHeader } from "../../common/resultHeader";
 import { resultContent } from "../../common/resultContent";
+import "../styles/ResultPanel.scss";
 
-export default function ResultSection(props) {
+export function ResultSection(props) {
     const { result, isError, language } = props;
     const wikipedia = getWikipediaName(language);
 
     return (
-        <div>
+        <>
             {resultHeader(wikipedia)}
             {resultContent(result)}
             {resultFooter(isError, result)}
-        </div>
+        </>
     );
 }
 
