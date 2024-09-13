@@ -42,7 +42,7 @@ Please refer to the following links for information on how to handle data when i
 
 If you have questions about this Privacy Policy, please contact us at the address below:
 
-Email: test@example.com
+Email: viloris.developer@gmail.com
 
 ## 5. Changes to Privacy Policy
 
