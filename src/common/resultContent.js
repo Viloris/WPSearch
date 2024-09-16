@@ -1,25 +1,40 @@
 import React from "react";
 import { splitLine } from "./utils";
 
-export function resultContent(result) {
+export function ResultContent(props) {
+    const { result, showResult } = props;
+    if (showResult)
+        return (
+            <>
+                {WikipediaLink(result)}
+                {WikipediaSummary(result)}
+            </>
+        );
+    return null;
+}
+
+function WikipediaSummary(result) {
     return (
-        <>
-            <p style={{ marginTop: "0.5em", marginBottom: "0.5em" }}>
-                <strong>
-                    <a
-                        href={result?.url}
-                        target="_blank"
-                        style={{
-                            textDecoration: "none"
-                        }}
-                    >
-                        {result.title}
-                    </a>
-                </strong>
-            </p>
-            <p className="resultText" dir="auto">
-                {splitLine(result?.text)}
-            </p>
-        </>
+        <p className="resultText" dir="auto">
+            {splitLine(result?.text)}
+        </p>
+    );
+}
+
+function WikipediaLink(result) {
+    return (
+        <p style={{ marginTop: "0.5em", marginBottom: "0.5em" }}>
+            <strong>
+                <a
+                    href={result?.url}
+                    target="_blank"
+                    style={{
+                        textDecoration: "none"
+                    }}
+                >
+                    {result.title}
+                </a>
+            </strong>
+        </p>
     );
 }

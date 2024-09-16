@@ -1,10 +1,8 @@
 import React from "react";
 import "../styles/ResultArea.scss";
-import { getFirstWikipedia, getSecondWikipedia } from "../../common/utils";
-import CopyButton from "../../common/CopyButton";
 import { getSettings } from "../../settings/settings";
-import { resultHeader } from "../../common/resultHeader";
-import { resultContent } from "../../common/resultContent";
+import { getFirstWikipedia, getSecondWikipedia } from "../../common/utils";
+import { ResultSection } from "../../common/resultSection";
 
 export default (props) => {
     const {
@@ -21,31 +19,20 @@ export default (props) => {
 
     return (
         <div id="resultArea">
-            {resultHeader(mainLangText)}
-            {!isErrorMain && resultContent(resultMain)}
-            {renderCopyButton(isErrorMain, resultMain)}
-            {errorSection(isErrorMain, errorMessageMain)}
-            {useTheSecondTargetLang && (
-                <>
-                    {resultHeader(secondLangText)}
-                    {!isErrorSecond && resultContent(resultSecond)}
-                    {renderCopyButton(isErrorSecond, resultSecond)}
-                    {errorSection(isErrorSecond, errorMessageSecond)}
-                </>
-            )}
+            <ResultSection
+                result={resultMain}
+                isError={isErrorMain}
+                errorMessage={errorMessageMain}
+                wikipedia={mainLangText}
+            />
+            <ResultSection
+                result={resultSecond}
+                isError={isErrorSecond}
+                errorMessage={errorMessageSecond}
+                wikipedia={secondLangText}
+                show={useTheSecondTargetLang}
+                className="mediaButtons" //need!
+            />
         </div>
     );
 };
-
-function errorSection(isError, message) {
-    if (isError) return <p className="error">{message}</p>;
-}
-
-function renderCopyButton(isError, result) {
-    if (!isError)
-        return (
-            <div className="mediaButtons">
-                <CopyButton text={result.text} />
-            </div>
-        );
-}

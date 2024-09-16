@@ -69,9 +69,10 @@
                     margin-bottom: 1em;
                 }
                 .simple-wikipedia-search-candidate,
-                .simple-wikipedia-search-error {
+                .error {
                     color: red;
                     margin-top: 1em;
+                    margin-bottom: 1em;
                     &:empty {
                         margin-top: 0;
                     }

@@ -7,12 +7,13 @@ import {
     getMainLangText,
     getSecondLangText,
     getSecondTargetLang,
-    getTargetLang
+    getTargetLang,
+    getWikipediaName
 } from "../../common/utils";
 import { setSettings } from "../../settings/settings";
 import InfoBar from "../../common/infoBar";
 import browser from "webextension-polyfill";
-import { ResultArea } from "./resultArea";
+import { ResultSection } from "../../common/resultSection";
 
 export default class ResultPanel extends Component {
     constructor(props) {
@@ -221,6 +222,8 @@ export default class ResultPanel extends Component {
         const secondLangText = getSecondLangText();
         const useTheSecondTargetLang = getSettings("shouldUseSecondTargetLang");
         const information = browser.i18n.getMessage("firstInformationText");
+        const wikipediaMain = getWikipediaName(targetLang);
+        const wikipediaSecond = getWikipediaName(secondTargetLang);
         return (
             <div
                 className={`simple-wikipedia-search-panel ${
@@ -240,11 +243,12 @@ export default class ResultPanel extends Component {
                         ref="move"
                     />
                     <div className="simple-wikipedia-search-result-contents">
-                        <ResultArea
+                        <ResultSection
                             errorMessage={errorMessageMain}
+                            className="actionBar"
                             isError={isErrorMain}
-                            language={targetLang}
                             result={resultMain}
+                            wikipedia={wikipediaMain}
                         />
                         {!this.state.hideInformationLabel &&
                             !useTheSecondTargetLang && (
@@ -255,11 +259,12 @@ export default class ResultPanel extends Component {
                                 />
                             )}
                         {useTheSecondTargetLang && (
-                            <ResultArea
+                            <ResultSection
                                 errorMessage={errorMessageSecond}
+                                className="actionBar"
                                 isError={isErrorSecond}
-                                language={secondTargetLang}
                                 result={resultSecond}
+                                wikipedia={wikipediaSecond}
                             />
                         )}
                     </div>

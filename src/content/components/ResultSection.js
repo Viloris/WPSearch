@@ -1,9 +1,9 @@
-import React from "react";
+/* import React from "react";
+import "../styles/ResultPanel.scss";
 import { getWikipediaName } from "../../common/utils";
-import CopyButton from "../../common/CopyButton";
 import { resultHeader } from "../../common/resultHeader";
 import { resultContent } from "../../common/resultContent";
-import "../styles/ResultPanel.scss";
+import { ResultFooter } from "../../common/resultFooter";
 
 export function ResultSection(props) {
     const { result, isError, language } = props;
@@ -12,17 +12,13 @@ export function ResultSection(props) {
     return (
         <>
             {resultHeader(wikipedia)}
-            {resultContent(result)}
-            {resultFooter(isError, result)}
+            {!isError && resultContent(result)}
+            <ResultFooter
+                isError={isError}
+                result={result}
+                className="actionBar"
+            />
         </>
     );
 }
-
-function resultFooter(isError, result) {
-    if (!isError)
-        return (
-            <div className="actionBar">
-                <CopyButton text={result.text} />
-            </div>
-        );
-}
+ */

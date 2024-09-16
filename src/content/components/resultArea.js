@@ -1,19 +1,18 @@
-import React from "react";
-import { ErrorSection } from "./errorSection";
-import { ResultSection } from "./ResultSection";
+/* import React from "react";
+import { ErrorSection } from "../../common/errorSection";
+import { ResultSection } from "../../common/resultSection";
+import { getWikipediaName } from "../../common/utils";
 
 export function ResultArea(props) {
     const { errorMessage, isError, language, result } = props;
+    const wikipedia = getWikipediaName(language);
     return (
-        <>
-            <ResultSection
-                result={result}
-                isError={isError}
-                language={language}
-            />
-            {isError && (
-                <ErrorSection errorMessage={errorMessage} isError={isError} />
-            )}
-        </>
+        <ResultSection
+            errorMessage={errorMessage}
+            className="actionBar"
+            isError={isError}
+            result={result}
+            wikipedia={wikipedia}
+        />
     );
-}
+} */
