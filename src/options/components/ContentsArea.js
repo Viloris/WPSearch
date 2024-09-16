@@ -4,17 +4,22 @@ import browserInfo from "browser-info";
 import SettingsPage from "./SettingsPage";
 import KeyboardShortcutsPage from "./KeyboardShortcutsPage";
 import InformationPage from "./InformationPage";
+import PrivacyPolicyPage from "./PrivacyPolicyPage";
 import "../styles/ContentsArea.scss";
 
-const isValidShortcuts = browserInfo().name == "Firefox" && browserInfo().version >= 60;
+const isValidShortcuts =
+    browserInfo().name == "Firefox" && browserInfo().version >= 60;
 
 export default () => (
-  <div className="contentsArea">
-    <Switch>
-      <Route path="/settings" component={SettingsPage} />
-      {isValidShortcuts && <Route path="/shortcuts" component={KeyboardShortcutsPage} />}
-      <Route path="/information" component={InformationPage} />
-      <Route component={SettingsPage} />
-    </Switch>
-  </div>
+    <div className="contentsArea">
+        <Switch>
+            <Route path="/settings" component={SettingsPage} />
+            {isValidShortcuts && (
+                <Route path="/shortcuts" component={KeyboardShortcutsPage} />
+            )}
+            <Route path="/information" component={InformationPage} />
+            <Route path="/privacy-policy" component={PrivacyPolicyPage} />
+            <Route component={SettingsPage} />
+        </Switch>
+    </div>
 );

@@ -730,5 +730,8 @@
     },
     "NOT_FOUND": {
         "message": "Il n'existe aucun article portant ce nom."
+    },
+    "privacyPolicyMenuTitle": {
+        "message": "Confidentialité"
     }
 }

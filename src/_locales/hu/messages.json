@@ -733,5 +733,8 @@
     },
     "NOT_FOUND": {
         "message": "Nincs egyezés a keresett szöveggel."
+    },
+    "privacyPolicyMenuTitle": {
+        "message": "Adatvédelem"
     }
 }

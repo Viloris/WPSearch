@@ -16,7 +16,7 @@ const SideBar = (props) => (
         <ul>
             <li
                 className={`sideBarItem ${
-                    ["/shortcuts", "/information"].every(
+                    ["/shortcuts", "/information", "/privacy-policy"].every(
                         (path) => path != props.location.pathname
                     )
                         ? "selected"
@@ -40,6 +40,17 @@ const SideBar = (props) => (
                     </Link>
                 </li>
             )}
+            <li
+                className={`sideBarItem ${
+                    props.location.pathname == "/privacy-policy"
+                        ? "selected"
+                        : ""
+                }`}
+            >
+                <Link to="/privacy-policy">
+                    {browser.i18n.getMessage("privacyPolicyMenuTitle")}
+                </Link>
+            </li>
             <li
                 className={`sideBarItem ${
                     props.location.pathname == "/information" ? "selected" : ""

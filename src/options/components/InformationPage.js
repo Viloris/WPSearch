@@ -4,11 +4,15 @@ import browserInfo from "browser-info";
 import queryString from "query-string";
 import OptionsContainer from "./OptionContainer";
 import { chromeExtensionUrl, firefoxAddonUrl } from "src/common/personalUrls";
-import manifest from "src/manifest-chrome.json";
+import manifestChrome from "src/manifest-chrome.json";
+import manifestFirefox from "src/manifest-firefox.json";
 
 export default (props) => {
     const query = queryString.parse(props.location.search);
-    const extensionVersion = manifest.version;
+    const isFirefox = browserInfo().name === "Firefox";
+    const extensionVersion = isFirefox
+        ? manifestFirefox.version
+        : manifestChrome.version;
     const [hasPermission, requestPermission] = useAdditionalPermission();
 
     return (
@@ -70,7 +74,7 @@ export default (props) => {
                                     {browser.i18n.getMessage("addonPageLabel")}
                                 </a>
                             )}
-                            <span>　</span>
+                            {/* <span>　</span>
                             <a
                                 href="https://github.com/Viloris"
                                 target="_blank"
@@ -80,7 +84,7 @@ export default (props) => {
                             <span>　</span>
                             <a href="https://example.com" target="_blank">
                                 {browser.i18n.getMessage("privacyPolicyLabel")}
-                            </a>
+                            </a> */}
                         </p>
                     </div>
                 }

@@ -733,5 +733,8 @@
     },
     "NOT_FOUND": {
         "message": "There were no results matching the query."
+    },
+    "privacyPolicyMenuTitle": {
+        "message": "Privacy policy"
     }
 }

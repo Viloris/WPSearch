@@ -730,5 +730,8 @@
     },
     "NOT_FOUND": {
         "message": "Es gibt keinen Artikel mit diesem Namen."
+    },
+    "privacyPolicyMenuTitle": {
+        "message": "Datenschutz"
     }
 }
