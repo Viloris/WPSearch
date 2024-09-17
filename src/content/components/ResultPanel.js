@@ -218,8 +218,6 @@ export default class ResultPanel extends Component {
 
         const targetLang = getTargetLang();
         const secondTargetLang = getSecondTargetLang();
-        const mainLangText = getMainLangText();
-        const secondLangText = getSecondLangText();
         const useTheSecondTargetLang = getSettings("shouldUseSecondTargetLang");
         const information = browser.i18n.getMessage("firstInformationText");
         const wikipediaMain = getWikipediaName(targetLang);
