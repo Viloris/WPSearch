@@ -65,7 +65,8 @@ export default class PopupPage extends Component {
             langHistory: [],
             hasResult: false,
             isErrorMain: false,
-            isErrorSecond: false
+            isErrorSecond: false,
+            hideInformationLabel: getSettings("hideInformationLabel")
         };
         this.isSwitchedSecondLang = false;
         this.init();
@@ -137,6 +138,14 @@ export default class PopupPage extends Component {
         } catch (e) {}
     };
 
+    dismissHint = () => {
+        setSettings("hideInformationLabel", true);
+        this.setState({
+            hideInformationLabel: true,
+            hidePanel: true
+        });
+    };
+
     render() {
         return (
             <div className={rtlLanguageClassName}>
@@ -161,23 +170,12 @@ export default class PopupPage extends Component {
                             resultMain={this.state.resultMain}
                             resultSecond={this.state.resultSecond}
                             targetLang={this.state.targetLang}
+                            dismissHint={this.dismissHint}
+                            hideInformationLabel={
+                                this.state.hideInformationLabel
+                            }
+                            hidePanel={this.state.hidePanel}
                         />
-                        {/* {!this.state.isErrorMain &&
-                            !this.state.isErrorSecond && (
-                                <>
-                                    <hr />
-                                    <Footer
-                                        tabUrl={this.state.tabUrl}
-                                        resultMain={
-                                            this.state.resultMain
-                                        }
-                                        resultSecond={
-                                            this.state.resultSecond
-                                        }
-                                        inputText={this.state.inputText}
-                                    />
-                                </>
-                            )} */}
                     </>
                 )}
             </div>
