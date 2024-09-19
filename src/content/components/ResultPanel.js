@@ -243,7 +243,6 @@ export default class ResultPanel extends Component {
                     <div className="simple-wikipedia-search-result-contents">
                         <ResultSection
                             errorMessage={errorMessageMain}
-                            className="actionBar"
                             isError={isErrorMain}
                             result={resultMain}
                             wikipedia={wikipediaMain}
@@ -259,7 +258,6 @@ export default class ResultPanel extends Component {
                         {useTheSecondTargetLang && (
                             <ResultSection
                                 errorMessage={errorMessageSecond}
-                                className="actionBar"
                                 isError={isErrorSecond}
                                 result={resultSecond}
                                 wikipedia={wikipediaSecond}

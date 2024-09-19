@@ -43,7 +43,6 @@ export default (props) => {
                 errorMessage={errorMessageSecond}
                 wikipedia={secondLangText}
                 show={useTheSecondTargetLang}
-                className="mediaButtons" //need!
             />
         </div>
     );

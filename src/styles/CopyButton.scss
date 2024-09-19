@@ -3,7 +3,7 @@
     justify-content: center;
 
     .copiedText {
-        color: var(--sub-text);
+        color: #2e7d32; //var(--sub-text);
         font-size: 12px;
         margin-inline-end: 5px;
         -moz-user-select: none;
@@ -18,9 +18,9 @@
         svg {
             height: 16px;
             width: 16px;
-            fill: var(--sub-text);
+            fill: #808080;
             &:hover {
-                fill: var(--highlight);
+                fill: #5595ff;
             }
         }
     }

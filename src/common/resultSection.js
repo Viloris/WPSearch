@@ -18,11 +18,7 @@ export function ResultSection(props) {
             <>
                 {resultHeader(wikipedia)}
                 <ResultContent result={result} showResult={!isError} />
-                <ResultFooter
-                    isError={isError}
-                    result={result}
-                    className={className} //"mediaButtons"
-                />
+                <ResultFooter isError={isError} result={result} />
                 <ErrorSection errorMessage={errorMessage} isError={isError} />
             </>
         );
