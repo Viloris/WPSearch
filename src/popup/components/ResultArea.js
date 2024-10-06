@@ -17,10 +17,10 @@ export default (props) => {
         hidePanel,
         dismissHint
     } = props;
-    const mainLangText = getFirstWikipedia();
+    const firstWikipediaName = getFirstWikipedia();
     const information = browser.i18n.getMessage("firstInformationText");
     const useTheSecondTargetLang = getSettings("shouldUseSecondTargetLang");
-    const secondLangText = getSecondWikipedia();
+    const secondWikipediaName = getSecondWikipedia();
 
     return (
         <div id="resultArea">
@@ -28,20 +28,23 @@ export default (props) => {
                 result={resultMain}
                 isError={isErrorMain}
                 errorMessage={errorMessageMain}
-                wikipedia={mainLangText}
+                title={firstWikipediaName}
             />
-            {!hideInformationLabel && !useTheSecondTargetLang && (
-                <InfoBar
-                    hidePanel={hidePanel}
-                    message={information}
-                    onClick={dismissHint}
-                />
-            )}
+            {!hideInformationLabel &&
+                !useTheSecondTargetLang &&
+                (
+                    <InfoBar
+                        hidePanel={hidePanel}
+                        message={information}
+                        onClick={dismissHint}
+                    />
+                )
+            }
             <ResultSection
                 result={resultSecond}
                 isError={isErrorSecond}
                 errorMessage={errorMessageSecond}
-                wikipedia={secondLangText}
+                title={secondWikipediaName}
                 show={useTheSecondTargetLang}
             />
         </div>

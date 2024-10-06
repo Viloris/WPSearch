@@ -2,7 +2,7 @@ import React from "react";
 import { ErrorSection } from "./errorSection";
 import { ResultContent } from "./resultContent";
 import { ResultFooter } from "./resultFooter";
-import { resultHeader } from "./resultHeader";
+import { ResultHeader } from "./resultHeader";
 
 export function ResultSection(props) {
     const {
@@ -10,16 +10,15 @@ export function ResultSection(props) {
         isError,
         result,
         show = true,
-        wikipedia,
-        className
+        title
     } = props;
     if (show)
         return (
             <>
-                {resultHeader(wikipedia)}
-                <ResultContent result={result} showResult={!isError} />
-                <ResultFooter isError={isError} result={result} />
-                <ErrorSection errorMessage={errorMessage} isError={isError} />
+                <ResultHeader title={title} />
+                <ResultContent result={result} show={!isError} />
+                <ResultFooter result={result} show={!isError} />
+                <ErrorSection message={errorMessage} show={isError} />
             </>
         );
     return null;

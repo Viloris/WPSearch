@@ -10,7 +10,6 @@ import { updateLogLevel, overWriteLogLevel } from "src/common/log";
 import Header from "./Header";
 import InputArea from "./InputArea";
 import ResultArea from "./ResultArea";
-import Footer from "./Footer";
 import "../styles/PopupPage.scss";
 import { getTargetLang, tabsSendMessage } from "../../common/utils";
 
@@ -135,7 +134,7 @@ export default class PopupPage extends Component {
             )[0];
             if (isEnabled) await tabsSendMessage(tab, "enableExtension");
             else await tabsSendMessage(tab, "disableExtension");
-        } catch (e) {}
+        } catch (e) { }
     };
 
     dismissHint = () => {

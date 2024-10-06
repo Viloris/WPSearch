@@ -4,7 +4,7 @@ import { getSecondTargetLang, getTargetLang } from "./utils";
 import { getSettings } from "../settings/settings";
 const logDir = "common/wikisearch";
 
-const { NO_SUMMARY, WIKIPEDIA_API_URL, HTTPS } = config;
+const { DASH, NO_SUMMARY, WIKIPEDIA_API_URL, HTTPS, NOT_FOUND } = config;
 
 function handleQuery(textValue) {
     const expression = textValue.trim();
@@ -20,21 +20,24 @@ function handleQuery(textValue) {
     return new Promise((resolve, reject) => {
         Promise.all(queryArray)
             .then((result) => {
+                const MAIN = result[0];
+                const SECOND = result[1];
                 resolve({
-                    errorMessageMain: result[0].errorMessage,
-                    isErrorMain: result[0].isError,
+                    errorMessageMain: MAIN.errorMessage,
+                    isErrorMain: MAIN.isError,
                     resultMain: {
-                        text: result[0].resultText,
-                        title: result[0].resultTitle,
-                        url: result[0].resultUrl
+                        text: MAIN.text,
+                        title: MAIN.title,
+                        url: MAIN.url
                     },
-                    ...(useTheSecondTargetLang && {
-                        errorMessageSecond: result[1].errorMessage,
-                        isErrorSecond: result[1].isError,
+                    ...(useTheSecondTargetLang &&
+                    {
+                        errorMessageSecond: SECOND.errorMessage,
+                        isErrorSecond: SECOND.isError,
                         resultSecond: {
-                            text: result[1].resultText,
-                            title: result[1].resultTitle,
-                            url: result[1].resultUrl
+                            text: SECOND.text,
+                            title: SECOND.title,
+                            url: SECOND.url
                         }
                     })
                 });
@@ -51,36 +54,34 @@ async function getWikipediaExtract(language, expression) {
     }));
 
     const resultData = {
-        resultText: "",
+        text: "",
         isError: false,
         errorMessage: ""
     };
 
     if (response.status !== 200) {
+        const UNAVAILABLE_ERROR = browser.i18n.getMessage("unavailableError");
+        const NOTFOUND_RESPONSE = browser.i18n.getMessage(NOT_FOUND);
+        const NETWORK_ERROR = browser.i18n.getMessage("networkError");
+        const UNKNOWN_ERROR = `${browser.i18n.getMessage("unknownError")} [${response.status} ${response.statusText}]`;
         resultData.isError = true;
 
-        if (response.status === 0)
-            resultData.errorMessage = browser.i18n.getMessage("networkError");
-        else if (response.status === 429 || response.status === 503)
-            resultData.errorMessage =
-                browser.i18n.getMessage("unavailableError");
+        if (response.status === 0) resultData.errorMessage = NETWORK_ERROR;
+        else if ([429, 503].includes(response.status)) resultData.errorMessage = UNAVAILABLE_ERROR;
         else if (response.status === 404) {
-            resultData.resultText = browser.i18n.getMessage("NOT_FOUND");
             resultData.isError = false;
+            resultData.text = NOTFOUND_RESPONSE;
         } else
-            resultData.errorMessage = `${browser.i18n.getMessage(
-                "unknownError"
-            )} [${response.status} ${response.statusText}]`;
-
+            resultData.errorMessage = UNKNOWN_ERROR;
         log.error(logDir, "sendRequest()", response);
         return resultData;
     }
 
     const result = await response.json();
-    resultData.resultText =
-        result?.extract || result?.description || NO_SUMMARY;
-    resultData.resultTitle = result?.title || "-";
-    resultData.resultUrl = result?.content_urls?.desktop?.page || NO_SUMMARY;
+    const { content_urls, description, extract, title } = result;
+    resultData.text = extract || description || NO_SUMMARY;
+    resultData.title = title || DASH;
+    resultData.url = content_urls?.desktop?.page;
     log.log(logDir, "sendRequest()", resultData);
     return resultData;
 }

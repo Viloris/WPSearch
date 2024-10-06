@@ -194,10 +194,13 @@ export default class ResultPanel extends Component {
         } = this.props;
         const { width, height } = this.state.shouldResize
             ? {
-                  width: parseInt(getSettings("width")),
-                  height: parseInt(getSettings("height"))
-              }
-            : { width: this.state.panelWidth, height: this.state.panelHeight };
+                width: parseInt(getSettings("width")),
+                height: parseInt(getSettings("height"))
+            }
+            : {
+                width: this.state.panelWidth,
+                height: this.state.panelHeight
+            };
 
         const panelStyles = {
             width: width,
@@ -220,13 +223,11 @@ export default class ResultPanel extends Component {
         const secondTargetLang = getSecondTargetLang();
         const useTheSecondTargetLang = getSettings("shouldUseSecondTargetLang");
         const information = browser.i18n.getMessage("firstInformationText");
-        const wikipediaMain = getWikipediaName(targetLang);
-        const wikipediaSecond = getWikipediaName(secondTargetLang);
+        const mainWikipedia = getWikipediaName(targetLang);
+        const secondWikipedia = getWikipediaName(secondTargetLang);
         return (
             <div
-                className={`simple-wikipedia-search-panel ${
-                    shouldShow ? "isShow" : ""
-                }`}
+                className={`simple-wikipedia-search-panel ${shouldShow ? "isShow" : ""}`}
                 ref="panel"
                 style={panelStyles}
             >
@@ -245,7 +246,7 @@ export default class ResultPanel extends Component {
                             errorMessage={errorMessageMain}
                             isError={isErrorMain}
                             result={resultMain}
-                            wikipedia={wikipediaMain}
+                            title={mainWikipedia}
                         />
                         {!this.state.hideInformationLabel &&
                             !useTheSecondTargetLang && (
@@ -260,7 +261,7 @@ export default class ResultPanel extends Component {
                                 errorMessage={errorMessageSecond}
                                 isError={isErrorSecond}
                                 result={resultSecond}
-                                wikipedia={wikipediaSecond}
+                                title={secondWikipedia}
                             />
                         )}
                     </div>

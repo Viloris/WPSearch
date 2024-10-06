@@ -2,8 +2,8 @@ import React from "react";
 import { splitLine } from "./utils";
 
 export function ResultContent(props) {
-    const { result, showResult } = props;
-    if (showResult)
+    const { result, show } = props;
+    if (show)
         return (
             <>
                 {WikipediaLink(result)}

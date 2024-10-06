@@ -3,8 +3,8 @@ import CopyButton from "./CopyButton";
 import "../styles/resultFooter.scss";
 
 export function ResultFooter(props) {
-    const { isError, result } = props;
-    if (!isError)
+    const { show, result } = props;
+    if (show)
         return (
             <div className={"mediaButtons"}>
                 <CopyButton text={result.text} />

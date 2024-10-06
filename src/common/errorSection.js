@@ -1,7 +1,11 @@
 import React from "react";
 
 export function ErrorSection(props) {
-    const { errorMessage, isError } = props;
-    if (isError) return <p className="error">{errorMessage}</p>;
+    const { message, show } = props;
+    if (show) return (
+        <p className="error">
+            {message}
+        </p>
+    );
     return null;
 }
