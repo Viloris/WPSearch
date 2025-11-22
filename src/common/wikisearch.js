@@ -2,6 +2,8 @@ import log from "loglevel";
 import config from "../config.json";
 import { getSecondTargetLang, getTargetLang } from "./utils";
 import { getSettings } from "../settings/settings";
+import browser from "webextension-polyfill";
+
 const logDir = "common/wikisearch";
 
 const { DASH, NO_SUMMARY, WIKIPEDIA_API_URL, HTTPS, NOT_FOUND } = config;

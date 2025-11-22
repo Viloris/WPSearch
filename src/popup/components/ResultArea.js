@@ -4,6 +4,7 @@ import { getSettings } from "../../settings/settings";
 import { getFirstWikipedia, getSecondWikipedia } from "../../common/utils";
 import { ResultSection } from "../../common/resultSection";
 import InfoBar from "../../common/infoBar";
+import browser from "webextension-polyfill";
 
 export default (props) => {
     const {
