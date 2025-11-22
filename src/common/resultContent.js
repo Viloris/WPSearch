@@ -32,7 +32,7 @@ function WikipediaLink(result) {
                         textDecoration: "none"
                     }}
                 >
-                    {result.title}
+                    {result?.title}
                 </a>
             </strong>
         </p>
