@@ -7,7 +7,7 @@ export function ResultFooter(props) {
     if (show)
         return (
             <div className={"mediaButtons"}>
-                <CopyButton text={result.text} />
+                <CopyButton text={result?.text} />
             </div>
         );
     return null;
