@@ -28,9 +28,7 @@ export function getSecondLangText() {
 }
 
 export function tabsSendMessage(tab, message) {
-    return browser.tabs.sendMessage(tab.id, {
-        message
-    });
+    return browser.tabs.sendMessage(tab.id, { message });
 }
 
 export function getFirstWikipedia() {
@@ -43,4 +41,8 @@ export function getSecondWikipedia() {
 
 export function getWikipediaName(langCode) {
     return WP_LANG[langCode];
+}
+
+export function getHidePopupInfromationLabel() {
+    return getSettings("hidePopupInformationLabel")
 }
