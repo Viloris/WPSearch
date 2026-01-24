@@ -1,45 +1,38 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import browser from "webextension-polyfill";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import CopyIcon from "../icons/copy.svg";
 import "../styles/CopyButton.scss";
 
-export default class CopyButton extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { isCopied: false };
-    }
+const labelCopied = browser.i18n.getMessage("copiedLabel");
+const buttonCaption = browser.i18n.getMessage("copyLabel");
 
-    handleCopy = (copiedText) => {
+export default function CopyButton({ text }) {
+    const [isCopied, setIsCopied] = useState(false)
+
+    function handleCopy(copiedText) {
         navigator.clipboard.writeText(copiedText);
-        this.setState({ isCopied: true });
+        setIsCopied(true);
     };
 
-    componentWillReceiveProps(nextProps) {
-        if (this.props.text !== nextProps.text)
-            this.setState({ isCopied: false });
-    }
+    useEffect(() => setIsCopied(false), [text])
 
-    render() {
-        const { text } = this.props;
-        if (!text) return null;
-
-        return (
-            <div className="copy">
-                {this.state.isCopied && (
-                    <span className="copiedText">
-                        {browser.i18n.getMessage("copiedLabel")}
-                    </span>
-                )}
-                <CopyToClipboard text={text} onCopy={this.handleCopy}>
-                    <button
-                        className="copyButton"
-                        title={browser.i18n.getMessage("copyLabel")}
-                    >
-                        <CopyIcon />
-                    </button>
-                </CopyToClipboard>
-            </div>
-        );
-    }
+    if (text) return (
+        <div className="copy">
+            {isCopied && (
+                <span className="copiedText">
+                    {labelCopied}
+                </span>
+            )}
+            <CopyToClipboard text={text} onCopy={handleCopy}>
+                <button
+                    className="copyButton"
+                    title={buttonCaption}
+                >
+                    <CopyIcon />
+                </button>
+            </CopyToClipboard>
+        </div>
+    );
+    return null;
 }
