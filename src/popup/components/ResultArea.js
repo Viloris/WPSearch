@@ -6,7 +6,7 @@ import { ResultSection } from "../../common/resultSection";
 import InfoBar from "../../common/infoBar";
 import browser from "webextension-polyfill";
 
-export default (props) => {
+export default function ResultArea(props) {
     const {
         errorMessageMain,
         errorMessageSecond,
@@ -15,7 +15,6 @@ export default (props) => {
         resultMain,
         resultSecond,
         hideInformationLabel,
-        hidePanel,
         dismissHint
     } = props;
     const firstWikipediaName = getFirstWikipedia();
@@ -35,7 +34,6 @@ export default (props) => {
                 !useTheSecondTargetLang &&
                 (
                     <InfoBar
-                        hidePanel={hidePanel}
                         message={information}
                         onClick={dismissHint}
                     />
