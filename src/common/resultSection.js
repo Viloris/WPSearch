@@ -16,9 +16,9 @@ export function ResultSection(props) {
         return (
             <>
                 <ResultHeader title={title} />
-                <ResultContent result={result} show={!isError} />
-                <ResultFooter result={result} show={!isError} />
-                <ErrorSection message={errorMessage} show={isError} />
+                {!isError && <ResultContent result={result} />}
+                {!isError && <ResultFooter result={result} />}
+                {isError && <ErrorSection message={errorMessage} />}
             </>
         );
     return null;
