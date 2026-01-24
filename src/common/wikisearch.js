@@ -4,88 +4,117 @@ import { getSecondTargetLang, getTargetLang } from "./utils";
 import { getSettings } from "../settings/settings";
 import browser from "webextension-polyfill";
 
-const logDir = "common/wikisearch";
-
 const { DASH, NO_SUMMARY, WIKIPEDIA_API_URL, HTTPS, NOT_FOUND } = config;
 
-function handleQuery(textValue) {
-    const expression = textValue.trim();
-    const targetLang = getTargetLang();
-    const secondTargetLang = getSecondTargetLang();
-    const query_main = getWikipediaExtract(targetLang, expression);
-    const useTheSecondTargetLang = getSettings("shouldUseSecondTargetLang");
-    const query_second = useTheSecondTargetLang
-        ? getWikipediaExtract(secondTargetLang, expression)
-        : null;
+const logDir = "common/wikisearch";
 
-    const queryArray = [query_main].concat(query_second);
-    return new Promise((resolve, reject) => {
-        Promise.all(queryArray)
-            .then((result) => {
-                const MAIN = result[0];
-                const SECOND = result[1];
-                resolve({
-                    errorMessageMain: MAIN.errorMessage,
-                    isErrorMain: MAIN.isError,
-                    resultMain: {
-                        text: MAIN.text,
-                        title: MAIN.title,
-                        url: MAIN.url
-                    },
-                    ...(useTheSecondTargetLang &&
-                    {
-                        errorMessageSecond: SECOND.errorMessage,
-                        isErrorSecond: SECOND.isError,
-                        resultSecond: {
-                            text: SECOND.text,
-                            title: SECOND.title,
-                            url: SECOND.url
-                        }
-                    })
-                });
-            })
-            .catch((error) => reject(error));
-    });
-}
-
+/**
+ * @param {string} language
+ * @param {string} expression
+ * @returns {Promise<{text: string, title: string, url: string, isError: boolean, errorMessage: string}>}
+ */
 async function getWikipediaExtract(language, expression) {
     const url = `${HTTPS}${language}${WIKIPEDIA_API_URL}${expression}`;
-    const response = await fetch(url).catch((e) => ({
-        status: 0,
-        statusText: ""
-    }));
 
     const resultData = {
         text: "",
+        title: DASH,
+        url: "",
         isError: false,
         errorMessage: ""
     };
 
-    if (response.status !== 200) {
-        const UNAVAILABLE_ERROR = browser.i18n.getMessage("unavailableError");
-        const NOTFOUND_RESPONSE = browser.i18n.getMessage(NOT_FOUND);
-        const NETWORK_ERROR = browser.i18n.getMessage("networkError");
-        const UNKNOWN_ERROR = `${browser.i18n.getMessage("unknownError")} [${response.status} ${response.statusText}]`;
-        resultData.isError = true;
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            const status = response.status;
+            const UNAVAILABLE_ERROR = browser.i18n.getMessage("unavailableError");
+            const NOTFOUND_RESPONSE = browser.i18n.getMessage(NOT_FOUND);
+            const UNKNOWN_ERROR = `${browser.i18n.getMessage("unknownError")} [${status} ${response.statusText}]`;
 
-        if (response.status === 0) resultData.errorMessage = NETWORK_ERROR;
-        else if ([429, 503].includes(response.status)) resultData.errorMessage = UNAVAILABLE_ERROR;
-        else if (response.status === 404) {
-            resultData.isError = false;
-            resultData.text = NOTFOUND_RESPONSE;
-        } else
-            resultData.errorMessage = UNKNOWN_ERROR;
-        log.error(logDir, "sendRequest()", response);
+            resultData.isError = true;
+
+            if (status === 404) {
+                resultData.isError = false;
+                resultData.text = NOTFOUND_RESPONSE;
+                resultData.title = expression;
+            } else if ([429, 503].includes(status)) {
+                resultData.errorMessage = UNAVAILABLE_ERROR;
+            } else {
+                resultData.errorMessage = UNKNOWN_ERROR;
+            }
+
+            log.error(logDir, "getWikipediaExtract() - HTTP Hiba", response);
+            return resultData;
+        }
+
+        const result = await response.json();
+        const { content_urls, description, extract, title } = result;
+
+        resultData.text = extract || description || NO_SUMMARY;
+        resultData.title = title || expression;
+        resultData.url = content_urls?.desktop?.page || "";
+
+        log.log(logDir, "getWikipediaExtract() - Siker", resultData);
+        return resultData;
+
+    } catch (e) {
+        const NETWORK_ERROR = browser.i18n.getMessage("networkError");
+        resultData.isError = true;
+        resultData.errorMessage = NETWORK_ERROR;
+        resultData.title = expression;
+
+        log.error(logDir, "getWikipediaExtract() - Hálózati hiba", e);
         return resultData;
     }
+}
 
-    const result = await response.json();
-    const { content_urls, description, extract, title } = result;
-    resultData.text = extract || description || NO_SUMMARY;
-    resultData.title = title || DASH;
-    resultData.url = content_urls?.desktop?.page;
-    log.log(logDir, "sendRequest()", resultData);
-    return resultData;
+/**
+ * 
+ * @param {string} textValue - Search expression
+ * @returns {Promise<{mainResult: object, secondResult?: object}>} - Query result
+ */
+async function handleQuery(textValue) {
+    const expression = textValue.trim();
+    const targetLang = getTargetLang();
+    const useSecondLang = getSettings("shouldUseSecondTargetLang");
+    const queryPromises = [
+        getWikipediaExtract(targetLang, expression)
+    ];
+
+    if (useSecondLang) {
+        const secondTargetLang = getSecondTargetLang();
+        queryPromises.push(getWikipediaExtract(secondTargetLang, expression));
+    }
+
+    const results = await Promise.all(queryPromises);
+    const [MAIN, SECOND] = results;
+    let response = {
+        errorMessageMain: MAIN.errorMessage,
+        isErrorMain: MAIN.isError,
+        resultMain: {
+            text: MAIN.text,
+            title: MAIN.title,
+            url: MAIN.url
+        }
+    };
+
+    if (useSecondLang) {
+        response = {
+
+            ...response,
+            errorMessageSecond: SECOND.errorMessage,
+            isErrorSecond: SECOND.isError,
+            resultSecond: {
+                text: SECOND.text,
+                title: SECOND.title,
+                url: SECOND.url
+
+            }
+        };
+    }
+    log.log(logDir, response)
+    return response;
 }
 
 export default async (expression) => {
