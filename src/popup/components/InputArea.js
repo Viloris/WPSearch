@@ -1,49 +1,53 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
+import React, { useEffect, useRef, useCallback } from "react";
 import browser from "webextension-polyfill";
 import "../styles/InputArea.scss";
 
-export default class InputArea extends Component {
-    resizeTextArea = () => {
-        const textarea = ReactDOM.findDOMNode(this.refs.textarea);
-        textarea.style.height = "1px";
-        textarea.style.height = `${textarea.scrollHeight + 2}px`;
-    };
 
-    handleInputText = (e) => {
-        const inputText = e.target.value;
-        this.props.handleInputText(inputText);
-    };
+const useAutoResize = (textareaRef, inputText) => {
+    useEffect(() => {
+        const textarea = textareaRef.current;
+        if (textarea) {
+            textarea.style.height = "1px";
+            textarea.style.height = `${textarea.scrollHeight + 2}px`;
+        }
+    }, [textareaRef, inputText]);
+};
 
-    shouldComponentUpdate(nextProps) {
-        const shouldUpdate =
-            this.props.inputText !== nextProps.inputText ||
-            this.props.sourceLang !== nextProps.sourceLang;
-        return shouldUpdate;
-    }
+function InputArea(props) {
+    const { inputText, handleInputText, /* sourceLang */ } = props;
 
-    componentDidUpdate = () => {
-        this.resizeTextArea();
-    };
+    const textareaRef = useRef(null);
 
-    getPlaceholder() {
+    useAutoResize(textareaRef, inputText);
+
+    const handleInputChange = useCallback((e) => {
+        handleInputText(e.target.value);
+    }, [handleInputText]);
+
+    const getPlaceholder = () => {
         return browser.i18n.getMessage("initialTextArea");
-    }
+    };
 
-    render() {
-        const { inputText } = this.props;
-        return (
-            <div id="inputArea">
-                <textarea
-                    value={inputText}
-                    ref="textarea"
-                    placeholder={this.getPlaceholder()}
-                    onChange={this.handleInputText}
-                    autoFocus
-                    spellCheck={false}
-                    dir="auto"
-                />
-            </div>
-        );
-    }
+    return (
+        <div id="inputArea">
+            <textarea
+                value={inputText}
+                ref={textareaRef}
+                placeholder={getPlaceholder()}
+                onChange={handleInputChange}
+                autoFocus
+                spellCheck={false}
+                dir="auto"
+            />
+        </div>
+    );
 }
+
+const arePropsEqual = (prevProps, nextProps) => {
+    return (
+        prevProps.inputText === nextProps.inputText &&
+        prevProps.sourceLang === nextProps.sourceLang
+    );
+};
+
+export default React.memo(InputArea, arePropsEqual);
