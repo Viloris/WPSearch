@@ -1,14 +1,13 @@
 import React from "react";
 
 export default function InfoBar(props) {
-    const { hidePanel, message, onClick } = props;
-
+    const { message, onClick } = props;
     return (
         <div>
             <br />
             <p
                 style={{
-                    display: hidePanel ? "none" : "flex",
+                    display: "flex",
                     backgroundColor: "#e5f6fd",
                     alignItems: "center",
                     padding: "1em"
