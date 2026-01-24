@@ -4,8 +4,6 @@ import { getSettings } from "src/settings/settings";
 import "../styles/ResultPanel.scss";
 import { getBackgroundColor } from "../../settings/defaultColors";
 import {
-    getMainLangText,
-    getSecondLangText,
     getSecondTargetLang,
     getTargetLang,
     getWikipediaName
@@ -176,8 +174,7 @@ export default class ResultPanel extends Component {
     dismissHint = () => {
         setSettings("hideInformationLabel", true);
         this.setState({
-            hideInformationLabel: true,
-            hidePanel: true
+            hideInformationLabel: true
         });
     };
 
@@ -189,8 +186,7 @@ export default class ResultPanel extends Component {
             isErrorMain,
             isErrorSecond,
             errorMessageMain,
-            errorMessageSecond,
-            selectedText
+            errorMessageSecond
         } = this.props;
         const { width, height } = this.state.shouldResize
             ? {
@@ -251,7 +247,6 @@ export default class ResultPanel extends Component {
                         {!this.state.hideInformationLabel &&
                             !useTheSecondTargetLang && (
                                 <InfoBar
-                                    hidePanel={this.state.hidePanel}
                                     message={information}
                                     onClick={this.dismissHint}
                                 />
