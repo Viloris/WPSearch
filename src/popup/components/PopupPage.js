@@ -9,9 +9,9 @@ import {
 import { updateLogLevel, overWriteLogLevel } from "src/common/log";
 import Header from "./Header";
 import InputArea from "./InputArea";
-import ResultArea from "./ResultArea";
 import "../styles/PopupPage.scss";
-import { getTargetLang, tabsSendMessage } from "../../common/utils";
+import { getTargetLang, tabsSendMessage, getHidePopupInfromationLabel } from "../../common/utils";
+import ResultArea from "./ResultArea";
 
 const logDir = "popup/PopupPage";
 
@@ -36,6 +36,7 @@ const getTabInfo = async () => {
             isEnabledOnPage: tabInfo[2]
         };
     } catch (e) {
+        console.error(e)
         return {
             isConnected: false,
             url: "",
@@ -64,8 +65,7 @@ export default class PopupPage extends Component {
             langHistory: [],
             hasResult: false,
             isErrorMain: false,
-            isErrorSecond: false,
-            hideInformationLabel: getSettings("hideInformationLabel")
+            isErrorSecond: false
         };
         this.isSwitchedSecondLang = false;
         this.init();
@@ -78,10 +78,16 @@ export default class PopupPage extends Component {
 
         this.themeClass = getSettings("theme") + "-theme";
         document.body.classList.add(this.themeClass);
+
         const targetLang = getTargetLang();
         this.setState({
             targetLang: targetLang
         });
+
+        const hideInformationLabel = getHidePopupInfromationLabel()
+        this.setState({
+            hideInformationLabel: hideInformationLabel
+        })
 
         const tabInfo = await getTabInfo();
         this.setState({
@@ -102,7 +108,7 @@ export default class PopupPage extends Component {
         const waitTime = getSettings("waitTime");
         clearTimeout(this.inputTimer);
         this.inputTimer = setTimeout(async () => {
-            const result = await this.wpSearchText(inputText);
+            await this.wpSearchText(inputText);
         }, waitTime);
     };
 
@@ -134,14 +140,13 @@ export default class PopupPage extends Component {
             )[0];
             if (isEnabled) await tabsSendMessage(tab, "enableExtension");
             else await tabsSendMessage(tab, "disableExtension");
-        } catch (e) { }
+        } catch (e) { console.error(e) }
     };
 
     dismissHint = () => {
-        setSettings("hideInformationLabel", true);
+        setSettings("hidePopupInformationLabel", true);
         this.setState({
-            hideInformationLabel: true,
-            hidePanel: true
+            hideInformationLabel: true
         });
     };
 
@@ -173,7 +178,6 @@ export default class PopupPage extends Component {
                             hideInformationLabel={
                                 this.state.hideInformationLabel
                             }
-                            hidePanel={this.state.hidePanel}
                         />
                     </>
                 )}
