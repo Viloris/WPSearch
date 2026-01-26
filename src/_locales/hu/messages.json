@@ -111,7 +111,7 @@
         "message": "URL-ek listája, ahol a keresés le lesz tiltva"
     },
     "disableUrlListCaptionLabel": {
-        "message": "Ha az oldal URL-je illeszkedik a mintára akkor a weblapon a fordítása le lesz tiltva. A listában használható a \"*\" helyettesítőkarakter."
+        "message": "Ha az oldal URL-je illeszkedik a mintára akkor a weblapon a keresés le lesz tiltva. A listában használható a \"*\" helyettesítőkarakter."
     },
     "toolbarLabel": {
         "message": "Felugró ablak az eszköztár gombjához"
@@ -321,10 +321,10 @@
         "message": "Információ"
     },
     "additionalPermissionLabel": {
-        "message": "Enable translation on web pages"
+        "message": "Keresés engedélyezése a weboldalakon."
     },
     "additionalPermissionCaptionLabel": {
-        "message": "Additional permissions are required to use Wikipedia Preview on web pages."
+        "message": "„További engedélyek szükségesek a Wikipédia Preview használatához weboldalakon."
     },
     "enableLabel": {
         "message": "Enable"
@@ -360,7 +360,7 @@
         "message": "Hiba: Ellenőrizze a hálózati kapcsolat állapotát."
     },
     "unavailableError": {
-        "message": "Hiba: Szolgáltatás elérte a használati korlátot. Kérjük, várjon egy kicsit, majd próbálja újra."
+        "message": "Hiba: A szolgáltatás elérte a használati korlátot. Kérjük, várjon egy kicsit, majd próbálja újra."
     },
     "deeplAuthError": {
         "message": "Hiba: A DeepL API hitelesítés sikertelen. Adja meg a megfelelő hitelesítési kulcsot és szolgáltatást a beállítási oldalon."
