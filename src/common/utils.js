@@ -43,6 +43,6 @@ export function getWikipediaName(langCode) {
     return WP_LANG[langCode];
 }
 
-export function getHidePopupInfromationLabel() {
+/* export function getHidePopupInformationLabel() {
     return getSettings("hidePopupInformationLabel")
-}
+} */
