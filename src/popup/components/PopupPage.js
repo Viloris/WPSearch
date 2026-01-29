@@ -10,7 +10,7 @@ import { updateLogLevel, overWriteLogLevel } from "src/common/log";
 import Header from "./Header";
 import InputArea from "./InputArea";
 import "../styles/PopupPage.scss";
-import { getTargetLang, tabsSendMessage, getHidePopupInfromationLabel } from "../../common/utils";
+import { getTargetLang, tabsSendMessage } from "../../common/utils";
 import ResultArea from "./ResultArea";
 
 const logDir = "popup/PopupPage";
@@ -65,7 +65,8 @@ export default class PopupPage extends Component {
             langHistory: [],
             hasResult: false,
             isErrorMain: false,
-            isErrorSecond: false
+            isErrorSecond: false,
+            hideInformationLabel: false
         };
         this.isSwitchedSecondLang = false;
         this.init();
@@ -84,9 +85,9 @@ export default class PopupPage extends Component {
             targetLang: targetLang
         });
 
-        const hideInformationLabel = getHidePopupInfromationLabel()
+        const hideInformationLabel = getSettings("hidePopupInformationLabel")
         this.setState({
-            hideInformationLabel: hideInformationLabel
+            hideInformationLabel: !!hideInformationLabel
         })
 
         const tabInfo = await getTabInfo();
