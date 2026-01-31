@@ -1,154 +1,177 @@
-import React, { Component } from "react";
+import React, { useState, useMemo, useCallback, useEffect } from "react";
 import browserInfo from "browser-info";
 import browser from "webextension-polyfill";
 import ClearIcon from "../icons/clear.svg";
-import RestetIcon from "../icons/reset.svg";
+import ResetIcon from "../icons/reset.svg";
+
+/* ---------------- utils ---------------- */
 
 const normalizeKey = (key, keyCode) => {
-  const alphabet = /^([a-z]|[A-Z])$/;
-  if (alphabet.test(key)) return key.toUpperCase();
+  if (/^[a-z]$/i.test(key)) return key.toUpperCase();
+  if (/^[0-9]$/.test(key)) return key;
+  if (/^F([0-9]|1[0-2])$/.test(key)) return key;
+  if (/^(Home|End|PageUp|PageDown|Insert|Delete)$/.test(key)) return key;
 
-  const digit = /^[0-9]$/;
-  const func = /^F([0-9]|1[0-2])$/;
-  const homes = /^(Home|End|PageUp|PageDown|Insert|Delete)$/;
-  if (digit.test(key) || func.test(key) || homes.test(key)) return key;
+  if (/^\s$/.test(key)) return "Space";
 
-  const space = /^\s$/;
-  if (space.test(key)) return "Space";
+  if (/^Arrow/.test(key)) return key.replace("Arrow", "");
 
-  const arrows = /^(ArrowUp|ArrowDown|ArrowLeft|ArrowRight)$/;
-  if (arrows.test(key)) return key.split("Arrow")[1];
+  if (/^Media(PlayPause|Stop)$/.test(key)) return key;
+  if (key === "MediaTrackNext") return "MediaNextTrack";
+  if (key === "MediaTrackPrevious") return "MediaPrevTrack";
 
-  const medias = /^(MediaPlayPause|MediaStop)$/;
-  if (medias.test(key)) return key;
-  if (key == "MediaTrackNext") return "MediaNextTrack";
-  if (key == "MediaTrackPrevious") return "MediaPrevTrack";
-
-  const keyCode0 = 48;
-  if (keyCode0 <= keyCode && keyCode <= keyCode0 + 9) return keyCode - keyCode0;
-
-  if (keyCode == 188) return "Comma";
-  if (keyCode == 190) return "Period";
+  if (keyCode >= 48 && keyCode <= 57) return String(keyCode - 48);
+  if (keyCode === 188) return "Comma";
+  if (keyCode === 190) return "Period";
 
   return "";
 };
 
-export default class KeyboardShortcutForm extends Component {
-  constructor(props) {
-    super(props);
-    this.isMac = browserInfo().os == "OS X";
-    this.state = {
-      shortcut: props.shortcut,
-      value: props.shortcut,
-      defaultValue: props.defaultValue,
-      error: ""
+/* ---------------- component ---------------- */
+
+export default function KeyboardShortcutForm({
+  id,
+  shortcut: initialShortcut,
+  defaultValue
+}) {
+  const isMac = useMemo(() => browserInfo().os === "OS X", []);
+
+  const [shortcut, setShortcut] = useState(initialShortcut || "");
+  const [value, setValue] = useState(initialShortcut || "");
+  const [error, setError] = useState("");
+
+  /* -------- focus handling -------- */
+
+  useEffect(() => {
+    return () => {
+      document.onkeydown = null;
+      document.onkeypress = null;
     };
-  }
+  }, []);
 
-  handleFocus(e) {
+  const handleFocus = useCallback(e => {
     e.target.select();
-    window.document.onkeydown = () => false;
-    window.document.onkeypress = () => false;
-  }
+    document.onkeydown = () => false;
+    document.onkeypress = () => false;
+  }, []);
 
-  handleBlur(e) {
-    const shortcut = this.state.shortcut;
-    this.setState({ error: "", value: shortcut });
-    window.document.onkeydown = () => true;
-    window.document.onkeypress = () => true;
-  }
+  const handleBlur = useCallback(() => {
+    setError("");
+    setValue(shortcut);
+    document.onkeydown = null;
+    document.onkeypress = null;
+  }, [shortcut]);
 
-  handleChange(e) {}
-
-  handleKeyDown(e) {
-    if (e.repeat) return;
-    if (e.key == "Tab") {
-      window.document.activeElement.blur();
-      return;
-    }
-    const normalizedKey = normalizeKey(e.key, e.keyCode);
-    let error = "";
-
-    const mediaKeys = /^(MediaPlayPause|MediaStop|MediaNextTrack|MediaPrevTrack)$/;
-    const funcKeys = /^F([0-9]|1[0-2])$/;
-    const modifierKeys = /^(Control|Alt|Shift|Meta)$/;
-
-    if (mediaKeys.test(normalizedKey) || funcKeys.test(normalizedKey)) error = "";
-    else if (modifierKeys.test(e.key)) error = browser.i18n.getMessage("typeLetterMessage");
-    else if (!e.ctrlKey && !e.altKey && !e.metaKey)
-      error = this.isMac
-        ? browser.i18n.getMessage("includeMacModifierKeysMessage")
-        : browser.i18n.getMessage("includeModifierKeysMessage");
-    else if (normalizedKey == "") error = browser.i18n.getMessage("invalidLetterMessage");
-
-    const value = `${e.ctrlKey ? (this.isMac ? "MacCtrl+" : "Ctrl+") : ""}${
-      e.metaKey && this.isMac ? "Command+" : ""
-    }${e.altKey ? "Alt+" : ""}${e.shiftKey ? "Shift+" : ""}${normalizedKey}`;
-
-    this.setState({ error: error, value: value || "" });
-    const isValidShortcut = value != "" && error == "";
-    if (isValidShortcut) this.updateShortcut(value);
-  }
-
-  handleKeyUp(e) {
-    if (this.state.error != "") {
-      this.setState({ value: "" });
-    }
-  }
-
-  async updateShortcut(shortcut) {
+  const updateShortcut = useCallback(async newShortcut => {
     try {
-      await browser.commands.update({ name: this.props.id, shortcut: shortcut });
-      this.setState({ shortcut: shortcut || "" });
-    } catch (e) {
-      this.setState({ error: browser.i18n.getMessage("invalidShortcutMessage") });
+      await browser.commands.update({ name: id, shortcut: newShortcut });
+      setShortcut(newShortcut);
+    } catch {
+      setError(browser.i18n.getMessage("invalidShortcutMessage"));
     }
-  }
+  }, [id]);
 
-  async clearShortcut() {
-    await browser.commands.reset(this.props.id).catch(() => {});
-    this.setState({ shortcut: "", value: "" });
-  }
+  /* -------- keyboard handling -------- */
 
-  async resetShortcut() {
-    const defaultValue = this.state.defaultValue;
-    this.updateShortcut(defaultValue);
-    this.setState({ value: defaultValue || "" });
-  }
+  const handleKeyDown = useCallback(
+    e => {
+      if (e.repeat) return;
 
-  render() {
-    return (
-      <div className={`keyboardShortcut ${this.state.error && "isError"}`}>
-        <div className="row">
-          <input
-            type="text"
-            id={this.props.id}
-            value={this.state.value}
-            placeholder={browser.i18n.getMessage("typeShortcutMessage")}
-            onKeyDown={e => this.handleKeyDown(e)}
-            onKeyUp={e => this.handleKeyUp(e)}
-            onChange={e => this.handleChange(e)}
-            onFocus={e => this.handleFocus(e)}
-            onBlur={e => this.handleBlur(e)}
-            style={{ imeMode: "disabled" }}
-          />
-          <button
-            className="clearButton"
-            title={browser.i18n.getMessage("clear")}
-            onClick={e => this.clearShortcut(e)}
-          >
-            <ClearIcon />
-          </button>
-          <button
-            className="resetButton"
-            title={browser.i18n.getMessage("reset")}
-            onClick={e => this.resetShortcut(e)}
-          >
-            <RestetIcon />
-          </button>
-        </div>
-        <p className="error">{this.state.error}</p>
+      if (e.key === "Tab") {
+        document.activeElement.blur();
+        return;
+      }
+
+      const normalizedKey = normalizeKey(e.key, e.keyCode);
+      let nextError = "";
+
+      const mediaKeys = /^(MediaPlayPause|MediaStop|MediaNextTrack|MediaPrevTrack)$/;
+      const funcKeys = /^F([0-9]|1[0-2])$/;
+      const modifierKeys = /^(Control|Alt|Shift|Meta)$/;
+
+      if (mediaKeys.test(normalizedKey) || funcKeys.test(normalizedKey)) {
+        nextError = "";
+      } else if (modifierKeys.test(e.key)) {
+        nextError = browser.i18n.getMessage("typeLetterMessage");
+      } else if (!e.ctrlKey && !e.altKey && !e.metaKey) {
+        nextError = browser.i18n.getMessage(
+          isMac
+            ? "includeMacModifierKeysMessage"
+            : "includeModifierKeysMessage"
+        );
+      } else if (!normalizedKey) {
+        nextError = browser.i18n.getMessage("invalidLetterMessage");
+      }
+
+      const nextValue =
+        `${e.ctrlKey ? (isMac ? "MacCtrl+" : "Ctrl+") : ""}` +
+        `${e.metaKey && isMac ? "Command+" : ""}` +
+        `${e.altKey ? "Alt+" : ""}` +
+        `${e.shiftKey ? "Shift+" : ""}` +
+        normalizedKey;
+
+      setError(nextError);
+      setValue(nextValue);
+
+      if (nextValue && !nextError) {
+        updateShortcut(nextValue);
+      }
+    },
+    [isMac, updateShortcut]
+  );
+
+  const handleKeyUp = useCallback(() => {
+    if (error) setValue("");
+  }, [error]);
+
+  /* -------- shortcut actions -------- */
+
+  const clearShortcut = async () => {
+    await browser.commands.reset(id).catch(() => { });
+    setShortcut("");
+    setValue("");
+  };
+
+  const resetShortcut = () => {
+    updateShortcut(defaultValue);
+    setValue(defaultValue || "");
+  };
+
+  /* -------- render -------- */
+
+  return (
+    <div className={`keyboardShortcut ${error ? "isError" : ""}`}>
+      <div className="row">
+        <input
+          type="text"
+          id={id}
+          value={value}
+          placeholder={browser.i18n.getMessage("typeShortcutMessage")}
+          onKeyDown={handleKeyDown}
+          onKeyUp={handleKeyUp}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          readOnly
+        />
+
+        <button
+          className="clearButton"
+          title={browser.i18n.getMessage("clear")}
+          onClick={clearShortcut}
+        >
+          <ClearIcon />
+        </button>
+
+        <button
+          className="resetButton"
+          title={browser.i18n.getMessage("reset")}
+          onClick={resetShortcut}
+        >
+          <ResetIcon />
+        </button>
       </div>
-    );
-  }
+
+      <p className="error">{error}</p>
+    </div>
+  );
 }
