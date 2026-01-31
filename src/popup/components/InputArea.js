@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useCallback } from "react";
 import browser from "webextension-polyfill";
 import "../styles/InputArea.scss";
 
-
 const useAutoResize = (textareaRef, inputText) => {
     useEffect(() => {
         const textarea = textareaRef.current;
@@ -14,7 +13,7 @@ const useAutoResize = (textareaRef, inputText) => {
 };
 
 function InputArea(props) {
-    const { inputText, handleInputText, /* sourceLang */ } = props;
+    const { inputText, handleInputText } = props;
 
     const textareaRef = useRef(null);
 
