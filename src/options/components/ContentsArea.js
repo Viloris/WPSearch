@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import browserInfo from "browser-info";
 import SettingsPage from "./SettingsPage";
 import KeyboardShortcutsPage from "./KeyboardShortcutsPage";
@@ -8,18 +8,21 @@ import PrivacyPolicyPage from "./PrivacyPolicyPage";
 import "../styles/ContentsArea.scss";
 
 const isValidShortcuts =
-    browserInfo().name == "Firefox" && browserInfo().version >= 60;
+    browserInfo().name === "Firefox" && browserInfo().version >= 60;
 
-export default () => (
-    <div className="contentsArea">
-        <Switch>
-            <Route path="/settings" component={SettingsPage} />
-            {isValidShortcuts && (
-                <Route path="/shortcuts" component={KeyboardShortcutsPage} />
-            )}
-            <Route path="/information" component={InformationPage} />
-            <Route path="/privacy-policy" component={PrivacyPolicyPage} />
-            <Route component={SettingsPage} />
-        </Switch>
-    </div>
-);
+export default function ContentsArea() {
+    return (
+        <div className="contentsArea">
+            <Routes>
+                <Route path="/settings" element={<SettingsPage />} />
+                {isValidShortcuts && (
+                    <Route path="/shortcuts" element={<KeyboardShortcutsPage />} />
+                )}
+                <Route path="/information" element={<InformationPage />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+                {/* fallback route */}
+                <Route path="*" element={<SettingsPage />} />
+            </Routes>
+        </div>
+    );
+}
