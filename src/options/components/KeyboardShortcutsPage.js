@@ -1,43 +1,52 @@
-import React, { Component } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import browser from "webextension-polyfill";
 import getShortcut from "src/common/getShortcut";
 import CategoryContainer from "./CategoryContainer";
 
-export default class KeyboardShortcutPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      commands: [],
-      isInit: false
+export default function KeyboardShortcutPage() {
+  const [commands, setCommands] = useState([]);
+
+  /* -------- init -------- */
+
+  useEffect(() => {
+    const initCommands = async () => {
+      const rawDescription = /^__MSG_(.*)__$/;
+      const allCommands = await browser.commands.getAll();
+
+      const normalized = allCommands.map(command => {
+        const match = command.description?.match(rawDescription);
+        return {
+          ...command,
+          description: match
+            ? browser.i18n.getMessage(match[1])
+            : command.description
+        };
+      });
+
+      setCommands(normalized);
     };
-    this.initCommands();
-  }
 
-  async initCommands() {
-    const commands = await browser.commands.getAll();
-    const rawDescription = /^__MSG_(.*)__$/;
-    const convertedCommands = commands.map(command => {
-      const isRawDescription = rawDescription.test(command.description);
-      if (isRawDescription)
-        command.description = browser.i18n.getMessage(command.description.match(rawDescription)[1]);
-      return command;
-    });
+    initCommands();
+  }, []);
 
-    this.setState({ commands: convertedCommands, isInit: true });
-  }
+  /* -------- derived data -------- */
 
-  render() {
-    const commandElements = this.state.commands.map(command => ({
-      id: command.name,
-      title: command.description,
-      useRawTitle: true,
-      captions: [],
-      type: "keyboard-shortcut",
-      shortcut: command.shortcut || "",
-      defaultValue: getShortcut(command.name)
-    }));
+  const commandElements = useMemo(
+    () =>
+      commands.map(command => ({
+        id: command.name,
+        title: command.description,
+        useRawTitle: true,
+        captions: [],
+        type: "keyboard-shortcut",
+        shortcut: command.shortcut || "",
+        defaultValue: getShortcut(command.name)
+      })),
+    [commands]
+  );
 
-    const shortcutCategory = {
+  const shortcutCategory = useMemo(
+    () => ({
       category: "",
       elements: [
         {
@@ -48,14 +57,24 @@ export default class KeyboardShortcutPage extends Component {
           childElements: commandElements
         }
       ]
-    };
+    }),
+    [commandElements]
+  );
 
-    return (
-      <div>
-        <p className="contentTitle">{browser.i18n.getMessage("keyboardShortcutsLabel")}</p>
-        <hr />
-        {this.state.isInit && <ul>{<CategoryContainer {...shortcutCategory} />}</ul>}
-      </div>
-    );
-  }
+  /* -------- render -------- */
+
+  return (
+    <div>
+      <p className="contentTitle">
+        {browser.i18n.getMessage("keyboardShortcutsLabel")}
+      </p>
+      <hr />
+
+      {commands.length > 0 && (
+        <ul>
+          <CategoryContainer {...shortcutCategory} />
+        </ul>
+      )}
+    </div>
+  );
 }
