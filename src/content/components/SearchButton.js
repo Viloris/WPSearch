@@ -3,10 +3,12 @@ import browser from "webextension-polyfill";
 import { getSettings } from "src/settings/settings";
 import "../styles/SearchButton.scss";
 
-const calcPosition = ({ buttonSize, offset, direction }) => {
+const ICON_URL = browser.runtime.getURL("icons/512.png");
+
+const calcPosition = (buttonSize, offset, direction) => {
     const half = buttonSize / 2;
 
-    const positions = {
+    const map = {
         top: { top: -buttonSize - offset, left: -half },
         bottom: { top: offset, left: -half },
         right: { top: -half, left: offset },
@@ -17,32 +19,30 @@ const calcPosition = ({ buttonSize, offset, direction }) => {
         bottomRight: { top: offset, left: offset }
     };
 
-    return positions[direction] || positions.bottomRight;
+    return map[direction] || map.bottomRight;
 };
 
 function SearchButton({ handleButtonClick, position, shouldShow }) {
-    const settings = useMemo(() => ({
-        buttonSize: parseInt(getSettings("buttonSize")),
-        offset: parseInt(getSettings("buttonOffset")),
-        direction: getSettings("buttonDirection")
-    }), []);
+    const buttonSize = parseInt(getSettings("buttonSize"));
+    const offset = parseInt(getSettings("buttonOffset"));
+    const direction = getSettings("buttonDirection");
 
-    const basePos = useMemo(() => calcPosition(settings), [settings]);
+    const buttonStyle = useMemo(() => {
+        const base = calcPosition(buttonSize, offset, direction);
 
-    const iconUrl = useMemo(() => browser.runtime.getURL("icons/512.png"), []);
-
-    const buttonStyle = useMemo(() => ({
-        backgroundImage: `url(${iconUrl})`,
-        height: settings.buttonSize,
-        width: settings.buttonSize,
-        top: basePos.top + position.y,
-        left: basePos.left + position.x
-    }), [iconUrl, settings.buttonSize, basePos, position]);
+        return {
+            backgroundImage: `url(${ICON_URL})`,
+            width: buttonSize,
+            height: buttonSize,
+            top: base.top + position.y,
+            left: base.left + position.x
+        };
+    }, [buttonSize, offset, direction, position]);
 
     return (
         <div
-            style={buttonStyle}
             className={`simple-wikipedia-search-button ${shouldShow ? "isShow" : ""}`}
+            style={buttonStyle}
             onClick={handleButtonClick}
         />
     );
