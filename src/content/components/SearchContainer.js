@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import browser from "webextension-polyfill";
 import { getSettings } from "src/settings/settings.js";
 import SearchButton from "./SearchButton";
@@ -6,115 +6,114 @@ import ResultPanel from "./ResultPanel";
 import "../styles/SearchContainer.scss";
 import { getTargetLang } from "../../common/utils";
 
-const wpSearchText = async (expression) => {
-    const result = await browser.runtime.sendMessage({
+const wpSearchText = (expression) =>
+    browser.runtime.sendMessage({
         message: "wikipediaSearch",
         expression
     });
-    return result;
-};
 
-export default class SearchContainer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            shouldShowButton: false,
-            buttonPosition: { x: 0, y: 0 },
-            shouldShowPanel: false,
-            panelPosition: { x: 0, y: 0 },
-            currentLang: getTargetLang(),
-            resultText: "",
-            resultMain: "",
-            resultSecond: "",
-            errorMessageMain: "",
-            errorMessageSecond: "",
-            isErrorMain: "",
-            isErrorSecond: ""
-        };
-        this.selectedText = props.selectedText;
-        this.selectedPosition = props.selectedPosition;
-    }
+export default function SearchContainer({
+    selectedText,
+    selectedPosition,
+    clickedPosition,
+    shouldWPSearch,
+    removeContainer
+}) {
+    const currentLang = getTargetLang();
 
-    componentDidMount = () => {
-        if (this.props.shouldWPSearch) this.showPanel();
-        else this.handleTextSelect(this.props.clickedPosition);
-    };
+    const [button, setButton] = useState({
+        show: false,
+        position: { x: 0, y: 0 }
+    });
 
-    handleTextSelect = async (clickedPosition) => {
-        const onSelectBehavior = getSettings("whenSelectText");
-        if (onSelectBehavior === "dontShowButton")
-            return this.props.removeContainer();
-        if (onSelectBehavior === "showButton")
-            return this.showButton(clickedPosition);
-        else if (onSelectBehavior === "showPanel")
-            return this.showPanel(clickedPosition);
-    };
+    const [panel, setPanel] = useState({
+        show: false,
+        position: { x: 0, y: 0 }
+    });
 
-    showButton = (clickedPosition) => {
-        this.setState({
-            shouldShowButton: true,
-            buttonPosition: clickedPosition
+    const [result, setResult] = useState({
+        resultMain: "",
+        resultSecond: "",
+        errorMessageMain: "",
+        errorMessageSecond: "",
+        isErrorMain: "",
+        isErrorSecond: ""
+    });
+
+    /* ---------------- CORE ACTIONS ---------------- */
+
+    const showPanel = useCallback(async (clickedPos = null) => {
+        const useClicked =
+            getSettings("panelReferencePoint") === "clickedPoint" &&
+            clickedPos !== null;
+
+        const position = useClicked ? clickedPos : selectedPosition;
+
+        const res = await wpSearchText(selectedText);
+
+        setPanel({ show: true, position });
+        setButton((b) => ({ ...b, show: false }));
+        setResult({
+            resultMain: res?.resultMain,
+            resultSecond: res?.resultSecond,
+            errorMessageMain: res?.errorMessageMain,
+            errorMessageSecond: res?.errorMessageSecond,
+            isErrorMain: res?.isErrorMain,
+            isErrorSecond: res?.isErrorSecond
         });
+    }, [selectedPosition, selectedText]);
+
+    const showButton = (pos) =>
+        setButton({ show: true, position: pos });
+
+    const hidePanel = () =>
+        setPanel((p) => ({ ...p, show: false }));
+
+    /* ---------------- SELECTION LOGIC ---------------- */
+
+    const handleTextSelect = useCallback((pos) => {
+        const behavior = getSettings("whenSelectText");
+
+        if (behavior === "dontShowButton") return removeContainer();
+        if (behavior === "showButton") return showButton(pos);
+        if (behavior === "showPanel") return showPanel(pos);
+    }, [removeContainer, showPanel]);
+
+    /* ---------------- INIT ---------------- */
+
+    useEffect(() => {
+        if (!selectedText) return;
+
+        if (shouldWPSearch) {
+            showPanel();
+        } else {
+            handleTextSelect(clickedPosition);
+        }
+    }, [selectedText, clickedPosition, handleTextSelect, showPanel, shouldWPSearch]);
+
+    /* ---------------- EVENTS ---------------- */
+
+    const handleButtonClick = (e) => {
+        showPanel({ x: e.clientX, y: e.clientY });
     };
 
-    hideButton = () => {
-        this.setState({ shouldShowButton: false });
-    };
+    /* ---------------- RENDER ---------------- */
 
-    handleButtonClick = (e) => {
-        const clickedPosition = { x: e.clientX, y: e.clientY };
-        this.showPanel(clickedPosition);
-        this.hideButton();
-    };
-
-    showPanel = async (clickedPosition = null) => {
-        const panelReferencePoint = getSettings("panelReferencePoint");
-        const useClickedPosition =
-            panelReferencePoint === "clickedPoint" && clickedPosition !== null;
-        const panelPosition = useClickedPosition
-            ? clickedPosition
-            : this.selectedPosition;
-        const result = await wpSearchText(this.selectedText);
-
-        this.setState({
-            shouldShowPanel: true,
-            panelPosition: panelPosition,
-            resultMain: result?.resultMain,
-            resultSecond: result?.resultSecond,
-            errorMessageMain: result?.errorMessageMain,
-            errorMessageSecond: result?.errorMessageSecond,
-            isErrorMain: result?.isErrorMain,
-            isErrorSecond: result?.isErrorSecond,
-            selectedText: this.selectedText
-        });
-    };
-
-    hidePanel = () => {
-        this.setState({ shouldShowPanel: false });
-    };
-
-    render = () => {
-        return (
-            <div>
-                <SearchButton
-                    shouldShow={this.state.shouldShowButton}
-                    position={this.state.buttonPosition}
-                    handleButtonClick={this.handleButtonClick}
-                />
-                <ResultPanel
-                    shouldShow={this.state.shouldShowPanel}
-                    position={this.state.panelPosition}
-                    selectedText={this.state.selectedText}
-                    currentLang={this.state.currentLang}
-                    resultMain={this.state.resultMain}
-                    resultSecond={this.state.resultSecond}
-                    errorMessageMain={this.state.errorMessageMain}
-                    errorMessageSecond={this.state.errorMessageSecond}
-                    isErrorMain={this.state.isErrorMain}
-                    isErrorSecond={this.state.isErrorSecond}
-                    hidePanel={this.hidePanel}
-                />
-            </div>
-        );
-    };
+    return (
+        <div>
+            <SearchButton
+                shouldShow={button.show}
+                position={button.position}
+                handleButtonClick={handleButtonClick}
+            />
+            <ResultPanel
+                shouldShow={panel.show}
+                position={panel.position}
+                selectedText={selectedText}
+                currentLang={currentLang}
+                {...result}
+                hidePanel={hidePanel}
+            />
+        </div>
+    );
 }
