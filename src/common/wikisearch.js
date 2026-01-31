@@ -101,7 +101,6 @@ async function handleQuery(textValue) {
 
     if (useSecondLang) {
         response = {
-
             ...response,
             errorMessageSecond: SECOND.errorMessage,
             isErrorSecond: SECOND.isError,
@@ -109,7 +108,6 @@ async function handleQuery(textValue) {
                 text: SECOND.text,
                 title: SECOND.title,
                 url: SECOND.url
-
             }
         };
     }
