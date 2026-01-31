@@ -1,42 +1,38 @@
-import React, { Component } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import browser from "webextension-polyfill";
 import log from "loglevel";
 import {
     initSettings,
     getSettings,
     setSettings
-} from "src/settings/settings.js";
+} from "src/settings/settings";
 import { updateLogLevel, overWriteLogLevel } from "src/common/log";
 import Header from "./Header";
 import InputArea from "./InputArea";
+import ResultArea from "./ResultArea";
 import "../styles/PopupPage.scss";
 import { getTargetLang, tabsSendMessage } from "../../common/utils";
-import ResultArea from "./ResultArea";
 
 const logDir = "popup/PopupPage";
 
+/* ---------------- utils ---------------- */
+
 const getTabInfo = async () => {
     try {
-        const tab = (
-            await browser.tabs.query({ currentWindow: true, active: true })
-        )[0];
-        const tabUrl = tabsSendMessage(tab, "getTabUrl");
-        const selectedText = tabsSendMessage(tab, "getSelectedText");
-        const isEnabledOnPage = tabsSendMessage(tab, "getEnabled");
+        const [tab] = await browser.tabs.query({
+            currentWindow: true,
+            active: true
+        });
 
-        const tabInfo = await Promise.all([
-            tabUrl,
-            selectedText,
-            isEnabledOnPage
+        const [url, selectedText, isEnabledOnPage] = await Promise.all([
+            tabsSendMessage(tab, "getTabUrl"),
+            tabsSendMessage(tab, "getSelectedText"),
+            tabsSendMessage(tab, "getEnabled")
         ]);
-        return {
-            isConnected: true,
-            url: tabInfo[0],
-            selectedText: tabInfo[1],
-            isEnabledOnPage: tabInfo[2]
-        };
+
+        return { isConnected: true, url, selectedText, isEnabledOnPage };
     } catch (e) {
-        console.error(e)
+        console.error(e);
         return {
             isConnected: false,
             url: "",
@@ -47,142 +43,158 @@ const getTabInfo = async () => {
 };
 
 const UILanguage = browser.i18n.getUILanguage();
-const rtlLanguage = ["he", "ar"].includes(UILanguage);
-const rtlLanguageClassName = rtlLanguage ? "popup-page-rtl-language" : "";
+const rtlLanguageClassName = ["he", "ar"].includes(UILanguage)
+    ? "popup-page-rtl-language"
+    : "";
 
-export default class PopupPage extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            targetLang: "",
-            inputText: "",
-            resultText: "",
-            isError: false,
-            errorMessage: "",
-            tabUrl: "",
-            isConnected: true,
-            isEnabledOnPage: true,
-            langHistory: [],
-            hasResult: false,
-            isErrorMain: false,
-            isErrorSecond: false,
-            hideInformationLabel: false
-        };
-        this.isSwitchedSecondLang = false;
-        this.init();
-    }
+/* ---------------- component ---------------- */
 
-    init = async () => {
-        await initSettings();
-        overWriteLogLevel();
-        updateLogLevel();
+export default function PopupPage() {
+    const [targetLang, setTargetLang] = useState("");
+    const [inputText, setInputText] = useState("");
+    const [tabInfo, setTabInfo] = useState({
+        isConnected: true,
+        tabUrl: "",
+        isEnabledOnPage: true
+    });
+    const [result, setResult] = useState(null);
+    const [hideInformationLabel, setHideInformationLabel] = useState(false);
 
-        this.themeClass = getSettings("theme") + "-theme";
-        document.body.classList.add(this.themeClass);
+    const inputTimer = useRef(null);
+    const themeClass = useRef(null);
 
-        const targetLang = getTargetLang();
-        this.setState({
-            targetLang: targetLang
-        });
+    const handleInputText = useCallback(text => {
+        setInputText(text);
 
-        const hideInformationLabel = getSettings("hidePopupInformationLabel")
-        this.setState({
-            hideInformationLabel: !!hideInformationLabel
-        })
-
-        const tabInfo = await getTabInfo();
-        this.setState({
-            isConnected: tabInfo.isConnected,
-            inputText: tabInfo.selectedText,
-            tabUrl: tabInfo.url,
-            isEnabledOnPage: tabInfo.isEnabledOnPage
-        });
-        if (tabInfo.selectedText !== "")
-            this.handleInputText(tabInfo.selectedText);
-
-        document.body.style.width = "348px";
-    };
-
-    handleInputText = (inputText) => {
-        this.setState({ inputText: inputText });
-
+        clearTimeout(inputTimer.current);
         const waitTime = getSettings("waitTime");
-        clearTimeout(this.inputTimer);
-        this.inputTimer = setTimeout(async () => {
-            await this.wpSearchText(inputText);
-        }, waitTime);
-    };
 
-    wpSearchText = async (expression) => {
+        inputTimer.current = setTimeout(() => {
+            wpSearchText(text);
+        }, waitTime);
+    }, []);
+
+    /* -------- init -------- */
+
+    useEffect(() => {
+        let mounted = true;
+
+        const init = async () => {
+            await initSettings();
+            overWriteLogLevel();
+            updateLogLevel();
+
+            themeClass.current = `${getSettings("theme")}-theme`;
+            document.body.classList.add(themeClass.current);
+            document.body.style.width = "348px";
+
+            if (!mounted) return;
+
+            setTargetLang(getTargetLang());
+            setHideInformationLabel(
+                !!getSettings("hidePopupInformationLabel")
+            );
+
+            const info = await getTabInfo();
+            if (!mounted) return;
+
+            setTabInfo({
+                isConnected: info.isConnected,
+                tabUrl: info.url,
+                isEnabledOnPage: info.isEnabledOnPage
+            });
+
+            if (info.selectedText) {
+                handleInputText(info.selectedText);
+            }
+        };
+
+        init();
+
+        return () => {
+            mounted = false;
+            clearTimeout(inputTimer.current);
+            if (themeClass.current) {
+                document.body.classList.remove(themeClass.current);
+            }
+        };
+    }, [handleInputText]);
+
+    /* -------- handlers -------- */
+
+    const wpSearchText = async expression => {
         log.info(logDir, "wpSearchText()", expression);
-        const replaced = expression.replaceAll("\n", "");
+
         const result = await browser.runtime.sendMessage({
             message: "wikipediaSearch",
-            expression: replaced
+            expression: expression.replaceAll("\n", "")
         });
-        this.setState({
-            resultMain: result?.resultMain,
-            resultSecond: result?.resultSecond,
-            hasResult: true,
+
+        setResult({
+            main: result?.resultMain,
+            second: result?.resultSecond,
             isErrorMain: result?.isErrorMain,
             isErrorSecond: result?.isErrorSecond,
             errorMessageMain: result?.errorMessageMain,
             errorMessageSecond: result?.errorMessageSecond
         });
-        return result;
     };
 
-    toggleEnabledOnPage = async (e) => {
+    const toggleEnabledOnPage = async e => {
         const isEnabled = e.target.checked;
-        this.setState({ isEnabledOnPage: isEnabled });
+        setTabInfo(prev => ({ ...prev, isEnabledOnPage: isEnabled }));
+
         try {
-            const tab = (
-                await browser.tabs.query({ currentWindow: true, active: true })
-            )[0];
-            if (isEnabled) await tabsSendMessage(tab, "enableExtension");
-            else await tabsSendMessage(tab, "disableExtension");
-        } catch (e) { console.error(e) }
+            const [tab] = await browser.tabs.query({
+                currentWindow: true,
+                active: true
+            });
+            await tabsSendMessage(
+                tab,
+                isEnabled ? "enableExtension" : "disableExtension"
+            );
+        } catch (e) {
+            console.error(e);
+        }
     };
 
-    dismissHint = () => {
+    const dismissHint = () => {
         setSettings("hidePopupInformationLabel", true);
-        this.setState({
-            hideInformationLabel: true
-        });
+        setHideInformationLabel(true);
     };
 
-    render() {
-        return (
-            <div className={rtlLanguageClassName}>
-                <Header
-                    toggleEnabledOnPage={this.toggleEnabledOnPage}
-                    isEnabledOnPage={this.state.isEnabledOnPage}
-                    isConnected={this.state.isConnected}
-                />
-                <InputArea
-                    inputText={this.state.inputText}
-                    handleInputText={this.handleInputText}
-                />
-                {this.state.hasResult && (
-                    <>
-                        <hr />
-                        <ResultArea
-                            errorMessageMain={this.state.errorMessageMain}
-                            errorMessageSecond={this.state.errorMessageSecond}
-                            isErrorMain={this.state.isErrorMain}
-                            isErrorSecond={this.state.isErrorSecond}
-                            inputText={this.state.inputText}
-                            resultMain={this.state.resultMain}
-                            resultSecond={this.state.resultSecond}
-                            targetLang={this.state.targetLang}
-                            dismissHint={this.dismissHint}
-                            hideInformationLabel={
-                                this.state.hideInformationLabel
-                            }
-                        />
-                    </>
-                )}
-            </div>
-        );
-    }
+    /* -------- render -------- */
+
+    return (
+        <div className={rtlLanguageClassName}>
+            <Header
+                toggleEnabledOnPage={toggleEnabledOnPage}
+                isEnabledOnPage={tabInfo.isEnabledOnPage}
+                isConnected={tabInfo.isConnected}
+            />
+
+            <InputArea
+                inputText={inputText}
+                handleInputText={handleInputText}
+            />
+
+            {result && (
+                <>
+                    <hr />
+                    <ResultArea
+                        inputText={inputText}
+                        targetLang={targetLang}
+                        dismissHint={dismissHint}
+                        hideInformationLabel={hideInformationLabel}
+                        errorMessageMain={result.errorMessageMain}
+                        errorMessageSecond={result.errorMessageSecond}
+                        isErrorMain={result.isErrorMain}
+                        isErrorSecond={result.isErrorSecond}
+                        resultMain={result.main}
+                        resultSecond={result.second}
+                    />
+                </>
+            )}
+        </div>
+    );
 }
