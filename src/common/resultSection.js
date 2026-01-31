@@ -17,7 +17,7 @@ export function ResultSection(props) {
             <>
                 <ResultHeader title={title} />
                 {!isError && <ResultContent result={result} />}
-                {!isError && <ResultFooter result={result} />}
+                {!isError && result?.text && <ResultFooter text={result.text} />}
                 {isError && <ErrorSection message={errorMessage} />}
             </>
         );

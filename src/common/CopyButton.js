@@ -17,7 +17,7 @@ export default function CopyButton({ text }) {
 
     useEffect(() => setIsCopied(false), [text])
 
-    if (text) return (
+    return (
         <div className="copy">
             {isCopied && (
                 <span className="copiedText">
@@ -34,5 +34,4 @@ export default function CopyButton({ text }) {
             </CopyToClipboard>
         </div>
     );
-    return null;
 }

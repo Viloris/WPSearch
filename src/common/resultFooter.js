@@ -2,10 +2,10 @@ import React from "react";
 import CopyButton from "./CopyButton";
 import "../styles/resultFooter.scss";
 
-export function ResultFooter({ result }) {
+export function ResultFooter({ text }) {
     return (
         <div className={"mediaButtons"}>
-            <CopyButton text={result?.text} />
+            {text && <CopyButton text={text} />}
         </div>
     );
 }
