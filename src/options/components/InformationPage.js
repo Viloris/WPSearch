@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import browser from "webextension-polyfill";
 import browserInfo from "browser-info";
 import queryString from "query-string";
@@ -6,29 +6,40 @@ import OptionsContainer from "./OptionContainer";
 import { chromeExtensionUrl, firefoxAddonUrl } from "src/common/personalUrls";
 import manifestChrome from "src/manifest-chrome.json";
 import manifestFirefox from "src/manifest-firefox.json";
+import { useLocation } from "react-router-dom";
 
-export default (props) => {
-    const query = queryString.parse(props.location.search);
-    const isFirefox = browserInfo().name === "Firefox";
+export default function InformationPage() {
+    const location = useLocation();
+    const query = queryString.parse(location.search);
+
+    const browserData = browserInfo();
+    const isFirefox = browserData.name === "Firefox";
+    const isChrome = browserData.name === "Chrome";
+
     const extensionVersion = isFirefox
         ? manifestFirefox.version
         : manifestChrome.version;
+
     const [hasPermission, requestPermission] = useAdditionalPermission();
+
+    const storeLink = isChrome ? chromeExtensionUrl : firefoxAddonUrl;
+    const storeLabel = isChrome
+        ? browser.i18n.getMessage("extensionPageLabel")
+        : browser.i18n.getMessage("addonPageLabel");
 
     return (
         <div>
-            <p className="contentTitle">
-                {browser.i18n.getMessage("informationLabel")}
-            </p>
+            <p className="contentTitle">{browser.i18n.getMessage("informationLabel")}</p>
             <hr />
+
             <OptionsContainer
-                title={"extName"}
+                title="extName"
                 captions={["extDescription"]}
-                type={"none"}
+                type="none"
                 updated={query.action === "updated"}
                 extraCaption={
                     <p className="caption">
-                        <a href="https://github.com/Viloris" target="_blank">
+                        <a href="https://github.com/Viloris" target="_blank" rel="noreferrer">
                             Version {extensionVersion}
                         </a>
                     </p>
@@ -36,20 +47,20 @@ export default (props) => {
             />
 
             <OptionsContainer
-                title={"licenseLabel"}
+                title="licenseLabel"
                 captions={["Mozilla Public License, Version. 2.0"]}
                 useRawCaptions={true}
-                type={"none"}
+                type="none"
             />
 
             {!hasPermission && (
                 <>
                     <hr />
                     <OptionsContainer
-                        title={"additionalPermissionLabel"}
+                        title="additionalPermissionLabel"
                         captions={["additionalPermissionCaptionLabel"]}
-                        type={"button"}
-                        value={"enableLabel"}
+                        type="button"
+                        value="enableLabel"
                         onClick={requestPermission}
                     />
                 </>
@@ -57,53 +68,32 @@ export default (props) => {
 
             <hr />
             <OptionsContainer
-                title={""}
+                title=""
                 captions={[]}
-                type={"none"}
+                type="none"
                 extraCaption={
-                    <div>
-                        <p>
-                            {browserInfo().name === "Chrome" ? (
-                                <a href={chromeExtensionUrl} target="_blank">
-                                    {browser.i18n.getMessage(
-                                        "extensionPageLabel"
-                                    )}
-                                </a>
-                            ) : (
-                                <a href={firefoxAddonUrl} target="_blank">
-                                    {browser.i18n.getMessage("addonPageLabel")}
-                                </a>
-                            )}
-                            {/* <span>　</span>
-                            <a
-                                href="https://github.com/Viloris"
-                                target="_blank"
-                            >
-                                GitHub
-                            </a>
-                            <span>　</span>
-                            <a href="https://example.com" target="_blank">
-                                {browser.i18n.getMessage("privacyPolicyLabel")}
-                            </a> */}
-                        </p>
-                    </div>
+                    <p>
+                        <a href={storeLink} target="_blank" rel="noreferrer">
+                            {storeLabel}
+                        </a>
+                    </p>
                 }
             />
         </div>
     );
-};
+}
+
+/* ---------------- CUSTOM HOOK ---------------- */
 
 const useAdditionalPermission = () => {
     const [hasPermission, setHasPermission] = useState(true);
 
-    const permissions = {
-        origins: ["http://*/*", "https://*/*", "<all_urls>"]
-    };
+    const permissions = useMemo(() => ({ origins: ["http://*/*", "https://*/*", "<all_urls>"] }), []);
 
-    const checkPermission = async () => {
-        const hasPermission = await browser.permissions.contains(permissions);
-        setHasPermission(hasPermission);
-    };
+    const checkPermission = useCallback(async () => {
+        const granted = await browser.permissions.contains(permissions);
+        setHasPermission(granted);
+    }, [permissions]);
 
     const requestPermission = async () => {
         await browser.permissions.request(permissions);
@@ -112,7 +102,7 @@ const useAdditionalPermission = () => {
 
     useEffect(() => {
         checkPermission();
-    }, []);
+    }, [checkPermission]);
 
     return [hasPermission, requestPermission];
 };
