@@ -1,53 +1,96 @@
-import React, { Component } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import browser from "webextension-polyfill";
-import { updateLogLevel, overWriteLogLevel } from "src/common/log";
-import { initSettings, getAllSettings, resetAllSettings, exportSettings, importSettings, handleSettingsChange } from "src/settings/settings";
+import {
+  updateLogLevel,
+  overWriteLogLevel
+} from "src/common/log";
+import {
+  initSettings,
+  getAllSettings,
+  resetAllSettings,
+  exportSettings,
+  importSettings,
+  handleSettingsChange
+} from "src/settings/settings";
 import defaultSettings from "src/settings/defaultSettings";
 import CategoryContainer from "./CategoryContainer";
 
-export default class SettingsPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isInit: false,
-      currentValues: {}
+/* ---------------- component ---------------- */
+
+export default function SettingsPage() {
+  const [currentValues, setCurrentValues] = useState(null);
+
+  /* -------- init -------- */
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const init = async () => {
+      await initSettings();
+      overWriteLogLevel();
+      updateLogLevel();
+
+      if (isMounted) {
+        setCurrentValues(getAllSettings());
+      }
     };
-    this.init();
-  }
 
-  async init() {
-    await initSettings();
-    overWriteLogLevel();
-    updateLogLevel();
-    this.setState({ isInit: true, currentValues: getAllSettings() });
-    browser.storage.local.onChanged.addListener(changes => {
+    init();
+
+    const handleStorageChange = changes => {
       const newSettings = handleSettingsChange(changes);
-      if (newSettings) this.setState({ currentValues: newSettings });
-    });
-  }
+      if (newSettings) {
+        setCurrentValues(newSettings);
+      }
+    };
 
-  render() {
-    const { isInit, currentValues } = this.state;
-    const settingsContent = (
+    browser.storage.local.onChanged.addListener(handleStorageChange);
+
+    return () => {
+      isMounted = false;
+      browser.storage.local.onChanged.removeListener(handleStorageChange);
+    };
+  }, []);
+
+  /* -------- handlers -------- */
+
+  const handleReset = useCallback(async () => {
+    await resetAllSettings();
+    location.reload();
+  }, []);
+
+  /* -------- render -------- */
+
+  if (!currentValues) return null;
+
+  return (
+    <div>
+      <p className="contentTitle">
+        {browser.i18n.getMessage("settingsLabel")}
+      </p>
+      <hr />
+
       <ul>
         {defaultSettings.map((category, index) => (
-          <CategoryContainer {...category} key={index} currentValues={currentValues} />
+          <CategoryContainer
+            key={category.category || index}
+            {...category}
+            currentValues={currentValues}
+          />
         ))}
-        <CategoryContainer {...additionalCategory} currentValues={currentValues} />
-      </ul>
-    );
 
-    return (
-      <div>
-        <p className="contentTitle">{browser.i18n.getMessage("settingsLabel")}</p>
-        <hr />
-        {isInit ? settingsContent : ""}
-      </div>
-    );
-  }
+        <CategoryContainer
+          {...additionalCategory(handleReset)}
+          currentValues={currentValues}
+        />
+      </ul>
+    </div>
+  );
 }
 
-const additionalCategory = {
+/* ---------------- additional category ---------------- */
+
+const additionalCategory = handleReset => ({
   category: "",
   elements: [
     {
@@ -65,9 +108,7 @@ const additionalCategory = {
       captions: ["exportSettingsCaptionLabel"],
       type: "button",
       value: "exportButtonLabel",
-      onClick: async () => {
-        await exportSettings();
-      }
+      onClick: exportSettings
     },
     {
       id: "resetSettings",
@@ -75,10 +116,7 @@ const additionalCategory = {
       captions: ["resetSettingsCaptionLabel"],
       type: "button",
       value: "resetSettingsButtonLabel",
-      onClick: async () => {
-        await resetAllSettings();
-        location.reload(true);
-      }
+      onClick: handleReset
     }
   ]
-};
+});
