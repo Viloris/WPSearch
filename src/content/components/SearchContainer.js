@@ -49,55 +49,74 @@ export default function SearchContainer({
 
         const position = useClicked ? clickedPos : selectedPosition;
 
-        const res = await wpSearchText(selectedText);
-
-        setPanel({ show: true, position });
-        setButton((b) => ({ ...b, show: false }));
-        setResult({
-            resultMain: res?.resultMain,
-            resultSecond: res?.resultSecond,
-            errorMessageMain: res?.errorMessageMain,
-            errorMessageSecond: res?.errorMessageSecond,
-            isErrorMain: res?.isErrorMain,
-            isErrorSecond: res?.isErrorSecond
-        });
+        try {
+            const res = await wpSearchText(selectedText);
+            setPanel({ show: true, position });
+            setButton((b) => ({ ...b, show: false }));
+            setResult({
+                resultMain: res?.resultMain || "",
+                resultSecond: res?.resultSecond || "",
+                errorMessageMain: res?.errorMessageMain || "",
+                errorMessageSecond: res?.errorMessageSecond || "",
+                isErrorMain: res?.isErrorMain || false,
+                isErrorSecond: res?.isErrorSecond || false,
+            });
+        } catch (error) {
+            console.error("Search error:", error);
+        }
     }, [selectedPosition, selectedText]);
 
-    const showButton = (pos) =>
+    const showButton = useCallback((pos) => {
         setButton({ show: true, position: pos });
+    }, []);
 
-    const hidePanel = () =>
+    const hidePanel = useCallback(() => {
         setPanel((p) => ({ ...p, show: false }));
+    }, []);
 
-    /* ---------------- SELECTION LOGIC ---------------- */
+    const handleTextSelect = useCallback(
+        (pos) => {
+            const behavior = getSettings("whenSelectText");
+            if (behavior === "dontShowButton") return removeContainer();
+            if (behavior === "showButton") return showButton(pos);
+            if (behavior === "showPanel") return showPanel(pos);
+        },
+        [removeContainer, showButton, showPanel]
+    );
 
-    const handleTextSelect = useCallback((pos) => {
-        const behavior = getSettings("whenSelectText");
-
-        if (behavior === "dontShowButton") return removeContainer();
-        if (behavior === "showButton") return showButton(pos);
-        if (behavior === "showPanel") return showPanel(pos);
-    }, [removeContainer, showPanel]);
-
-    /* ---------------- INIT ---------------- */
+    /* ---------------- INIT (JAVÍTVA) ---------------- */
 
     useEffect(() => {
         if (!selectedText) return;
+        let isMounted = true;
 
-        if (shouldWPSearch) {
-            showPanel();
-        } else {
-            handleTextSelect(clickedPosition);
+        const initializeSearch = async () => {
+            if (shouldWPSearch) {
+                await showPanel();
+            } else {
+                handleTextSelect(clickedPosition);
+            }
+        };
+
+        if (!panel.show && !button.show && isMounted) {
+            initializeSearch();
         }
-    }, [selectedText, clickedPosition, handleTextSelect, showPanel, shouldWPSearch]);
 
-    /* ---------------- EVENTS ---------------- */
+        return () => { isMounted = false; };
+    }, [
+        button.show,
+        clickedPosition,
+        handleTextSelect,
+        panel.show,
+        selectedText,
+        shouldWPSearch,
+        showPanel
+    ]);
+
 
     const handleButtonClick = (e) => {
         showPanel({ x: e.clientX, y: e.clientY });
     };
-
-    /* ---------------- RENDER ---------------- */
 
     return (
         <div>
