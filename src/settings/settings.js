@@ -65,6 +65,23 @@ export const handleSettingsChange = (changes) => {
     return null;
 };
 
+const getSettingsIds = () => {
+    let settingsIds = [];
+    defaultSettings.forEach((category) => {
+        category.elements.forEach((optionElement) => {
+            if (optionElement.id && optionElement.default !== undefined)
+                settingsIds.push(optionElement.id);
+            if (optionElement.childElements) {
+                optionElement.childElements.forEach((childElement) => {
+                    if (childElement.id && childElement.default !== undefined)
+                        settingsIds.push(childElement.id);
+                });
+            }
+        });
+    });
+    return settingsIds;
+};
+
 export const exportSettings = async () => {
     const settingsIds = getSettingsIds();
 
@@ -105,21 +122,4 @@ export const importSettings = async (e) => {
 
     const file = e.target.files[0];
     reader.readAsText(file);
-};
-
-const getSettingsIds = () => {
-    let settingsIds = [];
-    defaultSettings.forEach((category) => {
-        category.elements.forEach((optionElement) => {
-            if (optionElement.id && optionElement.default !== undefined)
-                settingsIds.push(optionElement.id);
-            if (optionElement.childElements) {
-                optionElement.childElements.forEach((childElement) => {
-                    if (childElement.id && childElement.default !== undefined)
-                        settingsIds.push(childElement.id);
-                });
-            }
-        });
-    });
-    return settingsIds;
 };
