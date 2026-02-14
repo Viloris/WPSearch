@@ -1,7 +1,6 @@
 import React from "react";
 
-export default function InfoBar(props) {
-    const { message, onClick } = props;
+export default function InfoBar({ message, onClick }) {
     return (
         <div>
             <br />
