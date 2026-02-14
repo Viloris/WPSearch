@@ -731,7 +731,7 @@
     "wikipedia": {
         "message": "Wikipedia"
     },
-    "NOT_FOUND": {
+    "notFound": {
         "message": "There were no results matching the query."
     },
     "privacyPolicyMenuTitle": {

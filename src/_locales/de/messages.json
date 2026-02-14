@@ -728,7 +728,7 @@
     "lang_zh": {
         "message": "Chinesisch"
     },
-    "NOT_FOUND": {
+    "notFound": {
         "message": "Es gibt keinen Artikel mit diesem Namen."
     },
     "privacyPolicyMenuTitle": {
