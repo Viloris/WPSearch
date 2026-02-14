@@ -18,7 +18,7 @@ const privacyPolicy = (
         <p>
             Wikipedia Preview is owned and operated by{" "}
             <a href="https://github.com/Viloris">Viloris</a> - a developer from
-            Hungary (referred to herein as "we", "us", or "our"). We take the
+            Hungary (referred to herein as &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;). We take the
             protection of your personal data very seriously and will always
             offer you the Wikipedia Preview and its functionality with your
             privacy in mind.
@@ -26,7 +26,7 @@ const privacyPolicy = (
         <h2>2. Handling user data with Wikipedia Preview</h2>
         <p>
             To provide search functionality, Wikipedia Preview retrieves the
-            input/selected text and sends the request to Wikipedia's API.
+            input/selected text and sends the request to Wikipedia&apos;s API.
         </p>
         <p>
             <strong>We do not access/collect any of these data.</strong>
@@ -46,7 +46,7 @@ const privacyPolicy = (
         </p>
         <h4>Installing and using in the browser</h4>
         <p>
-            Wikipedia Preview is hosted on each browser's platform. Please refer
+            Wikipedia Preview is hosted on each browser&apos;s platform. Please refer
             to the following links for information on how to handle data when
             installing and using the extension.
         </p>
@@ -70,11 +70,11 @@ const privacyPolicy = (
         </p>
         <p>Email: viloris&#46;developer&#64;gmail&#46;com</p>
         <h2>5. Changes to Privacy Policy</h2> We may update this Privacy Policy
-        and when we do, we will also revise the "Effective Date" at the top of
+        and when we do, we will also revise the &quot;Effective Date&quot; at the top of
         the Privacy Policy.
     </div>
 );
-export default (props) => {
+export default function PrivacyPolicyPage() {
     return (
         <div>
             <p className="contentTitle">
