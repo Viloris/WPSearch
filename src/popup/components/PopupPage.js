@@ -57,11 +57,47 @@ export default function PopupPage() {
         tabUrl: "",
         isEnabledOnPage: true
     });
-    const [result, setResult] = useState(null);
+    const [results, setResults] = useState([]);
     const [hideInformationLabel, setHideInformationLabel] = useState(false);
 
     const inputTimer = useRef(null);
     const themeClass = useRef(null);
+
+    /* -------- handlers -------- */
+
+    const wpSearchText = async expression => {
+        log.info(logDir, "wpSearchText()", expression);
+
+        const res = await browser.runtime.sendMessage({
+            message: "wikipediaSearch",
+            expression: expression.replaceAll("\n", "")
+        });
+
+        setResults(res);
+    };
+
+    const toggleEnabledOnPage = async e => {
+        const isEnabled = e.target.checked;
+        setTabInfo(prev => ({ ...prev, isEnabledOnPage: isEnabled }));
+
+        try {
+            const [tab] = await browser.tabs.query({
+                currentWindow: true,
+                active: true
+            });
+            await tabsSendMessage(
+                tab,
+                isEnabled ? "enableExtension" : "disableExtension"
+            );
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
+    const dismissHint = () => {
+        setSettings("hidePopupInformationLabel", true);
+        setHideInformationLabel(true);
+    };
 
     const handleInputText = useCallback(text => {
         setInputText(text);
@@ -120,49 +156,6 @@ export default function PopupPage() {
         };
     }, [handleInputText]);
 
-    /* -------- handlers -------- */
-
-    const wpSearchText = async expression => {
-        log.info(logDir, "wpSearchText()", expression);
-
-        const result = await browser.runtime.sendMessage({
-            message: "wikipediaSearch",
-            expression: expression.replaceAll("\n", "")
-        });
-
-        setResult({
-            main: result?.resultMain,
-            second: result?.resultSecond,
-            isErrorMain: result?.isErrorMain,
-            isErrorSecond: result?.isErrorSecond,
-            errorMessageMain: result?.errorMessageMain,
-            errorMessageSecond: result?.errorMessageSecond
-        });
-    };
-
-    const toggleEnabledOnPage = async e => {
-        const isEnabled = e.target.checked;
-        setTabInfo(prev => ({ ...prev, isEnabledOnPage: isEnabled }));
-
-        try {
-            const [tab] = await browser.tabs.query({
-                currentWindow: true,
-                active: true
-            });
-            await tabsSendMessage(
-                tab,
-                isEnabled ? "enableExtension" : "disableExtension"
-            );
-        } catch (e) {
-            console.error(e);
-        }
-    };
-
-    const dismissHint = () => {
-        setSettings("hidePopupInformationLabel", true);
-        setHideInformationLabel(true);
-    };
-
     /* -------- render -------- */
 
     return (
@@ -172,13 +165,11 @@ export default function PopupPage() {
                 isEnabledOnPage={tabInfo.isEnabledOnPage}
                 isConnected={tabInfo.isConnected}
             />
-
             <InputArea
                 inputText={inputText}
                 handleInputText={handleInputText}
             />
-
-            {result && (
+            {results.length > 0 && (
                 <>
                     <hr />
                     <ResultArea
@@ -186,12 +177,7 @@ export default function PopupPage() {
                         targetLang={targetLang}
                         dismissHint={dismissHint}
                         hideInformationLabel={hideInformationLabel}
-                        errorMessageMain={result.errorMessageMain}
-                        errorMessageSecond={result.errorMessageSecond}
-                        isErrorMain={result.isErrorMain}
-                        isErrorSecond={result.isErrorSecond}
-                        resultMain={result.main}
-                        resultSecond={result.second}
+                        results={results}
                     />
                 </>
             )}
