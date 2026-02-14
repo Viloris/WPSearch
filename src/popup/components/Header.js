@@ -8,32 +8,11 @@ import "../styles/Header.scss";
 
 const EXTENSION_NAME = browser.i18n.getMessage("extName");
 
-export default (props) => (
-    <div id="header">
-        {renderTitle()}
-        {renderActionBar(props)}
-    </div>
-);
-
 function renderTitle() {
     return (
         <div className="title">
             <img src="../../icons/19.png" alt="Wiki" />
             &nbsp;{EXTENSION_NAME}
-        </div>
-    );
-}
-
-function renderActionBar(props) {
-    const { isConnected, isEnabledOnPage, toggleEnabledOnPage } = props;
-    return (
-        <div className="rightButtons">
-            <ToggleButton
-                isEnabledOnPage={isEnabledOnPage}
-                toggleEnabledOnPage={toggleEnabledOnPage}
-                isConnected={isConnected}
-            />
-            {SettingsButton()}
         </div>
     );
 }
@@ -55,13 +34,26 @@ function SettingsButton() {
     );
 }
 
+function renderActionBar(props) {
+    const { isConnected, isEnabledOnPage, toggleEnabledOnPage } = props;
+    return (
+        <div className="rightButtons">
+            <ToggleButton
+                isEnabledOnPage={isEnabledOnPage}
+                toggleEnabledOnPage={toggleEnabledOnPage}
+                isConnected={isConnected}
+            />
+            {SettingsButton()}
+        </div>
+    );
+}
+
 function ToggleButton(props) {
     const { isConnected, isEnabledOnPage, toggleEnabledOnPage } = props;
 
     const getToggleButtonTitle = (isEnabled) => {
-        return isEnabled
-            ? browser.i18n.getMessage("disableOnThisPage")
-            : browser.i18n.getMessage("enableOnThisPage");
+        const buttonState = isEnabled ? "disableOnThisPage" : "enableOnThisPage"
+        return browser.i18n.getMessage(buttonState)
     };
 
     return (
@@ -78,3 +70,12 @@ function ToggleButton(props) {
         </div>
     );
 }
+
+export default function Header(props) {
+    return (
+        <div id="header">
+            {renderTitle()}
+            {renderActionBar(props)}
+        </div>
+    )
+};
