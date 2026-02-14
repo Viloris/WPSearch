@@ -31,13 +31,13 @@ export function tabsSendMessage(tab, message) {
     return browser.tabs.sendMessage(tab.id, { message });
 }
 
-export function getFirstWikipedia() {
+/* export function getFirstWikipedia() {
     return WP_LANG[getTargetLang()];
 }
 
 export function getSecondWikipedia() {
     return WP_LANG[getSecondTargetLang()];
-}
+} */
 
 export function getWikipediaName(langCode) {
     return WP_LANG[langCode];
