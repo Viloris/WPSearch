@@ -8,18 +8,17 @@ export function ResultSection(props) {
     const {
         errorMessage,
         isError,
-        result,
-        show = true,
-        title
+        text,
+        title,
+        url,
+        wikipedia
     } = props;
-    if (show)
-        return (
-            <>
-                <ResultHeader title={title} />
-                {!isError && <ResultContent result={result} />}
-                {!isError && result?.text && <ResultFooter text={result.text} />}
-                {isError && <ErrorSection message={errorMessage} />}
-            </>
-        );
-    return null;
+    return (
+        <>
+            <ResultHeader wikipedia={wikipedia} />
+            {!isError && <ResultContent text={text} title={title} url={url} />}
+            {!isError && text && <ResultFooter text={text} />}
+            {isError && <ErrorSection message={errorMessage} />}
+        </>
+    );
 }
