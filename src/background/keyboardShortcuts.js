@@ -33,6 +33,15 @@ export const initShortcuts = async () => {
     setSettings("initedShortcuts", initedShortcuts);
 };
 
+const wpSearchSelectedText = async () => {
+    const tab = (
+        await browser.tabs.query({ active: true, currentWindow: true })
+    )[0];
+    browser.tabs.sendMessage(tab.id, {
+        message: "wpSearchSelectedText"
+    });
+};
+
 export const onCommandListener = async (command) => {
     log.log(logDir, "onCommandListener()", command);
     await initSettings();
@@ -42,13 +51,4 @@ export const onCommandListener = async (command) => {
             break;
         }
     }
-};
-
-const wpSearchSelectedText = async () => {
-    const tab = (
-        await browser.tabs.query({ active: true, currentWindow: true })
-    )[0];
-    browser.tabs.sendMessage(tab.id, {
-        message: "wpSearchSelectedText"
-    });
 };
