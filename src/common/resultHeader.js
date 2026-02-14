@@ -1,9 +1,9 @@
 import React from "react";
 
-export function ResultHeader({ title }) {
+export function ResultHeader({ wikipedia }) {
     return (
         <p>
-            <strong>{title}</strong>
+            <strong>{wikipedia}</strong>
         </p>
     );
 }
