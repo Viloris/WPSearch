@@ -27,10 +27,16 @@ const rtlLanguage = ["he", "ar"].includes(UILanguage);
 const optionsPageClassName =
     "optionsPage" + (rtlLanguage ? " rtl-language" : "");
 
-export default () => {
+export default function OptionsPage() {
     setupTheme();
     return (
-        <HashRouter hashType="noslash">
+        <HashRouter
+            hashType="noslash"
+            future={{
+                v7_startTransition: true,
+                v7_relativeSplatPath: true
+            }}
+        >
             <ScrollToTop>
                 <div className={optionsPageClassName}>
                     <SideBar />
@@ -39,4 +45,4 @@ export default () => {
             </ScrollToTop>
         </HashRouter>
     );
-};
+}
