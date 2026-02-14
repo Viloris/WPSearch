@@ -1,10 +1,10 @@
 import React from "react";
 import { splitLine } from "./utils";
 
-export function ResultSummary({ result }) {
+export function ResultSummary({ text }) {
     return (
         <p className="resultText" dir="auto">
-            {splitLine(result?.text)}
+            {splitLine(text)}
         </p>
     );
 }
