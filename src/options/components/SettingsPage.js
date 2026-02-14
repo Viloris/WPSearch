@@ -59,6 +59,39 @@ export default function SettingsPage() {
     location.reload();
   }, []);
 
+  /* ---------------- additional category ---------------- */
+
+  const additionalCategory = handleReset => ({
+    category: "",
+    elements: [
+      {
+        id: "importSettings",
+        title: "importSettingsLabel",
+        captions: ["importSettingsCaptionLabel"],
+        type: "file",
+        accept: ".json",
+        value: "importButtonLabel",
+        onChange: importSettings
+      },
+      {
+        id: "exportSettings",
+        title: "exportSettingsLabel",
+        captions: ["exportSettingsCaptionLabel"],
+        type: "button",
+        value: "exportButtonLabel",
+        onClick: exportSettings
+      },
+      {
+        id: "resetSettings",
+        title: "resetSettingsLabel",
+        captions: ["resetSettingsCaptionLabel"],
+        type: "button",
+        value: "resetSettingsButtonLabel",
+        onClick: handleReset
+      }
+    ]
+  });
+
   /* -------- render -------- */
 
   if (!currentValues) return null;
@@ -88,35 +121,4 @@ export default function SettingsPage() {
   );
 }
 
-/* ---------------- additional category ---------------- */
 
-const additionalCategory = handleReset => ({
-  category: "",
-  elements: [
-    {
-      id: "importSettings",
-      title: "importSettingsLabel",
-      captions: ["importSettingsCaptionLabel"],
-      type: "file",
-      accept: ".json",
-      value: "importButtonLabel",
-      onChange: importSettings
-    },
-    {
-      id: "exportSettings",
-      title: "exportSettingsLabel",
-      captions: ["exportSettingsCaptionLabel"],
-      type: "button",
-      value: "exportButtonLabel",
-      onClick: exportSettings
-    },
-    {
-      id: "resetSettings",
-      title: "resetSettingsLabel",
-      captions: ["resetSettingsCaptionLabel"],
-      type: "button",
-      value: "resetSettingsButtonLabel",
-      onClick: handleReset
-    }
-  ]
-});
