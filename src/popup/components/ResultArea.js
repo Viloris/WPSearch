@@ -1,51 +1,40 @@
 import React from "react";
 import "../styles/ResultArea.scss";
 import { getSettings } from "../../settings/settings";
-import { getFirstWikipedia, getSecondWikipedia } from "../../common/utils";
 import { ResultSection } from "../../common/resultSection";
 import InfoBar from "../../common/infoBar";
 import browser from "webextension-polyfill";
+import { getWikipediaName } from "../../common/utils";
 
 export default function ResultArea(props) {
     const {
-        errorMessageMain,
-        errorMessageSecond,
-        isErrorMain,
-        isErrorSecond,
-        resultMain,
-        resultSecond,
+        results,
         hideInformationLabel,
         dismissHint
     } = props;
-    const firstWikipediaName = getFirstWikipedia();
     const information = browser.i18n.getMessage("firstInformationText");
     const useTheSecondTargetLang = getSettings("shouldUseSecondTargetLang");
-    const secondWikipediaName = getSecondWikipedia();
 
     return (
         <div id="resultArea">
-            <ResultSection
-                result={resultMain}
-                isError={isErrorMain}
-                errorMessage={errorMessageMain}
-                title={firstWikipediaName}
-            />
+            {results.map((res, index) => (
+                <ResultSection
+                    key={`${res.lang}-${index}`}
+                    errorMessage={res.errorMessage}
+                    isError={res.isError}
+                    text={res.text}
+                    title={res.title}
+                    url={res.url}
+                    wikipedia={getWikipediaName(res.lang)}
+                />
+            ))}
             {!hideInformationLabel &&
-                !useTheSecondTargetLang &&
-                (
+                !useTheSecondTargetLang && (
                     <InfoBar
                         message={information}
                         onClick={dismissHint}
                     />
-                )
-            }
-            <ResultSection
-                result={resultSecond}
-                isError={isErrorSecond}
-                errorMessage={errorMessageSecond}
-                title={secondWikipediaName}
-                show={useTheSecondTargetLang}
-            />
+                )}
         </div>
     );
 };

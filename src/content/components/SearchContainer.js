@@ -6,6 +6,8 @@ import ResultPanel from "./ResultPanel";
 import "../styles/SearchContainer.scss";
 import { getTargetLang } from "../../common/utils";
 
+const DEFAULT_POSITION = { x: 0, y: 0 };
+
 const wpSearchText = (expression) =>
     browser.runtime.sendMessage({
         message: "wikipediaSearch",
@@ -23,22 +25,15 @@ export default function SearchContainer({
 
     const [button, setButton] = useState({
         show: false,
-        position: { x: 0, y: 0 }
+        position: DEFAULT_POSITION
     });
 
     const [panel, setPanel] = useState({
         show: false,
-        position: { x: 0, y: 0 }
+        position: DEFAULT_POSITION
     });
 
-    const [result, setResult] = useState({
-        resultMain: "",
-        resultSecond: "",
-        errorMessageMain: "",
-        errorMessageSecond: "",
-        isErrorMain: "",
-        isErrorSecond: ""
-    });
+    const [results, setResults] = useState([]);
 
     /* ---------------- CORE ACTIONS ---------------- */
 
@@ -53,16 +48,9 @@ export default function SearchContainer({
             const res = await wpSearchText(selectedText);
             setPanel({ show: true, position });
             setButton((b) => ({ ...b, show: false }));
-            setResult({
-                resultMain: res?.resultMain || "",
-                resultSecond: res?.resultSecond || "",
-                errorMessageMain: res?.errorMessageMain || "",
-                errorMessageSecond: res?.errorMessageSecond || "",
-                isErrorMain: res?.isErrorMain || false,
-                isErrorSecond: res?.isErrorSecond || false,
-            });
+            setResults(res)
         } catch (error) {
-            console.error("Search error:", error);
+            console.error("Search error: ", error);
         }
     }, [selectedPosition, selectedText]);
 
@@ -113,7 +101,6 @@ export default function SearchContainer({
         showPanel
     ]);
 
-
     const handleButtonClick = (e) => {
         showPanel({ x: e.clientX, y: e.clientY });
     };
@@ -130,7 +117,7 @@ export default function SearchContainer({
                 position={panel.position}
                 selectedText={selectedText}
                 currentLang={currentLang}
-                {...result}
+                results={results}
                 hidePanel={hidePanel}
             />
         </div>

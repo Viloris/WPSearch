@@ -2,11 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { getSettings, setSettings } from "src/settings/settings";
 import "../styles/ResultPanel.scss";
 import { getBackgroundColor } from "../../settings/defaultColors";
-import {
-    getSecondTargetLang,
-    getTargetLang,
-    getWikipediaName
-} from "../../common/utils";
+import { getWikipediaName } from "../../common/utils";
 import InfoBar from "../../common/infoBar";
 import browser from "webextension-polyfill";
 import { ResultSection } from "../../common/resultSection";
@@ -14,12 +10,7 @@ import { ResultSection } from "../../common/resultSection";
 export default function ResultPanel({
     shouldShow,
     position,
-    resultMain,
-    resultSecond,
-    isErrorMain,
-    isErrorSecond,
-    errorMessageMain,
-    errorMessageSecond
+    results
 }) {
     const panelRef = useRef(null);
     const wrapperRef = useRef(null);
@@ -103,7 +94,7 @@ export default function ResultPanel({
 
             setLayout({ x, y, width, height, isOverflow });
         });
-    }, [shouldShow, position, resultMain, resultSecond]);
+    }, [shouldShow, position /* results */]);
 
     /* ---------------- UI ---------------- */
 
@@ -125,8 +116,6 @@ export default function ResultPanel({
         overflow: layout.isOverflow ? "auto" : "hidden"
     };
 
-    const targetLang = getTargetLang();
-    const secondTargetLang = getSecondTargetLang();
     const useSecond = getSettings("shouldUseSecondTargetLang");
 
     return (
@@ -142,26 +131,25 @@ export default function ResultPanel({
             >
                 <div className="simple-wikipedia-search-move" draggable />
                 <div className="simple-wikipedia-search-result-contents">
-                    <ResultSection
-                        errorMessage={errorMessageMain}
-                        isError={isErrorMain}
-                        result={resultMain}
-                        title={getWikipediaName(targetLang)}
-                    />
-                    {!hideInformationLabel && !useSecond && (
-                        <InfoBar
-                            message={browser.i18n.getMessage("firstInformationText")}
-                            onClick={dismissHint}
-                        />
-                    )}
-                    {useSecond && (
+                    {results.map((res, index) => (
                         <ResultSection
-                            errorMessage={errorMessageSecond}
-                            isError={isErrorSecond}
-                            result={resultSecond}
-                            title={getWikipediaName(secondTargetLang)}
+                            key={`${res.lang}-${index}`}
+                            errorMessage={res.errorMessage}
+                            isError={res.isError}
+                            text={res.text}
+                            title={res.title}
+                            url={res.url}
+                            wikipedia={getWikipediaName(res.lang)}
                         />
-                    )}
+                    ))}
+                    {!hideInformationLabel &&
+                        !useSecond &&
+                        (
+                            <InfoBar
+                                message={browser.i18n.getMessage("firstInformationText")}
+                                onClick={dismissHint}
+                            />
+                        )}
                 </div>
             </div>
         </div>

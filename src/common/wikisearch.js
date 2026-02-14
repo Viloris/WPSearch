@@ -1,24 +1,29 @@
+/*@returns {Promise<{text: string, title: string, url: string, isError: boolean, errorMessage: string}>}
+ */
 import log from "loglevel";
 import config from "../config.json";
 import { getSecondTargetLang, getTargetLang } from "./utils";
 import { getSettings } from "../settings/settings";
 import browser from "webextension-polyfill";
+import httpCodes from "./httpCodes.json";
 
-const { DASH, NO_SUMMARY, WIKIPEDIA_API_URL, HTTPS, NOT_FOUND } = config;
-
+const { DASH, NO_SUMMARY, WIKIPEDIA_API_URL, HTTPS } = config;
+const { NOT_FOUND, SERVICE_UNAVAILABLE, TOO_MANY_REQUESTS } = httpCodes;
 const logDir = "common/wikisearch";
 
 /**
- * @param {string} language
- * @param {string} expression
- * @returns {Promise<{text: string, title: string, url: string, isError: boolean, errorMessage: string}>}
+ * 
+ * @param {*} language 
+ * @param {*} expression 
+ * @returns {Promise<{lang: string, text: string, title: string, url: string, isError: boolean, errorMessage: string}>}
  */
 async function getWikipediaExtract(language, expression) {
-    const url = `${HTTPS}${language}${WIKIPEDIA_API_URL}${expression}`;
+    const url = `${HTTPS}${language}${WIKIPEDIA_API_URL}${encodeURIComponent(expression)}`;
 
-    const resultData = {
-        text: "",
-        title: DASH,
+    const result = {
+        lang: language,
+        text: NO_SUMMARY,
+        title: expression || DASH,
         url: "",
         isError: false,
         errorMessage: ""
@@ -28,93 +33,66 @@ async function getWikipediaExtract(language, expression) {
         const response = await fetch(url);
         if (!response.ok) {
             const status = response.status;
-            const UNAVAILABLE_ERROR = browser.i18n.getMessage("unavailableError");
-            const NOTFOUND_RESPONSE = browser.i18n.getMessage(NOT_FOUND);
-            const UNKNOWN_ERROR = `${browser.i18n.getMessage("unknownError")} [${status} ${response.statusText}]`;
+            log.error(`${logDir} - HTTP Error [${status}] for ${language}:`, url);
 
-            resultData.isError = true;
-
-            if (status === 404) {
-                resultData.isError = false;
-                resultData.text = NOTFOUND_RESPONSE;
-                resultData.title = expression;
-            } else if ([429, 503].includes(status)) {
-                resultData.errorMessage = UNAVAILABLE_ERROR;
+            if (status === NOT_FOUND) {
+                result.text = browser.i18n.getMessage("notFound");
             } else {
-                resultData.errorMessage = UNKNOWN_ERROR;
+                result.isError = true;
+                const isThrottled = [SERVICE_UNAVAILABLE, TOO_MANY_REQUESTS].includes(status);
+                result.errorMessage = browser.i18n.getMessage(isThrottled ? "unavailableError" : "unknownError");
+                if (!isThrottled) result.errorMessage += ` [${status}]`;
             }
-
-            log.error(logDir, "getWikipediaExtract() - HTTP Hiba", response);
-            return resultData;
+            return result;
         }
 
-        const result = await response.json();
-        const { content_urls, description, extract, title } = result;
+        const data = await response.json();
 
-        resultData.text = extract || description || NO_SUMMARY;
-        resultData.title = title || expression;
-        resultData.url = content_urls?.desktop?.page || "";
-
-        log.log(logDir, "getWikipediaExtract() - Siker", resultData);
-        return resultData;
+        return {
+            ...result,
+            text: data.extract || data.description || NO_SUMMARY,
+            title: data.title || expression,
+            url: data.content_urls?.desktop?.page || ""
+        };
 
     } catch (e) {
-        const NETWORK_ERROR = browser.i18n.getMessage("networkError");
-        resultData.isError = true;
-        resultData.errorMessage = NETWORK_ERROR;
-        resultData.title = expression;
-
-        log.error(logDir, "getWikipediaExtract() - Hálózati hiba", e);
-        return resultData;
+        log.error(`${logDir} - Network Error for ${language}:`, e);
+        return {
+            ...result,
+            isError: true,
+            errorMessage: browser.i18n.getMessage("networkError")
+        };
     }
 }
 
 /**
  * 
- * @param {string} textValue - Search expression
- * @returns {Promise<{mainResult: object, secondResult?: object}>} - Query result
+ * @param {*} expression 
+ * @returns {Promise<array>}
  */
-async function handleQuery(textValue) {
-    const expression = textValue.trim();
-    const targetLang = getTargetLang();
-    const useSecondLang = getSettings("shouldUseSecondTargetLang");
-    const queryPromises = [
-        getWikipediaExtract(targetLang, expression)
-    ];
+async function handleQuery(expression) {
+    const trimmed = expression?.trim();
+    if (!trimmed) return [];
 
-    if (useSecondLang) {
-        const secondTargetLang = getSecondTargetLang();
-        queryPromises.push(getWikipediaExtract(secondTargetLang, expression));
+    const langSet = new Set([getTargetLang()]);
+
+    if (getSettings("shouldUseSecondTargetLang")) {
+        const second = getSecondTargetLang();
+        if (second) langSet.add(second);
     }
 
-    const results = await Promise.all(queryPromises);
-    const [MAIN, SECOND] = results;
-    let response = {
-        errorMessageMain: MAIN.errorMessage,
-        isErrorMain: MAIN.isError,
-        resultMain: {
-            text: MAIN.text,
-            title: MAIN.title,
-            url: MAIN.url
-        }
-    };
+    // You can add more languages
+    // if (getSettings("useThirdLang")) langSet.add(getThirdTargetLang());
 
-    if (useSecondLang) {
-        response = {
-            ...response,
-            errorMessageSecond: SECOND.errorMessage,
-            isErrorSecond: SECOND.isError,
-            resultSecond: {
-                text: SECOND.text,
-                title: SECOND.title,
-                url: SECOND.url
-            }
-        };
-    }
-    log.log(logDir, response)
-    return response;
+    const languages = Array.from(langSet);
+
+    const results = await Promise.all(
+        languages.map(lang => getWikipediaExtract(lang, trimmed))
+    );
+
+    log.debug(`${logDir} - Search results for "${trimmed}":`, results);
+
+    return results;
 }
 
-export default async (expression) => {
-    return handleQuery(expression);
-};
+export default handleQuery;
