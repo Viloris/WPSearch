@@ -1,17 +1,18 @@
 import React from "react";
 
-export function WikipediaLink({ result }) {
+export function WikipediaLink({ title, url }) {
     return (
         <p style={{ marginTop: "0.5em", marginBottom: "0.5em" }}>
             <strong>
                 <a
-                    href={result?.url}
+                    href={url}
                     target="_blank"
+                    rel="noreferrer"
                     style={{
                         textDecoration: "none"
                     }}
                 >
-                    {result?.title}
+                    {title}
                 </a>
             </strong>
         </p>
