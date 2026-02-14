@@ -2,8 +2,6 @@
     "SPACE": " ",
     "DASH": "-",
     "UNDERSCORE": "_",
-    "NOT_FOUND": "NOT_FOUND",
-    "API_ERROR": "something went wrong",
     "NO_SUMMARY": "NO_SUMMARY",
     "WIKIPEDIA_API_URL": ".wikipedia.org/api/rest_v1/page/summary/",
     "WIKIPEDIA_URL": ".wikipedia.org/wiki/",
