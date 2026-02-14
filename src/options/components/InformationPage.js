@@ -8,6 +8,30 @@ import manifestChrome from "src/manifest-chrome.json";
 import manifestFirefox from "src/manifest-firefox.json";
 import { useLocation } from "react-router-dom";
 
+/* ---------------- CUSTOM HOOK ---------------- */
+
+const useAdditionalPermission = () => {
+    const [hasPermission, setHasPermission] = useState(true);
+
+    const permissions = useMemo(() => ({ origins: ["http://*/*", "https://*/*", "<all_urls>"] }), []);
+
+    const checkPermission = useCallback(async () => {
+        const granted = await browser.permissions.contains(permissions);
+        setHasPermission(granted);
+    }, [permissions]);
+
+    const requestPermission = async () => {
+        await browser.permissions.request(permissions);
+        checkPermission();
+    };
+
+    useEffect(() => {
+        checkPermission();
+    }, [checkPermission]);
+
+    return [hasPermission, requestPermission];
+};
+
 export default function InformationPage() {
     const location = useLocation();
     const query = queryString.parse(location.search);
@@ -83,26 +107,4 @@ export default function InformationPage() {
     );
 }
 
-/* ---------------- CUSTOM HOOK ---------------- */
 
-const useAdditionalPermission = () => {
-    const [hasPermission, setHasPermission] = useState(true);
-
-    const permissions = useMemo(() => ({ origins: ["http://*/*", "https://*/*", "<all_urls>"] }), []);
-
-    const checkPermission = useCallback(async () => {
-        const granted = await browser.permissions.contains(permissions);
-        setHasPermission(granted);
-    }, [permissions]);
-
-    const requestPermission = async () => {
-        await browser.permissions.request(permissions);
-        checkPermission();
-    };
-
-    useEffect(() => {
-        checkPermission();
-    }, [checkPermission]);
-
-    return [hasPermission, requestPermission];
-};
