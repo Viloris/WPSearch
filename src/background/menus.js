@@ -5,15 +5,31 @@ import { tabsSendMessage } from "../common/utils";
 
 const logDir = "background/menus";
 
+function createMenus() {
+    browser.contextMenus.create({
+        id: "searchText",
+        title: browser.i18n.getMessage("wikipediaSearchTextMenu"),
+        contexts: ["selection"]
+    });
+}
+
+export const onMenusShownListener = () => {
+    browser.contextMenus.refresh();
+};
+
+function removeMenus() {
+    browser.contextMenus.removeAll();
+}
+
+function searchText(tab) {
+    tabsSendMessage(tab, "wpSearchSelectedText");
+}
+
 export const showMenus = () => {
     if (getSettings("ifShowMenu")) {
         removeMenus();
         createMenus();
     } else removeMenus();
-};
-
-export const onMenusShownListener = (info, tab) => {
-    browser.contextMenus.refresh();
 };
 
 export const onMenusClickedListener = (info, tab) => {
@@ -25,18 +41,3 @@ export const onMenusClickedListener = (info, tab) => {
     }
 };
 
-function createMenus() {
-    browser.contextMenus.create({
-        id: "searchText",
-        title: browser.i18n.getMessage("wikipediaSearchTextMenu"),
-        contexts: ["selection"]
-    });
-}
-
-function removeMenus() {
-    browser.contextMenus.removeAll();
-}
-
-function searchText(tab) {
-    tabsSendMessage(tab, "wpSearchSelectedText");
-}
