@@ -3,11 +3,22 @@
     justify-content: center;
 
     .copiedText {
-        color: #2e7d32; //var(--sub-text);
+        color: #225c25;
         font-size: 12px;
         margin-inline-end: 5px;
-        -moz-user-select: none;
-        -webkit-user-select: none;
+        -webkit-user-select: none; /* Old Safari/Chrome versions */
+        -moz-user-select: none; /* Old Firefox versions */
+        -ms-user-select: none; /* Ols Internet Explorer/Edge versions */
+        user-select: none;
+
+        font-family:
+            "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
+            monospace;
+        font-weight: 600;
+        /* Optional background */
+        // background-color: rgba(0, 0, 0, 0.05);
+        padding: 2px 4px;
+        border-radius: 3px;
     }
     .copyButton {
         padding: 0;
