@@ -72,7 +72,7 @@ export default function SearchContainer({
         [removeContainer, showButton, showPanel]
     );
 
-    /* ---------------- INIT (JAVÍTVA) ---------------- */
+    /* ---------------- INIT ---------------- */
 
     useEffect(() => {
         if (!selectedText) return;
