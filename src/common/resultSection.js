@@ -16,9 +16,18 @@ export function ResultSection(props) {
     return (
         <>
             <ResultHeader wikipedia={wikipedia} />
-            {!isError && <ResultContent text={text} title={title} url={url} />}
-            {!isError && text && <ResultFooter text={text} />}
-            {isError && <ErrorSection message={errorMessage} />}
+            {isError ?
+                (<ErrorSection message={errorMessage} />)
+                : (
+                    <>
+                        <ResultContent
+                            text={text}
+                            title={title}
+                            url={url}
+                        />
+                        <ResultFooter text={text} />
+                    </>
+                )}
         </>
     );
 }
