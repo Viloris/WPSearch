@@ -2,10 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { getSettings, setSettings } from "src/settings/settings";
 import "../styles/ResultPanel.scss";
 import { getBackgroundColor } from "../../settings/defaultColors";
-import { getWikipediaName } from "../../common/utils";
-import InfoBar from "../../common/infoBar";
-import browser from "webextension-polyfill";
-import { ResultSection } from "../../common/resultSection";
+import ResultArea from "../../popup/components/ResultArea";
 
 export default function ResultPanel({
     shouldShow,
@@ -23,7 +20,7 @@ export default function ResultPanel({
         isOverflow: false
     });
 
-    const [hideInformationLabel, setHideInformationLabel] = useState(
+    const [hideInfoLabel, setHideInfoLabel] = useState(
         getSettings("hideInformationLabel")
     );
 
@@ -94,13 +91,13 @@ export default function ResultPanel({
 
             setLayout({ x, y, width, height, isOverflow });
         });
-    }, [shouldShow, position /* results */]);
+    }, [shouldShow, position, results]);
 
     /* ---------------- UI ---------------- */
 
     const dismissHint = () => {
         setSettings("hideInformationLabel", true);
-        setHideInformationLabel(true);
+        setHideInfoLabel(true);
     };
 
     const panelStyles = {
@@ -116,8 +113,6 @@ export default function ResultPanel({
         overflow: layout.isOverflow ? "auto" : "hidden"
     };
 
-    const useSecond = getSettings("shouldUseSecondTargetLang");
-
     return (
         <div
             className={`simple-wikipedia-search-panel ${shouldShow ? "isShow" : ""}`}
@@ -131,25 +126,11 @@ export default function ResultPanel({
             >
                 <div className="simple-wikipedia-search-move" draggable />
                 <div className="simple-wikipedia-search-result-contents">
-                    {results.map((res, index) => (
-                        <ResultSection
-                            key={`${res.lang}-${index}`}
-                            errorMessage={res.errorMessage}
-                            isError={res.isError}
-                            text={res.text}
-                            title={res.title}
-                            url={res.url}
-                            wikipedia={getWikipediaName(res.lang)}
-                        />
-                    ))}
-                    {!hideInformationLabel &&
-                        !useSecond &&
-                        (
-                            <InfoBar
-                                message={browser.i18n.getMessage("firstInformationText")}
-                                onClick={dismissHint}
-                            />
-                        )}
+                    <ResultArea
+                        results={results}
+                        hideInformationLabel={hideInfoLabel}
+                        dismissHint={dismissHint}
+                    />
                 </div>
             </div>
         </div>
