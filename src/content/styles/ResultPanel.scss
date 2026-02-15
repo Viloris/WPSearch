@@ -35,12 +35,35 @@
             overflow: auto;
 
             .simple-wikipedia-search-move {
-                height: 15px;
+                height: 20px;
                 cursor: grab;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #ffffff;
+                //border-bottom: 1px solid #ddd;
+            }
+
+            .simple-wikipedia-search-move::before {
+                content: "";
+                width: 30px;
+                height: 4px;
+                background: radial-gradient(
+                    circle,
+                    #888 1.5px,
+                    transparent 1.5px
+                );
+                background-size: 6px 6px;
+                background-repeat: repeat-x;
+                opacity: 0.6;
+            }
+
+            .simple-wikipedia-search-move:active {
+                cursor: grabbing;
             }
 
             .simple-wikipedia-search-result-contents {
-                padding: 0px 18px 15px;
+                padding: 0px 8px 15px 15px;
                 p,
                 a {
                     all: initial;
