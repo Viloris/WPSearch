@@ -32,11 +32,12 @@ export default function CopyButton({ text }) {
     };
     return (
         <div className="copy">
-            {isCopied && (
-                <span className="copiedText">
-                    {labelCopied}
-                </span>
-            )}
+            {isCopied &&
+                (
+                    <span className="copiedText">
+                        {labelCopied}
+                    </span>
+                )}
             <button
                 className="copyButton"
                 title={buttonCaption}
