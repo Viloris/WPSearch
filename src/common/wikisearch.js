@@ -1,5 +1,3 @@
-/*@returns {Promise<{text: string, title: string, url: string, isError: boolean, errorMessage: string}>}
- */
 import log from "loglevel";
 import config from "../config.json";
 import { getSecondTargetLang, getTargetLang } from "./utils";
@@ -15,7 +13,7 @@ const logDir = "common/wikisearch";
  * 
  * @param {*} language 
  * @param {*} expression 
- * @returns {Promise<{lang: string, text: string, title: string, url: string, isError: boolean, errorMessage: string}>}
+ * @returns {Promise<{errorMessage: string, isError: boolean, lang: string, text: string, title: string, url: string}>}
  */
 async function getWikipediaExtract(language, expression) {
     const url = `${HTTPS}${language}${WIKIPEDIA_API_URL}${encodeURIComponent(expression)}`;
