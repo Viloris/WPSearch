@@ -9,10 +9,10 @@ import {
 import { updateLogLevel, overWriteLogLevel } from "src/common/log";
 import Header from "./Header";
 import InputArea from "./InputArea";
-import ResultArea from "./ResultArea";
 import "../styles/PopupPage.scss";
 import { getTargetLang, tabsSendMessage } from "../../common/utils";
-import "../../popup/styles/ResultArea.scss";
+import "../../common/styles/ResultArea.scss";
+import ResultArea from "../../common/ResultArea";
 
 const logDir = "popup/PopupPage";
 
