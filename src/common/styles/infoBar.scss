@@ -1,0 +1,70 @@
+/* Styles for the InfoBar component */
+
+$hover-color: #5a9fbd;
+$default-button-color: #6bb9e3;
+
+.infoBar-container {
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+    width: 100%;
+
+    .infoBar-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        background-color: #e5f6fd;
+        border-left: 4px solid $default-button-color;
+        padding: 1rem;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .infoBar-top-section {
+        align-items: flex-start;
+        display: flex;
+        flex: 1;
+        gap: 0.5rem;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .infoBar-message {
+        color: var(--main-text);
+        font-size: 0.75rem;
+        margin: 0;
+    }
+
+    .infoBar-close-button {
+        background-color: transparent;
+        border: none;
+        color: $default-button-color;
+        cursor: pointer;
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: 0;
+        transition: color 0.2s;
+        flex-shrink: 0;
+
+        &:hover {
+            color: $hover-color;
+        }
+    }
+
+    .infoBar-settings-button {
+        background-color: $default-button-color;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        cursor: pointer;
+        font-size: 0.7rem;
+        font-weight: 600;
+        margin-top: 0.5rem;
+        padding: 0.3rem 0.5rem;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: $hover-color;
+        }
+    }
+}
