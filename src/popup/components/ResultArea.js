@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import { getSettings } from "../../settings/settings";
 import { ResultSection } from "../../common/resultSection";
 import InfoBar from "../../common/infoBar";
@@ -39,3 +39,4 @@ export default function ResultArea(props) {
         </>
     );
 };
+ */
