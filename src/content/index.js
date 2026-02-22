@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import browser from "webextension-polyfill";
 import {
     initSettings,
@@ -9,20 +9,183 @@ import {
 import { updateLogLevel, overWriteLogLevel } from "src/common/log";
 import SearchContainer from "./components/SearchContainer";
 
-const init = async () => {
-    await initSettings();
-    document.addEventListener("mouseup", handleMouseUp);
-    document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    browser.storage.local.onChanged.addListener(handleSettingsChange);
-    browser.runtime.onMessage.addListener(handleMessage);
-    overWriteLogLevel();
-    updateLogLevel();
-    disableExtensionByUrlList();
-};
-init();
-
+let isEnabled = true;
 let prevSelectedText = "";
+let searchRoot = null; // React 18 root instance
+
+const removeSearchContainer = () => {
+    const element = document.getElementById("simple-wikipedia-search");
+    if (!element) return;
+
+    if (searchRoot) {
+        searchRoot.unmount();
+        searchRoot = null;
+    }
+
+    element.remove();
+};
+
+const waitTime = (time) => {
+    return new Promise((resolve) => setTimeout(() => resolve(), time));
+};
+
+const disableExtensionByUrlList = () => {
+    const disableUrls = getSettings("disableUrlList").split("\n");
+    let pageUrl;
+    try {
+        pageUrl = top.location.href;
+    } catch (e) {
+        console.error(e)
+        pageUrl = document.referrer;
+    }
+
+    const matchesPageUrl = (urlPattern) => {
+        const pattern = urlPattern
+            .trim()
+            .replace(/[-[\]{}()*+?.,\\^$|#\s]/g, (match) =>
+                match === "*" ? ".*" : "\\" + match
+            );
+        if (pattern === "") return false;
+        return RegExp("^" + pattern + "$").test(pageUrl);
+    };
+
+    const isMatched = disableUrls.some(matchesPageUrl);
+    if (isMatched) isEnabled = false;
+};
+
+const getSelectedText = () => {
+    const element = document.activeElement;
+    const isInTextField =
+        element.tagName === "INPUT" || element.tagName === "TEXTAREA";
+    const selectedText = isInTextField
+        ? element.value.substring(element.selectionStart, element.selectionEnd)
+        : window.getSelection()?.toString() ?? "";
+    return selectedText;
+};
+
+const showSearchContainer = (
+    selectedText,
+    selectedPosition,
+    clickedPosition = null,
+    shouldWPSearch = false
+) => {
+    if (!isEnabled) return;
+
+    const existing = document.getElementById("simple-wikipedia-search");
+    if (existing) return;
+
+    const themeClass =
+        "simple-wikipedia-search-" + getSettings("theme") + "-theme";
+
+    document.body.insertAdjacentHTML(
+        "beforeend",
+        `<div id="simple-wikipedia-search" class="${themeClass}"></div>`
+    );
+
+    const container = document.getElementById("simple-wikipedia-search");
+
+    searchRoot = createRoot(container);
+
+    searchRoot.render(
+        <SearchContainer
+            removeContainer={removeSearchContainer}
+            selectedText={selectedText}
+            selectedPosition={selectedPosition}
+            clickedPosition={clickedPosition}
+            shouldWPSearch={shouldWPSearch}
+        />
+    );
+};
+
+const isInContentEditable = () => {
+    const element = document.activeElement;
+    if (element.tagName === "INPUT" || element.tagName === "TEXTAREA")
+        return true;
+    if (element.contentEditable === "true") return true;
+    return false;
+};
+
+const getSelectedPosition = () => {
+    const element = document.activeElement;
+    const isInTextField =
+        element.tagName === "INPUT" || element.tagName === "TEXTAREA";
+    const selectedRect = isInTextField
+        ? element.getBoundingClientRect()
+        : window.getSelection().getRangeAt(0).getBoundingClientRect();
+
+    let selectedPosition;
+    const panelReferencePoint = getSettings("panelReferencePoint");
+    switch (panelReferencePoint) {
+        case "topSelectedText":
+            selectedPosition = {
+                x: selectedRect.left + selectedRect.width / 2,
+                y: selectedRect.top
+            };
+            break;
+        case "bottomSelectedText":
+        default:
+            selectedPosition = {
+                x: selectedRect.left + selectedRect.width / 2,
+                y: selectedRect.bottom
+            };
+            break;
+    }
+    return selectedPosition;
+};
+
+const handleKeyDown = (e) => {
+    if (e.key === "Escape") {
+        removeSearchContainer();
+    }
+};
+
+const handleVisibilityChange = () => {
+    if (document.visibilityState === "hidden") {
+        browser.storage.local.onChanged.removeListener(handleSettingsChange);
+    } else {
+        browser.storage.local.onChanged.addListener(handleSettingsChange);
+    }
+};
+
+const handleMessage = async (request) => {
+    const empty = new Promise((resolve) => {
+        setTimeout(() => {
+            return resolve("");
+        }, 100);
+    });
+
+    switch (request.message) {
+        case "getTabUrl":
+            if (!isEnabled) return empty;
+            if (window == window.parent) return location.href;
+            else return empty;
+        case "getSelectedText":
+            if (!isEnabled) return empty;
+            if (prevSelectedText.length === 0) return empty;
+            else return prevSelectedText;
+        case "wpSearchSelectedText": {
+            if (!isEnabled) return empty;
+            const selectedText = getSelectedText();
+            if (selectedText.length === 0) return;
+            const selectedPosition = getSelectedPosition();
+            removeSearchContainer();
+            showSearchContainer(selectedText, selectedPosition, null, true);
+            break;
+        }
+        case "getEnabled":
+            return isEnabled;
+        case "enableExtension":
+            isEnabled = true;
+            break;
+        case "disableExtension":
+            removeSearchContainer();
+            isEnabled = false;
+            break;
+        default:
+            return empty;
+    }
+};
+
 const handleMouseUp = async (e) => {
     await waitTime(10);
 
@@ -90,166 +253,15 @@ const handleMouseUp = async (e) => {
     showSearchContainer(selectedText, selectedPosition, clickedPosition);
 };
 
-const waitTime = (time) => {
-    return new Promise((resolve) => setTimeout(() => resolve(), time));
+const init = async () => {
+    await initSettings();
+    document.addEventListener("mouseup", handleMouseUp);
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    browser.storage.local.onChanged.addListener(handleSettingsChange);
+    browser.runtime.onMessage.addListener(handleMessage);
+    overWriteLogLevel();
+    updateLogLevel();
+    disableExtensionByUrlList();
 };
-
-const getSelectedText = () => {
-    const element = document.activeElement;
-    const isInTextField =
-        element.tagName === "INPUT" || element.tagName === "TEXTAREA";
-    const selectedText = isInTextField
-        ? element.value.substring(element.selectionStart, element.selectionEnd)
-        : window.getSelection()?.toString() ?? "";
-    return selectedText;
-};
-
-const getSelectedPosition = () => {
-    const element = document.activeElement;
-    const isInTextField =
-        element.tagName === "INPUT" || element.tagName === "TEXTAREA";
-    const selectedRect = isInTextField
-        ? element.getBoundingClientRect()
-        : window.getSelection().getRangeAt(0).getBoundingClientRect();
-
-    let selectedPosition;
-    const panelReferencePoint = getSettings("panelReferencePoint");
-    switch (panelReferencePoint) {
-        case "topSelectedText":
-            selectedPosition = {
-                x: selectedRect.left + selectedRect.width / 2,
-                y: selectedRect.top
-            };
-            break;
-        case "bottomSelectedText":
-        default:
-            selectedPosition = {
-                x: selectedRect.left + selectedRect.width / 2,
-                y: selectedRect.bottom
-            };
-            break;
-    }
-    return selectedPosition;
-};
-
-const isInContentEditable = () => {
-    const element = document.activeElement;
-    if (element.tagName === "INPUT" || element.tagName === "TEXTAREA")
-        return true;
-    if (element.contentEditable === "true") return true;
-    return false;
-};
-
-const handleKeyDown = (e) => {
-    if (e.key === "Escape") {
-        removeSearchContainer();
-    }
-};
-
-const handleVisibilityChange = () => {
-    if (document.visibilityState === "hidden") {
-        browser.storage.local.onChanged.removeListener(handleSettingsChange);
-    } else {
-        browser.storage.local.onChanged.addListener(handleSettingsChange);
-    }
-};
-
-let isEnabled = true;
-const handleMessage = async (request) => {
-    const empty = new Promise((resolve) => {
-        setTimeout(() => {
-            return resolve("");
-        }, 100);
-    });
-
-    switch (request.message) {
-        case "getTabUrl":
-            if (!isEnabled) return empty;
-            if (window == window.parent) return location.href;
-            else return empty;
-        case "getSelectedText":
-            if (!isEnabled) return empty;
-            if (prevSelectedText.length === 0) return empty;
-            else return prevSelectedText;
-        case "wpSearchSelectedText": {
-            if (!isEnabled) return empty;
-            const selectedText = getSelectedText();
-            if (selectedText.length === 0) return;
-            const selectedPosition = getSelectedPosition();
-            removeSearchContainer();
-            showSearchContainer(selectedText, selectedPosition, null, true);
-            break;
-        }
-        case "getEnabled":
-            return isEnabled;
-        case "enableExtension":
-            isEnabled = true;
-            break;
-        case "disableExtension":
-            removeSearchContainer();
-            isEnabled = false;
-            break;
-        default:
-            return empty;
-    }
-};
-
-const disableExtensionByUrlList = () => {
-    const disableUrls = getSettings("disableUrlList").split("\n");
-    let pageUrl;
-    try {
-        pageUrl = top.location.href;
-    } catch (e) {
-        pageUrl = document.referrer;
-    }
-
-    const matchesPageUrl = (urlPattern) => {
-        const pattern = urlPattern
-            .trim()
-            .replace(/[-[\]{}()*+?.,\\^$|#\s]/g, (match) =>
-                match === "*" ? ".*" : "\\" + match
-            );
-        if (pattern === "") return false;
-        return RegExp("^" + pattern + "$").test(pageUrl);
-    };
-
-    const isMatched = disableUrls.some(matchesPageUrl);
-    if (isMatched) isEnabled = false;
-};
-
-const removeSearchContainer = async () => {
-    const element = document.getElementById("simple-wikipedia-search");
-    if (!element) return;
-
-    ReactDOM.unmountComponentAtNode(element);
-    element.parentNode.removeChild(element);
-};
-
-const showSearchContainer = (
-    selectedText,
-    selectedPosition,
-    clickedPosition = null,
-    shouldWPSearch = false
-) => {
-    const element = document.getElementById("simple-wikipedia-search");
-    if (element) return;
-    if (!isEnabled) return;
-
-    const themeClass =
-        "simple-wikipedia-search-" + getSettings("theme") + "-theme";
-
-    document.body.insertAdjacentHTML(
-        "beforeend",
-        `<div id="simple-wikipedia-search" class="${themeClass}"></div>`
-    );
-    ReactDOM.render(
-        <SearchContainer
-            removeContainer={removeSearchContainer}
-            selectedText={selectedText}
-            selectedPosition={selectedPosition}
-            clickedPosition={clickedPosition}
-            shouldWPSearch={shouldWPSearch}
-        />,
-        document.getElementById("simple-wikipedia-search")
-    );
-};
+init();
