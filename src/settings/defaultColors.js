@@ -7,11 +7,15 @@ export const CANDIDATE_FONT_COLOR_DARK = "#aaaaaa";
 export const BG_COLOR_LIGHT = "#ffffff";
 export const BG_COLOR_DARK = "#181818";
 
+function shouldOverrideColors() {
+  return getSettings("isOverrideColors");
+}
+
 /**
  * Return style object if color override is enabled
  */
 export function getResultFontColor() {
-  const isOverrideColors = getSettings("isOverrideColors");
+  const isOverrideColors = shouldOverrideColors();
 
   if (!isOverrideColors) return undefined;
 
@@ -22,18 +26,19 @@ export function getResultFontColor() {
  * Return style object if color override is enabled
  */
 export function getCandidateFontColor() {
-  const isOverrideColors = getSettings("isOverrideColors");
+  const isOverrideColors = shouldOverrideColors();
 
   if (!isOverrideColors) return undefined;
 
   return { color: getSettings("candidateFontColor") };
 }
 
+
 /**
  * Return style object if color override is enabled
  */
 export function getBackgroundColor() {
-  const isOverrideColors = getSettings("isOverrideColors");
+  const isOverrideColors = shouldOverrideColors();
 
   if (!isOverrideColors) return undefined;
 
