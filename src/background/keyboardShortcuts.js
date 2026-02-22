@@ -6,6 +6,7 @@ import getShortcut from "src/common/getShortcut";
 import manifest from "src/manifest-chrome.json";
 import { initSettings } from "../settings/settings";
 
+const WP_SEARCH_SELECTED_TEXT = "wpSearchSelectedText";
 const logDir = "background/keyboardShortcuts";
 
 export const initShortcuts = async () => {
@@ -38,7 +39,7 @@ const wpSearchSelectedText = async () => {
         await browser.tabs.query({ active: true, currentWindow: true })
     )[0];
     browser.tabs.sendMessage(tab.id, {
-        message: "wpSearchSelectedText"
+        message: WP_SEARCH_SELECTED_TEXT
     });
 };
 
@@ -46,7 +47,7 @@ export const onCommandListener = async (command) => {
     log.log(logDir, "onCommandListener()", command);
     await initSettings();
     switch (command) {
-        case "wpSearchSelectedText": {
+        case WP_SEARCH_SELECTED_TEXT: {
             wpSearchSelectedText();
             break;
         }
