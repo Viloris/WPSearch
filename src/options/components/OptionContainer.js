@@ -4,7 +4,7 @@ import { setSettings } from "src/settings/settings";
 import KeyboardShortcutForm from "./KeyboardShortcutForm";
 import "../styles/OptionContainer.scss";
 
-export default props => {
+export default function OptionContainer(props) {
   const { title, captions, type, id, children, currentValue } = props;
 
   const handleValueChange = e => {
@@ -149,7 +149,7 @@ export default props => {
     case "keyboard-shortcut":
       formId = id;
       optionForm = (
-        <KeyboardShortcutForm id={id} shortcut={props.shortcut} defaultValue={props.defaultValue} />
+        <KeyboardShortcutForm id={id} initialShortcut={props.shortcut} defaultValue={props.defaultValue} />
       );
       break;
     case "none":
