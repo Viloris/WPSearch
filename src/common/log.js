@@ -2,6 +2,7 @@ import log from "loglevel";
 import { getSettings } from "src/settings/settings";
 
 let isInited = false;
+
 export const overWriteLogLevel = () => {
   if (isInited) return;
   isInited = true;
