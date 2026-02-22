@@ -7,5 +7,35 @@
     "WIKIPEDIA_URL": ".wikipedia.org/wiki/",
     "HTTPS": "https://",
     "DEFAULT_LANGUAGE": "en",
-    "SECOND_LANGUAGE": "de"
+    "SECOND_LANGUAGE": "de",
+    "LANG_PLACEHOLDER": "en, ru, zh",
+    "SHIFT": "shift",
+    "CTRL": "ctrl",
+    "ALT": "alt",
+    "CMD": "cmd",
+    "settingsType": {
+        "CHECKBOX": "checkbox",
+        "NUMBER": "number",
+        "COLOR": "color",
+        "RADIO": "radio",
+        "SELECT": "select",
+        "TEXT": "text",
+        "TEXT_AREA": "textarea",
+        "NONE": "none"
+    },
+    "directions": {
+        "TOP": "top",
+        "BOTTOM": "bottom",
+        "RIGHT": "right",
+        "LEFT": "left",
+        "TOP_RIGHT": "topRight",
+        "TOP_LEFT": "topLeft",
+        "BOTTOM_RIGHT": "bottomRight",
+        "BOTTOM_LEFT": "bottomLeft"
+    },
+    "theme": {
+        "LIGHT": "light",
+        "DARK": "dark",
+        "SYSTEM": "system"
+    }
 }

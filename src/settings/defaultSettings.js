@@ -8,7 +8,12 @@ import {
 } from "./defaultColors";
 import config from "../config.json";
 
-const { DEFAULT_LANGUAGE, SECOND_LANGUAGE } = config;
+const { DEFAULT_LANGUAGE, SECOND_LANGUAGE, CTRL, CMD, SHIFT, ALT,
+    LANG_PLACEHOLDER,
+    theme: { LIGHT, DARK, SYSTEM },
+    directions: { TOP, BOTTOM, RIGHT, LEFT, TOP_RIGHT, TOP_LEFT, BOTTOM_RIGHT, BOTTOM_LEFT },
+    settingsType: { CHECKBOX, NUMBER, COLOR, NONE, RADIO, SELECT, TEXT, TEXT_AREA }
+} = config;
 const WIKIPEDIA_LANGUAGES = getWikipediaLanguages();
 
 const getDefaultLangs = () => {
@@ -24,7 +29,7 @@ const getDefaultLangs = () => {
 
 const defaultLangs = getDefaultLangs();
 // MV2ではwindow.matchMediaでシステムテーマを取得していたが、MV3では簡単に実装できないためオミットする
-const getTheme = () => "light";
+const getTheme = () => LIGHT;
 
 export default [
     {
@@ -34,7 +39,7 @@ export default [
                 id: "targetLang",
                 title: "targetLangLabel",
                 captions: ["targetLangCaptionLabel"],
-                type: "select",
+                type: SELECT,
                 default: defaultLangs.targetLang,
                 options: WIKIPEDIA_LANGUAGES,
                 useRawOptionName: true
@@ -43,14 +48,14 @@ export default [
                 id: "shouldUseSecondTargetLang",
                 title: "shouldUseSecondTargetLangLabel",
                 captions: ["shouldUseSecondTargetLangCaptionLabel"],
-                type: "checkbox",
+                type: CHECKBOX,
                 default: false,
                 childElements: [
                     {
                         id: "secondTargetLang",
                         title: "secondTargetLangLabel",
                         captions: ["secondTargetLangCaptionLabel"],
-                        type: "select",
+                        type: SELECT,
                         default: defaultLangs.secondTargetLang,
                         options: WIKIPEDIA_LANGUAGES,
                         useRawOptionName: true
@@ -66,28 +71,28 @@ export default [
                 id: "whenSelectText",
                 title: "whenSelectTextLabel",
                 captions: [],
-                type: "none",
+                type: NONE,
                 default: "showButton",
                 childElements: [
                     {
                         id: "whenSelectText",
                         title: "ifShowButtonLabel",
                         captions: ["ifShowButtonCaptionLabel"],
-                        type: "radio",
+                        type: RADIO,
                         value: "showButton"
                     },
                     {
                         id: "whenSelectText",
                         title: "ifAutoSearchLabel",
                         captions: ["ifAutoSearchCaptionLabel"],
-                        type: "radio",
+                        type: RADIO,
                         value: "showPanel"
                     },
                     {
                         id: "whenSelectText",
                         title: "dontShowButtonLabel",
                         captions: ["dontShowButtonCaptionLabel"],
-                        type: "radio",
+                        type: RADIO,
                         value: "dontShowButton"
                     }
                 ]
@@ -96,31 +101,31 @@ export default [
                 id: "ifOnlySearchWhenModifierKeyPressed",
                 title: "ifOnlySearchWhenModifierKeyPressedLabel",
                 captions: ["ifOnlySearchWhenModifierKeyPressedCaptionLabel"],
-                type: "checkbox",
+                type: CHECKBOX,
                 default: false,
                 childElements: [
                     {
                         id: "modifierKey",
                         title: "modifierKeyLabel",
                         captions: [],
-                        type: "select",
-                        default: "shift",
+                        type: SELECT,
+                        default: SHIFT,
                         options: [
                             {
                                 name: "shiftLabel",
-                                value: "shift"
+                                value: SHIFT
                             },
                             {
                                 name: "ctrlLabel",
-                                value: "ctrl"
+                                value: CTRL
                             },
                             {
                                 name: "altLabel",
-                                value: "alt"
+                                value: ALT
                             },
                             {
                                 name: "cmdLabel",
-                                value: "cmd"
+                                value: CMD
                             }
                         ]
                     }
@@ -129,35 +134,35 @@ export default [
             {
                 title: "disableWikipediaSearchLabel",
                 captions: [],
-                type: "none",
+                type: NONE,
                 childElements: [
                     {
                         id: "isDisabledInTextFields",
                         title: "isDisabledInTextFieldsLabel",
                         captions: ["isDisabledInTextFieldsCaptionLabel"],
-                        type: "checkbox",
+                        type: CHECKBOX,
                         default: false
                     },
                     {
                         id: "isDisabledInCodeElement",
                         title: "isDisabledInCodeElementLabel",
                         captions: ["isDisabledInCodeElementCaptionLabel"],
-                        type: "checkbox",
+                        type: CHECKBOX,
                         default: false
                     },
                     {
                         id: "ignoredDocumentLang",
                         title: "ignoredDocumentLangLabel",
                         captions: ["ignoredDocumentLangCaptionLabel"],
-                        type: "text",
+                        type: TEXT,
                         default: "",
-                        placeholder: "en, ru, zh"
+                        placeholder: LANG_PLACEHOLDER
                     },
                     {
                         id: "disableUrlList",
                         title: "disableUrlListLabel",
                         captions: ["disableUrlListCaptionLabel"],
-                        type: "textarea",
+                        type: TEXT_AREA,
                         default: "",
                         placeholder:
                             "https://example.com/*\nhttps://example.net/*"
@@ -173,7 +178,7 @@ export default [
                 id: "waitTime",
                 title: "waitTimeLabel",
                 captions: ["waitTimeCaptionLabel", "waitTime2CaptionLabel"],
-                type: "number",
+                type: NUMBER,
                 min: 0,
                 placeholder: 800,
                 default: 800
@@ -187,7 +192,7 @@ export default [
                 id: "ifShowMenu",
                 title: "ifShowMenuLabel",
                 captions: ["ifShowMenuCaptionLabel"],
-                type: "checkbox",
+                type: CHECKBOX,
                 default: true
             }
         ]
@@ -199,33 +204,33 @@ export default [
                 id: "theme",
                 title: "themeLabel",
                 captions: ["themeCaptionLabel"],
-                type: "select",
+                type: SELECT,
                 default: "system",
                 options: [
                     {
                         name: "lightLabel",
-                        value: "light"
+                        value: LIGHT
                     },
                     {
                         name: "darkLabel",
-                        value: "dark"
+                        value: DARK
                     },
                     {
                         name: "systemLabel",
-                        value: "system"
+                        value: SYSTEM
                     }
                 ]
             },
             {
                 title: "buttonStyleLabel",
                 captions: ["buttonStyleCaptionLabel"],
-                type: "none",
+                type: NONE,
                 childElements: [
                     {
                         id: "buttonSize",
                         title: "buttonSizeLabel",
                         captions: [],
-                        type: "number",
+                        type: NUMBER,
                         min: 1,
                         placeholder: 22,
                         default: 22
@@ -234,40 +239,40 @@ export default [
                         id: "buttonDirection",
                         title: "displayDirectionLabel",
                         captions: [],
-                        type: "select",
+                        type: SELECT,
                         default: "bottomRight",
                         options: [
                             {
                                 name: "topLabel",
-                                value: "top"
+                                value: TOP
                             },
                             {
                                 name: "bottomLabel",
-                                value: "bottom"
+                                value: BOTTOM
                             },
                             {
                                 name: "rightLabel",
-                                value: "right"
+                                value: RIGHT
                             },
                             {
                                 name: "leftLabel",
-                                value: "left"
+                                value: LEFT
                             },
                             {
                                 name: "topRightLabel",
-                                value: "topRight"
+                                value: TOP_RIGHT
                             },
                             {
                                 name: "topLeftLabel",
-                                value: "topLeft"
+                                value: TOP_LEFT
                             },
                             {
                                 name: "bottomRightLabel",
-                                value: "bottomRight"
+                                value: BOTTOM_RIGHT
                             },
                             {
                                 name: "bottomLeftLabel",
-                                value: "bottomLeft"
+                                value: BOTTOM_LEFT
                             }
                         ]
                     },
@@ -275,7 +280,7 @@ export default [
                         id: "buttonOffset",
                         title: "positionOffsetLabel",
                         captions: [],
-                        type: "number",
+                        type: NUMBER,
                         default: 10,
                         placeholder: 10
                     }
@@ -284,13 +289,13 @@ export default [
             {
                 title: "panelStyleLabel",
                 captions: ["panelStyleCaptionLabel"],
-                type: "none",
+                type: NONE,
                 childElements: [
                     {
                         id: "width",
                         title: "widthLabel",
                         captions: [],
-                        type: "number",
+                        type: NUMBER,
                         min: 1,
                         placeholder: 300,
                         default: 300
@@ -299,7 +304,7 @@ export default [
                         id: "height",
                         title: "heightLabel",
                         captions: [],
-                        type: "number",
+                        type: NUMBER,
                         min: 1,
                         placeholder: 200,
                         default: 200
@@ -308,7 +313,7 @@ export default [
                         id: "fontSize",
                         title: "fontSizeLabel",
                         captions: [],
-                        type: "number",
+                        type: NUMBER,
                         min: 1,
                         placeholder: 13,
                         default: 13
@@ -317,7 +322,7 @@ export default [
                         id: "panelReferencePoint",
                         title: "referencePointLabel",
                         captions: [],
-                        type: "select",
+                        type: SELECT,
                         default: "bottomSelectedText",
                         options: [
                             {
@@ -338,40 +343,40 @@ export default [
                         id: "panelDirection",
                         title: "displayDirectionLabel",
                         captions: [],
-                        type: "select",
-                        default: "bottom",
+                        type: SELECT,
+                        default: BOTTOM,
                         options: [
                             {
                                 name: "topLabel",
-                                value: "top"
+                                value: TOP
                             },
                             {
                                 name: "bottomLabel",
-                                value: "bottom"
+                                value: BOTTOM
                             },
                             {
                                 name: "rightLabel",
-                                value: "right"
+                                value: RIGHT
                             },
                             {
                                 name: "leftLabel",
-                                value: "left"
+                                value: LEFT
                             },
                             {
                                 name: "topRightLabel",
-                                value: "topRight"
+                                value: TOP_RIGHT
                             },
                             {
                                 name: "topLeftLabel",
-                                value: "topLeft"
+                                value: TOP_LEFT
                             },
                             {
                                 name: "bottomRightLabel",
-                                value: "bottomRight"
+                                value: BOTTOM_RIGHT
                             },
                             {
                                 name: "bottomLeftLabel",
-                                value: "bottomLeft"
+                                value: BOTTOM_LEFT
                             }
                         ]
                     },
@@ -379,7 +384,7 @@ export default [
                         id: "panelOffset",
                         title: "positionOffsetLabel",
                         captions: [],
-                        type: "number",
+                        type: NUMBER,
                         default: 10,
                         placeholder: 10
                     },
@@ -387,16 +392,16 @@ export default [
                         id: "isOverrideColors",
                         title: "isOverrideColorsLabel",
                         captions: [],
-                        type: "checkbox",
+                        type: CHECKBOX,
                         default: false
                     },
                     {
                         id: "resultFontColor",
                         title: "resultFontColorLabel",
                         captions: [],
-                        type: "color",
+                        type: COLOR,
                         default:
-                            getTheme() === "light"
+                            getTheme() === LIGHT
                                 ? RESULT_FONT_COLOR_LIGHT
                                 : RESULT_FONT_COLOR_DARK
                     },
@@ -404,9 +409,9 @@ export default [
                         id: "bgColor",
                         title: "bgColorLabel",
                         captions: [],
-                        type: "color",
+                        type: COLOR,
                         default:
-                            getTheme() === "light"
+                            getTheme() === LIGHT
                                 ? BG_COLOR_LIGHT
                                 : BG_COLOR_DARK
                     }
@@ -421,14 +426,14 @@ export default [
                 id: "isShowOptionsPageWhenUpdated",
                 title: "isShowOptionsPageWhenUpdatedLabel",
                 captions: ["isShowOptionsPageWhenUpdatedCaptionLabel"],
-                type: "checkbox",
+                type: CHECKBOX,
                 default: true
             },
             {
                 id: "isDebugMode",
                 title: "isDebugModeLabel",
                 captions: ["isDebugModeCaptionLabel"],
-                type: "checkbox",
+                type: CHECKBOX,
                 default: false
             }
         ]
