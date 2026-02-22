@@ -4,7 +4,7 @@ import { getSettings } from "src/settings/settings.js";
 import SearchButton from "./SearchButton";
 import ResultPanel from "./ResultPanel";
 import "../styles/SearchContainer.scss";
-import { getTargetLang } from "../../common/utils";
+import { getTargetLang } from "../../common/utils.jsx";
 
 const DEFAULT_POSITION = { x: 0, y: 0 };
 

@@ -1,7 +1,7 @@
 import browser from "webextension-polyfill";
 import log from "loglevel";
 import { getSettings } from "src/settings/settings";
-import { tabsSendMessage } from "../common/utils";
+import { tabsSendMessage } from "../common/utils.jsx";
 
 const logDir = "background/menus";
 

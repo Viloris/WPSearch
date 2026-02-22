@@ -8,7 +8,7 @@ export function splitLine(text) {
     if (!text) return;
     return text
         .split(regex)
-        .map((line, i) => (line.match(regex) ? <br key={i} /> : line));
+        .map((line, i) => (line.match(regex) ? React.createElement("br", { key: i }) : line));
 }
 
 export function getTargetLang() {
@@ -31,18 +31,6 @@ export function tabsSendMessage(tab, message) {
     return browser.tabs.sendMessage(tab.id, { message });
 }
 
-/* export function getFirstWikipedia() {
-    return WP_LANG[getTargetLang()];
-}
-
-export function getSecondWikipedia() {
-    return WP_LANG[getSecondTargetLang()];
-} */
-
 export function getWikipediaName(langCode) {
     return WP_LANG[langCode];
 }
-
-/* export function getHidePopupInformationLabel() {
-    return getSettings("hidePopupInformationLabel")
-} */

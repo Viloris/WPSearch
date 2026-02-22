@@ -1,5 +1,5 @@
 import React from "react";
-import { splitLine } from "./utils";
+import { splitLine } from "./utils.jsx";
 
 export function ResultSummary({ text }) {
     return (

@@ -19,6 +19,7 @@ const generalConfig = {
     mode: "development",
     devtool: "source-map",
     resolve: {
+        extensions: [".js", ".jsx"],
         alias: {
             src: path.resolve(__dirname, "src/"),
             "webextension-polyfill":
@@ -30,10 +31,7 @@ const generalConfig = {
             {
                 loader: "babel-loader",
                 exclude: /node_modules/,
-                test: /\.(js|jsx)$/,
-                resolve: {
-                    extensions: [".js", ".jsx"]
-                }
+                test: /\.(js|jsx)$/
             },
             {
                 test: /\.(scss|css)$/,
@@ -46,7 +44,12 @@ const generalConfig = {
                         }
                     },
                     {
-                        loader: "sass-loader"
+                        loader: "sass-loader",
+                        options: {
+                            // explicitly specify the Sass implementation so that
+                            // the loader can detect the proper JS API to call.
+                            implementation: require("sass")
+                        }
                     }
                 ]
             },

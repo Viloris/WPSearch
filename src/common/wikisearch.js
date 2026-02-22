@@ -1,6 +1,6 @@
 import log from "loglevel";
 import config from "../config.json";
-import { getSecondTargetLang, getTargetLang } from "./utils";
+import { getSecondTargetLang, getTargetLang } from "./utils.jsx";
 import { getSettings } from "../settings/settings";
 import browser from "webextension-polyfill";
 import httpCodes from "./httpCodes.json";

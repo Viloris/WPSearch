@@ -3,7 +3,7 @@ import { getSettings } from "../../settings/settings";
 import { ResultSection } from "../../common/resultSection";
 import InfoBar from "../../common/infoBar";
 import browser from "webextension-polyfill";
-import { getWikipediaName } from "../../common/utils";
+import { getWikipediaName } from "../../common/utils.jsx";
 
 export default function ResultArea(props) {
     const {

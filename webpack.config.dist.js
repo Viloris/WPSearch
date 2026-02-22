@@ -15,7 +15,7 @@ const {
 } = require("./webpack.utils");
 const path = require("path");
 const config = require("./config.json");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const extVersion = require("./src/manifest-chrome.json").version;
@@ -24,6 +24,7 @@ const ffExtVersion = require("./src/manifest-firefox.json").version;
 const generalConfig = {
   mode: "production",
   resolve: {
+    extensions: [".js", ".jsx"],
     alias: {
       src: path.resolve(__dirname, "src/"),
       "webextension-polyfill": "webextension-polyfill/dist/browser-polyfill.min.js"
@@ -34,10 +35,7 @@ const generalConfig = {
       {
         loader: "babel-loader",
         exclude: /node_modules/,
-        test: /\.(js|jsx)$/,
-        resolve: {
-          extensions: [".js", ".jsx"]
-        }
+        test: /\.(js|jsx)$/
       },
       {
         test: /\.(scss|css)$/,
@@ -50,7 +48,10 @@ const generalConfig = {
             }
           },
           {
-            loader: "sass-loader"
+            loader: "sass-loader",
+            options: {
+              implementation: require("sass")
+            }
           }
         ]
       },
@@ -71,7 +72,7 @@ module.exports = [
       minimize: true
     },
     plugins: [
-      new CleanWebpackPlugin(["dist", "temp"]),
+      new CleanWebpackPlugin(),
       ...getMiniCssExtractPlugin(),
       ...getHTMLPlugins("chrome", config.tempDirectory, config.chromePath),
       ...getCopyPlugins("chrome", config.tempDirectory, config.chromePath),
@@ -86,7 +87,7 @@ module.exports = [
       minimize: true
     },
     plugins: [
-      new CleanWebpackPlugin(["dist", "temp"]),
+      new CleanWebpackPlugin(),
       ...getMiniCssExtractPlugin(),
       ...getHTMLPlugins("firefox", config.tempDirectory, config.firefoxPath),
       ...getFirefoxCopyPlugins("firefox", config.tempDirectory, config.firefoxPath),
