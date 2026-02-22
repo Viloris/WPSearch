@@ -3,10 +3,11 @@ import log from "loglevel";
 import defaultSettings from "./defaultSettings";
 
 const logDir = "settings/settings";
+const SETTINGS = "Settings";
 let currentSettings = {};
 
 export const initSettings = async () => {
-    const response = await browser.storage.local.get("Settings");
+    const response = await browser.storage.local.get(SETTINGS);
     currentSettings = response.Settings || {};
     let shouldSave = false;
 
@@ -58,7 +59,7 @@ export const resetAllSettings = async () => {
 };
 
 export const handleSettingsChange = (changes) => {
-    if (Object.keys(changes).includes("Settings")) {
+    if (Object.keys(changes).includes(SETTINGS)) {
         currentSettings = changes.Settings.newValue;
         return currentSettings;
     }
