@@ -13,7 +13,9 @@ import { useLocation } from "react-router-dom";
 const useAdditionalPermission = () => {
     const [hasPermission, setHasPermission] = useState(true);
 
-    const permissions = useMemo(() => ({ origins: ["http://*/*", "https://*/*", "<all_urls>"] }), []);
+    const permissions = useMemo(() => (
+        { origins: ["http://*/*", "https://*/*", "<all_urls>"] }
+    ), []);
 
     const checkPermission = useCallback(async () => {
         const granted = await browser.permissions.contains(permissions);
@@ -26,12 +28,20 @@ const useAdditionalPermission = () => {
     };
 
     useEffect(() => {
-        checkPermission();
+        // async wrapper to avoid synchronous setState warning
+        const run = async () => {
+            await checkPermission();
+        };
+        run();
     }, [checkPermission]);
 
     return [hasPermission, requestPermission];
 };
 
+/**
+ * 
+ * @returns {JSX.Element}
+ */
 export default function InformationPage() {
     const location = useLocation();
     const query = queryString.parse(location.search);
