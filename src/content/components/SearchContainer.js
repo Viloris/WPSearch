@@ -13,7 +13,15 @@ const wpSearchText = (expression) =>
         message: "wikipediaSearch",
         expression
     });
-
+/**
+ * 
+ * @param {string} selectedText
+ * @param {number} selectedPosition
+ * @param {number} clickedPosition
+ * @param {boolean} shouldWPSearch
+ * @param {function()} removeContainer
+ * @returns {JSX.Element}
+ */
 export default function SearchContainer({
     selectedText,
     selectedPosition,

@@ -1,5 +1,11 @@
 import React from "react";
 
+/**
+ * 
+ * @param {string} title 
+ * @param {string} url 
+ * @returns {JSX.Element}
+ */
 export function WikipediaLink({ title, url }) {
     return (
         <p style={{ marginTop: "0.5em", marginBottom: "0.5em" }}>

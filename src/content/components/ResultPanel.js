@@ -4,11 +4,14 @@ import "../styles/ResultPanel.scss";
 import { getBackgroundColor } from "../../settings/defaultColors";
 import ResultArea from "../../common/ResultArea";
 
-export default function ResultPanel({
-    shouldShow,
-    position,
-    results
-}) {
+/**
+ * 
+ * @param {boolean} shouldShow
+ * @param {number} position
+ * @param {Array} results
+ * @returns {JSX.Element}
+ */
+export default function ResultPanel({ shouldShow, position, results }) {
     const panelRef = useRef(null);
     const wrapperRef = useRef(null);
 

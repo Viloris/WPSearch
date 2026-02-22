@@ -8,6 +8,10 @@ import "../styles/Header.scss";
 
 const EXTENSION_NAME = browser.i18n.getMessage("extName");
 
+/**
+ * 
+ * @returns {JSX.Element}
+ */
 function renderTitle() {
     return (
         <div className="title">
@@ -17,6 +21,10 @@ function renderTitle() {
     );
 }
 
+/**
+ * 
+ * @returns {JSX.Element}
+ */
 function SettingsButton() {
     const openSettings = () => {
         const url = "../options/index.html#settings";
@@ -34,6 +42,13 @@ function SettingsButton() {
     );
 }
 
+/**
+ * 
+ * @param {boolean} isConnected
+ * @param {boolean} isEnabledOnPage 
+ * @param {function}  toggleEnabledOnPage 
+ * @returns {JSX.Element}
+ */
 function renderActionBar(props) {
     const { isConnected, isEnabledOnPage, toggleEnabledOnPage } = props;
     return (
@@ -48,9 +63,14 @@ function renderActionBar(props) {
     );
 }
 
-function ToggleButton(props) {
-    const { isConnected, isEnabledOnPage, toggleEnabledOnPage } = props;
-
+/**
+ * 
+ * @param {boolean} isConnected
+ * @param {boolean} isEnabledOnPage 
+ * @param {function}  toggleEnabledOnPage 
+ * @returns {JSX.Element}
+ */
+function ToggleButton({ isConnected, isEnabledOnPage, toggleEnabledOnPage }) {
     const getToggleButtonTitle = (isEnabled) => {
         const buttonState = isEnabled ? "disableOnThisPage" : "enableOnThisPage"
         return browser.i18n.getMessage(buttonState)
@@ -71,6 +91,11 @@ function ToggleButton(props) {
     );
 }
 
+/**
+ * 
+ * @param {*} props
+ * @returns {JSX.Element}
+ */
 export default function Header(props) {
     return (
         <div id="header">

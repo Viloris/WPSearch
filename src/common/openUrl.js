@@ -1,5 +1,9 @@
 import browser from "webextension-polyfill";
 
+/**
+ * @param {string} url
+ * @param {boolean} isCurrentTab
+ */
 export default async (url, isCurrentTab = false) => {
     const activeTab = (
         await browser.tabs.query({ currentWindow: true, active: true })

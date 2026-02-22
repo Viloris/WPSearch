@@ -2,6 +2,12 @@ import React from "react";
 import browser from "webextension-polyfill";
 import "./styles/infoBar.scss";
 
+/**
+ * 
+ * @param {string} message
+ * @param {function()} onClick
+ * @returns {JSX.Element}
+ */
 export default function InfoBar({ message, onClick }) {
     const settings = browser.i18n.getMessage("settingsLabel");
     const openSettings = () => {

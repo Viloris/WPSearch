@@ -22,6 +22,13 @@ const calcPosition = (buttonSize, offset, direction) => {
     return map[direction] || map.bottomRight;
 };
 
+/**
+ * 
+ * @param {function()} handleButtonClick 
+ * @param {number} position
+ * @param {boolean} shouldShow
+ * @returns {JSX.Element}
+ */
 function SearchButton({ handleButtonClick, position, shouldShow }) {
     const buttonSize = parseInt(getSettings("buttonSize"));
     const offset = parseInt(getSettings("buttonOffset"));

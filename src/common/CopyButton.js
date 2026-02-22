@@ -6,6 +6,11 @@ import "../styles/CopyButton.scss";
 const labelCopied = browser.i18n.getMessage("copiedLabel");
 const buttonCaption = browser.i18n.getMessage("copyLabel");
 
+/**
+ * 
+ * @param {string} text 
+ * @returns {JSX.Element}
+ */
 export default function CopyButton({ text }) {
     const [isCopied, setIsCopied] = useState(false);
     const [prevText, setPrevText] = useState(text);
@@ -30,6 +35,7 @@ export default function CopyButton({ text }) {
             console.error("Másolási hiba", err);
         }
     };
+
     return (
         <div className="copy">
             {isCopied &&

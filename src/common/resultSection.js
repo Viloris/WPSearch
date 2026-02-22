@@ -4,15 +4,17 @@ import { ResultContent } from "./resultContent";
 import { ResultFooter } from "./resultFooter";
 import { ResultHeader } from "./resultHeader";
 
-export function ResultSection(props) {
-    const {
-        errorMessage,
-        isError,
-        text,
-        title,
-        url,
-        wikipedia
-    } = props;
+/**
+ * 
+ * @param {string} errorMessage 
+ * @param {boolean} isError 
+ * @param {string} text 
+ * @param {string} title 
+ * @param {string} url 
+ * @param {string} wikipedia 
+ * @returns {JSX.Element}
+ */
+export function ResultSection({ errorMessage, isError, text, title, url, wikipedia }) {
     return (
         <>
             <ResultHeader wikipedia={wikipedia} />

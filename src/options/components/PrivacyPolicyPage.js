@@ -74,6 +74,11 @@ const privacyPolicy = (
         the Privacy Policy.
     </div>
 );
+
+/**
+ * 
+ * @returns {JSX.element}
+ */
 export default function PrivacyPolicyPage() {
     return (
         <div>

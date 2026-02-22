@@ -17,6 +17,10 @@ import CategoryContainer from "./CategoryContainer";
 
 /* ---------------- component ---------------- */
 
+/**
+ * 
+ * @returns {JSX.element}
+ */
 export default function SettingsPage() {
   const [currentValues, setCurrentValues] = useState(null);
 

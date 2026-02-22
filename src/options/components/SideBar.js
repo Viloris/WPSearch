@@ -7,6 +7,10 @@ import "../styles/SideBar.scss";
 const isValidShortcuts =
     browserInfo().name === "Firefox" && browserInfo().version >= 60;
 
+/**
+ * 
+ * @returns {JSX.element}
+ */
 const SideBar = () => {
     const { pathname } = useLocation();
 

@@ -11,8 +11,8 @@ const logDir = "common/wikisearch";
 
 /**
  * 
- * @param {*} language 
- * @param {*} expression 
+ * @param {string} language 
+ * @param {string} expression 
  * @returns {Promise<{errorMessage: string, isError: boolean, lang: string, text: string, title: string, url: string}>}
  */
 async function getWikipediaExtract(language, expression) {
@@ -65,7 +65,7 @@ async function getWikipediaExtract(language, expression) {
 
 /**
  * 
- * @param {*} expression 
+ * @param {string} expression 
  * @returns {Promise<array>}
  */
 async function handleQuery(expression) {
@@ -79,8 +79,9 @@ async function handleQuery(expression) {
         if (second) langSet.add(second);
     }
 
-    // You can add more languages
-    // if (getSettings("useThirdLang")) langSet.add(getThirdTargetLang());
+    /* You can add more languages:
+        if (getSettings("useThirdLang")) langSet.add(getThirdTargetLang());
+    */
 
     const languages = Array.from(langSet);
 

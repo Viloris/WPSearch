@@ -27,6 +27,10 @@ const rtlLanguage = ["he", "ar"].includes(UILanguage);
 const optionsPageClassName =
     "optionsPage" + (rtlLanguage ? " rtl-language" : "");
 
+/**
+ * 
+ * @returns {JSX.Element}
+ */
 export default function OptionsPage() {
     setupTheme();
     return (

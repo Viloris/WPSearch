@@ -18,6 +18,10 @@ const logDir = "popup/PopupPage";
 
 /* ---------------- utils ---------------- */
 
+/**
+ * 
+ * @returns {Object<{ isConnected: true, url, selectedText, isEnabledOnPage }>}
+ */
 const getTabInfo = async () => {
     try {
         const [tab] = await browser.tabs.query({
@@ -50,6 +54,10 @@ const rtlLanguageClassName = ["he", "ar"].includes(UILanguage)
 
 /* ---------------- component ---------------- */
 
+/**
+ * 
+ * @returns {JSX.Element}
+ */
 export default function PopupPage() {
     const [targetLang, setTargetLang] = useState("");
     const [inputText, setInputText] = useState("");

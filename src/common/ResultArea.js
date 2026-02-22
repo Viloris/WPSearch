@@ -5,12 +5,14 @@ import InfoBar from "./infoBar";
 import browser from "webextension-polyfill";
 import { getWikipediaName } from "./utils.jsx";
 
-export default function ResultArea(props) {
-    const {
-        results,
-        hideInformationLabel,
-        dismissHint
-    } = props;
+/**
+ * 
+ * @param {Object} result 
+ * @param {boolean} hideInformationLabel
+ * @param {function()} dismissHint
+ * @returns {JSX.Element}
+ */
+export default function ResultArea({ results, hideInformationLabel, dismissHint }) {
     const information = browser.i18n.getMessage("firstInformationText");
     const useSecondLang = getSettings("shouldUseSecondTargetLang");
 

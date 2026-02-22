@@ -29,11 +29,14 @@ const normalizeKey = (key, keyCode) => {
 
 /* ---------------- component ---------------- */
 
-export default function KeyboardShortcutForm({
-  id,
-  shortcut: initialShortcut,
-  defaultValue
-}) {
+/**
+ * 
+ * @param {number} id 
+ * @param {string} initialShortcut 
+ * @param {string} defaultValue 
+ * @returns {JSX.Element}
+ */
+export default function KeyboardShortcutForm({ id, initialShortcut, defaultValue }) {
   const isMac = useMemo(() => browserInfo().os === "OS X", []);
 
   const [shortcut, setShortcut] = useState(initialShortcut || "");

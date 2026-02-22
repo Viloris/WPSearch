@@ -3,6 +3,10 @@ import browser from "webextension-polyfill";
 import getShortcut from "src/common/getShortcut";
 import CategoryContainer from "./CategoryContainer";
 
+/**
+ * 
+ * @returns {JSX.Element}
+ */
 export default function KeyboardShortcutPage() {
   const [commands, setCommands] = useState([]);
 

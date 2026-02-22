@@ -10,6 +10,10 @@ import "../styles/ContentsArea.scss";
 const isValidShortcuts =
     browserInfo().name === "Firefox" && browserInfo().version >= 60;
 
+/**
+ * 
+ * @returns {JSX.Element}
+ */
 export default function ContentsArea() {
     return (
         <div className="contentsArea">
