@@ -16,11 +16,18 @@ export default function CategoryContainer(props) {
         <ul className="categoryElements">
           {elements.map((option, index) => (
             <div key={index}>
-              <OptionContainer {...option} currentValue={currentValues[option.id]}>
+              <OptionContainer
+                {...option}
+                currentValue={currentValues[option.id]}
+              >
                 {option?.childElements && (
                   <ul className="childElements">
                     {option.childElements.map((option, index) => (
-                      <OptionContainer {...option} currentValue={currentValues[option.id]} key={index} />
+                      <OptionContainer
+                        {...option}
+                        currentValue={currentValues[option.id]}
+                        key={index}
+                      />
                     ))}
                   </ul>
                 )}
@@ -32,4 +39,4 @@ export default function CategoryContainer(props) {
       </fieldset>
     </li>
   );
-};
+}

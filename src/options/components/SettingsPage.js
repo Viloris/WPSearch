@@ -106,7 +106,6 @@ export default function SettingsPage() {
         {browser.i18n.getMessage("settingsLabel")}
       </p>
       <hr />
-
       <ul>
         {defaultSettings.map((category, index) => (
           <CategoryContainer
@@ -115,7 +114,6 @@ export default function SettingsPage() {
             currentValues={currentValues}
           />
         ))}
-
         <CategoryContainer
           {...additionalCategory(handleReset)}
           currentValues={currentValues}
