@@ -6,9 +6,40 @@ import KeyboardShortcutsPage from "./KeyboardShortcutsPage";
 import InformationPage from "./InformationPage";
 import PrivacyPolicyPage from "./PrivacyPolicyPage";
 import "../styles/ContentsArea.scss";
+import config from "../../config.json"
+
+const { FIREFOX } = config;
 
 const isValidShortcuts =
-    browserInfo().name === "Firefox" && browserInfo().version >= 60;
+    browserInfo().name === FIREFOX && browserInfo().version >= 60;
+
+const paths = [
+    {
+        path: "/settings",
+        element: <SettingsPage />,
+        show: true
+    },
+    {
+        path: "/shortcuts",
+        element: <KeyboardShortcutsPage />,
+        show: isValidShortcuts
+    },
+    {
+        path: "/information",
+        element: < InformationPage />,
+        show: true
+    },
+    {
+        path: "/privacy-policy",
+        element: < PrivacyPolicyPage />,
+        show: true
+    }, {
+        /* fallback route */
+        path: "*",
+        element: < SettingsPage />,
+        show: true
+    }
+]
 
 /**
  * 
@@ -18,14 +49,9 @@ export default function ContentsArea() {
     return (
         <div className="contentsArea">
             <Routes>
-                <Route path="/settings" element={<SettingsPage />} />
-                {isValidShortcuts && (
-                    <Route path="/shortcuts" element={<KeyboardShortcutsPage />} />
-                )}
-                <Route path="/information" element={<InformationPage />} />
-                <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-                {/* fallback route */}
-                <Route path="*" element={<SettingsPage />} />
+                {paths.filter(path => path.show).map(({ path, element }) => (
+                    <Route key={path} path={path} element={element} />
+                ))}
             </Routes>
         </div>
     );
