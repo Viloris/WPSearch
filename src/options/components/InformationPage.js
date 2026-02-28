@@ -7,15 +7,19 @@ import { chromeExtensionUrl, firefoxAddonUrl } from "src/common/personalUrls";
 import manifestChrome from "src/manifest-chrome.json";
 import manifestFirefox from "src/manifest-firefox.json";
 import { useLocation } from "react-router-dom";
+import config from "../../config.json";
+
+const { FIREFOX, CHROME } = config;
 
 /* ---------------- CUSTOM HOOK ---------------- */
 
 const useAdditionalPermission = () => {
     const [hasPermission, setHasPermission] = useState(true);
 
-    const permissions = useMemo(() => (
-        { origins: ["http://*/*", "https://*/*", "<all_urls>"] }
-    ), []);
+    const permissions = useMemo(
+        () => ({ origins: ["http://*/*", "https://*/*", "<all_urls>"] }),
+        []
+    );
 
     const checkPermission = useCallback(async () => {
         const granted = await browser.permissions.contains(permissions);
@@ -28,7 +32,6 @@ const useAdditionalPermission = () => {
     };
 
     useEffect(() => {
-        // async wrapper to avoid synchronous setState warning
         const run = async () => {
             await checkPermission();
         };
@@ -39,7 +42,7 @@ const useAdditionalPermission = () => {
 };
 
 /**
- * 
+ *
  * @returns {JSX.Element}
  */
 export default function InformationPage() {
@@ -47,8 +50,8 @@ export default function InformationPage() {
     const query = queryString.parse(location.search);
 
     const browserData = browserInfo();
-    const isFirefox = browserData.name === "Firefox";
-    const isChrome = browserData.name === "Chrome";
+    const isFirefox = browserData.name === FIREFOX;
+    const isChrome = browserData.name === CHROME;
 
     const extensionVersion = isFirefox
         ? manifestFirefox.version
@@ -61,60 +64,66 @@ export default function InformationPage() {
         ? browser.i18n.getMessage("extensionPageLabel")
         : browser.i18n.getMessage("addonPageLabel");
 
+    const options = [
+        {
+            title: "extName",
+            captions: ["extDescription"],
+            type: "none",
+            updated: query.action === "updated",
+            extraCaption: (
+                <p className="caption">
+                    <a
+                        href="https://github.com/Viloris"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        Version {extensionVersion}
+                    </a>
+                </p>
+            ),
+            show: true
+        },
+        {
+            title: "licenseLabel",
+            captions: ["Mozilla Public License, Version. 2.0"],
+            useRawCaptions: true,
+            type: "none",
+            show: true
+        },
+        {
+            title: "additionalPermissionLabel",
+            captions: ["additionalPermissionCaptionLabel"],
+            type: "button",
+            value: "enableLabel",
+            onClick: requestPermission,
+            show: !hasPermission
+        },
+        {
+            title: "",
+            captions: [],
+            type: "none",
+            extraCaption: (
+                <p>
+                    <a href={storeLink} target="_blank" rel="noreferrer">
+                        {storeLabel}
+                    </a>
+                </p>
+            ),
+            show: true
+        }
+    ];
+
     return (
         <div>
-            <p className="contentTitle">{browser.i18n.getMessage("informationLabel")}</p>
+            <p className="contentTitle">
+                {browser.i18n.getMessage("informationLabel")}
+            </p>
             <hr />
-
-            <OptionsContainer
-                title="extName"
-                captions={["extDescription"]}
-                type="none"
-                updated={query.action === "updated"}
-                extraCaption={
-                    <p className="caption">
-                        <a href="https://github.com/Viloris" target="_blank" rel="noreferrer">
-                            Version {extensionVersion}
-                        </a>
-                    </p>
-                }
-            />
-
-            <OptionsContainer
-                title="licenseLabel"
-                captions={["Mozilla Public License, Version. 2.0"]}
-                useRawCaptions={true}
-                type="none"
-            />
-
-            {!hasPermission && (
-                <>
-                    <hr />
-                    <OptionsContainer
-                        title="additionalPermissionLabel"
-                        captions={["additionalPermissionCaptionLabel"]}
-                        type="button"
-                        value="enableLabel"
-                        onClick={requestPermission}
-                    />
-                </>
-            )}
-
-            <hr />
-            <OptionsContainer
-                title=""
-                captions={[]}
-                type="none"
-                extraCaption={
-                    <p>
-                        <a href={storeLink} target="_blank" rel="noreferrer">
-                            {storeLabel}
-                        </a>
-                    </p>
-                }
-            />
+            {options
+                .filter((item) => item.show)
+                .map(({ show, ...item }) => (
+                    <OptionsContainer key={item.title} {...item} />
+                ))}
         </div>
     );
 }
-
-
