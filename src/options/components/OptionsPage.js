@@ -8,45 +8,45 @@ import ScrollToTop from "./ScrollToTop";
 import "../styles/OptionsPage.scss";
 
 const setupTheme = async () => {
-    await initSettings();
-    document.body.classList.add(getSettings("theme") + "-theme");
+  await initSettings();
+  document.body.classList.add(getSettings("theme") + "-theme");
 
-    browser.storage.local.onChanged.addListener((changes) => {
-        if (changes.Settings.newValue.theme === changes.Settings.oldValue.theme)
-            return;
+  browser.storage.local.onChanged.addListener((changes) => {
+    if (changes.Settings.newValue.theme === changes.Settings.oldValue.theme)
+      return;
 
-        document.body.classList.replace(
-            changes.Settings.oldValue.theme + "-theme",
-            changes.Settings.newValue.theme + "-theme"
-        );
-    });
+    document.body.classList.replace(
+      changes.Settings.oldValue.theme + "-theme",
+      changes.Settings.newValue.theme + "-theme"
+    );
+  });
 };
 
 const UILanguage = browser.i18n.getUILanguage();
 const rtlLanguage = ["he", "ar"].includes(UILanguage);
 const optionsPageClassName =
-    "optionsPage" + (rtlLanguage ? " rtl-language" : "");
+  "optionsPage" + (rtlLanguage ? " rtl-language" : "");
 
 /**
- * 
+ *
  * @returns {JSX.Element}
  */
 export default function OptionsPage() {
-    setupTheme();
-    return (
-        <HashRouter
-            hashType="noslash"
-            future={{
-                v7_startTransition: true,
-                v7_relativeSplatPath: true
-            }}
-        >
-            <ScrollToTop>
-                <div className={optionsPageClassName}>
-                    <SideBar />
-                    <ContentsArea />
-                </div>
-            </ScrollToTop>
-        </HashRouter>
-    );
+  setupTheme();
+  return (
+    <HashRouter
+      hashType="noslash"
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true
+      }}
+    >
+      <ScrollToTop>
+        <div className={optionsPageClassName}>
+          <SideBar />
+          <ContentsArea />
+        </div>
+      </ScrollToTop>
+    </HashRouter>
+  );
 }
