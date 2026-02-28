@@ -8,6 +8,13 @@ import {
 } from "src/settings/settings";
 import { updateLogLevel, overWriteLogLevel } from "src/common/log";
 import SearchContainer from "./components/SearchContainer";
+import config from "../config.json"
+
+const { ESC, WP_SEARCH_SELECTED_TEXT, SHIFT, CTRL, ALT, CMD } = config;
+const INPUT = "INPUT";
+const TEXTAREA = "TEXTAREA";
+const CODE = "CODE";
+const password = "password";
 
 let isEnabled = true;
 let prevSelectedText = "";
@@ -56,7 +63,7 @@ const disableExtensionByUrlList = () => {
 const getSelectedText = () => {
     const element = document.activeElement;
     const isInTextField =
-        element.tagName === "INPUT" || element.tagName === "TEXTAREA";
+        element.tagName === INPUT || element.tagName === TEXTAREA;
     const selectedText = isInTextField
         ? element.value.substring(element.selectionStart, element.selectionEnd)
         : window.getSelection()?.toString() ?? "";
@@ -99,7 +106,7 @@ const showSearchContainer = (
 
 const isInContentEditable = () => {
     const element = document.activeElement;
-    if (element.tagName === "INPUT" || element.tagName === "TEXTAREA")
+    if (element.tagName === INPUT || element.tagName === TEXTAREA)
         return true;
     if (element.contentEditable === "true") return true;
     return false;
@@ -108,7 +115,7 @@ const isInContentEditable = () => {
 const getSelectedPosition = () => {
     const element = document.activeElement;
     const isInTextField =
-        element.tagName === "INPUT" || element.tagName === "TEXTAREA";
+        element.tagName === INPUT || element.tagName === TEXTAREA;
     const selectedRect = isInTextField
         ? element.getBoundingClientRect()
         : window.getSelection().getRangeAt(0).getBoundingClientRect();
@@ -134,7 +141,7 @@ const getSelectedPosition = () => {
 };
 
 const handleKeyDown = (e) => {
-    if (e.key === "Escape") {
+    if (e.key === ESC) {
         removeSearchContainer();
     }
 };
@@ -163,7 +170,7 @@ const handleMessage = async (request) => {
             if (!isEnabled) return empty;
             if (prevSelectedText.length === 0) return empty;
             else return prevSelectedText;
-        case "wpSearchSelectedText": {
+        case WP_SEARCH_SELECTED_TEXT: {
             if (!isEnabled) return empty;
             const selectedText = getSelectedText();
             if (selectedText.length === 0) return;
@@ -193,11 +200,11 @@ const handleMouseUp = async (e) => {
     if (!isLeftClick) return;
 
     const isInPasswordField =
-        e.target.tagName === "INPUT" && e.target.type === "password";
+        e.target.tagName === INPUT && e.target.type === password;
     if (isInPasswordField) return;
 
     const inCodeElement =
-        e.target.tagName === "CODE" ||
+        e.target.tagName === CODE ||
         (!!e.target.closest && !!e.target.closest("code"));
     if (inCodeElement && getSettings("isDisabledInCodeElement")) return;
 
@@ -231,16 +238,16 @@ const handleMouseUp = async (e) => {
     if (getSettings("ifOnlySearchWhenModifierKeyPressed")) {
         const modifierKey = getSettings("modifierKey");
         switch (modifierKey) {
-            case "shift":
+            case SHIFT:
                 if (!e.shiftKey) return;
                 break;
-            case "alt":
+            case ALT:
                 if (!e.altKey) return;
                 break;
-            case "ctrl":
+            case CTRL:
                 if (!e.ctrlKey) return;
                 break;
-            case "cmd":
+            case CMD:
                 if (!e.metaKey) return;
                 break;
             default:
