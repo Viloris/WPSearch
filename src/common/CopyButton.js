@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import browser from "webextension-polyfill";
 import CopyIcon from "../icons/copy.svg";
 import "../styles/CopyButton.scss";
+import { getLocaleMessage } from "../common/utils";
 
-const labelCopied = browser.i18n.getMessage("copiedLabel");
-const buttonCaption = browser.i18n.getMessage("copyLabel");
+const labelCopied = getLocaleMessage("copiedLabel");
+const buttonCaption = getLocaleMessage("copyLabel");
 
 /**
  *

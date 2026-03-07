@@ -1,6 +1,7 @@
 import React from "react";
 import browser from "webextension-polyfill";
 import "./styles/infoBar.scss";
+import { getLocaleMessage } from "../common/utils";
 
 /**
  *
@@ -9,7 +10,8 @@ import "./styles/infoBar.scss";
  * @returns {JSX.Element}
  */
 export default function InfoBar({ message, onClick }) {
-  const settings = browser.i18n.getMessage("settingsLabel");
+  const settings = getLocaleMessage("settingsLabel");
+
   const openSettings = () => {
     browser.runtime.sendMessage({
       message: "openOptionsPage",

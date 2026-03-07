@@ -1,7 +1,7 @@
 import React from "react";
-import browser from "webextension-polyfill";
 import OptionContainer from "./OptionContainer";
 import "../styles/CategoryContainer.scss";
+import { getLocaleMessage } from "../../common/utils";
 
 export default function CategoryContainer(props) {
   const { category, elements, currentValues = {} } = props;
@@ -10,7 +10,7 @@ export default function CategoryContainer(props) {
       <fieldset>
         <legend>
           <p className="categoryTitle">
-            {category !== "" ? browser.i18n.getMessage(category) : ""}
+            {category !== "" ? getLocaleMessage(category) : ""}
           </p>
         </legend>
         <ul className="categoryElements">

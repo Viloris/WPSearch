@@ -1,9 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import browser from "webextension-polyfill";
-import {
-  updateLogLevel,
-  overWriteLogLevel
-} from "src/common/log";
+import { updateLogLevel, overWriteLogLevel } from "src/common/log";
 import {
   initSettings,
   getAllSettings,
@@ -14,11 +11,12 @@ import {
 } from "src/settings/settings";
 import defaultSettings from "src/settings/defaultSettings";
 import CategoryContainer from "./CategoryContainer";
+import { getLocaleMessage } from "../../common/utils";
 
 /* ---------------- component ---------------- */
 
 /**
- * 
+ *
  * @returns {JSX.element}
  */
 export default function SettingsPage() {
@@ -41,7 +39,7 @@ export default function SettingsPage() {
 
     init();
 
-    const handleStorageChange = changes => {
+    const handleStorageChange = (changes) => {
       const newSettings = handleSettingsChange(changes);
       if (newSettings) {
         setCurrentValues(newSettings);
@@ -65,7 +63,7 @@ export default function SettingsPage() {
 
   /* ---------------- additional category ---------------- */
 
-  const additionalCategory = handleReset => ({
+  const additionalCategory = (handleReset) => ({
     category: "",
     elements: [
       {
@@ -102,9 +100,7 @@ export default function SettingsPage() {
 
   return (
     <div>
-      <p className="contentTitle">
-        {browser.i18n.getMessage("settingsLabel")}
-      </p>
+      <p className="contentTitle">{getLocaleMessage("settingsLabel")}</p>
       <hr />
       <ul>
         {defaultSettings.map((category, index) => (
@@ -122,5 +118,3 @@ export default function SettingsPage() {
     </div>
   );
 }
-
-

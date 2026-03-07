@@ -1,20 +1,21 @@
 import React from "react";
-import browser from "webextension-polyfill";
 import { setSettings } from "src/settings/settings";
 import KeyboardShortcutForm from "./KeyboardShortcutForm";
+import { getLocaleMessage } from "../../common/utils";
 import "../styles/OptionContainer.scss";
 
 export default function OptionContainer(props) {
   const { title, captions, type, id, children, currentValue } = props;
 
-  const handleValueChange = e => {
+  const handleValueChange = (e) => {
     let value = e.target.value;
 
     if (type == "number") {
       const validity = e.target.validity;
       if (validity.rangeOverflow) value = props.max;
       else if (validity.rangeUnderflow) value = props.min;
-      else if (validity.badInput || value == "" || !validity.valid) value = props.default;
+      else if (validity.badInput || value == "" || !validity.valid)
+        value = props.default;
     }
 
     setSettings(id, value);
@@ -22,7 +23,7 @@ export default function OptionContainer(props) {
     if (props.handleChange) props.handleChange();
   };
 
-  const handleCheckedChange = e => {
+  const handleCheckedChange = (e) => {
     setSettings(id, e.target.checked);
   };
 
@@ -116,9 +117,14 @@ export default function OptionContainer(props) {
       optionForm = (
         <div className="selectWrap">
           <select id={formId} onChange={handleValueChange} value={currentValue}>
-            {(typeof props.options === 'function' ? props.options() : props.options).map((option, index) => (
+            {(typeof props.options === "function"
+              ? props.options()
+              : props.options
+            ).map((option, index) => (
               <option value={option.value} key={index}>
-                {props.useRawOptionName ? option.name : browser.i18n.getMessage(option.name)}
+                {props.useRawOptionName
+                  ? option.name
+                  : getLocaleMessage(option.name)}
               </option>
             ))}
           </select>
@@ -128,14 +134,18 @@ export default function OptionContainer(props) {
     case "button":
       formId = "";
       optionForm = (
-        <input type="button" value={browser.i18n.getMessage(props.value)} onClick={props.onClick} />
+        <input
+          type="button"
+          value={getLocaleMessage(props.value)}
+          onClick={props.onClick}
+        />
       );
       break;
     case "file":
       formId = "";
       optionForm = (
         <label className="button includeSpan" htmlFor={id}>
-          <span>{browser.i18n.getMessage(props.value)}</span>
+          <span>{getLocaleMessage(props.value)}</span>
           <input
             type="file"
             id={id}
@@ -149,7 +159,11 @@ export default function OptionContainer(props) {
     case "keyboard-shortcut":
       formId = id;
       optionForm = (
-        <KeyboardShortcutForm id={id} initialShortcut={props.shortcut} defaultValue={props.defaultValue} />
+        <KeyboardShortcutForm
+          id={id}
+          initialShortcut={props.shortcut}
+          defaultValue={props.defaultValue}
+        />
       );
       break;
     case "none":
@@ -158,24 +172,37 @@ export default function OptionContainer(props) {
       break;
   }
 
-  const shouldShow = props.shouldShow == undefined
-    || (typeof props.shouldShow === 'function' ? props.shouldShow() : props.shouldShow);
+  const shouldShow =
+    props.shouldShow == undefined ||
+    (typeof props.shouldShow === "function"
+      ? props.shouldShow()
+      : props.shouldShow);
 
   return (
     shouldShow && (
-      <li className={`optionContainer ${props.updated ? "updated" : ""} ${props.new ? "new" : ""}`}>
+      <li
+        className={`optionContainer ${props.updated ? "updated" : ""} ${props.new ? "new" : ""}`}
+      >
         {props.hr && <hr />}
-        <div className={`optionElement ${type == "textarea" ? "showColumn" : ""}`}>
+        <div
+          className={`optionElement ${type == "textarea" ? "showColumn" : ""}`}
+        >
           <div className="optionText">
             <label className="noHover" htmlFor={formId ? formId : null}>
-              <p>{title ? (props.useRawTitle ? title : browser.i18n.getMessage(title)) : ""}</p>
+              <p>
+                {title
+                  ? props.useRawTitle
+                    ? title
+                    : getLocaleMessage(title)
+                  : ""}
+              </p>
             </label>
             {captions.map((caption, index) => (
               <p className="caption" key={index}>
                 {caption
                   ? props.useRawCaptions
                     ? caption
-                    : browser.i18n.getMessage(caption).replace(/<br>/g, "\n")
+                    : getLocaleMessage(caption).replace(/<br>/g, "\n")
                   : ""}
               </p>
             ))}
@@ -186,7 +213,11 @@ export default function OptionContainer(props) {
         {children && (
           <fieldset>
             <legend className="noDisplayLegend">
-              {title ? (props.useRawTitle ? title : browser.i18n.getMessage(title)) : ""}
+              {title
+                ? props.useRawTitle
+                  ? title
+                  : getLocaleMessage(title)
+                : ""}
             </legend>
             {children}
           </fieldset>
@@ -194,4 +225,4 @@ export default function OptionContainer(props) {
       </li>
     )
   );
-};
+}

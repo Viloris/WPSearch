@@ -3,6 +3,7 @@ import log from "loglevel";
 import { getSettings } from "src/settings/settings";
 import { tabsSendMessage } from "../common/utils.jsx";
 import config from "../config.json";
+import { getLocaleMessage } from "../common/utils.jsx";
 
 const { WP_SEARCH_SELECTED_TEXT } = config;
 
@@ -12,7 +13,7 @@ const SEARCH_TEXT = "searchText";
 function createMenus() {
   browser.contextMenus.create({
     id: SEARCH_TEXT,
-    title: browser.i18n.getMessage("wikipediaSearchTextMenu"),
+    title: getLocaleMessage("wikipediaSearchTextMenu"),
     contexts: ["selection"]
   });
 }

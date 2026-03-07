@@ -2,9 +2,10 @@ import React, { useEffect, useState, useMemo } from "react";
 import browser from "webextension-polyfill";
 import getShortcut from "src/common/getShortcut";
 import CategoryContainer from "./CategoryContainer";
+import { getLocaleMessage } from "../../common/utils";
 
 /**
- * 
+ *
  * @returns {JSX.Element}
  */
 export default function KeyboardShortcutPage() {
@@ -17,13 +18,11 @@ export default function KeyboardShortcutPage() {
       const rawDescription = /^__MSG_(.*)__$/;
       const allCommands = await browser.commands.getAll();
 
-      const normalized = allCommands.map(command => {
+      const normalized = allCommands.map((command) => {
         const match = command.description?.match(rawDescription);
         return {
           ...command,
-          description: match
-            ? browser.i18n.getMessage(match[1])
-            : command.description
+          description: match ? getLocaleMessage(match[1]) : command.description
         };
       });
 
@@ -37,7 +36,7 @@ export default function KeyboardShortcutPage() {
 
   const commandElements = useMemo(
     () =>
-      commands.map(command => ({
+      commands.map((command) => ({
         id: command.name,
         title: command.description,
         useRawTitle: true,
@@ -70,7 +69,7 @@ export default function KeyboardShortcutPage() {
   return (
     <div>
       <p className="contentTitle">
-        {browser.i18n.getMessage("keyboardShortcutsLabel")}
+        {getLocaleMessage("keyboardShortcutsLabel")}
       </p>
       <hr />
 

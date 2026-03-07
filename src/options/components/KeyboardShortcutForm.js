@@ -3,6 +3,7 @@ import browserInfo from "browser-info";
 import browser from "webextension-polyfill";
 import ClearIcon from "../icons/clear.svg";
 import ResetIcon from "../icons/reset.svg";
+import { getLocaleMessage } from "../../common/utils";
 
 /* ---------------- utils ---------------- */
 
@@ -30,13 +31,17 @@ const normalizeKey = (key, keyCode) => {
 /* ---------------- component ---------------- */
 
 /**
- * 
- * @param {number} id 
- * @param {string} initialShortcut 
- * @param {string} defaultValue 
+ *
+ * @param {number} id
+ * @param {string} initialShortcut
+ * @param {string} defaultValue
  * @returns {JSX.Element}
  */
-export default function KeyboardShortcutForm({ id, initialShortcut, defaultValue }) {
+export default function KeyboardShortcutForm({
+  id,
+  initialShortcut,
+  defaultValue
+}) {
   const isMac = useMemo(() => browserInfo().os === "OS X", []);
 
   const [shortcut, setShortcut] = useState(initialShortcut || "");
@@ -52,7 +57,7 @@ export default function KeyboardShortcutForm({ id, initialShortcut, defaultValue
     };
   }, []);
 
-  const handleFocus = useCallback(e => {
+  const handleFocus = useCallback((e) => {
     e.target.select();
     document.onkeydown = () => false;
     document.onkeypress = () => false;
@@ -65,19 +70,22 @@ export default function KeyboardShortcutForm({ id, initialShortcut, defaultValue
     document.onkeypress = null;
   }, [shortcut]);
 
-  const updateShortcut = useCallback(async newShortcut => {
-    try {
-      await browser.commands.update({ name: id, shortcut: newShortcut });
-      setShortcut(newShortcut);
-    } catch {
-      setError(browser.i18n.getMessage("invalidShortcutMessage"));
-    }
-  }, [id]);
+  const updateShortcut = useCallback(
+    async (newShortcut) => {
+      try {
+        await browser.commands.update({ name: id, shortcut: newShortcut });
+        setShortcut(newShortcut);
+      } catch {
+        setError(getLocaleMessage("invalidShortcutMessage"));
+      }
+    },
+    [id]
+  );
 
   /* -------- keyboard handling -------- */
 
   const handleKeyDown = useCallback(
-    e => {
+    (e) => {
       if (e.repeat) return;
 
       if (e.key === "Tab") {
@@ -88,22 +96,21 @@ export default function KeyboardShortcutForm({ id, initialShortcut, defaultValue
       const normalizedKey = normalizeKey(e.key, e.keyCode);
       let nextError = "";
 
-      const mediaKeys = /^(MediaPlayPause|MediaStop|MediaNextTrack|MediaPrevTrack)$/;
+      const mediaKeys =
+        /^(MediaPlayPause|MediaStop|MediaNextTrack|MediaPrevTrack)$/;
       const funcKeys = /^F([0-9]|1[0-2])$/;
       const modifierKeys = /^(Control|Alt|Shift|Meta)$/;
 
       if (mediaKeys.test(normalizedKey) || funcKeys.test(normalizedKey)) {
         nextError = "";
       } else if (modifierKeys.test(e.key)) {
-        nextError = browser.i18n.getMessage("typeLetterMessage");
+        nextError = getLocaleMessage("typeLetterMessage");
       } else if (!e.ctrlKey && !e.altKey && !e.metaKey) {
-        nextError = browser.i18n.getMessage(
-          isMac
-            ? "includeMacModifierKeysMessage"
-            : "includeModifierKeysMessage"
+        nextError = getLocaleMessage(
+          isMac ? "includeMacModifierKeysMessage" : "includeModifierKeysMessage"
         );
       } else if (!normalizedKey) {
-        nextError = browser.i18n.getMessage("invalidLetterMessage");
+        nextError = getLocaleMessage("invalidLetterMessage");
       }
 
       const nextValue =
@@ -130,7 +137,7 @@ export default function KeyboardShortcutForm({ id, initialShortcut, defaultValue
   /* -------- shortcut actions -------- */
 
   const clearShortcut = async () => {
-    await browser.commands.reset(id).catch(() => { });
+    await browser.commands.reset(id).catch(() => {});
     setShortcut("");
     setValue("");
   };
@@ -149,7 +156,7 @@ export default function KeyboardShortcutForm({ id, initialShortcut, defaultValue
           type="text"
           id={id}
           value={value}
-          placeholder={browser.i18n.getMessage("typeShortcutMessage")}
+          placeholder={getLocaleMessage("typeShortcutMessage")}
           onKeyDown={handleKeyDown}
           onKeyUp={handleKeyUp}
           onFocus={handleFocus}
@@ -159,7 +166,7 @@ export default function KeyboardShortcutForm({ id, initialShortcut, defaultValue
 
         <button
           className="clearButton"
-          title={browser.i18n.getMessage("clear")}
+          title={getLocaleMessage("clear")}
           onClick={clearShortcut}
         >
           <ClearIcon />
@@ -167,7 +174,7 @@ export default function KeyboardShortcutForm({ id, initialShortcut, defaultValue
 
         <button
           className="resetButton"
-          title={browser.i18n.getMessage("reset")}
+          title={getLocaleMessage("reset")}
           onClick={resetShortcut}
         >
           <ResetIcon />

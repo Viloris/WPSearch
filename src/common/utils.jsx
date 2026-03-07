@@ -18,6 +18,7 @@ export function splitLine(text) {
 
 /**
  * 
+ * @description get the first target language from the locale message.json
  * @returns {string}
  */
 export function getTargetLang() {
@@ -26,6 +27,7 @@ export function getTargetLang() {
 
 /**
  * 
+ * @description get the second target language from the locale message.json
  * @returns {string}
  */
 export function getSecondTargetLang() {
@@ -34,26 +36,44 @@ export function getSecondTargetLang() {
 
 /**
  * 
- * @returns {string}
+ * @param {string} key
+ * @returns {string} get message from the locale message.json
  */
-export function getMainLangText() {
-    return browser.i18n.getMessage(`lang_${getTargetLang()}`);
+export function getLocaleMessage(key) {
+    return browser.i18n.getMessage(key);
 }
 
 /**
  * 
+ * @description get the main language code from the locale message.json
+ * @returns {string}
+ */
+export function getMainLangText() {
+    return getLocaleMessage(`lang_${getTargetLang()}`);
+}
+
+/**
+ * 
+ * @description get the second language code from the locale message.json
  * @returns {string}
  */
 export function getSecondLangText() {
-    return browser.i18n.getMessage(`lang_${getSecondTargetLang()}`);
+    return getLocaleMessage(`lang_${getSecondTargetLang()}`);
 }
 
+/**
+ * 
+ * @param {*} tab 
+ * @param {string} message 
+ * @returns {string}
+ */
 export function tabsSendMessage(tab, message) {
     return browser.tabs.sendMessage(tab.id, { message });
 }
 
 /**
  * 
+ * @description get the wikipedia name based on language
  * @param {string} langCode
  * @returns {string}
  */
