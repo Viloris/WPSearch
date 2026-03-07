@@ -6,7 +6,7 @@
         "message": "Gyors keresés a Wikipédián"
     },
     "donateWithPaypalLabel": {
-        "message": "Adomány PayPal használatával"
+        "message": "Támogatás PayPal használatával"
     },
     "donateLabel": {
         "message": "Támogatás"
@@ -144,7 +144,7 @@
         "message": "Megjelenítés a helyi menüben"
     },
     "ifShowMenuCaptionLabel": {
-        "message": "Elemek hozzáadása a helyi menübe, amikor jobb egérgombbal kattint a weboldalra vagy a lapra."
+        "message": "Elemek hozzáadása a helyi menühöz, amikor jobb egérgombbal kattint a weboldalra vagy a lapra."
     },
     "styleLabel": {
         "message": "Stílus"
@@ -153,7 +153,7 @@
         "message": "Téma"
     },
     "themeCaptionLabel": {
-        "message": "Szín séma megadása."
+        "message": "Színséma megadása."
     },
     "lightLabel": {
         "message": "Világos"
@@ -327,7 +327,7 @@
         "message": "További engedélyek szükségesek a Wikipédia Preview használatához weboldalakon."
     },
     "enableLabel": {
-        "message": "Enable"
+        "message": "Engedélyezés"
     },
     "backersLabel": {
         "message": "Támogatók"
