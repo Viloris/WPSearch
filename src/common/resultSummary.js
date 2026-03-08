@@ -1,5 +1,5 @@
 import React from "react";
-import { splitLine } from "./utils.jsx";
+import { splitLine } from "./utils";
 
 /**
  * 

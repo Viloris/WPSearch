@@ -1,9 +1,8 @@
 import browser from "webextension-polyfill";
 import log from "loglevel";
 import { getSettings } from "src/settings/settings";
-import { tabsSendMessage } from "../common/utils.jsx";
 import config from "../config.json";
-import { getLocaleMessage } from "../common/utils.jsx";
+import { getLocaleMessage, tabsSendMessage } from "../common/utils";
 
 const { WP_SEARCH_SELECTED_TEXT } = config;
 

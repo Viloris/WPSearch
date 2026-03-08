@@ -6,7 +6,7 @@ import { updateLogLevel, overWriteLogLevel } from "src/common/log";
 import Header from "./Header";
 import InputArea from "./InputArea";
 import "../styles/PopupPage.scss";
-import { getTargetLang, tabsSendMessage } from "../../common/utils.jsx";
+import { getTargetLang, tabsSendMessage } from "../../common/utils";
 import "../../common/styles/ResultArea.scss";
 import ResultArea from "../../common/ResultArea";
 
