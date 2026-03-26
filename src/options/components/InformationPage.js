@@ -3,14 +3,14 @@ import browser from "webextension-polyfill";
 import browserInfo from "browser-info";
 import queryString from "query-string";
 import OptionsContainer from "./OptionContainer";
-import { chromeExtensionUrl, firefoxAddonUrl } from "src/common/personalUrls";
+import { chromeExtensionUrl, edgeAddonUrl, firefoxAddonUrl } from "src/common/personalUrls";
 import manifestChrome from "src/manifest-chrome.json";
 import manifestFirefox from "src/manifest-firefox.json";
 import { useLocation } from "react-router-dom";
 import config from "../../config.json";
 import { getLocaleMessage } from "../../common/utils";
 
-const { FIREFOX, CHROME, gitHubUrl } = config;
+const { EDGE, FIREFOX, CHROME, gitHubUrl } = config;
 
 /* ---------------- CUSTOM HOOK ---------------- */
 
@@ -60,7 +60,12 @@ export default function InformationPage() {
 
   const [hasPermission, requestPermission] = useAdditionalPermission();
 
-  const storeLink = isChrome ? chromeExtensionUrl : firefoxAddonUrl;
+  const extensionUrl = {
+    [FIREFOX]: firefoxAddonUrl,
+    [CHROME]: chromeExtensionUrl,
+    [EDGE]: edgeAddonUrl
+  }
+  const storeLink = extensionUrl[browserData.name] //isChrome ? chromeExtensionUrl : firefoxAddonUrl;
   const storeLabel = isChrome
     ? getLocaleMessage("extensionPageLabel")
     : getLocaleMessage("addonPageLabel");

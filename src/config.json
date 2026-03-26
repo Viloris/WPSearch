@@ -17,6 +17,7 @@
     "CMD": "cmd",
     "CHROME": "Chrome",
     "FIREFOX": "Firefox",
+    "EDGE": "Edge",
     "WP_SEARCH_SELECTED_TEXT": "wpSearchSelectedText",
     "EXT_NAME": "Wikipedia Preview",
     "settingsType": {
