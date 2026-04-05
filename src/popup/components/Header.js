@@ -10,7 +10,7 @@ const EXTENSION_NAME = getLocaleMessage("extName");
 
 /**
  *
- * @returns {JSX.Element}
+ * @returns {JSX.Element} Title section with extension icon and name
  */
 function renderTitle() {
   return (
@@ -23,7 +23,7 @@ function renderTitle() {
 
 /**
  *
- * @returns {JSX.Element}
+ * @returns {JSX.Element} Settings button that opens settings page on click
  */
 function SettingsButton() {
   const openSettings = () => {
@@ -47,7 +47,8 @@ function SettingsButton() {
  * @param {boolean} isConnected
  * @param {boolean} isEnabledOnPage
  * @param {function}  toggleEnabledOnPage
- * @returns {JSX.Element}
+ * @returns {JSX.Element} Action bar with toggle button and settings button,
+ * passing state and toggle function to toggle button for managing enabled status on page
  */
 function renderActionBar(props) {
   const { isConnected, isEnabledOnPage, toggleEnabledOnPage } = props;
@@ -68,7 +69,7 @@ function renderActionBar(props) {
  * @param {boolean} isConnected
  * @param {boolean} isEnabledOnPage
  * @param {function}  toggleEnabledOnPage
- * @returns {JSX.Element}
+ * @returns {JSX.Element} Toggle button with state and title based on connection and enabled status
  */
 function ToggleButton({ isConnected, isEnabledOnPage, toggleEnabledOnPage }) {
   const getToggleButtonTitle = (isEnabled) => {
@@ -94,7 +95,8 @@ function ToggleButton({ isConnected, isEnabledOnPage, toggleEnabledOnPage }) {
 /**
  *
  * @param {*} props
- * @returns {JSX.Element}
+ * @returns {JSX.Element} Header component with title and action bar,
+ * passing props to action bar for state management
  */
 export default function Header(props) {
   return (

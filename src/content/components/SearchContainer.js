@@ -8,19 +8,23 @@ import { getTargetLang } from "../../common/utils";
 
 const DEFAULT_POSITION = { x: 0, y: 0 };
 
-const wpSearchText = (expression) =>
+const wpSearchText = (expression) => {
   browser.runtime.sendMessage({
     message: "wikipediaSearch",
     expression
   });
+}
+
 /**
  *
+ * @description Component to display a search button and result panel for Wikipedia search,
  * @param {string} selectedText
  * @param {number} selectedPosition
  * @param {number} clickedPosition
  * @param {boolean} shouldWPSearch
  * @param {function()} removeContainer
- * @returns {JSX.Element}
+ * @returns {JSX.Element} Component to display a search button and result panel for Wikipedia search,
+ * which handles the logic for showing/hiding the button and panel based on user interactions and settings
  */
 export default function SearchContainer({
   selectedText,

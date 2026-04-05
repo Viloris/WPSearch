@@ -17,7 +17,10 @@ import { getLocaleMessage } from "../../common/utils";
 
 /**
  *
- * @returns {JSX.element}
+ * @returns {JSX.element} Component to display the settings page of the extension, 
+ * which initializes the settings, handles updates to the settings, and renders 
+ * a list of categories and options for the user to customize their preferences, 
+ * including actions to import/export settings and reset to default values
  */
 export default function SettingsPage() {
   const [currentValues, setCurrentValues] = useState(null);

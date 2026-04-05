@@ -7,15 +7,15 @@ const ICON_URL = browser.runtime.getURL("icons/512.png");
 
 const calcPosition = (buttonSize, offset, direction) => {
   const half = buttonSize / 2;
-
+  const position = -buttonSize - offset;
   const map = {
-    top: { top: -buttonSize - offset, left: -half },
+    top: { top: position, left: -half },
     bottom: { top: offset, left: -half },
     right: { top: -half, left: offset },
-    left: { top: -half, left: -buttonSize - offset },
-    topRight: { top: -buttonSize - offset, left: offset },
-    topLeft: { top: -buttonSize - offset, left: -buttonSize - offset },
-    bottomLeft: { top: offset, left: -buttonSize - offset },
+    left: { top: -half, left: position },
+    topRight: { top: position, left: offset },
+    topLeft: { top: position, left: position },
+    bottomLeft: { top: offset, left: position },
     bottomRight: { top: offset, left: offset }
   };
 

@@ -6,13 +6,14 @@ import { ResultHeader } from "./resultHeader";
 
 /**
  *
+ * @description Component to display a search result section with error handling, content display, and footer based on the provided props
  * @param {string} errorMessage
  * @param {boolean} isError
  * @param {string} text
  * @param {string} title
  * @param {string} url
  * @param {string} wikipedia
- * @returns {JSX.Element}
+ * @returns {JSX.Element} Component to display a search result section with error handling, content display, and footer based on the provided props
  */
 export function ResultSection({
   errorMessage,

@@ -2,9 +2,10 @@ import React from "react";
 
 /**
  * 
+ * @description Component to display a link to the Wikipedia article with the given title and URL, styled as a header for the search result
  * @param {string} title 
  * @param {string} url 
- * @returns {JSX.Element}
+ * @returns {JSX.Element} Component to display a link to the Wikipedia article with the given title and URL, styled as a header for the search result
  */
 export function WikipediaLink({ title, url }) {
     return (

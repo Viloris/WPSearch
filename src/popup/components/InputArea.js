@@ -53,7 +53,8 @@ function InputArea({ inputText, handleInputText }) {
 }
 
 const arePropsEqual = (prevProps, nextProps) => {
-  return prevProps.inputText === nextProps.inputText && prevProps.sourceLang === nextProps.sourceLang;
+  return prevProps.inputText === nextProps.inputText &&
+    prevProps.sourceLang === nextProps.sourceLang;
 };
 
 export default React.memo(InputArea, arePropsEqual);

@@ -3,8 +3,9 @@ import { splitLine } from "./utils";
 
 /**
  * 
+ * @description Component to display a summary of the search result text, splitting it into lines for better readability
  * @param {string} text 
- * @returns {JSX.Element}
+ * @returns {JSX.Element} Component to display a summary of the search result text, splitting it into lines for better readability
  */
 export function ResultSummary({ text }) {
     return (

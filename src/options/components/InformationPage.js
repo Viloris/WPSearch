@@ -44,7 +44,10 @@ const useAdditionalPermission = () => {
 
 /**
  *
- * @returns {JSX.Element}
+ * @description Component to display the information page of the settings, which includes details about the extension, its license, and links to the extension
+ * @returns {JSX.Element} Component to display the information page of the settings,
+ * which includes details about the extension, its license, and links to the extension
+ * store and GitHub repository, as well as a button to request additional permissions if needed
  */
 export default function InformationPage() {
   const location = useLocation();

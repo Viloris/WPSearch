@@ -11,7 +11,9 @@ const selected = "selected";
 
 /**
  *
- * @returns {JSX.element}
+ * @returns {JSX.element} Component to display the sidebar of the settings page,
+ * which includes a logo, title, and a list of navigation links to different
+ * sections of the settings, with the currently active section highlighted based on the current route
  */
 const SideBar = () => {
   const { pathname } = useLocation();

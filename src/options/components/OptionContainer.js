@@ -4,6 +4,11 @@ import KeyboardShortcutForm from "./KeyboardShortcutForm";
 import { getLocaleMessage } from "../../common/utils";
 import "../styles/OptionContainer.scss";
 
+/**
+ * 
+ * @param {{title: string, captions: string[], type: string, id: string, children: React.ReactNode, currentValue: any}} props 
+ * @returns {JSX.Element} Component to display an individual option in the settings page, which renders different types of form elements based on the provided type and handles value changes to update the settings accordingly
+ */
 export default function OptionContainer(props) {
   const { title, captions, type, id, children, currentValue } = props;
 

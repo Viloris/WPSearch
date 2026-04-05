@@ -6,7 +6,9 @@ import { getLocaleMessage } from "../../common/utils";
 
 /**
  *
- * @returns {JSX.Element}
+ * @description Component to display the keyboard shortcuts page in the settings, which retrieves the available commands from the browser,
+ * @returns {JSX.Element} Component to display the keyboard shortcuts page in the settings,
+ * which retrieves the available commands from the browser, normalizes their descriptions for localization, and renders a list of keyboard shortcut options for the user to customize
  */
 export default function KeyboardShortcutPage() {
   const [commands, setCommands] = useState([]);

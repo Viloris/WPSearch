@@ -9,7 +9,8 @@ import ResultArea from "../../common/ResultArea";
  * @param {boolean} shouldShow
  * @param {number} position
  * @param {Array} results
- * @returns {JSX.Element}
+ * @returns {JSX.Element} Component to display a draggable panel with search results, 
+ * which positions itself based on the provided coordinates and adjusts its layout according to the content and settings
  */
 export default function ResultPanel({ shouldShow, position, results }) {
   const panelRef = useRef(null);

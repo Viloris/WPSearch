@@ -4,10 +4,11 @@ import { WikipediaLink } from "./wikiLink";
 
 /**
  *
+ * @description Component to display Wikipedia search result with a link and summary
  * @param {string} text
  * @param {string} title
  * @param {string} url
- * @returns {JSX.Element}
+ * @returns {JSX.Element} Component to display Wikipedia search result with a link and summary
  */
 export function ResultContent({ text, title, url }) {
   return (

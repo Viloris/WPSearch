@@ -29,7 +29,9 @@ const optionsPageClassName =
 
 /**
  *
- * @returns {JSX.Element}
+ * @returns {JSX.Element} Component to display the options page of the extension, 
+ * which includes a sidebar for navigation and a main content area that renders 
+ * different sub-pages based on the current route, with theme setup and localization support
  */
 export default function OptionsPage() {
   setupTheme();

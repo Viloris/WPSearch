@@ -3,6 +3,12 @@ import OptionContainer from "./OptionContainer";
 import "../styles/CategoryContainer.scss";
 import { getLocaleMessage } from "../../common/utils";
 
+/**
+ * 
+ * @description Component to display a category of options in the settings page, with a title and a list of option containers for each setting element.
+ * @param {{category: string, elements: Array, currentValue: Object}} props 
+ * @returns {JSX.Element} Component to display a category of options in the settings page, with a title and a list of option containers for each setting element
+ */
 export default function CategoryContainer(props) {
   const { category, elements, currentValues = {} } = props;
   return (

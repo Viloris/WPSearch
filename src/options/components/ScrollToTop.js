@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 /**
  *
  * @param {Object} children
- * @returns {JSX.element}
+ * @returns {JSX.element} Component to automatically scroll to the top of the page whenever the location changes, ensuring that users start at the top of the page when navigating to a new route within the application
  */
 export default function ScrollToTop({ children }) {
   const location = useLocation();

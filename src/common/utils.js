@@ -5,8 +5,9 @@ import WP_LANG from "../settings/wikipedia.json";
 
 /**
  * 
+ * @description Splits the input text into lines based on newline characters and returns an array of text and <br> elements for display in the search result summary
  * @param {*} text 
- * @returns {Array}
+ * @returns {Array} Array of text and <br> elements to split the input text into lines for display in the search result summary
  */
 export function splitLine(text) {
     const regex = /(\n)/g;
@@ -19,7 +20,7 @@ export function splitLine(text) {
 /**
  * 
  * @description get the first target language from the locale message.json
- * @returns {string}
+ * @returns {string} first target language code from the settings, used for determining the main language for Wikipedia search
  */
 export function getTargetLang() {
     return getSettings("targetLang");
@@ -28,7 +29,7 @@ export function getTargetLang() {
 /**
  * 
  * @description get the second target language from the locale message.json
- * @returns {string}
+ * @returns {string} second target language code from the settings, or null if not set, used for determining if a second language search should be performed
  */
 export function getSecondTargetLang() {
     return getSettings("secondTargetLang");
@@ -36,6 +37,7 @@ export function getSecondTargetLang() {
 
 /**
  * 
+ * @description get a localized message string from the browser's i18n system based on the provided key, used for displaying messages in the user's language
  * @param {string} key
  * @returns {string} get message from the locale message.json
  */
@@ -46,7 +48,7 @@ export function getLocaleMessage(key) {
 /**
  * 
  * @description get the main language code from the locale message.json
- * @returns {string}
+ * @returns {string} main language code from the locale message.json based on the target language setting
  */
 export function getMainLangText() {
     return getLocaleMessage(`lang_${getTargetLang()}`);
@@ -55,7 +57,7 @@ export function getMainLangText() {
 /**
  * 
  * @description get the second language code from the locale message.json
- * @returns {string}
+ * @returns {string} second language code from the locale message.json based on the second target language setting
  */
 export function getSecondLangText() {
     return getLocaleMessage(`lang_${getSecondTargetLang()}`);
@@ -63,9 +65,10 @@ export function getSecondLangText() {
 
 /**
  * 
+ * @description Sends a message to the specified browser tab and returns the response, used for communication between background and content scripts
  * @param {*} tab 
  * @param {string} message 
- * @returns {string}
+ * @returns {string} Sends a message to the specified browser tab and returns the response, used for communication between background and content scripts
  */
 export function tabsSendMessage(tab, message) {
     return browser.tabs.sendMessage(tab.id, { message });
@@ -75,7 +78,7 @@ export function tabsSendMessage(tab, message) {
  * 
  * @description get the wikipedia name based on language
  * @param {string} langCode
- * @returns {string}
+ * @returns {string} Wikipedia name for the given language code from the wikipedia.json settings file
  */
 export function getWikipediaName(langCode) {
     return WP_LANG[langCode];

@@ -16,7 +16,8 @@ const logDir = "popup/PopupPage";
 
 /**
  *
- * @returns {Object<{ isConnected: true, url, selectedText, isEnabledOnPage }>}
+ * @returns {Object<{ isConnected: true, url, selectedText, isEnabledOnPage }>} Tab information including connection status, url,
+ * selected text and enabled status on page,  or default values if error occurs
  */
 const getTabInfo = async () => {
   try {
@@ -52,7 +53,9 @@ const rtlLanguageClassName = ["he", "ar"].includes(UILanguage)
 
 /**
  *
- * @returns {JSX.Element}
+ * @returns {JSX.Element} Popup page component managing state and handlers for input text, search results,
+ * tab information and information label visibility, rendering header,
+ * input area and result area components, and initializing settings and theme on mount
  */
 export default function PopupPage() {
   const [targetLang, setTargetLang] = useState("");

@@ -12,7 +12,8 @@ function shouldOverrideColors() {
 }
 
 /**
- * Return style object if color override is enabled
+ * @description Return style object if color override is enabled
+ * @return {Object|undefined} Style object with color property if override is enabled, otherwise undefined to use default styles
  */
 export function getResultFontColor() {
   const isOverrideColors = shouldOverrideColors();
@@ -23,7 +24,8 @@ export function getResultFontColor() {
 }
 
 /**
- * Return style object if color override is enabled
+ * @description Return style object if color override is enabled
+ * @return {Object|undefined} Style object with color property if override is enabled, otherwise undefined to use default styles
  */
 export function getCandidateFontColor() {
   const isOverrideColors = shouldOverrideColors();
@@ -35,7 +37,8 @@ export function getCandidateFontColor() {
 
 
 /**
- * Return style object if color override is enabled
+ * @description Return style object if color override is enabled
+ * @return {Object|undefined} Style object with backgroundColor property if override is enabled, otherwise undefined to use default styles
  */
 export function getBackgroundColor() {
   const isOverrideColors = shouldOverrideColors();

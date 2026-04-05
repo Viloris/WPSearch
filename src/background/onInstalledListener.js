@@ -19,6 +19,12 @@ const openOptionsPage = (active) => {
   });
 };
 
+/**
+ * 
+ * @description Handles the onInstalled event for the extension
+ * @param {Object} details
+ * @returns {Promise} --- IGNORE ---
+ */
 export default async (details) => {
   if (details.reason != "install" && details.reason != "update") return;
   log.info(logDir, "onInstalledListener()", details);

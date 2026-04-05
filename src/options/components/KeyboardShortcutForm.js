@@ -35,7 +35,8 @@ const normalizeKey = (key, keyCode) => {
  * @param {number} id
  * @param {string} initialShortcut
  * @param {string} defaultValue
- * @returns {JSX.Element}
+ * @returns {JSX.Element} Component to display a form for setting a keyboard shortcut for a specific command,
+ * which includes input handling for capturing the shortcut, validation of the input, and actions to clear or reset the shortcut to its default value
  */
 export default function KeyboardShortcutForm({
   id,
@@ -137,7 +138,7 @@ export default function KeyboardShortcutForm({
   /* -------- shortcut actions -------- */
 
   const clearShortcut = async () => {
-    await browser.commands.reset(id).catch(() => {});
+    await browser.commands.reset(id).catch(() => { });
     setShortcut("");
     setValue("");
   };

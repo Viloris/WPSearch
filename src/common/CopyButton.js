@@ -8,8 +8,9 @@ const buttonCaption = getLocaleMessage("copyLabel");
 
 /**
  *
+ * @description Component to display a copy button for the given text, which allows users to copy the text to their clipboard and provides visual feedback when the text has been copied successfully
  * @param {string} text
- * @returns {JSX.Element}
+ * @returns {JSX.Element} Copy button with copied state
  */
 export default function CopyButton({ text }) {
   const [isCopied, setIsCopied] = useState(false);

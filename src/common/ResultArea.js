@@ -6,10 +6,11 @@ import { getLocaleMessage, getWikipediaName } from "../common/utils";
 
 /**
  *
+ * @description Component to display search results with optional information label and dismiss hint functionality
  * @param {Object} result
  * @param {boolean} hideInformationLabel
  * @param {function()} dismissHint
- * @returns {JSX.Element}
+ * @returns {JSX.Element} Component to display search results with optional information label and dismiss hint functionality
  */
 export default function ResultArea({
   results,

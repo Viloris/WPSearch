@@ -43,7 +43,9 @@ const paths = [
 
 /**
  * 
- * @returns {JSX.Element}
+ * @description Component to display the main content area of the settings page, which renders different sub-pages based on the current route and available features, such as keyboard shortcuts for supported browsers
+ * @returns {JSX.Element} Component to display the main content area of the settings page,
+ * which renders different sub-pages based on the current route and available features, such as keyboard shortcuts for supported browsers
  */
 export default function ContentsArea() {
     return (
