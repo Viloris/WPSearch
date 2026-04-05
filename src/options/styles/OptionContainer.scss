@@ -88,6 +88,7 @@ textarea {
 }
 
 textarea {
+  appearance: textfield;
   -moz-appearance: textfield;
   border: 1px var(--button) solid;
   border-radius: 2px;
@@ -106,6 +107,7 @@ textarea {
 input[type="number"],
 input[type="text"],
 input[type="color"] {
+  appearance: textfield;
   -moz-appearance: textfield;
   width: 50px;
   height: 30px;
@@ -233,6 +235,7 @@ input[type="color"] {
 select {
   background-color: var(--sub-bg);
   color: var(--main-text);
+  appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
   text-overflow: ellipsis;
@@ -323,6 +326,7 @@ input[type="button"],
 }
 
 input[type="file"] {
+  appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
   opacity: 0;
