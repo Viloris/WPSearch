@@ -1,26 +1,13 @@
 import React from "react";
 import browser from "webextension-polyfill";
 import { HashRouter } from "react-router-dom";
-import { initSettings, getSettings } from "../../settings/settings";
+import { initSettings, getSettings, addSettingsChangeListener, removeSettingsChangeListener } from "../../settings/settings";
 import SideBar from "./SideBar";
 import ContentsArea from "./ContentsArea";
 import ScrollToTop from "./ScrollToTop";
 import "../styles/OptionsPage.scss";
 
-const setupTheme = async () => {
-  await initSettings();
-  document.body.classList.add(getSettings("theme") + "-theme");
-
-  browser.storage.local.onChanged.addListener((changes) => {
-    if (changes.Settings.newValue.theme === changes.Settings.oldValue.theme)
-      return;
-
-    document.body.classList.replace(
-      changes.Settings.oldValue.theme + "-theme",
-      changes.Settings.newValue.theme + "-theme"
-    );
-  });
-};
+// setup theme and watch for changes
 
 const UILanguage = browser.i18n.getUILanguage();
 const rtlLanguage = ["he", "ar"].includes(UILanguage);
@@ -34,7 +21,30 @@ const optionsPageClassName =
  * different sub-pages based on the current route, with theme setup and localization support
  */
 export default function OptionsPage() {
-  setupTheme();
+  React.useEffect(() => {
+    let mounted = true;
+    const init = async () => {
+      await initSettings();
+      if (!mounted) return;
+      document.body.classList.add(getSettings("theme") + "-theme");
+    };
+    init();
+
+    const onSettingsChanged = (changes) => {
+      if (!changes || !changes.Settings) return;
+      const oldTheme = changes.Settings.oldValue?.theme;
+      const newTheme = changes.Settings.newValue?.theme;
+      if (!oldTheme || !newTheme || oldTheme === newTheme) return;
+      document.body.classList.replace(oldTheme + "-theme", newTheme + "-theme");
+    };
+
+    addSettingsChangeListener(onSettingsChanged);
+
+    return () => {
+      mounted = false;
+      removeSettingsChangeListener(onSettingsChanged);
+    };
+  }, []);
   return (
     <HashRouter
       hashType="noslash"

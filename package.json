@@ -43,7 +43,8 @@
     "scripts": {
         "watch-dev": "webpack --config webpack.config.dev.js --watch",
         "build": "webpack --config webpack.config.dist.js",
-        "open-analyzer": "opener http://127.0.0.1:8888/"
+        "open-analyzer": "opener http://127.0.0.1:8888/",
+        "lint": "npx eslint \"src/**/*.js\" --max-warnings=0"
     },
     "author": "Viloris",
     "license": "MPL-2.0",

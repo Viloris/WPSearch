@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import log from "loglevel";
 import CopyIcon from "../icons/copy.svg";
 import "../styles/CopyButton.scss";
 import { getLocaleMessage } from "../common/i18n";
@@ -14,12 +15,8 @@ const buttonCaption = getLocaleMessage("copyLabel");
  */
 export default function CopyButton({ text }) {
   const [isCopied, setIsCopied] = useState(false);
-  const [prevText, setPrevText] = useState(text);
-
-  if (text !== prevText) {
-    setPrevText(text);
-    setIsCopied(false);
-  }
+  const [copyError, setCopyError] = useState("");
+  const [copiedForText, setCopiedForText] = useState("");
 
   useEffect(() => {
     if (!isCopied) return;
@@ -31,15 +28,21 @@ export default function CopyButton({ text }) {
     e.preventDefault();
     try {
       await navigator.clipboard.writeText(text);
+      setCopiedForText(text);
       setIsCopied(true);
+      setCopyError("");
     } catch (err) {
-      console.error("Copy error", err);
+      log.error("Copy failed", err);
+      setCopyError("A másolás nem sikerült. Próbáld újra, vagy engedélyezd a vágólaphozzáférést.");
     }
   };
 
   return (
     <div className="copy">
-      {isCopied && <span className="copiedText">{labelCopied}</span>}
+      {isCopied && copiedForText === text && (
+        <span className="copiedText">{labelCopied}</span>
+      )}
+      {copyError && <span className="copyError">{copyError}</span>}
       <button className="copyButton" title={buttonCaption} onClick={handleCopy}>
         <CopyIcon />
       </button>

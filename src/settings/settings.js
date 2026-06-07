@@ -95,6 +95,44 @@ export const handleSettingsChange = (changes) => {
     return null;
 };
 
+// listener management for settings changes
+const settingsChangeListeners = new Set();
+let browserOnChangedRegistered = false;
+
+const internalOnChanged = (changes) => {
+    if (Object.keys(changes).includes(SETTINGS)) {
+        currentSettings = changes.Settings.newValue;
+        for (const cb of settingsChangeListeners) {
+            try {
+                cb(changes);
+            } catch (e) {
+                log.error(logDir, "settings change listener failed", e);
+            }
+        }
+    }
+};
+
+export const addSettingsChangeListener = (cb) => {
+    if (typeof cb !== "function") return;
+    settingsChangeListeners.add(cb);
+    if (!browserOnChangedRegistered) {
+        browser.storage.local.onChanged.addListener(internalOnChanged);
+        browserOnChangedRegistered = true;
+    }
+};
+
+export const removeSettingsChangeListener = (cb) => {
+    settingsChangeListeners.delete(cb);
+    if (settingsChangeListeners.size === 0 && browserOnChangedRegistered) {
+        try {
+            browser.storage.local.onChanged.removeListener(internalOnChanged);
+        } catch (e) {
+            log.warn(logDir, "failed to remove internalOnChanged", e);
+        }
+        browserOnChangedRegistered = false;
+    }
+};
+
 const getSettingsIds = () => {
     let settingsIds = [];
     defaultSettings.forEach((category) => {

@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useCallback } from "react";
-import browser from "webextension-polyfill";
 import { updateLogLevel, overWriteLogLevel } from "src/common/log";
 import {
   initSettings,
@@ -7,7 +6,9 @@ import {
   resetAllSettings,
   exportSettings,
   importSettings,
-  handleSettingsChange
+  handleSettingsChange,
+  addSettingsChangeListener,
+  removeSettingsChangeListener
 } from "src/settings/settings";
 import defaultSettings from "src/settings/defaultSettings";
 import CategoryContainer from "./CategoryContainer";
@@ -49,11 +50,11 @@ export default function SettingsPage() {
       }
     };
 
-    browser.storage.local.onChanged.addListener(handleStorageChange);
+    addSettingsChangeListener(handleStorageChange);
 
     return () => {
       isMounted = false;
-      browser.storage.local.onChanged.removeListener(handleStorageChange);
+      removeSettingsChangeListener(handleStorageChange);
     };
   }, []);
 

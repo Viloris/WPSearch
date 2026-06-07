@@ -45,4 +45,8 @@ export function getMainLangText() {
  */
 export function getSecondLangText() {
     return getLocaleMessage(`lang_${getSecondTargetLang()}`);
-} 
+}
+
+export function getUILanguage() {
+    return browser.i18n.getUILanguage();
+}

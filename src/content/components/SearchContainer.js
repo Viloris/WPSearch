@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import log from "loglevel";
 import browser from "webextension-polyfill";
 import { getSettings } from "src/settings/settings.js";
 import SearchButton from "./SearchButton";
@@ -63,7 +64,10 @@ export default function SearchContainer({
         setButton((b) => ({ ...b, show: false }));
         setResults(res);
       } catch (error) {
-        console.error("Search error: ", error);
+        log.error("SearchContainer.showPanel failed", {
+          selectedText,
+          error
+        });
       }
     },
     [selectedPosition, selectedText]

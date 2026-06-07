@@ -18,6 +18,10 @@
     "CHROME": "Chrome",
     "FIREFOX": "Firefox",
     "EDGE": "Edge",
+    "INPUT": "INPUT",
+    "TEXTAREA": "TEXTAREA",
+    "CODE": "CODE",
+    "password": "password",
     "WP_SEARCH_SELECTED_TEXT": "wpSearchSelectedText",
     "EXT_NAME": "Wikipedia Preview",
     "settingsType": {
@@ -49,5 +53,13 @@
     "wikipediaPrivacyPolicyUrl": "https://foundation.wikimedia.org/wiki/Policy:Privacy_policy",
     "firefoxPrivacyPolicyUrl": "https://www.mozilla.org/en-US/privacy/firefox/",
     "googlePrivacyPolicyUrl": "https://policies.google.com/privacy",
-    "microsoftPrivacyPolicyUrl": "https://privacy.microsoft.com/"
+    "microsoftPrivacyPolicyUrl": "https://privacy.microsoft.com/",
+    "requestMessages": {
+        "GET_TAB_INFO": "getTabInfo",
+        "GET_SELECTED_TEXT": "getSelectedText",
+        "GET_ENABLED": "getEnabled",
+        "ENABLE_EXTENSION": "enableExtension",
+        "DISABLE_EXTENSION": "disableExtension",
+        "WP_SEARCH": "wpSearch"
+    }
 }

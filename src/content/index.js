@@ -1,20 +1,36 @@
 import React from "react";
+import log from "loglevel";
 import { createRoot } from "react-dom/client";
 import browser from "webextension-polyfill";
 import {
     initSettings,
     getSettings,
-    handleSettingsChange
+    addSettingsChangeListener,
+    removeSettingsChangeListener
 } from "src/settings/settings";
 import { updateLogLevel, overWriteLogLevel } from "src/common/log";
 import SearchContainer from "./components/SearchContainer";
 import { CONFIG } from "../common/constans";
 
-const { ESC, WP_SEARCH_SELECTED_TEXT, SHIFT, CTRL, ALT, CMD } = CONFIG;
-const INPUT = "INPUT";
+const { ESC, SHIFT, CTRL, ALT, CMD, INPUT,
+    TEXTAREA,
+    CODE,
+    password,
+    requestMessages: {
+        GET_TAB_URL,
+        GET_SELECTED_TEXT,
+        GET_ENABLED,
+        ENABLE_EXTENSION,
+        DISABLE_EXTENSION,
+        WP_SEARCH
+    }
+} = CONFIG;
+/* const INPUT = "INPUT";
 const TEXTAREA = "TEXTAREA";
 const CODE = "CODE";
-const password = "password";
+const password = "password"; */
+
+const DEFAULT_POSITION = { x: 0, y: 0 };
 
 let isEnabled = true;
 let prevSelectedText = "";
@@ -36,15 +52,26 @@ const waitTime = (time) => {
     return new Promise((resolve) => setTimeout(() => resolve(), time));
 };
 
+const getPageUrl = () => {
+    const fallbackUrl = document.referrer || "";
+    try {
+        return top.location.href;
+    } catch (error) {
+        log.warn("Unable to read top.location.href, falling back to window.location.href", error);
+    }
+
+    try {
+        return window.location.href;
+    } catch (error) {
+        log.warn("Unable to read window.location.href, falling back to document.referrer", error);
+    }
+
+    return fallbackUrl;
+};
+
 const disableExtensionByUrlList = () => {
     const disableUrls = getSettings("disableUrlList").split("\n");
-    let pageUrl;
-    try {
-        pageUrl = top.location.href;
-    } catch (e) {
-        console.error(e)
-        pageUrl = document.referrer;
-    }
+    const pageUrl = getPageUrl();
 
     const matchesPageUrl = (urlPattern) => {
         const pattern = urlPattern
@@ -60,14 +87,23 @@ const disableExtensionByUrlList = () => {
     if (isMatched) isEnabled = false;
 };
 
+function isInputElement(element) {
+    if (!element || !element.tagName) return false;
+    return element.tagName === INPUT || element.tagName === TEXTAREA;
+}
+
 const getSelectedText = () => {
     const element = document.activeElement;
-    const isInTextField =
-        element.tagName === INPUT || element.tagName === TEXTAREA;
-    const selectedText = isInTextField
-        ? element.value.substring(element.selectionStart, element.selectionEnd)
-        : window.getSelection()?.toString() ?? "";
-    return selectedText;
+    if (!element) return "";
+
+    const isInTextField = isInputElement(element);
+    if (isInTextField) {
+        const selectionStart = element.selectionStart ?? 0;
+        const selectionEnd = element.selectionEnd ?? 0;
+        return (element.value || "").substring(selectionStart, selectionEnd);
+    }
+
+    return window.getSelection()?.toString() ?? "";
 };
 
 const showSearchContainer = (
@@ -106,7 +142,8 @@ const showSearchContainer = (
 
 const isInContentEditable = () => {
     const element = document.activeElement;
-    if (element.tagName === INPUT || element.tagName === TEXTAREA)
+    if (!element) return false;
+    if (isInputElement(element))
         return true;
     if (element.contentEditable === "true") return true;
     return false;
@@ -114,25 +151,34 @@ const isInContentEditable = () => {
 
 const getSelectedPosition = () => {
     const element = document.activeElement;
-    const isInTextField =
-        element.tagName === INPUT || element.tagName === TEXTAREA;
-    const selectedRect = isInTextField
-        ? element.getBoundingClientRect()
-        : window.getSelection().getRangeAt(0).getBoundingClientRect();
+    if (!element) return DEFAULT_POSITION;
+
+    const isInTextField = isInputElement(element);
+    let selectedRect = { left: 0, top: 0, bottom: 0, width: 0 };
+
+    if (isInTextField) {
+        selectedRect = element.getBoundingClientRect();
+    } else {
+        const selection = window.getSelection();
+        if (selection && selection.rangeCount > 0) {
+            selectedRect = selection.getRangeAt(0).getBoundingClientRect();
+        }
+    }
 
     let selectedPosition;
     const panelReferencePoint = getSettings("panelReferencePoint");
+    const centerXOfSelectedText = selectedRect.left + selectedRect.width / 2;
     switch (panelReferencePoint) {
         case "topSelectedText":
             selectedPosition = {
-                x: selectedRect.left + selectedRect.width / 2,
+                x: centerXOfSelectedText,
                 y: selectedRect.top
             };
             break;
         case "bottomSelectedText":
         default:
             selectedPosition = {
-                x: selectedRect.left + selectedRect.width / 2,
+                x: centerXOfSelectedText,
                 y: selectedRect.bottom
             };
             break;
@@ -146,11 +192,17 @@ const handleKeyDown = (e) => {
     }
 };
 
+const onSettingsChanged = (changes) => {
+    // placeholder for content script to react to settings changes if needed
+    // settings module already updates the in-memory `currentSettings`
+    log.debug("content: settings changed", changes);
+};
+
 const handleVisibilityChange = () => {
     if (document.visibilityState === "hidden") {
-        browser.storage.local.onChanged.removeListener(handleSettingsChange);
+        removeSettingsChangeListener(onSettingsChanged);
     } else {
-        browser.storage.local.onChanged.addListener(handleSettingsChange);
+        addSettingsChangeListener(onSettingsChanged);
     }
 };
 
@@ -162,15 +214,15 @@ const handleMessage = async (request) => {
     });
 
     switch (request.message) {
-        case "getTabUrl":
+        case GET_TAB_URL:
             if (!isEnabled) return empty;
             if (window == window.parent) return location.href;
             else return empty;
-        case "getSelectedText":
+        case GET_SELECTED_TEXT:
             if (!isEnabled) return empty;
             if (prevSelectedText.length === 0) return empty;
             else return prevSelectedText;
-        case WP_SEARCH_SELECTED_TEXT: {
+        case WP_SEARCH: {
             if (!isEnabled) return empty;
             const selectedText = getSelectedText();
             if (selectedText.length === 0) return;
@@ -179,12 +231,12 @@ const handleMessage = async (request) => {
             showSearchContainer(selectedText, selectedPosition, null, true);
             break;
         }
-        case "getEnabled":
+        case GET_ENABLED:
             return isEnabled;
-        case "enableExtension":
+        case ENABLE_EXTENSION:
             isEnabled = true;
             break;
-        case "disableExtension":
+        case DISABLE_EXTENSION:
             removeSearchContainer();
             isEnabled = false;
             break;
@@ -265,7 +317,7 @@ const init = async () => {
     document.addEventListener("mouseup", handleMouseUp);
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("visibilitychange", handleVisibilityChange);
-    browser.storage.local.onChanged.addListener(handleSettingsChange);
+    addSettingsChangeListener(onSettingsChanged);
     browser.runtime.onMessage.addListener(handleMessage);
     overWriteLogLevel();
     updateLogLevel();

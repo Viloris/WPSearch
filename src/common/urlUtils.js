@@ -1,4 +1,5 @@
 import browser from "webextension-polyfill";
+import log from "loglevel";
 import WP_LANG from "../settings/wikipedia.json";
 
 /**
@@ -21,3 +22,33 @@ export function tabsSendMessage(tab, message) {
 export function getWikipediaName(langCode) {
     return WP_LANG[langCode];
 }
+
+/**
+ *
+ * @returns {Object<{ isConnected: true, url, selectedText, isEnabledOnPage }>} Tab information including connection status, url,
+ * selected text and enabled status on page,  or default values if error occurs
+ */
+export const getTabInfo = async () => {
+    try {
+        const [tab] = await browser.tabs.query({
+            currentWindow: true,
+            active: true
+        });
+
+        const [url, selectedText, isEnabledOnPage] = await Promise.all([
+            tabsSendMessage(tab, "getTabUrl"),
+            tabsSendMessage(tab, "getSelectedText"),
+            tabsSendMessage(tab, "getEnabled")
+        ]);
+
+        return { isConnected: true, url, selectedText, isEnabledOnPage };
+    } catch (e) {
+        log.error("urlUtils.getTabInfo failed", e);
+        return {
+            isConnected: false,
+            tabUrl: "",
+            selectedText: "",
+            isEnabledOnPage: false
+        };
+    }
+};

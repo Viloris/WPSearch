@@ -6,46 +6,17 @@ import { updateLogLevel, overWriteLogLevel } from "src/common/log";
 import Header from "./Header";
 import InputArea from "./InputArea";
 import "../styles/PopupPage.scss";
-import { getTargetLang } from "../../common/i18n";
+import { getTargetLang, getUILanguage } from "../../common/i18n";
 import "../../components/styles/ResultArea.scss";
 import ResultArea from "../../components/ResultArea";
-import { tabsSendMessage } from "../../common/urlUtils";
+import { getTabInfo, tabsSendMessage } from "../../common/urlUtils";
 
 const logDir = "popup/PopupPage";
 
 /* ---------------- utils ---------------- */
 
-/**
- *
- * @returns {Object<{ isConnected: true, url, selectedText, isEnabledOnPage }>} Tab information including connection status, url,
- * selected text and enabled status on page,  or default values if error occurs
- */
-const getTabInfo = async () => {
-  try {
-    const [tab] = await browser.tabs.query({
-      currentWindow: true,
-      active: true
-    });
 
-    const [url, selectedText, isEnabledOnPage] = await Promise.all([
-      tabsSendMessage(tab, "getTabUrl"),
-      tabsSendMessage(tab, "getSelectedText"),
-      tabsSendMessage(tab, "getEnabled")
-    ]);
-
-    return { isConnected: true, url, selectedText, isEnabledOnPage };
-  } catch (e) {
-    console.error(e);
-    return {
-      isConnected: false,
-      url: "",
-      selectedText: "",
-      isEnabledOnPage: false
-    };
-  }
-};
-
-const UILanguage = browser.i18n.getUILanguage();
+const UILanguage = getUILanguage(); //browser.i18n.getUILanguage();
 const rtlLanguageClassName = ["he", "ar"].includes(UILanguage)
   ? "popup-page-rtl-language"
   : "";
@@ -74,16 +45,15 @@ export default function PopupPage() {
 
   /* -------- handlers -------- */
 
-  const wpSearchText = async (expression) => {
+  const wpSearchText = useCallback(async (expression) => {
     log.info(logDir, "wpSearchText()", expression);
 
     const res = await browser.runtime.sendMessage({
       message: "wikipediaSearch",
       expression: expression.replaceAll("\n", "")
     });
-    console.log(res)
     setResults(res);
-  };
+  }, []);
 
   const toggleEnabledOnPage = async (e) => {
     const isEnabled = e.target.checked;
@@ -99,7 +69,7 @@ export default function PopupPage() {
         isEnabled ? "enableExtension" : "disableExtension"
       );
     } catch (e) {
-      console.error(e);
+      log.error(logDir, "toggleEnabledOnPage failed", e);
     }
   };
 
@@ -114,10 +84,14 @@ export default function PopupPage() {
     clearTimeout(inputTimer.current);
     const waitTime = getSettings("waitTime");
 
-    inputTimer.current = setTimeout(() => {
-      wpSearchText(text);
+    inputTimer.current = setTimeout(async () => {
+      try {
+        await wpSearchText(text);
+      } catch (error) {
+        log.error(logDir, "wpSearchText failed", error);
+      }
     }, waitTime);
-  }, []);
+  }, [wpSearchText]);
 
   /* -------- init -------- */
 
@@ -138,17 +112,21 @@ export default function PopupPage() {
       setTargetLang(getTargetLang());
       setHideInformationLabel(!!getSettings("hidePopupInformationLabel"));
 
-      const info = await getTabInfo();
-      if (!mounted) return;
+      try {
+        const info = await getTabInfo();
+        if (!mounted) return;
 
-      setTabInfo({
-        isConnected: info.isConnected,
-        tabUrl: info.url,
-        isEnabledOnPage: info.isEnabledOnPage
-      });
+        setTabInfo({
+          isConnected: info.isConnected,
+          tabUrl: info.tabUrl,
+          isEnabledOnPage: info.isEnabledOnPage
+        });
 
-      if (info.selectedText) {
-        handleInputText(info.selectedText);
+        if (info.selectedText) {
+          handleInputText(info.selectedText);
+        }
+      } catch (err) {
+        log.warn(logDir, "getTabInfo failed", err);
       }
     };
 
@@ -164,7 +142,6 @@ export default function PopupPage() {
   }, [handleInputText]);
 
   /* -------- render -------- */
-  console.log(results)
   return (
     <div className={rtlLanguageClassName}>
       <Header
