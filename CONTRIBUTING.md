@@ -31,7 +31,7 @@ A projekt mostantól központi settings kezelőt használ. Használd az alábbi 
 ```js
 import { addSettingsChangeListener, removeSettingsChangeListener } from "src/settings/settings";
 
-const onSettingsChanged = (changes) => {
+const onSettingsChanged = changes => {
   // kezelendő változások
 };
 
