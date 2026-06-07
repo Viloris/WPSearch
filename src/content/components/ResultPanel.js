@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { getSettings, setSettings } from "src/settings/settings";
 import "../styles/ResultPanel.scss";
 import { getBackgroundColor } from "../../settings/defaultColors";
-import ResultArea from "../../common/ResultArea";
+import ResultArea from "../../components/ResultArea"
 
 /**
  *

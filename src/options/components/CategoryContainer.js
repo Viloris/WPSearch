@@ -1,7 +1,7 @@
 import React from "react";
 import OptionContainer from "./OptionContainer";
 import "../styles/CategoryContainer.scss";
-import { getLocaleMessage } from "../../common/utils";
+import { getLocaleMessage } from "../../common/i18n";
 
 /**
  * 

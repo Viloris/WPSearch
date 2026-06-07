@@ -8,9 +8,9 @@ import {
 } from "src/settings/settings";
 import { updateLogLevel, overWriteLogLevel } from "src/common/log";
 import SearchContainer from "./components/SearchContainer";
-import config from "../config.json"
+import { CONFIG } from "../common/constans";
 
-const { ESC, WP_SEARCH_SELECTED_TEXT, SHIFT, CTRL, ALT, CMD } = config;
+const { ESC, WP_SEARCH_SELECTED_TEXT, SHIFT, CTRL, ALT, CMD } = CONFIG;
 const INPUT = "INPUT";
 const TEXTAREA = "TEXTAREA";
 const CODE = "CODE";

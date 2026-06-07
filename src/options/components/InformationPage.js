@@ -7,10 +7,10 @@ import { chromeExtensionUrl, edgeAddonUrl, firefoxAddonUrl } from "src/common/pe
 import manifestChrome from "src/manifest-chrome.json";
 import manifestFirefox from "src/manifest-firefox.json";
 import { useLocation } from "react-router-dom";
-import config from "../../config.json";
-import { getLocaleMessage } from "../../common/utils";
+import { getLocaleMessage } from "../../common/i18n";
+import { CONFIG } from "../../common/constans";
 
-const { EDGE, FIREFOX, CHROME, gitHubUrl } = config;
+const { EDGE, FIREFOX, CHROME, gitHubUrl } = CONFIG;
 
 /* ---------------- CUSTOM HOOK ---------------- */
 

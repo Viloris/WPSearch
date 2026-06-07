@@ -1,10 +1,11 @@
 import browser from "webextension-polyfill";
 import log from "loglevel";
 import { getSettings } from "src/settings/settings";
-import config from "../config.json";
-import { getLocaleMessage, tabsSendMessage } from "../common/utils";
+import { getLocaleMessage } from "../common/i18n";
+import { tabsSendMessage } from "../common/urlUtils";
+import { CONFIG } from "../common/constans";
 
-const { WP_SEARCH_SELECTED_TEXT } = config;
+const { WP_SEARCH_SELECTED_TEXT } = CONFIG;
 
 const logDir = "background/menus";
 const SEARCH_TEXT = "searchText";

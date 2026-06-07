@@ -1,6 +1,6 @@
 import browser from "webextension-polyfill";
-import { initSettings } from "src/settings/settings";
-import wikisearch from "src/common/wikisearch";
+import { initSettings } from "../settings/settings";
+import wikisearch from "../common/wikisearch";
 
 /**
  * 

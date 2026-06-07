@@ -2,10 +2,10 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/SideBar.scss";
 import { menuList } from "./sideMenuItems";
-import config from "../../config.json";
-import { getLocaleMessage } from "../../common/utils";
+import { getLocaleMessage } from "../../common/i18n";
+import { CONFIG } from "../../common/constans";
 
-const { EXT_NAME } = config;
+const { EXT_NAME } = CONFIG;
 
 const selected = "selected";
 

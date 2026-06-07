@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useCallback } from "react";
 import "../styles/InputArea.scss";
-import { getLocaleMessage } from "../../common/utils";
+import { getLocaleMessage } from "../../common/i18n";
 
 /**
  *

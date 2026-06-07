@@ -5,9 +5,9 @@ import { getSettings, setSettings } from "src/settings/settings";
 import getShortcut from "src/common/getShortcut";
 import manifest from "src/manifest-chrome.json";
 import { initSettings } from "../settings/settings";
-import config from "../config.json";
+import { CONFIG } from "../common/constans";
 
-const { WP_SEARCH_SELECTED_TEXT, FIREFOX } = config;
+const { WP_SEARCH_SELECTED_TEXT, FIREFOX } = CONFIG;
 const logDir = "background/keyboardShortcuts";
 
 /**

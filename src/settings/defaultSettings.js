@@ -6,14 +6,14 @@ import {
     BG_COLOR_LIGHT,
     BG_COLOR_DARK
 } from "./defaultColors";
-import config from "../config.json";
+import { CONFIG } from "../common/constans";
 
 const { DEFAULT_LANGUAGE, SECOND_LANGUAGE, CTRL, CMD, SHIFT, ALT,
     LANG_PLACEHOLDER,
     theme: { LIGHT, DARK, SYSTEM },
     directions: { TOP, BOTTOM, RIGHT, LEFT, TOP_RIGHT, TOP_LEFT, BOTTOM_RIGHT, BOTTOM_LEFT },
     settingsType: { CHECKBOX, NUMBER, COLOR, NONE, RADIO, SELECT, TEXT, TEXT_AREA }
-} = config;
+} = CONFIG;
 const WIKIPEDIA_LANGUAGES = getWikipediaLanguages();
 
 const getDefaultLangs = () => {

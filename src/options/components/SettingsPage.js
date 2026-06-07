@@ -11,7 +11,7 @@ import {
 } from "src/settings/settings";
 import defaultSettings from "src/settings/defaultSettings";
 import CategoryContainer from "./CategoryContainer";
-import { getLocaleMessage } from "../../common/utils";
+import { getLocaleMessage } from "../../common/i18n";
 
 /* ---------------- component ---------------- */
 

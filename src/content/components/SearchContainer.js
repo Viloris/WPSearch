@@ -4,12 +4,12 @@ import { getSettings } from "src/settings/settings.js";
 import SearchButton from "./SearchButton";
 import ResultPanel from "./ResultPanel";
 import "../styles/SearchContainer.scss";
-import { getTargetLang } from "../../common/utils";
+import { getTargetLang } from "../../common/i18n";
 
 const DEFAULT_POSITION = { x: 0, y: 0 };
 
 const wpSearchText = (expression) => {
-  browser.runtime.sendMessage({
+  return browser.runtime.sendMessage({
     message: "wikipediaSearch",
     expression
   });

@@ -3,7 +3,7 @@ import browserInfo from "browser-info";
 import browser from "webextension-polyfill";
 import ClearIcon from "../icons/clear.svg";
 import ResetIcon from "../icons/reset.svg";
-import { getLocaleMessage } from "../../common/utils";
+import { getLocaleMessage } from "../../common/i18n";
 
 /* ---------------- utils ---------------- */
 

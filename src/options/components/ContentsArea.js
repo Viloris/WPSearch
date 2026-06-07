@@ -6,9 +6,9 @@ import KeyboardShortcutsPage from "./KeyboardShortcutsPage";
 import InformationPage from "./InformationPage";
 import PrivacyPolicyPage from "./PrivacyPolicyPage";
 import "../styles/ContentsArea.scss";
-import config from "../../config.json"
+import { CONFIG } from "../../common/constans";
 
-const { FIREFOX } = config;
+const { FIREFOX } = CONFIG;
 
 const isValidShortcuts =
     browserInfo().name === FIREFOX && browserInfo().version >= 60;

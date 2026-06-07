@@ -1,7 +1,7 @@
 import browserInfo from "browser-info";
-import config from "../../config.json"
+import { CONFIG } from "../../common/constans";
 
-const { FIREFOX } = config;
+const { FIREFOX } = CONFIG;
 
 const isValidShortcuts =
     browserInfo().name === FIREFOX && browserInfo().version >= 60;

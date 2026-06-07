@@ -6,9 +6,10 @@ import { updateLogLevel, overWriteLogLevel } from "src/common/log";
 import Header from "./Header";
 import InputArea from "./InputArea";
 import "../styles/PopupPage.scss";
-import { getTargetLang, tabsSendMessage } from "../../common/utils";
-import "../../common/styles/ResultArea.scss";
-import ResultArea from "../../common/ResultArea";
+import { getTargetLang } from "../../common/i18n";
+import "../../components/styles/ResultArea.scss";
+import ResultArea from "../../components/ResultArea";
+import { tabsSendMessage } from "../../common/urlUtils";
 
 const logDir = "popup/PopupPage";
 
@@ -80,7 +81,7 @@ export default function PopupPage() {
       message: "wikipediaSearch",
       expression: expression.replaceAll("\n", "")
     });
-
+    console.log(res)
     setResults(res);
   };
 
@@ -163,7 +164,7 @@ export default function PopupPage() {
   }, [handleInputText]);
 
   /* -------- render -------- */
-
+  console.log(results)
   return (
     <div className={rtlLanguageClassName}>
       <Header

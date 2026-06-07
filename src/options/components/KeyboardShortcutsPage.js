@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import browser from "webextension-polyfill";
 import getShortcut from "src/common/getShortcut";
 import CategoryContainer from "./CategoryContainer";
-import { getLocaleMessage } from "../../common/utils";
+import { getLocaleMessage } from "../../common/i18n";
 
 /**
  *

@@ -1,7 +1,7 @@
 import React from "react";
 import { setSettings } from "src/settings/settings";
 import KeyboardShortcutForm from "./KeyboardShortcutForm";
-import { getLocaleMessage } from "../../common/utils";
+import { getLocaleMessage } from "../../common/i18n";
 import "../styles/OptionContainer.scss";
 
 /**

@@ -1,6 +1,6 @@
 import React from "react";
-import { getLocaleMessage } from "../../common/utils";
-import config from "../../config.json";
+import { getLocaleMessage } from "../../common/i18n";
+import { CONFIG } from "../../common/constans";
 
 const {
   gitHubUrl,
@@ -8,7 +8,7 @@ const {
   firefoxPrivacyPolicyUrl,
   googlePrivacyPolicyUrl,
   microsoftPrivacyPolicyUrl
-} = config;
+} = CONFIG;
 
 const privacyPolicy = (
   <div>
