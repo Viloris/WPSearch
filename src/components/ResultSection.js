@@ -1,8 +1,8 @@
 import React from "react";
-import { ErrorSection } from "./errorSection";
-import { ResultContent } from "./resultContent";
-import { ResultFooter } from "./resultFooter";
-import { ResultHeader } from "./resultHeader";
+import { ErrorSection } from "./ErrorSection";
+import { ResultContent } from "./ResultContent";
+import { ResultFooter } from "./ResultFooter";
+import { ResultHeader } from "./ResultHeader";
 
 /**
  *
