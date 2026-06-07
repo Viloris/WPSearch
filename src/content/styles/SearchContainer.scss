@@ -1,0 +1,39 @@
+#simple-wikipedia-search {
+  all: initial;
+  & > div {
+    all: initial;
+  }
+  position: absolute;
+
+  --simple-wikipedia-search-line: #ededf0;
+  --simple-wikipedia-search-button: #d7d7db;
+  --simple-wikipedia-search-highlight: #5595ff;
+}
+
+.simple-wikipedia-search-light-theme {
+  --simple-wikipedia-search-main-text: #0c0c0d;
+  --simple-wikipedia-search-sub-text: #737373;
+  --simple-wikipedia-search-main-bg: #ffffff;
+}
+
+.simple-wikipedia-search-dark-theme {
+  --simple-wikipedia-search-main-text: #e6e6e6;
+  --simple-wikipedia-search-sub-text: #aaaaaa;
+  --simple-wikipedia-search-main-bg: #181818;
+}
+
+// copy of .light-theme
+.simple-wikipedia-search-system-theme {
+  --simple-wikipedia-search-main-text: #000000;
+  --simple-wikipedia-search-sub-text: #737373;
+  --simple-wikipedia-search-main-bg: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  // copy of .dark-theme
+  .simple-wikipedia-search-system-theme {
+    --simple-wikipedia-search-main-text: #e6e6e6;
+    --simple-wikipedia-search-sub-text: #aaaaaa;
+    --simple-wikipedia-search-main-bg: #181818;
+  }
+}

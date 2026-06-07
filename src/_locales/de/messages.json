@@ -1,0 +1,737 @@
+{
+    "extName": {
+        "message": "Wikipedia Preview"
+    },
+    "extDescription": {
+        "message": "Durchsuchen Sie Wikipedia basierend auf dem ausgewählten Text"
+    },
+    "donateWithPaypalLabel": {
+        "message": "Mit PayPal spenden"
+    },
+    "donateLabel": {
+        "message": "Spenden"
+    },
+    "enableOnThisPage": {
+        "message": "Suche auf dieser Seite aktivieren"
+    },
+    "disableOnThisPage": {
+        "message": "Suche auf dieser Seite deaktivieren"
+    },
+    "initialTextArea": {
+        "message": "Text eingeben"
+    },
+    "copyLabel": {
+        "message": "Kopieren"
+    },
+    "copiedLabel": {
+        "message": "Kopiert"
+    },
+    "listenLabel": {
+        "message": "Anhören"
+    },
+    "targetLangLabel": {
+        "message": "Zielsprache"
+    },
+    "allLangLabel": {
+        "message": "Alle Sprachen"
+    },
+    "recentLangLabel": {
+        "message": "Zuletzt verwendete Sprachen"
+    },
+    "settingsLabel": {
+        "message": "Einstellungen"
+    },
+    "generalLabel": {
+        "message": "Allgemein"
+    },
+    "targetLangCaptionLabel": {
+        "message": "Wählen Sie die standardmäßige Zielsprache aus."
+    },
+    "webPageLabel": {
+        "message": "Webseite"
+    },
+    "whenSelectTextLabel": {
+        "message": "Verhalten beim Markieren von Text"
+    },
+    "ifAutoSearchLabel": {
+        "message": "Suchpanel anzeigen"
+    },
+    "ifAutoSearchCaptionLabel": {
+        "message": "Suchpanel direkt anzeigen, ohne den Button anzuzeigen."
+    },
+    "ifShowButtonLabel": {
+        "message": "Suchbutton anzeigen"
+    },
+    "ifShowButtonCaptionLabel": {
+        "message": "Suchbutton anzeigen, um das Panel bei Klick zu öffnen."
+    },
+    "dontshowbuttonlabel": {
+        "message": "Keinen Button oder Panel anzeigen"
+    },
+    "dontshowbuttonCaptionlabel": {
+        "message": "Suchbutton oder Suchpanel nicht anzeigen."
+    },
+    "disableWikipediaSearchLabel": {
+        "message": "Suche deaktivieren"
+    },
+    "isDisabledInTextFieldsLabel": {
+        "message": "Suche in Textfeldern deaktivieren"
+    },
+    "isDisabledInTextFieldsCaptionLabel": {
+        "message": "Suchbutton oder Panel nicht anzeigen, wenn Text in einem Textfeld markiert wird."
+    },
+    "isDisabledInCodeElementLabel": {
+        "message": "Suche in Code-Tags deaktivieren"
+    },
+    "isDisabledInCodeElementCaptionLabel": {
+        "message": "Suchbutton oder Panel nicht anzeigen, wenn Text in einem Code-Tag markiert wird."
+    },
+    "ifOnlySearchWhenModifierKeyPressedLabel": {
+        "message": "Suche bei gedrückter Modifikatortaste"
+    },
+    "ifOnlySearchWhenModifierKeyPressedCaptionLabel": {
+        "message": "Suche nur anzeigen, wenn die angegebene Modifikatortaste gedrückt wird."
+    },
+    "modifierKeyLabel": {
+        "message": "Modifikatortaste"
+    },
+    "shiftLabel": {
+        "message": "Shift"
+    },
+    "ctrlLabel": {
+        "message": "Strg"
+    },
+    "altLabel": {
+        "message": "Alt"
+    },
+    "cmdLabel": {
+        "message": "Befehl"
+    },
+    "disableUrlListLabel": {
+        "message": "URL-Liste zur Deaktivierung der Suche"
+    },
+    "disableUrlListCaptionLabel": {
+        "message": "Wenn die URL der Seite mit der Liste übereinstimmt, wird die Suche auf der Webseite deaktiviert. Die Liste erlaubt Wildcards „*“."
+    },
+    "toolbarLabel": {
+        "message": "Werkzeugleisten-Popup"
+    },
+    "secondTargetLangLabel": {
+        "message": "Zweite Sprache"
+    },
+    "secondTargetLangCaptionLabel": {
+        "message": "Wählen Sie die zweite Zielsprache aus."
+    },
+    "ignoredDocumentLangLabel": {
+        "message": "Suche nach Sprachattribut deaktivieren"
+    },
+    "ignoredDocumentLangCaptionLabel": {
+        "message": "Suche deaktivieren, wenn das Sprachattribut im HTML-Element der Seite mit der Liste übereinstimmt. Geben Sie durch Kommas getrennte Sprachcodes ein."
+    },
+    "waitTimeLabel": {
+        "message": "Wartezeit für die Suche"
+    },
+    "waitTimeCaptionLabel": {
+        "message": "Geben Sie die Wartezeit von der Eingabe eines Zeichens bis zum Start der Suche an. (Millisekunde)"
+    },
+    "waitTime2CaptionLabel": {
+        "message": "Wenn Sie in kurzer Zeit mehrmals suchen, kann die Suche eine Weile nicht verfügbar sein."
+    },
+    "menuLabel": {
+        "message": "Kontextmenü"
+    },
+    "ifShowMenuLabel": {
+        "message": "Kontextmenü anzeigen"
+    },
+    "ifShowMenuCaptionLabel": {
+        "message": "Elemente zum Kontextmenü hinzufügen, das beim Rechtsklicken auf die Webseite oder den Tab angezeigt wird."
+    },
+    "styleLabel": {
+        "message": "Stil"
+    },
+    "themeLabel": {
+        "message": "Thema"
+    },
+    "themeCaptionLabel": {
+        "message": "Farbgebung festlegen."
+    },
+    "lightLabel": {
+        "message": "Hell"
+    },
+    "darkLabel": {
+        "message": "Dunkel"
+    },
+    "systemLabel": {
+        "message": "System"
+    },
+    "buttonStyleLabel": {
+        "message": "Suchbutton"
+    },
+    "buttonStyleCaptionLabel": {
+        "message": "Stil des Suchbuttons festlegen, der auf der Webseite angezeigt wird."
+    },
+    "buttonSizeLabel": {
+        "message": "Größe"
+    },
+    "buttonPositionLabel": {
+        "message": "Anzeigeort"
+    },
+    "topRightLabel": {
+        "message": "Oben rechts"
+    },
+    "bottomRightLabel": {
+        "message": "Unten rechts"
+    },
+    "topLeftLabel": {
+        "message": "Oben links"
+    },
+    "bottomLeftLabel": {
+        "message": "Unten links"
+    },
+    "topLabel": {
+        "message": "Oben"
+    },
+    "bottomLabel": {
+        "message": "Unten"
+    },
+    "leftLabel": {
+        "message": "Links"
+    },
+    "rightLabel": {
+        "message": "Rechts"
+    },
+    "positionOffsetLabel": {
+        "message": "Anzeigeort - Versatz"
+    },
+    "panelStyleLabel": {
+        "message": "Suchpanel"
+    },
+    "panelStyleCaptionLabel": {
+        "message": "Stil des Suchpanels festlegen, das auf der Webseite angezeigt wird."
+    },
+    "widthLabel": {
+        "message": "Breite"
+    },
+    "heightLabel": {
+        "message": "Höhe"
+    },
+    "fontSizeLabel": {
+        "message": "Schriftgröße"
+    },
+    "referencePointLabel": {
+        "message": "Anzeigeort - Referenzpunkt"
+    },
+    "bottomSelectedTextLabel": {
+        "message": "Unterhalb des markierten Textes"
+    },
+    "topSelectedTextLabel": {
+        "message": "Oberhalb des markierten Textes"
+    },
+    "clickedPointLabel": {
+        "message": "Angeklickter Punkt"
+    },
+    "displayDirectionLabel": {
+        "message": "Anzeigeort - Richtung"
+    },
+    "resultFontColorLabel": {
+        "message": "Schriftfarbe des Suchergebnisses"
+    },
+    "isOverrideColorsLabel": {
+        "message": "Standardfarben mit den folgenden Farben überschreiben"
+    },
+    "bgColorLabel": {
+        "message": "Hintergrundfarbe"
+    },
+    "otherLabel": {
+        "message": "Sonstiges"
+    },
+    "isShowOptionsPageWhenUpdatedLabel": {
+        "message": "Optionsseite bei Updates anzeigen"
+    },
+    "isShowOptionsPageWhenUpdatedCaptionLabel": {
+        "message": "Die Optionsseite anzeigen, wenn Wikipedia-Suche aktualisiert wird. Sie können die Update-Inhalte schnell kennenlernen."
+    },
+    "isDebugModeLabel": {
+        "message": "Debug-Modus aktivieren"
+    },
+    "isDebugModeCaptionLabel": {
+        "message": "Wenn der Debug-Modus aktiviert ist, wird das Protokoll im Debugger ausgegeben."
+    },
+    "exportSettingsLabel": {
+        "message": "Einstellungen exportieren"
+    },
+    "exportSettingsCaptionLabel": {
+        "message": "Einstellungen als JSON-Datei auf dem Computer speichern."
+    },
+    "exportButtonLabel": {
+        "message": "Exportieren"
+    },
+    "importSettingsLabel": {
+        "message": "Einstellungen importieren"
+    },
+    "importSettingsCaptionLabel": {
+        "message": "Auf dem Computer gespeicherte Einstellungsdatei laden."
+    },
+    "importButtonLabel": {
+        "message": "Importieren"
+    },
+    "resetSettingsLabel": {
+        "message": "Einstellungen zurücksetzen"
+    },
+    "resetSettingsCaptionLabel": {
+        "message": "Alle Einstellungen auf den Standardwert zurücksetzen."
+    },
+    "resetSettingsButtonLabel": {
+        "message": "Zurücksetzen"
+    },
+    "shortcutsLabel": {
+        "message": "Tastenkürzel"
+    },
+    "keyboardShortcutsLabel": {
+        "message": "Tastenkombinationen"
+    },
+    "setKeyboardShortCutsMessage": {
+        "message": "Definiere Tastenkürzel."
+    },
+    "typeShortcutMessage": {
+        "message": "Tastenkürzel eingeben"
+    },
+    "typeLetterMessage": {
+        "message": "Geben Sie einen Buchstaben ein"
+    },
+    "includeModifierKeysMessage": {
+        "message": "Binden Sie entweder Strg oder Alt ein"
+    },
+    "includeMacModifierKeysMessage": {
+        "message": "Binden Sie entweder Befehl, Strg oder Alt ein"
+    },
+    "invalidLetterMessage": {
+        "message": "Dieser Buchstabe kann nicht verwendet werden"
+    },
+    "invalidShortcutMessage": {
+        "message": "Dieser Tastenkürzel kann nicht verwendet werden"
+    },
+    "clear": {
+        "message": "Löschen"
+    },
+    "reset": {
+        "message": "Zurücksetzen"
+    },
+    "informationLabel": {
+        "message": "Information"
+    },
+    "additionalPermissionLabel": {
+        "message": "Suche auf Webseiten aktivieren"
+    },
+    "additionalPermissionCaptionLabel": {
+        "message": "Zusätzliche Berechtigungen sind erforderlich, um die Wikipedia-Suche auf Webseiten zu verwenden."
+    },
+    "enableLabel": {
+        "message": "Aktivieren"
+    },
+    "backersLabel": {
+        "message": "Unterstützer"
+    },
+    "licenseLabel": {
+        "message": "Lizenz"
+    },
+    "donationLabel": {
+        "message": "Bitte spenden Sie"
+    },
+    "donationCaptionLabel": {
+        "message": "Vielen Dank, dass Sie Wikipedia Preview verwenden.<br>Ihre Unterstützung wird ein großer Ansporn sein, während ich die Erweiterung weiterentwickle.<br>Wenn Ihnen Wikipedia-Suche gefällt, würde ich mich freuen, wenn Sie eine Spende in Betracht ziehen könnten."
+    },
+    "sponsorsLabel": {
+        "message": "Sponsoren"
+    },
+    "addonPageLabel": {
+        "message": "Add-on-Seite"
+    },
+    "extensionPageLabel": {
+        "message": "Erweiterungsseite"
+    },
+    "privacyPolicyLabel": {
+        "message": "Datenschutzrichtlinie"
+    },
+    "addonUrl": {
+        "message": "https://addons.mozilla.org/hu/firefox/addon/wikipedia-preview/"
+    },
+    "networkError": {
+        "message": "Fehler: Überprüfen Sie den Netzwerkverbindungsstatus."
+    },
+    "unavailableError": {
+        "message": "Fehler: Nutzungsgrenze des Dienstes erreicht. Bitte warten Sie eine Weile und versuchen Sie es erneut."
+    },
+    "deeplAuthError": {
+        "message": "Fehler: Authentifizierung des DeepL API fehlgeschlagen. Bitte legen Sie den Authentifizierungsschlüssel und Plan auf der Einstellungsseite korrekt fest."
+    },
+    "unknownError": {
+        "message": "Fehler: Unbekannter Fehler"
+    },
+    "wikipediaSearchTextMenu": {
+        "message": "Wikipedia-Suche für ausgewählten Text"
+    },
+    "openPopupDescription": {
+        "message": "Toolbar-Popup öffnen"
+    },
+    "shouldUseSecondTargetLangLabel": {
+        "message": "Suche auch in einem zweiten Wikipedia"
+    },
+    "shouldUseSecondTargetLangCaptionLabel": {
+        "message": "Wenn diese Option aktiviert ist, wird auch in dieser Sprache auf Wikipedia gesucht"
+    },
+    "firstInformationText": {
+        "message": "In den Einstellungen können Sie auch ein zweites Wikipedia hinzufügen, wenn Sie die Ergebnisse in einer anderen Sprache anzeigen möchten."
+    },
+    "lang_af": {
+        "message": "Afrikaans"
+    },
+    "lang_sq": {
+        "message": "Albanisch"
+    },
+    "lang_am": {
+        "message": "Amharisch"
+    },
+    "lang_ar": {
+        "message": "Arabisch"
+    },
+    "lang_hy": {
+        "message": "Armenisch"
+    },
+    "lang_az": {
+        "message": "Aserbeidschanisch"
+    },
+    "lang_eu": {
+        "message": "Baskisch"
+    },
+    "lang_be": {
+        "message": "Weißrussisch"
+    },
+    "lang_bn": {
+        "message": "Bengalisch"
+    },
+    "lang_bs": {
+        "message": "Bosnisch"
+    },
+    "lang_bg": {
+        "message": "Bulgarisch"
+    },
+    "lang_ca": {
+        "message": "Katalanisch"
+    },
+    "lang_ceb": {
+        "message": "Cebuano"
+    },
+    "lang_ny": {
+        "message": "Nyanja"
+    },
+    "lang_zh_CN": {
+        "message": "Chinesisch (vereinfacht)"
+    },
+    "lang_zh_TW": {
+        "message": "Chinesisch (traditionell)"
+    },
+    "lang_co": {
+        "message": "Korsisch"
+    },
+    "lang_hr": {
+        "message": "Kroatisch"
+    },
+    "lang_cs": {
+        "message": "Tschechisch"
+    },
+    "lang_da": {
+        "message": "Dänisch"
+    },
+    "lang_nl": {
+        "message": "Niederländisch"
+    },
+    "lang_en": {
+        "message": "Englisch"
+    },
+    "lang_eo": {
+        "message": "Esperanto"
+    },
+    "lang_et": {
+        "message": "Estnisch"
+    },
+    "lang_fi": {
+        "message": "Finnisch"
+    },
+    "lang_fr": {
+        "message": "Französisch"
+    },
+    "lang_fy": {
+        "message": "Friesisch"
+    },
+    "lang_gl": {
+        "message": "Galicisch"
+    },
+    "lang_ka": {
+        "message": "Georgisch"
+    },
+    "lang_de": {
+        "message": "Deutsch"
+    },
+    "lang_el": {
+        "message": "Griechisch"
+    },
+    "lang_gu": {
+        "message": "Gujarati"
+    },
+    "lang_ht": {
+        "message": "Haitien"
+    },
+    "lang_ha": {
+        "message": "Haussa"
+    },
+    "lang_haw": {
+        "message": "Hawaiisch"
+    },
+    "lang_he": {
+        "message": "Hebräisch"
+    },
+    "lang_hi": {
+        "message": "Hindi"
+    },
+    "lang_hu": {
+        "message": "Ungarisch"
+    },
+    "lang_is": {
+        "message": "Isländisch"
+    },
+    "lang_ig": {
+        "message": "Ibo"
+    },
+    "lang_id": {
+        "message": "Indonesisch"
+    },
+    "lang_ga": {
+        "message": "Irisch"
+    },
+    "lang_it": {
+        "message": "Italienisch"
+    },
+    "lang_ja": {
+        "message": "Japanisch"
+    },
+    "lang_jv": {
+        "message": "Javanisch"
+    },
+    "lang_kn": {
+        "message": "Kanadisch"
+    },
+    "lang_kk": {
+        "message": "Kasachisch"
+    },
+    "lang_km": {
+        "message": "Khmerisch"
+    },
+    "lang_rw": {
+        "message": "Kinyarwanda"
+    },
+    "lang_ky": {
+        "message": "Kirgisisch"
+    },
+    "lang_ko": {
+        "message": "Koreanisch"
+    },
+    "lang_ku": {
+        "message": "Kurdisch"
+    },
+    "lang_lo": {
+        "message": "Laotisch"
+    },
+    "lang_la": {
+        "message": "Latein"
+    },
+    "lang_lv": {
+        "message": "Lettisch"
+    },
+    "lang_lt": {
+        "message": "Litauisch"
+    },
+    "lang_lb": {
+        "message": "Luxemburgisch"
+    },
+    "lang_mk": {
+        "message": "Makedonisch"
+    },
+    "lang_mg": {
+        "message": "Malagassi"
+    },
+    "lang_ms": {
+        "message": "Malaiisch"
+    },
+    "lang_ml": {
+        "message": "Malayalam"
+    },
+    "lang_mt": {
+        "message": "Maltesisch"
+    },
+    "lang_mi": {
+        "message": "Maori"
+    },
+    "lang_mr": {
+        "message": "Marathi"
+    },
+    "lang_mn": {
+        "message": "Mongolisch"
+    },
+    "lang_hmn": {
+        "message": "Miao"
+    },
+    "lang_my": {
+        "message": "Birmanisch"
+    },
+    "lang_ne": {
+        "message": "Nepalesisch"
+    },
+    "lang_no": {
+        "message": "Norwegisch"
+    },
+    "lang_nb": {
+        "message": "Norwegisch (bokmål)"
+    },
+    "lang_or": {
+        "message": "Odia (Oriya)"
+    },
+    "lang_fa": {
+        "message": "Persisch"
+    },
+    "lang_pl": {
+        "message": "Polnisch"
+    },
+    "lang_pt": {
+        "message": "Portugiesisch"
+    },
+    "lang_pa": {
+        "message": "Pandschabi"
+    },
+    "lang_ps": {
+        "message": "Paschtu"
+    },
+    "lang_ro": {
+        "message": "Rumänisch"
+    },
+    "lang_ru": {
+        "message": "Russisch"
+    },
+    "lang_sm": {
+        "message": "Samoanisch"
+    },
+    "lang_gd": {
+        "message": "Gälisch-Schottisch"
+    },
+    "lang_sr": {
+        "message": "Serbisch"
+    },
+    "lang_st": {
+        "message": "Sesotho"
+    },
+    "lang_sn": {
+        "message": "Schona"
+    },
+    "lang_sd": {
+        "message": "Sindhi"
+    },
+    "lang_si": {
+        "message": "Singhalesisch"
+    },
+    "lang_sk": {
+        "message": "Slowakisch"
+    },
+    "lang_sl": {
+        "message": "Slowenisch"
+    },
+    "lang_so": {
+        "message": "Somalisch"
+    },
+    "lang_es": {
+        "message": "Spanisch"
+    },
+    "lang_su": {
+        "message": "Sundanesisch"
+    },
+    "lang_sw": {
+        "message": "Suaheli"
+    },
+    "lang_sv": {
+        "message": "Schwedisch"
+    },
+    "lang_tl": {
+        "message": "Tagalog"
+    },
+    "lang_tg": {
+        "message": "Tadschikisch"
+    },
+    "lang_ta": {
+        "message": "Tamilisch"
+    },
+    "lang_tt": {
+        "message": "Tatarisch"
+    },
+    "lang_te": {
+        "message": "Teluguisisch"
+    },
+    "lang_th": {
+        "message": "Thailändisch"
+    },
+    "lang_tr": {
+        "message": "Türkisch"
+    },
+    "lang_tk": {
+        "message": "Turkmenisch"
+    },
+    "lang_uk": {
+        "message": "Ukrainisch"
+    },
+    "lang_ur": {
+        "message": "Urdu"
+    },
+    "lang_ug": {
+        "message": "Uigurisch"
+    },
+    "lang_uz": {
+        "message": "Usbekisch"
+    },
+    "lang_vi": {
+        "message": "Vietnamesisch"
+    },
+    "lang_cy": {
+        "message": "Kymrisch"
+    },
+    "lang_xh": {
+        "message": "Xhosa"
+    },
+    "lang_yi": {
+        "message": "Jiddisch"
+    },
+    "lang_yo": {
+        "message": "Yoruba"
+    },
+    "lang_zu": {
+        "message": "Zulu"
+    },
+    "lang_en_US": {
+        "message": "Englisch (USA)"
+    },
+    "lang_en_GB": {
+        "message": "Englisch (Großbritannien)"
+    },
+    "lang_pt_PT": {
+        "message": "Portugiesisch"
+    },
+    "lang_pt_BR": {
+        "message": "Portugiesisch (Brasilianisch)"
+    },
+    "lang_zh": {
+        "message": "Chinesisch"
+    },
+    "notFound": {
+        "message": "Es gibt keinen Artikel mit diesem Namen."
+    },
+    "privacyPolicyMenuTitle": {
+        "message": "Datenschutz"
+    }
+}

@@ -1,0 +1,38 @@
+.copy {
+  display: flex;
+  justify-content: center;
+
+  .copiedText {
+    color: #225c25;
+    font-size: 11px;
+    margin-inline-end: 5px;
+    -webkit-user-select: none; /* Old Safari/Chrome versions */
+    -moz-user-select: none; /* Old Firefox versions */
+    -ms-user-select: none; /* Ols Internet Explorer/Edge versions */
+    user-select: none;
+
+    /* font-family:
+            "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
+            monospace;
+        font-weight: 600; */
+    /* Optional background */
+    // background-color: rgba(0, 0, 0, 0.05);
+    padding: 2px 4px;
+    border-radius: 3px;
+  }
+  .copyButton {
+    padding: 0;
+    border: 0;
+    background-color: var(--main-bg);
+    cursor: pointer;
+
+    svg {
+      height: 16px;
+      width: 16px;
+      fill: #808080;
+      &:hover {
+        fill: #5595ff;
+      }
+    }
+  }
+}
