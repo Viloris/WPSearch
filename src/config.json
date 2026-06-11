@@ -1,11 +1,8 @@
 {
-    "SPACE": " ",
     "DASH": "-",
-    "UNDERSCORE": "_",
     "NO_SUMMARY": "NO_SUMMARY",
     "WIKIPEDIA_API_URL": ".wikipedia.org/w/api.php?action=query&list=search&srsearch=",
     "WIKIPEDIA_SUMMARY_API_URL": ".wikipedia.org/api/rest_v1/page/summary/",
-    "WIKIPEDIA_URL": ".wikipedia.org/wiki/",
     "HTTPS": "https://",
     "DEFAULT_LANGUAGE": "en",
     "SECOND_LANGUAGE": "de",
@@ -22,7 +19,6 @@
     "TEXTAREA": "TEXTAREA",
     "CODE": "CODE",
     "password": "password",
-    "WP_SEARCH_SELECTED_TEXT": "wpSearchSelectedText",
     "EXT_NAME": "Wikipedia Preview",
     "settingsType": {
         "CHECKBOX": "checkbox",
@@ -55,11 +51,11 @@
     "googlePrivacyPolicyUrl": "https://policies.google.com/privacy",
     "microsoftPrivacyPolicyUrl": "https://privacy.microsoft.com/",
     "requestMessages": {
-        "GET_TAB_INFO": "getTabInfo",
+        "GET_TAB_URL": "getTabUrl",
         "GET_SELECTED_TEXT": "getSelectedText",
         "GET_ENABLED": "getEnabled",
         "ENABLE_EXTENSION": "enableExtension",
         "DISABLE_EXTENSION": "disableExtension",
-        "WP_SEARCH": "wpSearch"
+        "WP_SEARCH_SELECTED_TEXT": "wpSearchSelectedText"
     }
 }
