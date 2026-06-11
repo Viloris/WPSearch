@@ -1,6 +1,7 @@
 import browser from "webextension-polyfill";
 import { initSettings } from "../settings/settings";
 import wikisearch from "../common/wikisearch";
+import { CONFIG } from "../common/constans";
 
 /**
  * 
@@ -8,17 +9,22 @@ import wikisearch from "../common/wikisearch";
  * @param {Object} data
  * @returns {Promise} --- IGNORE ---
  */
+const {
+  requestMessages: { WIKIPEDIA_SEARCH, OPEN_OPTIONS_PAGE },
+  OPTIONS_PAGE_URL
+} = CONFIG;
+
 export default async (data) => {
   await initSettings();
 
   switch (data.message) {
-    case "wikipediaSearch": {
+    case WIKIPEDIA_SEARCH: {
       return await wikisearch(data.expression);
     }
 
-    case "openOptionsPage": {
+    case OPEN_OPTIONS_PAGE: {
       const hash = data.hash || "";
-      const url = browser.runtime.getURL(`options/index.html${hash}`);
+      const url = browser.runtime.getURL(`${OPTIONS_PAGE_URL}${hash}`);
       browser.tabs.create({ url, active: true });
       break;
     }

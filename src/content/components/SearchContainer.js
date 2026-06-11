@@ -2,16 +2,18 @@ import React, { useCallback, useEffect, useState } from "react";
 import log from "loglevel";
 import browser from "webextension-polyfill";
 import { getSettings } from "src/settings/settings.js";
+import { CONFIG } from "../../common/constans";
 import SearchButton from "./SearchButton";
 import ResultPanel from "./ResultPanel";
 import "../styles/SearchContainer.scss";
 import { getTargetLang } from "../../common/i18n";
 
 const DEFAULT_POSITION = { x: 0, y: 0 };
+const { requestMessages: { WIKIPEDIA_SEARCH } } = CONFIG;
 
 const wpSearchText = (expression) => {
   return browser.runtime.sendMessage({
-    message: "wikipediaSearch",
+    message: WIKIPEDIA_SEARCH,
     expression
   });
 }

@@ -2,10 +2,12 @@ import React from "react";
 import openUrl from "src/common/openUrl";
 import SettingsIcon from "../icons/settings.svg";
 import Toggle from "react-toggle";
+import { CONFIG } from "../../common/constans";
 import { getLocaleMessage } from "../../common/i18n";
 import "react-toggle/style.css";
 import "../styles/Header.scss";
 
+const { OPTIONS_PAGE_URL } = CONFIG;
 const EXTENSION_NAME = getLocaleMessage("extName");
 
 /**
@@ -27,7 +29,7 @@ function renderTitle() {
  */
 function SettingsButton() {
   const openSettings = () => {
-    const url = "../options/index.html#settings";
+    const url = `${OPTIONS_PAGE_URL}#settings`;
     openUrl(url);
   };
 

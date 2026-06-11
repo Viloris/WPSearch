@@ -1,5 +1,6 @@
 import browser from "webextension-polyfill";
 import log from "loglevel";
+import { CONFIG } from "src/common/constans";
 import { initSettings, getSettings, setSettings } from "src/settings/settings";
 import { initShortcuts } from "./keyboardShortcuts";
 import {
@@ -10,11 +11,12 @@ import {
   BG_COLOR_LIGHT,
   BG_COLOR_DARK
 } from "src/settings/defaultColors";
+const { OPTIONS_PAGE_URL } = CONFIG;
 const logDir = "background/onInstalledListener";
 
 const openOptionsPage = (active) => {
   browser.tabs.create({
-    url: "options/index.html#information?action=updated",
+    url: `${OPTIONS_PAGE_URL}#information?action=updated`,
     active: active
   });
 };

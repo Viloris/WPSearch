@@ -50,12 +50,15 @@
     "firefoxPrivacyPolicyUrl": "https://www.mozilla.org/en-US/privacy/firefox/",
     "googlePrivacyPolicyUrl": "https://policies.google.com/privacy",
     "microsoftPrivacyPolicyUrl": "https://privacy.microsoft.com/",
+    "OPTIONS_PAGE_URL": "options/index.html",
     "requestMessages": {
         "GET_TAB_URL": "getTabUrl",
         "GET_SELECTED_TEXT": "getSelectedText",
         "GET_ENABLED": "getEnabled",
         "ENABLE_EXTENSION": "enableExtension",
         "DISABLE_EXTENSION": "disableExtension",
-        "WP_SEARCH_SELECTED_TEXT": "wpSearchSelectedText"
+        "WP_SEARCH_SELECTED_TEXT": "wpSearchSelectedText",
+        "WIKIPEDIA_SEARCH": "wikipediaSearch",
+        "OPEN_OPTIONS_PAGE": "openOptionsPage"
     }
 }

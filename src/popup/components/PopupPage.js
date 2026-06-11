@@ -12,7 +12,9 @@ import "../../components/styles/ResultArea.scss";
 import ResultArea from "../../components/ResultArea";
 import { getTabInfo, tabsSendMessage } from "../../common/urlUtils";
 
-const { requestMessages: { ENABLE_EXTENSION, DISABLE_EXTENSION } } = CONFIG;
+const {
+  requestMessages: { ENABLE_EXTENSION, DISABLE_EXTENSION, WIKIPEDIA_SEARCH }
+} = CONFIG;
 const logDir = "popup/PopupPage";
 
 /* ---------------- utils ---------------- */
@@ -51,7 +53,7 @@ export default function PopupPage() {
     log.info(logDir, "wpSearchText()", expression);
 
     const res = await browser.runtime.sendMessage({
-      message: "wikipediaSearch",
+      message: WIKIPEDIA_SEARCH,
       expression: expression.replaceAll("\n", "")
     });
     setResults(res);
