@@ -5,7 +5,7 @@ import { getLocaleMessage } from "../common/i18n";
 import { tabsSendMessage } from "../common/urlUtils";
 import { CONFIG } from "../common/constans";
 
-const { WP_SEARCH_SELECTED_TEXT } = CONFIG;
+const { requestMessages: { WP_SEARCH_SELECTED_TEXT } } = CONFIG;
 
 const logDir = "background/menus";
 const SEARCH_TEXT = "searchText";

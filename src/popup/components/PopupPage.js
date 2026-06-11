@@ -3,6 +3,7 @@ import browser from "webextension-polyfill";
 import log from "loglevel";
 import { initSettings, getSettings, setSettings } from "src/settings/settings";
 import { updateLogLevel, overWriteLogLevel } from "src/common/log";
+import { CONFIG } from "../../common/constans";
 import Header from "./Header";
 import InputArea from "./InputArea";
 import "../styles/PopupPage.scss";
@@ -11,6 +12,7 @@ import "../../components/styles/ResultArea.scss";
 import ResultArea from "../../components/ResultArea";
 import { getTabInfo, tabsSendMessage } from "../../common/urlUtils";
 
+const { requestMessages: { ENABLE_EXTENSION, DISABLE_EXTENSION } } = CONFIG;
 const logDir = "popup/PopupPage";
 
 /* ---------------- utils ---------------- */
@@ -66,7 +68,7 @@ export default function PopupPage() {
       });
       await tabsSendMessage(
         tab,
-        isEnabled ? "enableExtension" : "disableExtension"
+        isEnabled ? ENABLE_EXTENSION : DISABLE_EXTENSION
       );
     } catch (e) {
       log.error(logDir, "toggleEnabledOnPage failed", e);
