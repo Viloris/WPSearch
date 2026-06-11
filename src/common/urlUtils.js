@@ -1,6 +1,15 @@
 import browser from "webextension-polyfill";
 import log from "loglevel";
 import WP_LANG from "../settings/wikipedia.json";
+import { CONFIG } from "./constans";
+
+const {
+    requestMessages: {
+        GET_TAB_URL,
+        GET_SELECTED_TEXT,
+        GET_ENABLED
+    }
+} = CONFIG;
 
 /**
  * 
@@ -35,13 +44,21 @@ export const getTabInfo = async () => {
             active: true
         });
 
-        const [url, selectedText, isEnabledOnPage] = await Promise.all([
-            tabsSendMessage(tab, "getTabUrl"),
-            tabsSendMessage(tab, "getSelectedText"),
-            tabsSendMessage(tab, "getEnabled")
-        ]);
+        const tabUrlMessages = [
+            GET_TAB_URL,
+            GET_SELECTED_TEXT,
+            GET_ENABLED
+        ];
+        const [tabUrl, selectedText, isEnabledOnPage] = await Promise.all(
+            tabUrlMessages.map((message) => tabsSendMessage(tab, message))
+        );
 
-        return { isConnected: true, url, selectedText, isEnabledOnPage };
+        return {
+            isConnected: true,
+            tabUrl,
+            selectedText,
+            isEnabledOnPage
+        };
     } catch (e) {
         log.error("urlUtils.getTabInfo failed", e);
         return {
