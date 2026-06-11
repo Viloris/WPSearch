@@ -82,7 +82,7 @@ async function wikisearch(expression) {
     log.debug(`${logDir} - Search results for "${trimmed}":`, results);
     return results;
   } catch (e) {
-    log.error(`${logDir} - wikisearch error for "${trimmed}":`, e);
+    log.error(`${logDir} - Search error for "${trimmed}":`, e);
     return [];
   }
 }
