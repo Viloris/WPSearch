@@ -22,7 +22,7 @@ const { ESC, SHIFT, CTRL, ALT, CMD, INPUT,
         GET_ENABLED,
         ENABLE_EXTENSION,
         DISABLE_EXTENSION,
-        WP_SEARCH
+        WP_SEARCH_SELECTED_TEXT
     }
 } = CONFIG;
 /* const INPUT = "INPUT";
@@ -216,13 +216,13 @@ const handleMessage = async (request) => {
     switch (request.message) {
         case GET_TAB_URL:
             if (!isEnabled) return empty;
-            if (window == window.parent) return location.href;
+            if (window === window.parent) return location.href;
             else return empty;
         case GET_SELECTED_TEXT:
             if (!isEnabled) return empty;
             if (prevSelectedText.length === 0) return empty;
             else return prevSelectedText;
-        case WP_SEARCH: {
+        case WP_SEARCH_SELECTED_TEXT: {
             if (!isEnabled) return empty;
             const selectedText = getSelectedText();
             if (selectedText.length === 0) return;
@@ -260,9 +260,8 @@ const handleMouseUp = async (e) => {
         (!!e.target.closest && !!e.target.closest("code"));
     if (inCodeElement && getSettings("isDisabledInCodeElement")) return;
 
-    const isInThisElement =
-        document.querySelector("#simple-wikipedia-search") &&
-        document.querySelector("#simple-wikipedia-search").contains(e.target);
+    const searchContainer = document.querySelector("#simple-wikipedia-search");
+    const isInThisElement = searchContainer && searchContainer.contains(e.target);
     if (isInThisElement) return;
 
     removeSearchContainer();
