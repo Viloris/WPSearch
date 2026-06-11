@@ -7,7 +7,7 @@ import manifest from "src/manifest-chrome.json";
 import { initSettings } from "../settings/settings";
 import { CONFIG } from "../common/constans";
 
-const { WP_SEARCH_SELECTED_TEXT, FIREFOX } = CONFIG;
+const { requestMessages: { WP_SEARCH_SELECTED_TEXT }, FIREFOX } = CONFIG;
 const logDir = "background/keyboardShortcuts";
 
 /**
@@ -16,8 +16,9 @@ const logDir = "background/keyboardShortcuts";
  * @returns {Promise} --- IGNORE ---
  */
 export const initShortcuts = async () => {
+  const browserData = browserInfo();
   const isValidShortcuts =
-    browserInfo().name == FIREFOX && browserInfo().version >= 60;
+    browserData.name === FIREFOX && browserData.version >= 60;
   if (!isValidShortcuts) return;
   log.info(logDir, "initShortcuts()");
 
@@ -49,7 +50,7 @@ const wpSearchSelectedText = async () => {
   const tab = (
     await browser.tabs.query({ active: true, currentWindow: true })
   )[0];
-  browser.tabs.sendMessage(tab.id, {
+  return browser.tabs.sendMessage(tab.id, {
     message: WP_SEARCH_SELECTED_TEXT
   });
 };
