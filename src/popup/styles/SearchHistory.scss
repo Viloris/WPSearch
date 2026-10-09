@@ -1,0 +1,78 @@
+.searchHistory {
+  margin: 0 10px 10px;
+
+  button {
+    font: inherit;
+    color: var(--main-text);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .searchHistoryToggle {
+    padding: 0;
+    color: var(--sub-text);
+
+    &:hover {
+      color: var(--highlight);
+    }
+  }
+
+  .searchHistoryPanel {
+    margin-top: 6px;
+    border: 1px solid var(--button);
+    border-radius: 2px;
+    background-color: var(--main-bg);
+  }
+
+  .searchHistoryHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--line);
+    color: var(--sub-text);
+
+    button {
+      padding: 0;
+      color: var(--sub-text);
+
+      &:hover:not(:disabled) {
+        color: var(--highlight);
+      }
+
+      &:disabled {
+        cursor: default;
+        opacity: 0.6;
+      }
+    }
+  }
+
+  ul {
+    max-height: 150px;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li button {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    padding: 6px 8px;
+    text-align: start;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: var(--line);
+    }
+  }
+
+  p {
+    margin: 0;
+    padding: 8px;
+    color: var(--sub-text);
+  }
+}

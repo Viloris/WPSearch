@@ -31,7 +31,10 @@ const getSummaryUrl = (language, title) => {
 
 /**
  * 
- * @description Fetches the Wikipedia summary for a given language and title, handling HTTP errors and network issues, and returns an object containing the summary text, title, URL, and error information if applicable
+ * @description Fetches the Wikipedia summary for a given language and title, 
+ * handling HTTP errors and network issues, 
+ * and returns an object containing the summary text, title, 
+ * URL, and error information if applicable
  * @param {string} language 
  * @param {string} title 
  * @returns {Promise<Response>} Summary API response

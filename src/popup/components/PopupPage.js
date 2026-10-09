@@ -6,8 +6,13 @@ import { updateLogLevel, overWriteLogLevel } from "src/common/log";
 import { CONFIG } from "../../common/constans";
 import Header from "./Header";
 import InputArea from "./InputArea";
+import SearchHistory from "./SearchHistory";
 import "../styles/PopupPage.scss";
-import { getTargetLang, getUILanguage } from "../../common/i18n";
+import {
+  getLocaleMessage,
+  getTargetLang,
+  getUILanguage
+} from "../../common/i18n";
 import "../../components/styles/ResultArea.scss";
 import ResultArea from "../../components/ResultArea";
 import { getTabInfo, tabsSendMessage } from "../../common/urlUtils";
@@ -16,6 +21,9 @@ const {
   requestMessages: { ENABLE_EXTENSION, DISABLE_EXTENSION, WIKIPEDIA_SEARCH }
 } = CONFIG;
 const logDir = "popup/PopupPage";
+const SEARCH_HISTORY_STORAGE_KEY = "SearchHistory";
+const SEARCH_HISTORY_LIMIT = 20;
+const SEARCH_LOADING_MIN_DURATION = 300;
 
 /* ---------------- utils ---------------- */
 
@@ -42,22 +50,83 @@ export default function PopupPage() {
     isEnabledOnPage: true
   });
   const [results, setResults] = useState([]);
+  const [searchHistory, setSearchHistory] = useState([]);
+  const [isLoadingSearch, setIsLoadingSearch] = useState(false);
   const [hideInformationLabel, setHideInformationLabel] = useState(false);
 
   const inputTimer = useRef(null);
+  const loadingTimer = useRef(null);
   const themeClass = useRef(null);
+  const searchHistoryRef = useRef([]);
+  const historySearchId = useRef(0);
+  const historySearchStartedAt = useRef(0);
 
   /* -------- handlers -------- */
 
-  const wpSearchText = useCallback(async (expression) => {
+  const recordSearch = useCallback(async (expression) => {
+    const query = expression.replaceAll("\n", "").trim();
+    if (!query) return;
+
+    const nextHistory = [
+      query,
+      ...searchHistoryRef.current.filter((entry) => entry !== query)
+    ].slice(0, SEARCH_HISTORY_LIMIT);
+    searchHistoryRef.current = nextHistory;
+    setSearchHistory(nextHistory);
+
+    try {
+      await browser.storage.local.set({
+        [SEARCH_HISTORY_STORAGE_KEY]: nextHistory
+      });
+    } catch (error) {
+      log.error(logDir, "saving search history failed", error);
+    }
+  }, []);
+
+  const wpSearchText = useCallback(async (
+    expression,
+    isHistorySearch = false,
+    searchId
+  ) => {
     log.info(logDir, "wpSearchText()", expression);
 
-    const res = await browser.runtime.sendMessage({
-      message: WIKIPEDIA_SEARCH,
-      expression: expression.replaceAll("\n", "")
-    });
-    setResults(res);
-  }, []);
+    try {
+      await recordSearch(expression);
+
+      const res = await browser.runtime.sendMessage({
+        message: WIKIPEDIA_SEARCH,
+        expression: expression.replaceAll("\n", "")
+      });
+      if (historySearchId.current === searchId) {
+        setResults(res);
+      }
+    } finally {
+      if (historySearchId.current === searchId && isHistorySearch) {
+        const remainingTime = Math.max(
+          0,
+          SEARCH_LOADING_MIN_DURATION -
+          (Date.now() - historySearchStartedAt.current)
+        );
+        loadingTimer.current = setTimeout(() => {
+          if (historySearchId.current === searchId) {
+            setIsLoadingSearch(false);
+          }
+        }, remainingTime);
+      } else if (historySearchId.current === searchId) {
+        setIsLoadingSearch(false);
+      }
+    }
+  }, [recordSearch]);
+
+  const clearSearchHistory = async () => {
+    try {
+      await browser.storage.local.set({ [SEARCH_HISTORY_STORAGE_KEY]: [] });
+      searchHistoryRef.current = [];
+      setSearchHistory([]);
+    } catch (error) {
+      log.error(logDir, "clearing search history failed", error);
+    }
+  };
 
   const toggleEnabledOnPage = async (e) => {
     const isEnabled = e.target.checked;
@@ -82,20 +151,36 @@ export default function PopupPage() {
     setHideInformationLabel(true);
   };
 
-  const handleInputText = useCallback((text) => {
+  const handleInputText = useCallback((text, isHistorySearch = false) => {
     setInputText(text);
-
+    clearTimeout(loadingTimer.current);
     clearTimeout(inputTimer.current);
-    const waitTime = getSettings("waitTime");
 
-    inputTimer.current = setTimeout(async () => {
+    const searchId = ++historySearchId.current;
+    setIsLoadingSearch(true);
+    if (isHistorySearch) {
+      setResults([]);
+      historySearchStartedAt.current = Date.now();
+    }
+    const search = async () => {
       try {
-        await wpSearchText(text);
+        await wpSearchText(text, isHistorySearch, searchId);
       } catch (error) {
         log.error(logDir, "wpSearchText failed", error);
       }
-    }, waitTime);
+    };
+
+    if (isHistorySearch) {
+      void search();
+    } else {
+      const waitTime = getSettings("waitTime");
+      inputTimer.current = setTimeout(search, waitTime);
+    }
   }, [wpSearchText]);
+
+  const handleHistorySelect = useCallback((query) => {
+    handleInputText(query, true);
+  }, [handleInputText]);
 
   /* -------- init -------- */
 
@@ -112,6 +197,23 @@ export default function PopupPage() {
       document.body.style.width = "348px";
 
       if (!mounted) return;
+
+      try {
+        const stored = await browser.storage.local.get(
+          SEARCH_HISTORY_STORAGE_KEY
+        );
+        const savedHistory = stored[SEARCH_HISTORY_STORAGE_KEY];
+        const history = Array.isArray(savedHistory)
+          ? savedHistory
+            .filter((query) => typeof query === "string" && query.trim())
+            .slice(0, SEARCH_HISTORY_LIMIT)
+          : [];
+        if (!mounted) return;
+        searchHistoryRef.current = history;
+        setSearchHistory(history);
+      } catch (error) {
+        log.error(logDir, "loading search history failed", error);
+      }
 
       setTargetLang(getTargetLang());
       setHideInformationLabel(!!getSettings("hidePopupInformationLabel"));
@@ -139,6 +241,7 @@ export default function PopupPage() {
     return () => {
       mounted = false;
       clearTimeout(inputTimer.current);
+      clearTimeout(loadingTimer.current);
       if (themeClass.current) {
         document.body.classList.remove(themeClass.current);
       }
@@ -154,17 +257,28 @@ export default function PopupPage() {
         isConnected={tabInfo.isConnected}
       />
       <InputArea inputText={inputText} handleInputText={handleInputText} />
-      {results.length > 0 && (
+      <SearchHistory
+        history={searchHistory}
+        onSelect={handleHistorySelect}
+        onClear={clearSearchHistory}
+      />
+      {(results.length > 0 || isLoadingSearch) && (
         <>
           <hr />
           <div id="resultArea">
-            <ResultArea
-              inputText={inputText}
-              targetLang={targetLang}
-              dismissHint={dismissHint}
-              hideInformationLabel={hideInformationLabel}
-              results={results}
-            />
+            {isLoadingSearch ? (
+              <p aria-live="polite" className="loadingText">
+                {getLocaleMessage("loadingSearchLabel")}
+              </p>
+            ) : (
+              <ResultArea
+                inputText={inputText}
+                targetLang={targetLang}
+                dismissHint={dismissHint}
+                hideInformationLabel={hideInformationLabel}
+                results={results}
+              />
+            )}
           </div>
         </>
       )}

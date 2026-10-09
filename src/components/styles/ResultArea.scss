@@ -16,6 +16,9 @@
         &.resultText {
             color: var(--main-text);
         }
+        &.loadingText {
+            color: var(--main-text);
+        }
         &.infoBar-message {
             background-color: transparent;
             color: var(--main-text);

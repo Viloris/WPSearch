@@ -20,6 +20,18 @@
     "initialTextArea": {
         "message": "Entrer le texte"
     },
+    "searchHistoryLabel": {
+        "message": "Historique de recherche"
+    },
+    "clearSearchHistoryLabel": {
+        "message": "Effacer l’historique"
+    },
+    "emptySearchHistoryLabel": {
+        "message": "Aucune recherche pour le moment"
+    },
+    "loadingSearchLabel": {
+        "message": "Chargement des résultats..."
+    },
     "copyLabel": {
         "message": "Copier"
     },

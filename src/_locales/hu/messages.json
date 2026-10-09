@@ -20,6 +20,18 @@
     "initialTextArea": {
         "message": "Írja be a szöveget"
     },
+    "searchHistoryLabel": {
+        "message": "Keresési előzmények"
+    },
+    "clearSearchHistoryLabel": {
+        "message": "Előzmények törlése"
+    },
+    "emptySearchHistoryLabel": {
+        "message": "Még nincs keresés"
+    },
+    "loadingSearchLabel": {
+        "message": "Találatok betöltése..."
+    },
     "copyLabel": {
         "message": "Másolás"
     },
