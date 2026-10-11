@@ -1,12 +1,12 @@
 .mediaButtons {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    margin-inline-end: 5px;
-    //padding-right: 10px;
-    & > * {
-        margin-inline-start: 10px;
-    }
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-inline-end: 5px;
+  //padding-right: 10px;
+  & > * {
+    margin-inline-start: 10px;
+  }
 }

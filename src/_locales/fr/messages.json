@@ -32,6 +32,24 @@
     "loadingSearchLabel": {
         "message": "Chargement des résultats..."
     },
+    "favoritesLabel": {
+        "message": "Favoris"
+    },
+    "removeFromFavoritesLabel": {
+        "message": "Retirer des favoris"
+    },
+    "emptyFavoritesLabel": {
+        "message": "Aucun favori pour le moment"
+    },
+    "addToFavoritesLabel": {
+        "message": "Ajouter aux favoris"
+    },
+    "addedToFavoritesLabel": {
+        "message": "Ajouté aux favoris"
+    },
+    "removeFromFavoritesConfirmLabel": {
+        "message": "Êtes-vous sûr de vouloir retirer cet élément des favoris?"
+    },
     "copyLabel": {
         "message": "Copier"
     },

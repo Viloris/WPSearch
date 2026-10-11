@@ -16,6 +16,7 @@ import { ResultHeader } from "./ResultHeader";
  * @returns {JSX.Element} Component to display a search result section with error handling, content display, and footer based on the provided props
  */
 export function ResultSection({
+  addToFavorites,
   errorMessage,
   isError,
   text,
@@ -31,7 +32,7 @@ export function ResultSection({
       ) : (
         <>
           <ResultContent text={text} title={title} url={url} />
-          <ResultFooter text={text} />
+          <ResultFooter text={text} addToFavorites={addToFavorites} />
         </>
       )}
     </>

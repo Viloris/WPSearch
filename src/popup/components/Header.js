@@ -1,6 +1,7 @@
 import React from "react";
 import openUrl from "src/common/openUrl";
 import SettingsIcon from "../icons/settings.svg";
+import FavoriteIcon from "../icons/heart.svg";
 import Toggle from "react-toggle";
 import { CONFIG } from "../../common/constans";
 import { getLocaleMessage } from "../../common/i18n";
@@ -14,7 +15,7 @@ const EXTENSION_NAME = getLocaleMessage("extName");
  *
  * @returns {JSX.Element} Title section with extension icon and name
  */
-function renderTitle() {
+function Title() {
   return (
     <div className="title">
       <img src="../../icons/19.png" alt="Wiki" />
@@ -46,14 +47,33 @@ function SettingsButton() {
 
 /**
  *
+ * @returns {JSX.Element} Favorite button that opens favorite component on click
+ */
+function FavoriteButton({ toggleFavoritePage }) {
+  const openFavorite = () => {
+    toggleFavoritePage();
+  };
+
+  return (
+    <button
+      className={"heartButton"}
+      onClick={openFavorite}
+      title={getLocaleMessage("favoriteLabel")}
+    >
+      <FavoriteIcon />
+    </button>
+  );
+}
+
+/**
+ *
  * @param {boolean} isConnected
  * @param {boolean} isEnabledOnPage
  * @param {function}  toggleEnabledOnPage
  * @returns {JSX.Element} Action bar with toggle button and settings button,
  * passing state and toggle function to toggle button for managing enabled status on page
  */
-function renderActionBar(props) {
-  const { isConnected, isEnabledOnPage, toggleEnabledOnPage } = props;
+function ActionBar({ isConnected, isEnabledOnPage, toggleEnabledOnPage, toggleFavoritePage }) {
   return (
     <div className="rightButtons">
       <ToggleButton
@@ -61,6 +81,7 @@ function renderActionBar(props) {
         toggleEnabledOnPage={toggleEnabledOnPage}
         isConnected={isConnected}
       />
+      {<FavoriteButton toggleFavoritePage={toggleFavoritePage} />}
       {SettingsButton()}
     </div>
   );
@@ -100,11 +121,16 @@ function ToggleButton({ isConnected, isEnabledOnPage, toggleEnabledOnPage }) {
  * @returns {JSX.Element} Header component with title and action bar,
  * passing props to action bar for state management
  */
-export default function Header(props) {
+export default function Header({ isConnected, isEnabledOnPage, toggleEnabledOnPage, toggleFavoritePage }) {
   return (
     <div id="header">
-      {renderTitle()}
-      {renderActionBar(props)}
+      <Title />
+      <ActionBar
+        isConnected={isConnected}
+        isEnabledOnPage={isEnabledOnPage}
+        toggleEnabledOnPage={toggleEnabledOnPage}
+        toggleFavoritePage={toggleFavoritePage}
+      />
     </div>
   );
 }

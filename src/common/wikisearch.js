@@ -40,12 +40,18 @@ async function getWikipediaExtract(language, expression) {
     }
 
     const data = await response.json();
+    const articleTitle = data.title || title;
+    const articleUrl =
+      data.content_urls?.desktop?.page ||
+      `https://${language}.wikipedia.org/wiki/${encodeURIComponent(
+        articleTitle.replace(/ /g, "_")
+      )}`;
 
     return {
       ...result,
       text: data.extract || data.description || NO_SUMMARY,
-      title: data.title || title,
-      url: data.content_urls?.desktop?.page || ""
+      title: articleTitle,
+      url: articleUrl
     };
 
   } catch (e) {

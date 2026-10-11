@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import { getLocaleMessage } from "../../common/i18n";
 import "../styles/SearchHistory.scss";
+import { EmptySearchLabel } from "./searchHistory/EmptySearchLabel";
+import { ToggleSearchHistory } from "./searchHistory/toggleSearchHistory";
+import { SearchHistoryList } from "./searchHistory/SearchHistoryList";
+import { SearchHistoryHeader } from "./searchHistory/SearchHistoryHeader";
 
 export default function SearchHistory({ history, onSelect, onClear }) {
+  const hasSearchHistory = history.length > 0;
   const [isOpen, setIsOpen] = useState(false);
 
   const selectQuery = (query) => {
@@ -10,49 +14,34 @@ export default function SearchHistory({ history, onSelect, onClear }) {
     setIsOpen(false);
   };
 
+  const toggleSearchHistory = () => setIsOpen((open) => !open);
+  const createSearchHandler = (query) => () => selectQuery(query);
+
   return (
     <section className="searchHistory">
-      <button
-        aria-controls="searchHistoryList"
-        aria-expanded={isOpen}
-        className="searchHistoryToggle"
-        onClick={() => setIsOpen((open) => !open)}
-        type="button"
-      >
-        {getLocaleMessage("searchHistoryLabel")}
-        {history.length > 0 && <span> ({history.length})</span>}
-      </button>
+      <ToggleSearchHistory
+        isOpen={isOpen}
+        history={history}
+        toggleSearchHistory={toggleSearchHistory}
+      />
       {isOpen && (
         <div className="searchHistoryPanel" id="searchHistoryList">
-          <div className="searchHistoryHeader">
-            <span>{getLocaleMessage("searchHistoryLabel")}</span>
-            <button
-              disabled={history.length === 0}
-              onClick={onClear}
-              type="button"
-            >
-              {getLocaleMessage("clearSearchHistoryLabel")}
-            </button>
-          </div>
-          {history.length > 0 ? (
-            <ul>
-              {history.map((query) => (
-                <li key={query}>
-                  <button
-                    onClick={() => selectQuery(query)}
-                    title={query}
-                    type="button"
-                  >
-                    {query}
-                  </button>
-                </li>
-              ))}
-            </ul>
+          <SearchHistoryHeader
+            history={history}
+            onClear={onClear}
+          />
+          {hasSearchHistory ? (
+            <SearchHistoryList
+              history={history}
+              createSearchHandler={createSearchHandler}
+            />
           ) : (
-            <p>{getLocaleMessage("emptySearchHistoryLabel")}</p>
+            <EmptySearchLabel />
           )}
         </div>
       )}
     </section>
   );
+
+
 }

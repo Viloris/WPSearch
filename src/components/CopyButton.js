@@ -33,7 +33,7 @@ export default function CopyButton({ text }) {
       setCopyError("");
     } catch (err) {
       log.error("Copy failed", err);
-      setCopyError("A másolás nem sikerült. Próbáld újra, vagy engedélyezd a vágólaphozzáférést.");
+      setCopyError("A másolás nem sikerült. Próbáld újra, vagy engedélyezd a vágólaphoz való hozzáférést.");
     }
   };
 

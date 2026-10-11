@@ -32,6 +32,24 @@
     "loadingSearchLabel": {
         "message": "Találatok betöltése..."
     },
+    "favoritesLabel": {
+        "message": "Kedvencek"
+    },
+    "removeFromFavoritesLabel": {
+        "message": "Eltávolítás a kedvencekből"
+    },
+    "emptyFavoritesLabel": {
+        "message": "Még nincsenek kedvenc elemek"
+    },
+    "addedToFavoritesLabel": {
+        "message": "Hozzáadva a kedvencekhez"
+    },
+    "addToFavoritesLabel": {
+        "message": "Hozzáadás a kedvencekhez"
+    },
+    "removeFromFavoritesConfirmLabel": {
+        "message": "Biztosan el akarja távolítani ezt az elemet a kedvencekből?"
+    },
     "copyLabel": {
         "message": "Másolás"
     },

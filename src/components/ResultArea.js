@@ -16,7 +16,8 @@ import { getWikipediaName } from "../common/urlUtils";
 export default function ResultArea({
   results = [],
   hideInformationLabel,
-  dismissHint
+  dismissHint,
+  addToFavorites
 }) {
   const information = getLocaleMessage("firstInformationText");
   const useSecondLang = getSettings("shouldUseSecondTargetLang");
@@ -26,6 +27,7 @@ export default function ResultArea({
       {results.map(
         ({ errorMessage, isError, lang, text, title, url }, index) => (
           <ResultSection
+            addToFavorites={addToFavorites}
             key={`${lang}-${index}`}
             errorMessage={errorMessage}
             isError={isError}

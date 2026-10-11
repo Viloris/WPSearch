@@ -29,6 +29,24 @@
     "emptySearchHistoryLabel": {
         "message": "No searches yet"
     },
+    "favoritesLabel": {
+        "message": "Favorites"
+    },
+    "removeFromFavoritesLabel": {
+        "message": "Remove from favorites"
+    },
+    "emptyFavoritesLabel": {
+        "message": "No favorites yet"
+    },
+    "addToFavoritesLabel": {
+        "message": "Add to favorites"
+    },
+    "removeFromFavoritesConfirmLabel": {
+        "message": "Are you sure you want to remove this item from favorites?"
+    },
+    "addedToFavoritesLabel": {
+        "message": "Added to favorites"
+    },
     "loadingSearchLabel": {
         "message": "Loading search results..."
     },
