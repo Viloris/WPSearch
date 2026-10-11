@@ -7,6 +7,7 @@ export function SearchHistoryHeader({ history, onClear }) {
 
     return (
         <div className="searchHistoryHeader">
+
             <span>{searchHistoryLabel}</span>
             <ClearSearchHistoryButton onClear={onClear} history={history} />
         </div>

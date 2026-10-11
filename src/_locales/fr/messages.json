@@ -29,9 +29,6 @@
     "emptySearchHistoryLabel": {
         "message": "Aucune recherche pour le moment"
     },
-    "loadingSearchLabel": {
-        "message": "Chargement des résultats..."
-    },
     "favoritesLabel": {
         "message": "Favoris"
     },
@@ -49,6 +46,12 @@
     },
     "removeFromFavoritesConfirmLabel": {
         "message": "Êtes-vous sûr de vouloir retirer cet élément des favoris?"
+    },
+    "openInNewWindowLabel": {
+        "message": "Ouvrir le favori dans une nouvelle fenêtre"
+    },
+    "loadingSearchLabel": {
+        "message": "Chargement des résultats..."
     },
     "copyLabel": {
         "message": "Copier"

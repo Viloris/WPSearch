@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import HeartIcon from "../icons/star-filled.svg";
+import HeartIcon from "../icons/bookmark-solar-add.svg";
 import "../styles/CopyButton.scss";
 import { getLocaleMessage } from "../common/i18n";
 
@@ -12,12 +12,12 @@ const buttonCaption = getLocaleMessage("addToFavoritesLabel");
  * @param {Function} addToFavorites
  * @returns {JSX.Element} Button that adds the given text to favorites
  */
-export default function AddToFavoritesButton({ text, addToFavorites }) {
+export default function AddToFavoritesButton({ text, addToFavorites, wikipedia, title }) {
   const labelAdded = getLocaleMessage("addedToFavoritesLabel");
   const [added, setAdded] = useState(false);
 
   const handleAddToFavorites = () => {
-    addToFavorites(text);
+    addToFavorites(text, wikipedia, title);
     setAdded(true);
   };
 

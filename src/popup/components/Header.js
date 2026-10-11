@@ -1,7 +1,8 @@
 import React from "react";
 import openUrl from "src/common/openUrl";
-import SettingsIcon from "../icons/settings.svg";
-import FavoriteIcon from "../icons/heart.svg";
+import SettingsIcon from "../icons/settings-solar.svg";
+import FavoriteIcon from "../icons/bookmark-solar-blank.svg";
+import FavoriteIconFilled from "../icons/bookmark-solar-filled.svg";
 import Toggle from "react-toggle";
 import { CONFIG } from "../../common/constans";
 import { getLocaleMessage } from "../../common/i18n";
@@ -49,18 +50,18 @@ function SettingsButton() {
  *
  * @returns {JSX.Element} Favorite button that opens favorite component on click
  */
-function FavoriteButton({ toggleFavoritePage }) {
+function FavoriteButton({ toggleFavoritePage, isFavoritePageOpen }) {
   const openFavorite = () => {
     toggleFavoritePage();
   };
 
   return (
     <button
-      className={"heartButton"}
+      className={`favoriteButton${isFavoritePageOpen ? " is-open" : ""}`}
       onClick={openFavorite}
       title={getLocaleMessage("favoriteLabel")}
     >
-      <FavoriteIcon />
+      {isFavoritePageOpen ? <FavoriteIconFilled /> : <FavoriteIcon />}
     </button>
   );
 }
@@ -73,7 +74,7 @@ function FavoriteButton({ toggleFavoritePage }) {
  * @returns {JSX.Element} Action bar with toggle button and settings button,
  * passing state and toggle function to toggle button for managing enabled status on page
  */
-function ActionBar({ isConnected, isEnabledOnPage, toggleEnabledOnPage, toggleFavoritePage }) {
+function ActionBar({ isConnected, isEnabledOnPage, toggleEnabledOnPage, toggleFavoritePage, isFavoritePageOpen }) {
   return (
     <div className="rightButtons">
       <ToggleButton
@@ -81,7 +82,7 @@ function ActionBar({ isConnected, isEnabledOnPage, toggleEnabledOnPage, toggleFa
         toggleEnabledOnPage={toggleEnabledOnPage}
         isConnected={isConnected}
       />
-      {<FavoriteButton toggleFavoritePage={toggleFavoritePage} />}
+      {<FavoriteButton toggleFavoritePage={toggleFavoritePage} isFavoritePageOpen={isFavoritePageOpen} />}
       {SettingsButton()}
     </div>
   );
@@ -121,7 +122,7 @@ function ToggleButton({ isConnected, isEnabledOnPage, toggleEnabledOnPage }) {
  * @returns {JSX.Element} Header component with title and action bar,
  * passing props to action bar for state management
  */
-export default function Header({ isConnected, isEnabledOnPage, toggleEnabledOnPage, toggleFavoritePage }) {
+export default function Header({ isConnected, isEnabledOnPage, toggleEnabledOnPage, toggleFavoritePage, isFavoritePageOpen }) {
   return (
     <div id="header">
       <Title />
@@ -130,6 +131,7 @@ export default function Header({ isConnected, isEnabledOnPage, toggleEnabledOnPa
         isEnabledOnPage={isEnabledOnPage}
         toggleEnabledOnPage={toggleEnabledOnPage}
         toggleFavoritePage={toggleFavoritePage}
+        isFavoritePageOpen={isFavoritePageOpen}
       />
     </div>
   );

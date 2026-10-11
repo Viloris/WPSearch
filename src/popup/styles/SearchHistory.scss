@@ -10,8 +10,16 @@
   }
 
   .searchHistoryToggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25em;
     padding: 0;
     color: var(--sub-text);
+
+    svg {
+      display: block;
+      fill: currentColor;
+    }
 
     &:hover {
       color: var(--highlight);

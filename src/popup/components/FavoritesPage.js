@@ -5,6 +5,7 @@ import { getLocaleMessage } from "../../common/i18n";
 export default function FavoritesPage({ favorites, onSelect, onRemove }) {
   const favoritesLabel = getLocaleMessage("favoritesLabel");
   const emptyFavoritesLabel = getLocaleMessage("emptyFavoritesLabel");
+  const openInNewWindowLabel = getLocaleMessage("openInNewWindowLabel");
   const removeFromFavoritesLabel = getLocaleMessage("removeFromFavoritesLabel");
 
   return (
@@ -23,30 +24,32 @@ export default function FavoritesPage({ favorites, onSelect, onRemove }) {
         </div>
       ) : (
         <div className="favorites-list">
-          {favorites.map((query) => (
-            <div key={query} className="favorite-item">
+          {favorites.map(({ summary, wikipedia, title }) => (
+            <div key={summary} className="favorite-item">
               <div className="favorite-info">
-                <div className="favorite-icon" aria-hidden="true">
+                {/* <div className="favorite-icon" aria-hidden="true">
                   ★
-                </div>
+                </div> */}
                 <div className="favorite-text">
-                  <span className="favorite-title">{query}</span>
+                  {wikipedia && <span className="favorite-wikipedia">{wikipedia}</span>}
+                  {title && <span className="favorite-title">{title}</span>}
+                  <span className="favorite-summary">{summary}</span>
                 </div>
               </div>
 
               <div className="favorite-actions">
                 <button
                   className="favorite-open"
-                  onClick={() => onSelect(query)}
-                  title={query}
+                  onClick={() => onSelect(summary)}
+                  title={openInNewWindowLabel + ": " + title}
                   type="button"
-                  aria-label={query}
+                  aria-label={openInNewWindowLabel + ": " + title}
                 >
                   ↗
                 </button>
                 <button
                   className="favorite-remove"
-                  onClick={() => onRemove(query)}
+                  onClick={() => onRemove(summary)}
                   title={removeFromFavoritesLabel}
                   type="button"
                   aria-label={removeFromFavoritesLabel}

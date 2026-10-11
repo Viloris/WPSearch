@@ -29,9 +29,6 @@
     "emptySearchHistoryLabel": {
         "message": "Még nincs keresés"
     },
-    "loadingSearchLabel": {
-        "message": "Találatok betöltése..."
-    },
     "favoritesLabel": {
         "message": "Kedvencek"
     },
@@ -49,6 +46,12 @@
     },
     "removeFromFavoritesConfirmLabel": {
         "message": "Biztosan el akarja távolítani ezt az elemet a kedvencekből?"
+    },
+    "openInNewWindowLabel": {
+        "message": "Megnyitás új ablakban"
+    },
+    "loadingSearchLabel": {
+        "message": "Találatok betöltése..."
     },
     "copyLabel": {
         "message": "Másolás"

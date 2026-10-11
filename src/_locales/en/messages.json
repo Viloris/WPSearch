@@ -50,6 +50,9 @@
     "loadingSearchLabel": {
         "message": "Loading search results..."
     },
+    "openInNewWindowLabel": {
+        "message": "Open in new window"
+    },
     "copyLabel": {
         "message": "Copy"
     },

@@ -190,8 +190,9 @@ export default function PopupPage() {
     setOpenFavorite(false);
     handleInputText(favorite);
   }, [handleInputText]);
-  const handleAddFavorite = useCallback((favorite) => {
-    addFavorite(favorite, setFavorites);
+
+  const handleAddFavorite = useCallback((favorite, wikipedia, title) => {
+    addFavorite(favorite, setFavorites, wikipedia, title);
   }, []);
 
   const handleRemoveFavorite = useCallback((favorite) => {
@@ -206,6 +207,7 @@ export default function PopupPage() {
         isEnabledOnPage={tabInfo.isEnabledOnPage}
         toggleEnabledOnPage={onToggleEnabledOnPage}
         toggleFavoritePage={toggleFavoritePage}
+        isFavoritePageOpen={openFavorite}
       />
       <InputArea inputText={inputText} handleInputText={handleInputText} />
       {openFavorite && (

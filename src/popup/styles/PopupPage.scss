@@ -97,6 +97,8 @@ body {
     box-sizing: border-box;
     width: 100%;
     min-width: 348px;
+    max-height: 600px;
+    overflow-y: auto;
 
     > * {
         flex: 0 0 auto;

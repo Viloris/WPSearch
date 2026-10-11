@@ -1,114 +1,142 @@
 #header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    padding: 10px;
-    background-color: var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 10px;
+  background-color: var(--line);
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+
+  .title {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--sub-text);
+    cursor: default;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  .rightButtons {
     display: flex;
     flex-direction: row;
-    flex-shrink: 0;
     align-items: center;
-    justify-content: space-between;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
+    justify-content: flex-end;
+    height: 18px;
 
-    .title {
-        font-size: 15px;
-        font-weight: 400;
-        color: var(--sub-text);
-        cursor: default;
-        flex-shrink: 0;
+    .toggleButton {
+      height: 18px;
+      .react-toggle {
         display: flex;
-        justify-content: left;
-        align-items: center;
-    }
-
-    .rightButtons {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-end;
+        flex-direction: column;
+        justify-content: center;
         height: 18px;
-
-        .toggleButton {
-            height: 18px;
-            .react-toggle {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                height: 18px;
-                $offset-width: 18px;
-                margin-right: 10px;
-                .react-toggle-track {
-                    height: 10px;
-                    width: 50px - $offset-width;
-                    background-color: var(--sub-text);
-                    -webkit-box-transition: all 100ms ease;
-                    -moz-box-transition: all 100ms ease;
-                    transition: all 100ms ease;
-                }
-                .react-toggle-thumb {
-                    height: 16px;
-                    width: 16px;
-                    inset-inline-start: 0px;
-                    -webkit-box-shadow: none;
-                    -moz-box-shadow: none;
-                    box-shadow: none;
-                    -webkit-box-transition: all 100ms ease;
-                    -moz-box-transition: all 100ms ease;
-                    transition: all 100ms ease;
-                }
-
-                &.react-toggle--checked {
-                    .react-toggle-track {
-                        background-color: var(--highlight);
-                    }
-                    .react-toggle-thumb {
-                        inset-inline-start: 34px - $offset-width;
-                        border-color: var(--highlight);
-                    }
-                }
-                &.react-toggle--disabled {
-                    cursor: unset;
-                }
-            }
+        $offset-width: 18px;
+        margin-right: 10px;
+        .react-toggle-track {
+          height: 10px;
+          width: 50px - $offset-width;
+          background-color: var(--sub-text);
+          -webkit-box-transition: all 100ms ease;
+          -moz-box-transition: all 100ms ease;
+          transition: all 100ms ease;
+        }
+        .react-toggle-thumb {
+          height: 16px;
+          width: 16px;
+          inset-inline-start: 0px;
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none;
+          box-shadow: none;
+          -webkit-box-transition: all 100ms ease;
+          -moz-box-transition: all 100ms ease;
+          transition: all 100ms ease;
         }
 
-        button {
-            display: block;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            outline: none;
-            padding: 0;
+        &.react-toggle--checked {
+          .react-toggle-track {
+            background-color: var(--highlight);
+          }
+          .react-toggle-thumb {
+            inset-inline-start: 34px - $offset-width;
+            border-color: var(--highlight);
+          }
         }
-
-        .heartButton {
-            display: flex;
-            align-items: center;
-            margin: 0px 10px;
-            &:hover svg {
-                fill: var(--confirm);
-            }
+        &.react-toggle--disabled {
+          cursor: unset;
         }
-
-        .settingsButton {
-            display: flex;
-            align-items: center;
-            &:hover svg {
-                fill: var(--highlight);
-                transform: rotate(90deg);
-            }
-        }
-
-        svg {
-            height: 18px;
-            width: 18px;
-            fill: var(--sub-text);
-            transition:
-                fill 100ms,
-                transform 300ms ease;
-        }
+      }
     }
+
+    button {
+      display: block;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      padding: 0;
+    }
+
+    .heartButton {
+      display: flex;
+      align-items: center;
+      margin: 0px 10px;
+      &:hover svg {
+        fill: var(--confirm);
+      }
+    }
+
+    .favoriteButton {
+      display: flex;
+      align-items: center;
+      margin: 0px 10px;
+      color: var(--main-text);
+      &:hover svg {
+        color: var(--highlight);
+      }
+
+      svg path {
+        fill: none;
+        stroke: currentColor;
+      }
+
+      &.is-open svg path {
+        fill: currentColor;
+        stroke: none;
+      }
+    }
+
+    .settingsButton {
+      display: flex;
+      align-items: center;
+      color: var(--main-text);
+
+      svg path,
+      svg circle {
+        fill: none;
+        stroke: currentColor;
+      }
+
+      &:hover svg {
+        color: var(--highlight);
+        transform: rotate(90deg);
+      }
+    }
+
+    svg {
+      height: 18px;
+      width: 18px;
+      fill: none;
+      transition:
+        color 100ms,
+        transform 300ms ease;
+    }
+  }
 }

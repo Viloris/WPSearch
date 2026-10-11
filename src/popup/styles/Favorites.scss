@@ -69,10 +69,15 @@
     justify-content: space-between;
     gap: 12px;
     padding: 12px 14px;
-    border: 1px solid var(--line);
-    border-radius: 12px;
+    //border: 1px solid var(--line);
+    //border-radius: 12px;
     background: var(--main-bg);
     box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    &:hover {
+      // background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
 
     .favorite-info {
       display: flex;
@@ -99,6 +104,13 @@
       min-width: 0;
       flex: 1;
 
+      .favorite-wikipedia {
+        display: block;
+        margin-bottom: 2px;
+        font-size: 11px;
+        color: var(--sub-text);
+      }
+
       .favorite-title {
         display: block;
         font-size: 14px;
@@ -110,14 +122,16 @@
         text-overflow: ellipsis;
       }
 
-      .favorite-url {
+      .favorite-summary {
         display: block;
         margin-top: 3px;
         font-size: 12px;
         color: var(--sub-text);
-        white-space: nowrap;
+        line-height: 1.35;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
         overflow: hidden;
-        text-overflow: ellipsis;
       }
     }
 
@@ -139,8 +153,12 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      font-size: 20px;
+      line-height: 1;
       cursor: pointer;
-      transition: background 0.2s ease, color 0.2s ease;
+      transition:
+        background 0.2s ease,
+        color 0.2s ease;
 
       &:hover {
         background: var(--line);

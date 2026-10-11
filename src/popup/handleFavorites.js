@@ -3,14 +3,30 @@ import browser from "webextension-polyfill";
 
 const logDir = "popup/PopupPage";
 
+const normalizeFavorites = (savedFavorites) => {
+    if (!Array.isArray(savedFavorites)) return [];
+
+    return savedFavorites.flatMap((entry) => {
+        if (typeof entry === "string" && entry.trim()) {
+            return [{ summary: entry.trim() }];
+        }
+
+        if (entry && typeof entry === "object" && typeof entry.summary === "string" && entry.summary.trim()) {
+            return [{
+                wikipedia: typeof entry.wikipedia === "string" ? entry.wikipedia : "",
+                title: typeof entry.title === "string" ? entry.title : "",
+                summary: entry.summary.trim()
+            }];
+        }
+
+        return [];
+    });
+};
+
 export const getFavorites = async (isMounted, setFavorites) => {
     try {
         const stored = await browser.storage.local.get("favorites");
-        const savedFavorites = stored["favorites"];
-        const favorites = Array.isArray(savedFavorites)
-            ? savedFavorites
-                .filter((query) => typeof query === "string" && query.trim())
-            : [];
+        const favorites = normalizeFavorites(stored["favorites"]);
         if (!isMounted()) return;
         setFavorites(favorites);
     } catch (error) {
@@ -18,16 +34,12 @@ export const getFavorites = async (isMounted, setFavorites) => {
     }
 }
 
-export const addFavorite = async (query, setFavorites) => {
+export const addFavorite = async (summary, setFavorites, wikipedia, title) => {
     try {
         const stored = await browser.storage.local.get("favorites");
-        const savedFavorites = stored["favorites"];
-        const favorites = Array.isArray(savedFavorites)
-            ? savedFavorites
-                .filter((entry) => typeof entry === "string" && entry.trim())
-            : [];
-        if (!favorites.includes(query)) {
-            const nextFavorites = [query, ...favorites];
+        const favorites = normalizeFavorites(stored["favorites"]);
+        if (!favorites.some((entry) => entry.summary === summary)) {
+            const nextFavorites = [{ wikipedia, title, summary }, ...favorites];
             await browser.storage.local.set({ "favorites": nextFavorites });
             setFavorites(nextFavorites);
         }
@@ -36,16 +48,12 @@ export const addFavorite = async (query, setFavorites) => {
     }
 }
 
-export const removeFavorite = async (query, setFavorites) => {
+export const removeFavorite = async (summary, setFavorites) => {
     try {
         const stored = await browser.storage.local.get("favorites");
-        const savedFavorites = stored["favorites"];
-        const favorites = Array.isArray(savedFavorites)
-            ? savedFavorites
-                .filter((entry) => typeof entry === "string" && entry.trim())
-            : [];
-        if (favorites.includes(query)) {
-            const nextFavorites = favorites.filter((entry) => entry !== query);
+        const favorites = normalizeFavorites(stored["favorites"]);
+        if (favorites.some((entry) => entry.summary === summary)) {
+            const nextFavorites = favorites.filter((entry) => entry.summary !== summary);
             await browser.storage.local.set({ "favorites": nextFavorites });
             setFavorites(nextFavorites);
         }

@@ -29,9 +29,6 @@
     "emptySearchHistoryLabel": {
         "message": "Noch keine Suchanfragen"
     },
-    "loadingSearchLabel": {
-        "message": "Suchergebnisse werden geladen..."
-    },
     "favoritesLabel": {
         "message": "Favoriten"
     },
@@ -49,6 +46,12 @@
     },
     "addedToFavoritesLabel": {
         "message": "Zu Favoriten hinzugefügt"
+    },
+    "openInNewWindowLabel": {
+        "message": "In neuem Fenster öffnen"
+    },
+    "loadingSearchLabel": {
+        "message": "Suchergebnisse werden geladen..."
     },
     "copyLabel": {
         "message": "Kopieren"
