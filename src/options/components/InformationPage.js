@@ -93,6 +93,11 @@ export default function InformationPage() {
       captions: ["Mozilla Public License, Version. 2.0"],
       useRawCaptions: true,
       type: "none",
+      extraCaption: (
+        <p className="caption">
+          Vectors and icons by <a href="https://www.figma.com/community/file/1166831539721848736?ref=svgrepo.com" target="_blank" rel="noreferrer">Solar Icons</a> in CC Attribution License via < a href="https://www.svgrepo.com/" target="_blank" rel="noreferrer">SVG Repo</a >
+        </p>
+      ),
       show: true
     },
     {

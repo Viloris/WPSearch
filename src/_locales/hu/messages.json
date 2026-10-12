@@ -353,6 +353,12 @@
     "informationLabel": {
         "message": "Információ"
     },
+    "settingsLoadingLabel": {
+        "message": "Beállítások betöltése..."
+    },
+    "settingsLoadErrorLabel": {
+        "message": "A beállításokat nem sikerült betölteni. Ellenőrizze a böngésző konzolját, majd töltse újra az oldalt."
+    },
     "additionalPermissionLabel": {
         "message": "Keresés engedélyezése a weboldalakon."
     },
@@ -367,6 +373,9 @@
     },
     "licenseLabel": {
         "message": "Engedély"
+    },
+    "iconAttributionsLabel": {
+        "message": "Ikonok és vektorok forrásmegjelölése"
     },
     "donationLabel": {
         "message": "Adomány"

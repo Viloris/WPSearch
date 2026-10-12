@@ -353,6 +353,12 @@
     "informationLabel": {
         "message": "Information"
     },
+    "settingsLoadingLabel": {
+        "message": "Loading settings..."
+    },
+    "settingsLoadErrorLabel": {
+        "message": "Settings could not be loaded. Check the browser console and reload this page."
+    },
     "additionalPermissionLabel": {
         "message": "Enable search on web pages"
     },
@@ -367,6 +373,9 @@
     },
     "licenseLabel": {
         "message": "License"
+    },
+    "iconAttributionsLabel": {
+        "message": "Icon and vector attributions"
     },
     "donationLabel": {
         "message": "Please make a donation"

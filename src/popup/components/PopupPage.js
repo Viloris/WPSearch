@@ -105,8 +105,12 @@ export default function PopupPage() {
   }, []);
 
   const handleHistorySelect = useCallback((query) => {
+    const currentQuery = inputText.replaceAll("\n", "").trim();
+    if (query === currentQuery && results.length > 0 && !isLoadingSearch) {
+      return;
+    }
     handleInputText(query, true);
-  }, [handleInputText]);
+  }, [handleInputText, inputText, isLoadingSearch, results.length]);
 
   useEffect(() => {
     if (!debouncedSearchRequest) return;

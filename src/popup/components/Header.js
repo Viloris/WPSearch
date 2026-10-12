@@ -1,5 +1,6 @@
 import React from "react";
 import openUrl from "src/common/openUrl";
+import browser from "webextension-polyfill";
 import SettingsIcon from "../icons/settings-solar.svg";
 import FavoriteIcon from "../icons/bookmark-solar-blank.svg";
 import FavoriteIconFilled from "../icons/bookmark-solar-filled.svg";
@@ -31,7 +32,7 @@ function Title() {
  */
 function SettingsButton() {
   const openSettings = () => {
-    const url = `${OPTIONS_PAGE_URL}#settings`;
+    const url = browser.runtime.getURL(`${OPTIONS_PAGE_URL}#settings`);
     openUrl(url);
   };
 
@@ -59,7 +60,7 @@ function FavoriteButton({ toggleFavoritePage, isFavoritePageOpen }) {
     <button
       className={`favoriteButton${isFavoritePageOpen ? " is-open" : ""}`}
       onClick={openFavorite}
-      title={getLocaleMessage("favoriteLabel")}
+      title={getLocaleMessage("favoritesLabel")}
     >
       {isFavoritePageOpen ? <FavoriteIconFilled /> : <FavoriteIcon />}
     </button>

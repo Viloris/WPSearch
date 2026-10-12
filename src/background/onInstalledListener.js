@@ -16,7 +16,9 @@ const logDir = "background/onInstalledListener";
 
 const openOptionsPage = (active) => {
   browser.tabs.create({
-    url: `${OPTIONS_PAGE_URL}#information?action=updated`,
+    url: browser.runtime.getURL(
+      `${OPTIONS_PAGE_URL}#/information?action=updated`
+    ),
     active: active
   });
 };

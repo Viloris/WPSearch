@@ -353,6 +353,12 @@
     "informationLabel": {
         "message": "Information"
     },
+    "settingsLoadingLabel": {
+        "message": "Chargement des paramètres..."
+    },
+    "settingsLoadErrorLabel": {
+        "message": "Impossible de charger les paramètres. Vérifiez la console du navigateur puis rechargez cette page."
+    },
     "additionalPermissionLabel": {
         "message": "Activer la recherche sur les pages web"
     },
@@ -367,6 +373,9 @@
     },
     "licenseLabel": {
         "message": "Licence"
+    },
+    "iconAttributionsLabel": {
+        "message": "Attributions des icônes et des vecteurs"
     },
     "donationLabel": {
         "message": "Veuillez faire un don"
