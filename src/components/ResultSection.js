@@ -22,7 +22,10 @@ export function ResultSection({
   text,
   title,
   url,
-  wikipedia
+  wikipedia,
+  fullArticleState,
+  loadFullArticle,
+  lang
 }) {
   return (
     <>
@@ -31,8 +34,21 @@ export function ResultSection({
         <ErrorSection message={errorMessage} />
       ) : (
         <>
-          <ResultContent text={text} title={title} url={url} />
-          <ResultFooter text={text} addToFavorites={addToFavorites} wikipedia={wikipedia} title={title} />
+          <ResultContent
+            text={text}
+            title={title}
+            url={url}
+          />
+          <ResultFooter
+            text={text}
+            addToFavorites={addToFavorites}
+            wikipedia={wikipedia}
+            title={title}
+            language={lang}
+            loadFullArticle={loadFullArticle}
+            fullArticleState={fullArticleState}
+            url={url}
+          />
         </>
       )}
     </>

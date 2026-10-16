@@ -26,7 +26,6 @@ async function getWikipediaExtract(language, expression) {
 
   try {
     const title = await getFirstSearchResultTitle(language, expression);
-
     if (!title) {
       result.text = getLocaleMessage("notFound");
       return result;

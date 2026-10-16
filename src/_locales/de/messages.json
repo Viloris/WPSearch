@@ -29,6 +29,39 @@
     "emptySearchHistoryLabel": {
         "message": "Noch keine Suchanfragen"
     },
+    "mainMenuLabel": {
+        "message": "Startseite"
+    },
+    "searchLabel": {
+        "message": "Suche"
+    },
+    "dailyFeaturedArticleLabel": {
+        "message": "Tagesartikel"
+    },
+    "dailyFeaturedArticleLoading": {
+        "message": "Tagesartikel wird geladen..."
+    },
+    "dailyFeaturedArticleFallback": {
+        "message": "Heute gibt es keinen ausgewählten Tagesartikel; stattdessen wird der meistgelesene Artikel angezeigt."
+    },
+    "dailyFeaturedArticleError": {
+        "message": "Der Tagesartikel konnte nicht geladen werden."
+    },
+    "dailyFeaturedArticleRetryLabel": {
+        "message": "Erneut versuchen"
+    },
+    "dailyImageOfDayLabel": {
+        "message": "Bild des Tages"
+    },
+    "dailyImageArtistLabel": {
+        "message": "Fotograf"
+    },
+    "dailyImageLicenseLabel": {
+        "message": "Lizenz"
+    },
+    "dailyMostReadLabel": {
+        "message": "Meistgelesene Artikel"
+    },
     "favoritesLabel": {
         "message": "Favoriten"
     },
@@ -52,6 +85,15 @@
     },
     "loadingSearchLabel": {
         "message": "Suchergebnisse werden geladen..."
+    },
+    "loadingFullArticleLabel": {
+        "message": "Vollständiger Artikel wird geladen..."
+    },
+    "backFullArticleLabel": {
+        "message": "Zurück zum vorherigen Artikel"
+    },
+    "closeFullArticleLabel": {
+        "message": "Vollständigen Artikel schließen"
     },
     "copyLabel": {
         "message": "Kopieren"

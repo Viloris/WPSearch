@@ -1,0 +1,147 @@
+.featuredArticle {
+  margin: 0 10px 10px;
+  color: var(--main-text);
+
+  > h2 {
+    margin: 2px 0 8px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .featuredArticleCard {
+    max-height: 360px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--main-bg);
+    line-height: 1.45;
+  }
+
+  .featuredArticleImage {
+    display: block;
+    max-width: 100%;
+    max-height: 150px;
+    margin: 0 auto 10px;
+    object-fit: contain;
+  }
+
+  h3 {
+    margin: 0 0 4px;
+    font-size: 15px;
+    line-height: 1.3;
+
+    a {
+      color: var(--main-text);
+      text-decoration: none;
+
+      &:hover {
+        color: var(--highlight);
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .featuredArticleDescription,
+  .featuredArticleExtract p {
+    margin: 6px 0;
+  }
+
+  .featuredArticleDescription,
+  .featuredArticleStatus {
+    color: var(--sub-text);
+  }
+
+  .featuredArticleExtract {
+    overflow-wrap: anywhere;
+
+    a {
+      color: var(--highlight);
+    }
+
+    ul,
+    ol {
+      padding-inline-start: 20px;
+    }
+  }
+
+  .featuredArticleStatus {
+    margin: 0;
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+
+    p {
+      margin: 0 0 8px;
+    }
+
+    button {
+      border: 1px solid var(--button);
+      border-radius: 3px;
+      padding: 4px 8px;
+      color: var(--main-text);
+      background: var(--main-bg);
+      cursor: pointer;
+
+      &:hover {
+        border-color: var(--highlight);
+        color: var(--highlight);
+      }
+    }
+  }
+
+  .featuredArticleSupplement {
+    margin-top: 12px;
+
+    > h3 {
+      margin-bottom: 6px;
+    }
+  }
+
+  .featuredArticleImageOfDay {
+    margin: 0;
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--main-bg);
+
+    img {
+      display: block;
+      max-width: 100%;
+      max-height: 220px;
+      margin: 0 auto;
+      object-fit: contain;
+    }
+
+    figcaption,
+    .featuredArticleImageCredit {
+      margin: 8px 0 0;
+    }
+
+    .featuredArticleImageCredit {
+      color: var(--sub-text);
+      font-size: 12px;
+    }
+  }
+
+  .featuredArticleMostRead {
+    margin: 0;
+    padding: 10px 10px 10px 30px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--main-bg);
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    a {
+      color: var(--highlight);
+    }
+
+    p {
+      margin: 2px 0 0;
+      color: var(--sub-text);
+    }
+  }
+}

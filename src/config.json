@@ -3,6 +3,7 @@
     "NO_SUMMARY": "NO_SUMMARY",
     "WIKIPEDIA_API_URL": ".wikipedia.org/w/api.php?action=query&list=search&srsearch=",
     "WIKIPEDIA_SUMMARY_API_URL": ".wikipedia.org/api/rest_v1/page/summary/",
+    "WIKIPEDIA_FEATURED_API_URL": "api.wikimedia.org/feed/v1/wikipedia/",
     "HTTPS": "https://",
     "DEFAULT_LANGUAGE": "en",
     "SECOND_LANGUAGE": "de",

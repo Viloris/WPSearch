@@ -29,6 +29,39 @@
     "emptySearchHistoryLabel": {
         "message": "Még nincs keresés"
     },
+    "mainMenuLabel": {
+        "message": "Főmenü"
+    },
+    "searchLabel": {
+        "message": "Keresés"
+    },
+    "dailyFeaturedArticleLabel": {
+        "message": "Napi kiemelt cikk"
+    },
+    "dailyFeaturedArticleLoading": {
+        "message": "A napi kiemelt cikk betöltése..."
+    },
+    "dailyFeaturedArticleFallback": {
+        "message": "Ma nincs kijelölt kiemelt cikk; helyette a legtöbbet olvasott cikk látható."
+    },
+    "dailyFeaturedArticleError": {
+        "message": "A napi kiemelt cikk most nem tölthető be."
+    },
+    "dailyFeaturedArticleRetryLabel": {
+        "message": "Újrapróbálás"
+    },
+    "dailyImageOfDayLabel": {
+        "message": "A nap képe"
+    },
+    "dailyImageArtistLabel": {
+        "message": "Készítő"
+    },
+    "dailyImageLicenseLabel": {
+        "message": "Licenc"
+    },
+    "dailyMostReadLabel": {
+        "message": "Legolvasottabb cikkek"
+    },
     "favoritesLabel": {
         "message": "Kedvencek"
     },
@@ -52,6 +85,15 @@
     },
     "loadingSearchLabel": {
         "message": "Találatok betöltése..."
+    },
+    "loadingFullArticleLabel": {
+        "message": "Teljes cikk betöltése..."
+    },
+    "backFullArticleLabel": {
+        "message": "Vissza az előző cikkhez"
+    },
+    "closeFullArticleLabel": {
+        "message": "Teljes cikk bezárása"
     },
     "copyLabel": {
         "message": "Másolás"

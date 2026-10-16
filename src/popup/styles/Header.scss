@@ -93,26 +93,6 @@
       }
     }
 
-    .favoriteButton {
-      display: flex;
-      align-items: center;
-      margin: 0px 10px;
-      color: var(--main-text);
-      &:hover svg {
-        color: var(--highlight);
-      }
-
-      svg path {
-        fill: none;
-        stroke: currentColor;
-      }
-
-      &.is-open svg path {
-        fill: currentColor;
-        stroke: none;
-      }
-    }
-
     .settingsButton {
       display: flex;
       align-items: center;

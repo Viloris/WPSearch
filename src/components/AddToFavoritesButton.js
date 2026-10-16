@@ -36,7 +36,7 @@ export default function AddToFavoritesButton({ text, addToFavorites, wikipedia, 
         onClick={handleAddToFavorites}
         type="button"
       >
-        <HeartIcon />
+        <HeartIcon /> Save
       </button>
       {added && (
         <span className="copiedText">{labelAdded}</span>

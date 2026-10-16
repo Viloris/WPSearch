@@ -29,6 +29,39 @@
     "emptySearchHistoryLabel": {
         "message": "Aucune recherche pour le moment"
     },
+    "mainMenuLabel": {
+        "message": "Accueil"
+    },
+    "searchLabel": {
+        "message": "Recherche"
+    },
+    "dailyFeaturedArticleLabel": {
+        "message": "Article du jour"
+    },
+    "dailyFeaturedArticleLoading": {
+        "message": "Chargement de l’article du jour..."
+    },
+    "dailyFeaturedArticleFallback": {
+        "message": "Aucun article du jour n’est disponible ; l’article le plus lu est affiché à la place."
+    },
+    "dailyFeaturedArticleError": {
+        "message": "Impossible de charger l’article du jour."
+    },
+    "dailyFeaturedArticleRetryLabel": {
+        "message": "Réessayer"
+    },
+    "dailyImageOfDayLabel": {
+        "message": "Image du jour"
+    },
+    "dailyImageArtistLabel": {
+        "message": "Photographe"
+    },
+    "dailyImageLicenseLabel": {
+        "message": "Licence"
+    },
+    "dailyMostReadLabel": {
+        "message": "Articles les plus lus"
+    },
     "favoritesLabel": {
         "message": "Favoris"
     },
@@ -52,6 +85,15 @@
     },
     "loadingSearchLabel": {
         "message": "Chargement des résultats..."
+    },
+    "loadingFullArticleLabel": {
+        "message": "Chargement de l’article complet..."
+    },
+    "backFullArticleLabel": {
+        "message": "Retour à l’article précédent"
+    },
+    "closeFullArticleLabel": {
+        "message": "Fermer l’article complet"
     },
     "copyLabel": {
         "message": "Copier"

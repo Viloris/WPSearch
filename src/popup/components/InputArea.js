@@ -24,10 +24,20 @@ const useAutoResize = (textareaRef, inputText) => {
  * @param {function} handleInputText
  * @returns {JSX.Element}
  */
-function InputArea({ inputText, handleInputText }) {
+function InputArea({ inputText, handleInputText, inputRef }) {
   const textareaRef = useRef(null);
 
   useAutoResize(textareaRef, inputText);
+  useEffect(() => {
+    if (inputRef) {
+      inputRef.current = textareaRef.current;
+    }
+    return () => {
+      if (inputRef) {
+        inputRef.current = null;
+      }
+    };
+  }, [inputRef]);
 
   const handleInputChange = useCallback((e) => {
     handleInputText(e.target.value);

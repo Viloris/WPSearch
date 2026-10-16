@@ -8,8 +8,10 @@ import SearchHistory from "./SearchHistory";
 import "../styles/PopupPage.scss";
 import {
   getTargetLang,
+  getLocaleMessage,
   getUILanguage
 } from "../../common/i18n";
+import { fetchWikiFullArticle } from "../../api/wikipediaApi";
 import "../../components/styles/ResultArea.scss";
 import ResultArea from "../../components/ResultArea";
 import { getTabInfo } from "../../common/urlUtils";
@@ -20,6 +22,9 @@ import { getFavorites, addFavorite, removeFavorite } from "../handleFavorites";
 import { useWpSearch } from "../useWpSearch";
 import { useDebouncedValue } from "../useDebouncedValue";
 import FavoritesPage from "./FavoritesPage";
+import MainNavigation from "./MainNavigation";
+import FeaturedArticle from "./FeaturedArticle";
+import { FullArticleView } from "./fullArticleView";
 const logDir = "popup/PopupPage";
 
 const clearTimerRef = (timerRef) => {
@@ -57,8 +62,12 @@ export default function PopupPage() {
   const [isLoadingSearch, setIsLoadingSearch] = useState(false);
   const [hideInformationLabel, setHideInformationLabel] = useState(false);
   const [searchRequest, setSearchRequest] = useState(null);
-  const [openFavorite, setOpenFavorite] = useState(false);
+  const [activeView, setActiveView] = useState("home");
   const [favorites, setFavorites] = useState([]);
+  const [fullArticles, setFullArticles] = useState({});
+  const [fullArticleHistory, setFullArticleHistory] = useState([]);
+  const activeFullArticle = fullArticleHistory.at(-1) || null;
+  const inputRef = useRef(null);
 
   const loadingTimer = useRef(null);
   const themeClass = useRef(null);
@@ -88,6 +97,8 @@ export default function PopupPage() {
 
   const handleInputText = useCallback((text, isHistorySearch = false) => {
     setInputText(text);
+    setActiveView("search");
+    setFullArticleHistory([]);
     clearTimeout(loadingTimer.current);
 
     const searchId = ++historySearchId.current;
@@ -105,6 +116,7 @@ export default function PopupPage() {
   }, []);
 
   const handleHistorySelect = useCallback((query) => {
+    setActiveView("search");
     const currentQuery = inputText.replaceAll("\n", "").trim();
     if (query === currentQuery && results.length > 0 && !isLoadingSearch) {
       return;
@@ -138,6 +150,7 @@ export default function PopupPage() {
       updateLogLevel();
 
       themeClass.current = `${getSettings("theme")}-theme`;
+      document.documentElement.classList.add(themeClass.current);
       document.body.classList.add(themeClass.current);
       document.body.style.width = "348px";
 
@@ -173,6 +186,7 @@ export default function PopupPage() {
       mounted = false;
       clearTimerRef(loadingTimer);
       if (themeClass.current) {
+        document.documentElement.classList.remove(themeClass.current);
         document.body.classList.remove(themeClass.current);
       }
     };
@@ -186,12 +200,15 @@ export default function PopupPage() {
     clearSearchHistory(searchHistoryRef, setSearchHistory);
   }, []);
 
-  const toggleFavoritePage = useCallback(() => {
-    setOpenFavorite((prev) => !prev);
+  const handleViewChange = useCallback((view) => {
+    setActiveView(view);
+    if (view === "search") {
+      inputRef.current?.focus();
+    }
   }, []);
 
   const handleFavoriteSelect = useCallback((favorite) => {
-    setOpenFavorite(false);
+    setActiveView("search");
     handleInputText(favorite);
   }, [handleInputText]);
 
@@ -203,18 +220,81 @@ export default function PopupPage() {
     removeFavorite(favorite, setFavorites);
   }, []);
 
+  const handleLoadFullArticle = useCallback(async (language, title, currentScrollTop = 0) => {
+    const key = JSON.stringify([language, title]);
+    const url = `https://${language}.wikipedia.org/wiki/${encodeURIComponent(
+      title.replace(/ /g, "_")
+    )}`;
+    setFullArticleHistory((current) => {
+      if (current.at(-1)?.key === key) {
+        return current;
+      }
+
+      const previous = current.map((article, index) =>
+        index === current.length - 1
+          ? { ...article, scrollTop: currentScrollTop }
+          : article
+      );
+      return [...previous, { key, language, title, scrollTop: 0 }];
+    });
+
+    if (fullArticles[key]?.html || fullArticles[key]?.isLoading) {
+      return;
+    }
+
+    setFullArticles((current) => ({
+      ...current,
+      [key]: { isLoading: true, url }
+    }));
+
+    try {
+      const html = await fetchWikiFullArticle(language, title);
+      setFullArticles((current) => ({
+        ...current,
+        [key]: { html, url }
+      }));
+    } catch (error) {
+      log.error(logDir, `Failed to load full article "${title}" (${language})`, error);
+      setFullArticles((current) => ({
+        ...current,
+        [key]: { error: getLocaleMessage("unknownError"), url }
+      }));
+    }
+  }, [fullArticles]);
+
+  const handleBackFullArticle = useCallback(() => {
+    setFullArticleHistory((current) => current.length > 1 ? current.slice(0, -1) : current);
+  }, []);
+
+  const handleCloseFullArticle = useCallback(() => {
+    setFullArticleHistory([]);
+  }, []);
+
   /* -------- render -------- */
   return (
-    <div className={rtlLanguageClassName}>
+    <div
+      className={[
+        rtlLanguageClassName,
+        activeFullArticle && "popup-page-full-article"
+      ].filter(Boolean).join(" ")}
+    >
       <Header
         isConnected={tabInfo.isConnected}
         isEnabledOnPage={tabInfo.isEnabledOnPage}
         toggleEnabledOnPage={onToggleEnabledOnPage}
-        toggleFavoritePage={toggleFavoritePage}
-        isFavoritePageOpen={openFavorite}
       />
-      <InputArea inputText={inputText} handleInputText={handleInputText} />
-      {openFavorite && (
+      <InputArea
+        inputText={inputText}
+        handleInputText={handleInputText}
+        inputRef={inputRef}
+      />
+      <MainNavigation activeView={activeView} onChange={handleViewChange} />
+      <FeaturedArticle
+        active={activeView === "home"}
+        language={targetLang}
+        onOpenArticle={handleLoadFullArticle}
+      />
+      {activeView === "favorites" && (
         <FavoritesPage
           favorites={favorites}
           onSelect={handleFavoriteSelect}
@@ -222,12 +302,15 @@ export default function PopupPage() {
           onAdd={handleAddFavorite}
         />
       )}
-      <SearchHistory
-        history={searchHistory}
-        onSelect={handleHistorySelect}
-        onClear={onClearSearchHistory}
-      />
-      {(results.length > 0 || isLoadingSearch) && (
+      {activeView === "history" && (
+        <SearchHistory
+          history={searchHistory}
+          onSelect={handleHistorySelect}
+          onClear={onClearSearchHistory}
+          defaultOpen
+        />
+      )}
+      {activeView === "search" && (results.length > 0 || isLoadingSearch) && (
         <>
           <hr />
           <div id="resultArea">
@@ -235,16 +318,29 @@ export default function PopupPage() {
               <LoadingCaption />
             ) : (
               <ResultArea
-                inputText={inputText}
-                targetLang={targetLang}
                 dismissHint={dismissHint}
-                hideInformationLabel={hideInformationLabel}
                 results={results}
+                hideInformationLabel={hideInformationLabel}
                 addToFavorites={handleAddFavorite}
+                loadFullArticle={handleLoadFullArticle}
+                fullArticles={fullArticles}
               />
             )}
           </div>
         </>
+      )}
+      {activeFullArticle && (
+        <FullArticleView
+          fullArticleState={fullArticles[activeFullArticle.key]}
+          language={activeFullArticle.language}
+          title={activeFullArticle.title}
+          articleKey={activeFullArticle.key}
+          scrollTop={activeFullArticle.scrollTop}
+          canGoBack={fullArticleHistory.length > 1}
+          onBack={handleBackFullArticle}
+          onNavigateArticle={handleLoadFullArticle}
+          onClose={handleCloseFullArticle}
+        />
       )}
     </div>
   );

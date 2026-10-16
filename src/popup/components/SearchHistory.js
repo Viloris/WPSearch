@@ -5,9 +5,9 @@ import { ToggleSearchHistory } from "./searchHistory/toggleSearchHistory";
 import { SearchHistoryList } from "./searchHistory/SearchHistoryList";
 import { SearchHistoryHeader } from "./searchHistory/SearchHistoryHeader";
 
-export default function SearchHistory({ history, onSelect, onClear }) {
+export default function SearchHistory({ history, onSelect, onClear, defaultOpen = false }) {
   const hasSearchHistory = history.length > 0;
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(defaultOpen);
 
   const selectQuery = (query) => {
     onSelect(query);

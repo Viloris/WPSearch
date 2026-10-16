@@ -13,6 +13,12 @@
         "storage",
         "contextMenus"
     ],
+    "host_permissions": [
+        "https://*.wikipedia.org/*",
+        "https://api.wikimedia.org/*",
+        "https://upload.wikimedia.org/*",
+        "https://thumb.wikimedia.org/*"
+    ],
     "options_ui": {
         "page": "options/index.html",
         "open_in_tab": true

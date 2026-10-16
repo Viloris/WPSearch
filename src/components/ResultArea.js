@@ -17,7 +17,9 @@ export default function ResultArea({
   results = [],
   hideInformationLabel,
   dismissHint,
-  addToFavorites
+  addToFavorites,
+  loadFullArticle,
+  fullArticles = {}
 }) {
   const information = getLocaleMessage("firstInformationText");
   const useSecondLang = getSettings("shouldUseSecondTargetLang");
@@ -35,6 +37,9 @@ export default function ResultArea({
             title={title}
             url={url}
             wikipedia={getWikipediaName(lang)}
+            fullArticleState={fullArticles[JSON.stringify([lang, title])]}
+            loadFullArticle={loadFullArticle}
+            lang={lang}
           />
         )
       )}

@@ -14,6 +14,7 @@ WPSearch is a small webextension that lets you look up Wikipedia articles in a f
 - Configurable main/secondary language
 - Keyboard shortcuts and context menu integration
 - Popup result panel with copy/share tools
+- Expand a search result to read the full Wikipedia article in the popup
 - Localization in several languages (en, de, fr, hu, …)
 - Build pipeline generating separate Chrome/Firefox packages
 
