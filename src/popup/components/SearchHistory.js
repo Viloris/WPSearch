@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../styles/SearchHistory.scss";
 import { EmptySearchLabel } from "./searchHistory/EmptySearchLabel";
-import { ToggleSearchHistory } from "./searchHistory/toggleSearchHistory";
 import { SearchHistoryList } from "./searchHistory/SearchHistoryList";
 import { SearchHistoryHeader } from "./searchHistory/SearchHistoryHeader";
 
@@ -14,31 +13,34 @@ export default function SearchHistory({ history, onSelect, onClear, defaultOpen 
     setIsOpen(false);
   };
 
-  const toggleSearchHistory = () => setIsOpen((open) => !open);
+  // const searchHistoryLabel = getLocaleMessage("searchHistoryLabel");
+  // const toggleSearchHistory = () => setIsOpen((open) => !open);
   const createSearchHandler = (query) => () => selectQuery(query);
+
+  if (!hasSearchHistory && !isOpen) return null;
 
   return (
     <section className="searchHistory">
-      <ToggleSearchHistory
-        isOpen={isOpen}
-        history={history}
-        toggleSearchHistory={toggleSearchHistory}
-      />
-      {isOpen && (
+      {/*  {hasSearchHistory && (
+        <h2>
+          {searchHistoryLabel}
+        </h2>
+      )} */}
+      {isOpen && hasSearchHistory ? (
         <div className="searchHistoryPanel" id="searchHistoryList">
           <SearchHistoryHeader
             history={history}
             onClear={onClear}
           />
-          {hasSearchHistory ? (
-            <SearchHistoryList
-              history={history}
-              createSearchHandler={createSearchHandler}
-            />
-          ) : (
-            <EmptySearchLabel />
-          )}
+          <SearchHistoryList
+            history={history}
+            createSearchHandler={createSearchHandler}
+          />
         </div>
+      ) : isOpen ? (
+        <EmptySearchLabel />
+      ) : (
+        null
       )}
     </section>
   );

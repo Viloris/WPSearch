@@ -2,35 +2,29 @@ import log from "loglevel";
 import { getLocaleMessage, getSecondTargetLang, getTargetLang } from "./i18n";
 import { getSettings } from "../settings/settings";
 import { CONFIG } from "./constans";
-import { fetchWikiSummary, getFirstSearchResultTitle, handleHttpError } from "../api/wikipediaApi";
+import { fetchWikiSummary, getSearchResultTitles, handleHttpError } from "../api/wikipediaApi";
 
 const { DASH, NO_SUMMARY } = CONFIG;
 const logDir = "common/wikisearch";
 
 /**
  * 
- * @description Retrieves the Wikipedia extract for a given language and expression, handling various error scenarios and returning a structured result object
+ * @description Retrieves the Wikipedia extract for a given language and title, handling various error scenarios and returning a structured result object
  * @param {string} language 
- * @param {string} expression 
+ * @param {string} title 
  * @returns {Promise<Object>} Search result object
  */
-async function getWikipediaExtract(language, expression) {
+async function getWikipediaExtract(language, title) {
   const result = {
     lang: language,
     text: NO_SUMMARY,
-    title: expression || DASH,
+    title: title || DASH,
     url: "",
     isError: false,
     errorMessage: ""
   };
 
   try {
-    const title = await getFirstSearchResultTitle(language, expression);
-    if (!title) {
-      result.text = getLocaleMessage("notFound");
-      return result;
-    }
-
     const response = await fetchWikiSummary(language, title);
 
     if (!response.ok) {
@@ -48,7 +42,7 @@ async function getWikipediaExtract(language, expression) {
 
     return {
       ...result,
-      text: data.extract || data.description || NO_SUMMARY,
+      text: data.extract?.trim() || data.description?.trim() || NO_SUMMARY,
       title: articleTitle,
       url: articleUrl
     };
@@ -63,11 +57,37 @@ async function getWikipediaExtract(language, expression) {
   }
 }
 
+async function getWikipediaExtracts(language, expression) {
+  const titles = await getSearchResultTitles(language, expression);
+  if (!Array.isArray(titles)) {
+    return [{
+      lang: language,
+      text: NO_SUMMARY,
+      title: expression || DASH,
+      url: "",
+      ...titles.errorData
+    }];
+  }
+
+  if (titles.length === 0) {
+    return [{
+      lang: language,
+      text: getLocaleMessage("notFound"),
+      title: expression || DASH,
+      url: "",
+      isError: false,
+      errorMessage: ""
+    }];
+  }
+
+  return Promise.all(titles.map((title) => getWikipediaExtract(language, title)));
+}
+
 /**
  * 
- * @description Main function to handle Wikipedia search queries, which retrieves the first search result title for the given expression and target languages,
+ * @description Main function to handle Wikipedia search queries, retrieving up to five results for each target language
  * @param {string} expression 
- * @returns {Promise<Array>} Array of search result objects for target languages
+ * @returns {Promise<Array>} Search result objects, with up to five per target language
  */
 async function wikisearch(expression) {
   const trimmed = expression?.trim();
@@ -81,11 +101,12 @@ async function wikisearch(expression) {
     }
 
     const results = await Promise.all(
-      Array.from(langSet).map((lang) => getWikipediaExtract(lang, trimmed))
+      Array.from(langSet).map((lang) => getWikipediaExtracts(lang, trimmed))
     );
+    const flattenedResults = results.flat();
 
-    log.debug(`${logDir} - Search results for "${trimmed}":`, results);
-    return results;
+    log.debug(`${logDir} - Search results for "${trimmed}":`, flattenedResults);
+    return flattenedResults;
   } catch (e) {
     log.error(`${logDir} - Search error for "${trimmed}":`, e);
     return [];

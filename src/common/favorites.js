@@ -1,7 +1,7 @@
 import log from "loglevel";
 import browser from "webextension-polyfill";
 
-const logDir = "popup/PopupPage";
+const logDir = "common/favorites";
 
 const normalizeFavorites = (savedFavorites) => {
     if (!Array.isArray(savedFavorites)) return [];

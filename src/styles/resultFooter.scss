@@ -1,16 +1,16 @@
 .mediaButtons {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 4px;
+  //gap: 10px;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   margin-inline-end: 5px;
   //padding-right: 10px;
-  & > * {
-    margin-inline-start: 10px;
-  }
-
-  & > .resultFooterButton {
+  & > .resultFooterButton,
+  & > .copy > .resultFooterButton {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -29,11 +29,11 @@
       box-shadow 120ms ease,
       transform 120ms ease;
 
-      &:hover:not(:disabled) {
-        border-color: #1e3a8a;
-        color: #1e3a8a;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
-        transform: translateY(-1px);
+    &:hover:not(:disabled) {
+      border-color: #1e3a8a;
+      color: #1e3a8a;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
+      transform: translateY(-1px);
     }
 
     &:focus-visible {
@@ -49,6 +49,18 @@
 
   & > .resultFooterButton:first-child {
     background: #eaf3ff;
+  }
+
+  & > .resultFooterButton--saved {
+    border-color: #bfdbfe;
+    color: #1e3a8a;
+    background: #eaf3ff;
+
+    &:hover:not(:disabled) {
+      border-color: #93c5fd;
+      color: #1e3a8a;
+      background: #dbeafe;
+    }
   }
 
   .resultFooterButtonIcon {

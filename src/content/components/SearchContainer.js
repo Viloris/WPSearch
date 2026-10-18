@@ -3,13 +3,18 @@ import log from "loglevel";
 import browser from "webextension-polyfill";
 import { getSettings } from "src/settings/settings.js";
 import { CONFIG } from "../../common/constans";
+import {
+  getFavorites,
+  addFavorite as addFavoriteToStorage,
+  removeFavorite as removeFavoriteFromStorage
+} from "../../common/favorites";
 import SearchButton from "./SearchButton";
 import ResultPanel from "./ResultPanel";
 import "../styles/SearchContainer.scss";
 import { getTargetLang } from "../../common/i18n";
 
 const DEFAULT_POSITION = { x: 0, y: 0 };
-const { requestMessages: { WIKIPEDIA_SEARCH } } = CONFIG;
+const { requestMessages: { WIKIPEDIA_SEARCH, OPEN_POPUP_PAGE } } = CONFIG;
 
 const wpSearchText = (expression) => {
   return browser.runtime.sendMessage({
@@ -49,8 +54,41 @@ export default function SearchContainer({
   });
 
   const [results, setResults] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+
+  useEffect(() => {
+    let isMounted = true;
+    getFavorites(() => isMounted, setFavorites);
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   /* ---------------- CORE ACTIONS ---------------- */
+
+  const addToFavorites = useCallback((summary, wikipedia, title) => {
+    addFavoriteToStorage(summary, setFavorites, wikipedia, title);
+  }, []);
+
+  const removeFromFavorites = useCallback((summary) => {
+    removeFavoriteFromStorage(summary, setFavorites);
+  }, []);
+
+  const openPopup = useCallback(async ({ expression, language, title }) => {
+    try {
+      await browser.runtime.sendMessage({
+        message: OPEN_POPUP_PAGE,
+        expression,
+        language,
+        title
+      });
+    } catch (error) {
+      log.error("SearchContainer.openPopup failed", {
+        expression,
+        error
+      });
+    }
+  }, []);
 
   const showPanel = useCallback(
     async (clickedPos = null) => {
@@ -141,7 +179,11 @@ export default function SearchContainer({
         selectedText={selectedText}
         currentLang={currentLang}
         results={results}
+        favorites={favorites}
+        addToFavorites={addToFavorites}
+        removeFromFavorites={removeFromFavorites}
         hidePanel={hidePanel}
+        openPopup={openPopup}
       />
     </div>
   );

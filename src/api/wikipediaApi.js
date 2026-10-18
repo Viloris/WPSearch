@@ -1,3 +1,4 @@
+import browser from "webextension-polyfill";
 import log from "loglevel";
 import { getLocaleMessage } from "../common/i18n";
 import { CONFIG, HTTP_CODES } from "../common/constans";
@@ -10,16 +11,19 @@ const {
 } = CONFIG;
 const { NOT_FOUND, SERVICE_UNAVAILABLE, TOO_MANY_REQUESTS } = HTTP_CODES;
 const logDir = "common/wikisearch";
+const SEARCH_RESULTS_LIMIT = 5;
+const FEATURED_FEED_LOOKBACK_DAYS = 7;
+const dailyFeaturedArticleRequests = new Map();
 
 /**
  * 
- * @description Main function to handle Wikipedia search queries, which retrieves the first search result title for the given expression and target languages,
+ * @description Builds a Wikipedia search API URL for the given expression and language
  * @param {string} language 
  * @param {string} term 
  * @returns {string} URL for Wikipedia search API
  */
 const getSearchUrl = (language, term) => {
-    return `${HTTPS}${language}${WIKIPEDIA_API_URL}${encodeURIComponent(term)}&format=json&origin=*`;
+    return `${HTTPS}${language}${WIKIPEDIA_API_URL}${encodeURIComponent(term)}&srlimit=${SEARCH_RESULTS_LIMIT}&format=json&origin=*`;
 }
 
 /**
@@ -105,39 +109,58 @@ export async function fetchWikiFullArticle(language, title) {
     return html;
 }
 
-/**
- * Fetches today's featured article from Wikimedia's Feed API.
- * @param {string} language Wikipedia language code
- * @param {AbortSignal} signal Request cancellation signal
- * @returns {Promise<{title: string, description: string, extractHtml: string, articleUrl: string, thumbnailUrl: string, isFallback: boolean}>}
- */
-export async function fetchDailyFeaturedArticle(language, signal) {
-    if (!/^[a-z0-9-]+$/i.test(language)) {
-        throw new Error(`Invalid Wikipedia language code: ${language}`);
-    }
-
-    const languageCode = language.toLowerCase();
-    const date = new Date().toISOString().slice(0, 10).replace(/-/g, "/");
-    const url = `${HTTPS}${WIKIPEDIA_FEATURED_API_URL}${languageCode}/featured/${date}`;
-    const response = await fetch(url, { signal });
-
-    if (!response.ok) {
-        throw new Error(`Featured article request failed with HTTP ${response.status}`);
-    }
-
-    const data = await response.json();
-    const featuredArticle = data?.tfa;
-    const mostReadArticle = data?.mostread?.articles?.[0];
+async function fetchDailyFeaturedArticleFromApi(languageCode, today, todayDate, signal) {
+    const formatDate = (date) => date.toISOString().slice(0, 10).replace(/-/g, "/");
+    const fetchFeed = async (date) => {
+        const url = `${HTTPS}${WIKIPEDIA_FEATURED_API_URL}${languageCode}/featured/${date}`;
+        const response = await fetch(url, { signal });
+        if (!response.ok) {
+            throw new Error(`Featured article request failed with HTTP ${response.status}`);
+        }
+        return response.json();
+    };
     const hasArticleData = (article) =>
         typeof article?.title === "string" &&
         (typeof article?.extract_html === "string" || typeof article?.extract === "string") &&
         typeof article?.content_urls?.desktop?.page === "string";
-    const useMostReadFallback = !hasArticleData(featuredArticle);
-    const article = useMostReadFallback ? mostReadArticle : featuredArticle;
+    const data = await fetchFeed(todayDate);
+    let latestFeaturedArticle = hasArticleData(data?.tfa)
+        ? { article: data.tfa, date: todayDate }
+        : null;
+    let mostReadArticlesData = Array.isArray(data?.mostread?.articles) &&
+        data.mostread.articles.length
+        ? data.mostread.articles
+        : null;
+    let mostReadDate = mostReadArticlesData ? todayDate : "";
 
-    if (!hasArticleData(article)) {
-        throw new Error("Featured article response is missing required article data");
+    for (let daysAgo = 1;
+        daysAgo <= FEATURED_FEED_LOOKBACK_DAYS && (!latestFeaturedArticle || !mostReadArticlesData);
+        daysAgo += 1) {
+        const pastDate = new Date(today);
+        pastDate.setUTCDate(pastDate.getUTCDate() - daysAgo);
+        const formattedPastDate = formatDate(pastDate);
+        try {
+            const pastData = await fetchFeed(formattedPastDate);
+            if (!latestFeaturedArticle && hasArticleData(pastData?.tfa)) {
+                latestFeaturedArticle = { article: pastData.tfa, date: formattedPastDate };
+            }
+            if (!mostReadArticlesData &&
+                Array.isArray(pastData?.mostread?.articles) &&
+                pastData.mostread.articles.length) {
+                mostReadArticlesData = pastData.mostread.articles;
+                mostReadDate = formattedPastDate;
+            }
+        } catch (error) {
+            if (signal?.aborted) throw error;
+            log.warn(logDir, `Failed to load featured feed fallback for ${formattedPastDate}`, error);
+            break;
+        }
     }
+
+    const featuredArticle = latestFeaturedArticle?.article;
+    const mostReadArticle = mostReadArticlesData?.[0];
+    const useMostReadFallback = !hasArticleData(featuredArticle) && hasArticleData(mostReadArticle);
+    const candidateArticle = useMostReadFallback ? mostReadArticle : featuredArticle;
 
     const getArticleUrl = (item) => {
         try {
@@ -149,10 +172,9 @@ export async function fetchDailyFeaturedArticle(language, signal) {
             return "";
         }
     };
-    const articleUrl = getArticleUrl(article);
-    if (!articleUrl) {
-        throw new Error("Featured article response contains an invalid article URL");
-    }
+    const candidateArticleUrl = candidateArticle ? getArticleUrl(candidateArticle) : "";
+    const article = candidateArticleUrl ? candidateArticle : null;
+    const articleUrl = article ? candidateArticleUrl : "";
 
     const getThumbnailUrl = (item) => {
         if (typeof item?.thumbnail?.source !== "string") return "";
@@ -170,16 +192,78 @@ export async function fetchDailyFeaturedArticle(language, signal) {
         return "";
     };
 
-    const mostReadArticles = (Array.isArray(data?.mostread?.articles)
-        ? data.mostread.articles
-        : [])
+    const didYouKnow = (Array.isArray(data?.dyk) ? data.dyk : [])
+        .filter((item) =>
+            (typeof item?.html === "string" && item.html) ||
+            (typeof item?.text === "string" && item.text)
+        )
+        .slice(0, 6)
+        .map((item) => ({
+            html: typeof item.html === "string" ? item.html : "",
+            text: typeof item.text === "string" ? item.text : ""
+        }));
+    const news = (Array.isArray(data?.news) ? data.news : [])
+        .filter((item) => typeof item?.story === "string" && item.story)
+        .slice(0, 5)
+        .map((item) => ({
+            story: item.story,
+            links: (Array.isArray(item.links) ? item.links : [])
+                .map((link) => ({
+                    title: typeof link?.title === "string" ? link.title : "",
+                    articleUrl: getArticleUrl(link)
+                }))
+                .filter((link) => link.title && link.articleUrl)
+        }));
+    const onThisDay = (Array.isArray(data?.onthisday) ? data.onthisday : [])
+        .filter((item) => typeof item?.text === "string" && item.text)
+        .slice(0, 8)
+        .map((item) => ({
+            text: item.text,
+            year: typeof item.year === "number" || typeof item.year === "string" ? item.year : "",
+            articles: (Array.isArray(item.pages) ? item.pages : [])
+                .map((page) => ({
+                    title: typeof page?.title === "string" ? page.title : "",
+                    description:
+                        typeof page?.description === "string" ? page.description : "",
+                    articleUrl: getArticleUrl(page)
+                }))
+                .filter((page) => page.title && page.articleUrl)
+        }));
+
+    const sourceMostReadArticles = mostReadArticlesData || [];
+    const trendingSource = sourceMostReadArticles[0];
+    const trendingArticleUrl = hasArticleData(trendingSource)
+        ? getArticleUrl(trendingSource)
+        : "";
+    const trendingArticle = !useMostReadFallback &&
+        trendingSource?.title &&
+        trendingArticleUrl &&
+        trendingArticleUrl !== articleUrl
+        ? {
+            title: trendingSource.title,
+            description: typeof trendingSource.description === "string" ? trendingSource.description : "",
+            extractText: typeof trendingSource.extract === "string" ? trendingSource.extract : "",
+            extractHtml:
+                typeof trendingSource.extract_html === "string"
+                    ? trendingSource.extract_html
+                    : trendingSource.extract,
+            articleUrl: trendingArticleUrl,
+            thumbnailUrl: getThumbnailUrl(trendingSource)
+        }
+        : null;
+    const mostReadArticles = sourceMostReadArticles
         .map((item) => ({
             title: typeof item?.title === "string" ? item.title : "",
             description: typeof item?.description === "string" ? item.description : "",
             articleUrl: getArticleUrl(item)
         }))
         .slice(0, 6)
-        .filter((item) => item.title && item.articleUrl && item.articleUrl !== articleUrl)
+        .filter((item) =>
+            item.title &&
+            item.articleUrl &&
+            item.articleUrl !== articleUrl &&
+            item.articleUrl !== trendingArticleUrl
+        )
         .slice(0, 5);
 
     const image = data?.image;
@@ -217,16 +301,87 @@ export async function fetchDailyFeaturedArticle(language, signal) {
         }
         : null;
 
+    if (!article && !imageOfDay && !didYouKnow.length && !news.length && !onThisDay.length) {
+        throw new Error("Featured article response contains no usable content");
+    }
+
     return {
-        title: article.title,
-        description: typeof article.description === "string" ? article.description : "",
-        extractHtml: typeof article.extract_html === "string" ? article.extract_html : article.extract,
+        title: article?.title || "",
+        description: typeof article?.description === "string" ? article.description : "",
+        extractText: typeof article?.extract === "string" ? article.extract : "",
+        extractHtml:
+            typeof article?.extract_html === "string"
+                ? article.extract_html
+                : typeof article?.extract === "string"
+                    ? article.extract
+                    : "",
         articleUrl,
-        thumbnailUrl: getThumbnailUrl(article),
-        isFallback: useMostReadFallback,
+        thumbnailUrl: article ? getThumbnailUrl(article) : "",
+        isFallback: Boolean(article && useMostReadFallback),
+        isLatestFeatured: Boolean(
+            article &&
+            !useMostReadFallback &&
+            latestFeaturedArticle?.date !== todayDate
+        ),
+        mostReadDate,
+        trendingArticle,
         mostReadArticles,
-        imageOfDay
+        imageOfDay,
+        didYouKnow,
+        news,
+        onThisDay
     };
+}
+
+async function loadDailyFeaturedArticle(languageCode, today, todayDate, signal) {
+    const cacheKey = `dailyFeaturedArticleCache:${languageCode}`;
+    try {
+        const stored = await browser.storage.local.get(cacheKey);
+        const cached = stored[cacheKey];
+        if (cached?.date === todayDate && cached.result && typeof cached.result === "object") {
+            return cached.result;
+        }
+    } catch (error) {
+        log.warn(logDir, "Failed to read daily featured article cache", error);
+    }
+
+    const result = await fetchDailyFeaturedArticleFromApi(languageCode, today, todayDate, signal);
+    try {
+        await browser.storage.local.set({
+            [cacheKey]: { date: todayDate, result }
+        });
+    } catch (error) {
+        log.warn(logDir, "Failed to save daily featured article cache", error);
+    }
+    return result;
+}
+
+/**
+ * Fetches today's Wikipedia feed, using recent feeds when today's article data is unavailable.
+ * @param {string} language Wikipedia language code
+ * @param {AbortSignal} signal Request cancellation signal
+ * @returns {Promise<{title: string, description: string, extractHtml: string, articleUrl: string, thumbnailUrl: string, isFallback: boolean, isLatestFeatured: boolean, mostReadDate: string, trendingArticle: object|null, mostReadArticles: object[], imageOfDay: object|null, didYouKnow: object[], news: object[], onThisDay: object[]}>}
+ * Article fields are empty when no usable featured or most-read article is available.
+ */
+export async function fetchDailyFeaturedArticle(language, signal) {
+    if (!/^[a-z0-9-]+$/i.test(language)) {
+        throw new Error(`Invalid Wikipedia language code: ${language}`);
+    }
+
+    const languageCode = language.toLowerCase();
+    const today = new Date();
+    const todayDate = today.toISOString().slice(0, 10).replace(/-/g, "/");
+    const requestKey = `${languageCode}/${todayDate}`;
+    const existingRequest = dailyFeaturedArticleRequests.get(requestKey);
+    if (existingRequest) return existingRequest;
+
+    const request = loadDailyFeaturedArticle(languageCode, today, todayDate, signal);
+    dailyFeaturedArticleRequests.set(requestKey, request);
+    try {
+        return await request;
+    } finally {
+        dailyFeaturedArticleRequests.delete(requestKey);
+    }
 }
 
 /**
@@ -252,24 +407,44 @@ export function handleHttpError(status, language) {
 
 /**
  * 
- * @description Retrieves the title of the first search result for a given language and search term, or null if not found or an error occurs
+ * @description Retrieves up to five search result titles for a given language and search term
  * @param {string} language 
  * @param {string} term 
- * @returns {Promise<string|null>} Title of the first search result or null if not found
+ * @returns {Promise<string[]|{errorData: Object}>} Search result titles or a structured error
  */
-export async function getFirstSearchResultTitle(language, term) {
+export async function getSearchResultTitles(language, term) {
     try {
         const response = await fetch(getSearchUrl(language, term));
-        if (!response.ok) return null;
+        if (!response.ok) {
+            return { errorData: handleHttpError(response.status, language) };
+        }
 
         const data = await response.json();
-        return data?.query?.search?.[0]?.title || null;
+        if (!Array.isArray(data?.query?.search)) {
+            throw new Error("Search API response is missing search results");
+        }
+
+        return data.query.search
+            .slice(0, SEARCH_RESULTS_LIMIT)
+            .map((item) => item?.title)
+            .filter((title) => typeof title === "string" && title);
     } catch (err) {
         log.error(`${logDir} - Search API error: `, err);
-        return null;
+        return {
+            errorData: {
+                isError: true,
+                errorMessage: `${getLocaleMessage("networkError")} (${language})`
+            }
+        };
     }
 }
 
+/**
+ * Retrieves the canonical Wikipedia title for a given page title.
+ * @param {string} language
+ * @param {string} title
+ * @returns {Promise<string|null>} Canonical title or null if not found
+ */
 export async function getWikipediaTitle(language, title) {
     try {
         const response = await fetch(getPageQueryUrl(language, title));
@@ -279,26 +454,6 @@ export async function getWikipediaTitle(language, title) {
         return data?.query?.pages?.[0]?.title || null;
     } catch (err) {
         log.error(`${logDir} - Wikipedia title fetch error: `, err);
-        return null;
-    }
-}
-
-/**
- * 
- * @description Retrieves the title of the first search result for a given language and search term, or null if not found or an error occurs
- * @param {string} language 
- * @param {string} term 
- * @returns {Promise<string|null>} Title of the first search result or null if not found
- */
-export async function getFirst10SearchResultTitle(language, term) {
-    try {
-        const response = await fetch(getSearchUrl(language, term));
-        if (!response.ok) return null;
-
-        const data = await response.json();
-        return data?.query?.search?.filter((_, i) => i < 10).map((item) => item.title) || null;
-    } catch (err) {
-        log.error(`${logDir} - Search API error: `, err);
         return null;
     }
 }

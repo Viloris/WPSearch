@@ -35,8 +35,20 @@
     "searchLabel": {
         "message": "Suche"
     },
+    "searchEmptyMessage": {
+        "message": "Geben Sie in das Suchfeld ein, um verzögerte Ergebnisse, Vorschläge und sofort lesbare Artikelseiten zu erhalten."
+    },
+    "feedLabel": {
+        "message": "Feed"
+    },
+    "feedLoadingLabel": {
+        "message": "Feed wird geladen..."
+    },
     "dailyFeaturedArticleLabel": {
         "message": "Tagesartikel"
+    },
+    "dailyLatestFeaturedArticleLabel": {
+        "message": "Zuletzt ausgezeichneter Artikel"
     },
     "dailyFeaturedArticleLoading": {
         "message": "Tagesartikel wird geladen..."
@@ -59,8 +71,41 @@
     "dailyImageLicenseLabel": {
         "message": "Lizenz"
     },
+    "dailyTrendingArticleLabel": {
+        "message": "Trendartikel"
+    },
+    "dailyTrendingArticleError": {
+        "message": "Der Trendartikel konnte nicht geladen werden."
+    },
+    "dailyImageOfDayError": {
+        "message": "Das Bild des Tages konnte nicht geladen werden."
+    },
+    "dailyArticleImageError": {
+        "message": "Das Artikelbild konnte nicht geladen werden."
+    },
     "dailyMostReadLabel": {
         "message": "Meistgelesene Artikel"
+    },
+    "dailyMostReadError": {
+        "message": "Die meistgelesenen Artikel konnten nicht geladen werden."
+    },
+    "readmoreLabel": {
+        "message": "Lesen"
+    },
+    "moreResultsLabel": {
+        "message": "Weitere Ergebnisse"
+    },
+    "wikipediaLabel": {
+        "message": "Wikipedia"
+    },
+    "dailyDidYouKnowLabel": {
+        "message": "Schon gewusst?"
+    },
+    "dailyNewsLabel": {
+        "message": "In den Nachrichten"
+    },
+    "dailyOnThisDayLabel": {
+        "message": "Heute vor"
     },
     "favoritesLabel": {
         "message": "Favoriten"
@@ -78,7 +123,7 @@
         "message": "Sind Sie sicher, dass Sie dieses Element aus den Favoriten entfernen möchten?"
     },
     "addedToFavoritesLabel": {
-        "message": "Zu Favoriten hinzugefügt"
+        "message": "Gespeichert"
     },
     "openInNewWindowLabel": {
         "message": "In neuem Fenster öffnen"

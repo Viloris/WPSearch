@@ -24,6 +24,10 @@
     line-height: 1.15;
     text-align: center;
     cursor: pointer;
+    transition:
+      background-color 120ms ease,
+      box-shadow 120ms ease,
+      color 120ms ease;
 
     svg {
       width: 17px;
@@ -42,14 +46,15 @@
     }
 
     &.is-active {
-      border-color: var(--highlight);
+      border-color: transparent;
       color: var(--highlight);
-      background-color: var(--highlight-bg, transparent);
+      background-color: rgba(0, 0, 0, 0.06);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
     }
 
     &:focus-visible {
       outline: 2px solid var(--highlight);
-      outline-offset: 1px;
+      outline-offset: -2px;
     }
   }
 }

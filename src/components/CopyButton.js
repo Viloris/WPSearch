@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import log from "loglevel";
 import CopyIcon from "../icons/copy-solar.svg";
+import DoneIcon from "../icons/ok-icon.svg";
 import "../styles/CopyButton.scss";
 import { getLocaleMessage } from "../common/i18n";
 
-const labelCopied = getLocaleMessage("copiedLabel");
+//const labelCopied = getLocaleMessage("copiedLabel");
 const buttonCaption = getLocaleMessage("copyLabel");
 
 /**
@@ -13,7 +14,7 @@ const buttonCaption = getLocaleMessage("copyLabel");
  * @param {string} text
  * @returns {JSX.Element} Copy button with copied state
  */
-export default function CopyButton({ text }) {
+export default function CopyButton({ text, className = "resultFooterButton" }) {
   const [isCopied, setIsCopied] = useState(false);
   const [copyError, setCopyError] = useState("");
   const [copiedForText, setCopiedForText] = useState("");
@@ -39,12 +40,20 @@ export default function CopyButton({ text }) {
 
   return (
     <div className="copy">
-      {isCopied && copiedForText === text && (
+      {/*  {isCopied && copiedForText === text && (
         <span className="copiedText">{labelCopied}</span>
-      )}
+      )} */}
       {copyError && <span className="copyError">{copyError}</span>}
-      <button className="copyButton" title={buttonCaption} onClick={handleCopy}>
-        <CopyIcon />
+      <button
+        type="button"
+        className={className}
+        title={buttonCaption}
+        onClick={handleCopy}
+      >
+        {isCopied && copiedForText === text
+          ? <DoneIcon className="resultFooterButtonIcon" style={{ fill: "green" }} />
+          : <CopyIcon className="resultFooterButtonIcon" />}
+        {getLocaleMessage("copyLabel")}
       </button>
     </div>
   );

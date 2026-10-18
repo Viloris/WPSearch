@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import log from "loglevel";
+import browser from "webextension-polyfill";
 import { initSettings, getSettings, setSettings } from "src/settings/settings";
 import { updateLogLevel, overWriteLogLevel } from "src/common/log";
 import Header from "./Header";
@@ -18,14 +19,17 @@ import { getTabInfo } from "../../common/urlUtils";
 import { LoadingCaption } from "./LoadingCaption";
 import { handleToggleEnabledOnPage } from "../handleToggleEnabledOnPage";
 import { clearSearchHistory, getSearchHistory } from "../handleSearchHistory";
-import { getFavorites, addFavorite, removeFavorite } from "../handleFavorites";
+import { getFavorites, addFavorite, removeFavorite } from "../../common/favorites";
 import { useWpSearch } from "../useWpSearch";
 import { useDebouncedValue } from "../useDebouncedValue";
 import FavoritesPage from "./FavoritesPage";
 import MainNavigation from "./MainNavigation";
 import FeaturedArticle from "./FeaturedArticle";
 import { FullArticleView } from "./fullArticleView";
+import SearchIcon from "../icons/search-solar.svg";
+import { CONFIG } from "../../common/constans";
 const logDir = "popup/PopupPage";
+const { POPUP_REQUEST_STORAGE_KEY } = CONFIG;
 
 const clearTimerRef = (timerRef) => {
   clearTimeout(timerRef.current);
@@ -65,8 +69,10 @@ export default function PopupPage() {
   const [activeView, setActiveView] = useState("home");
   const [favorites, setFavorites] = useState([]);
   const [fullArticles, setFullArticles] = useState({});
+  const fullArticlesRef = useRef({});
   const [fullArticleHistory, setFullArticleHistory] = useState([]);
   const activeFullArticle = fullArticleHistory.at(-1) || null;
+  const isFullArticleOpen = Boolean(activeFullArticle);
   const inputRef = useRef(null);
 
   const loadingTimer = useRef(null);
@@ -88,6 +94,13 @@ export default function PopupPage() {
     searchRequest?.delay ?? 0
   );
 
+  useEffect(() => {
+    if (!isFullArticleOpen) return undefined;
+
+    document.body.classList.add("popup-page-full-article");
+    return () => document.body.classList.remove("popup-page-full-article");
+  }, [isFullArticleOpen]);
+
   /* -------- handlers -------- */
 
   const dismissHint = () => {
@@ -97,6 +110,7 @@ export default function PopupPage() {
 
   const handleInputText = useCallback((text, isHistorySearch = false) => {
     setInputText(text);
+    setResults([]);
     setActiveView("search");
     setFullArticleHistory([]);
     clearTimeout(loadingTimer.current);
@@ -138,59 +152,6 @@ export default function PopupPage() {
 
     void search();
   }, [debouncedSearchRequest, wpSearchText]);
-
-  /* -------- init -------- */
-
-  useEffect(() => {
-    let mounted = true;
-
-    const init = async () => {
-      await initSettings();
-      overWriteLogLevel();
-      updateLogLevel();
-
-      themeClass.current = `${getSettings("theme")}-theme`;
-      document.documentElement.classList.add(themeClass.current);
-      document.body.classList.add(themeClass.current);
-      document.body.style.width = "348px";
-
-      if (!mounted) return;
-
-      await getSearchHistory(() => mounted, searchHistoryRef, setSearchHistory);
-      await getFavorites(() => mounted, setFavorites);
-
-      setTargetLang(getTargetLang());
-      setHideInformationLabel(!!getSettings("hidePopupInformationLabel"));
-
-      try {
-        const { isConnected, tabUrl, isEnabledOnPage, selectedText } = await getTabInfo();
-        if (!mounted) return;
-
-        setTabInfo({
-          isConnected: isConnected,
-          tabUrl: tabUrl,
-          isEnabledOnPage: isEnabledOnPage
-        });
-
-        if (selectedText) {
-          handleInputText(selectedText);
-        }
-      } catch (err) {
-        log.warn(logDir, "getTabInfo failed", err);
-      }
-    };
-
-    init();
-
-    return () => {
-      mounted = false;
-      clearTimerRef(loadingTimer);
-      if (themeClass.current) {
-        document.documentElement.classList.remove(themeClass.current);
-        document.body.classList.remove(themeClass.current);
-      }
-    };
-  }, [handleInputText]);
 
   const onToggleEnabledOnPage = useCallback((event) => {
     handleToggleEnabledOnPage(event, setTabInfo);
@@ -238,29 +199,44 @@ export default function PopupPage() {
       return [...previous, { key, language, title, scrollTop: 0 }];
     });
 
-    if (fullArticles[key]?.html || fullArticles[key]?.isLoading) {
+    if (fullArticlesRef.current[key]?.html || fullArticlesRef.current[key]?.isLoading) {
       return;
     }
 
+    const loadingState = { isLoading: true, url };
+    fullArticlesRef.current = {
+      ...fullArticlesRef.current,
+      [key]: loadingState
+    };
     setFullArticles((current) => ({
       ...current,
-      [key]: { isLoading: true, url }
+      [key]: loadingState
     }));
 
     try {
       const html = await fetchWikiFullArticle(language, title);
+      const articleState = { html, url };
+      fullArticlesRef.current = {
+        ...fullArticlesRef.current,
+        [key]: articleState
+      };
       setFullArticles((current) => ({
         ...current,
-        [key]: { html, url }
+        [key]: articleState
       }));
     } catch (error) {
       log.error(logDir, `Failed to load full article "${title}" (${language})`, error);
+      const articleState = { error: getLocaleMessage("unknownError"), url };
+      fullArticlesRef.current = {
+        ...fullArticlesRef.current,
+        [key]: articleState
+      };
       setFullArticles((current) => ({
         ...current,
-        [key]: { error: getLocaleMessage("unknownError"), url }
+        [key]: articleState
       }));
     }
-  }, [fullArticles]);
+  }, []);
 
   const handleBackFullArticle = useCallback(() => {
     setFullArticleHistory((current) => current.length > 1 ? current.slice(0, -1) : current);
@@ -270,12 +246,78 @@ export default function PopupPage() {
     setFullArticleHistory([]);
   }, []);
 
+  /* -------- init -------- */
+
+  useEffect(() => {
+    let mounted = true;
+
+    const init = async () => {
+      await initSettings();
+      overWriteLogLevel();
+      updateLogLevel();
+
+      themeClass.current = `${getSettings("theme")}-theme`;
+      document.documentElement.classList.add(themeClass.current);
+      document.body.classList.add(themeClass.current);
+      document.body.style.width = "348px";
+
+      if (!mounted) return;
+
+      await getSearchHistory(() => mounted, searchHistoryRef, setSearchHistory);
+      await getFavorites(() => mounted, setFavorites);
+
+      setTargetLang(getTargetLang());
+      setHideInformationLabel(!!getSettings("hidePopupInformationLabel"));
+
+      try {
+        const stored = await browser.storage.local.get(POPUP_REQUEST_STORAGE_KEY);
+        const popupRequest = stored[POPUP_REQUEST_STORAGE_KEY];
+        if (popupRequest) {
+          await browser.storage.local.remove(POPUP_REQUEST_STORAGE_KEY);
+        }
+
+        if (popupRequest?.expression) {
+          handleInputText(popupRequest.expression);
+        }
+        if (popupRequest?.language && popupRequest?.title) {
+          void handleLoadFullArticle(popupRequest.language, popupRequest.title);
+        }
+
+        const { isConnected, tabUrl, isEnabledOnPage, selectedText } = await getTabInfo();
+        if (!mounted) return;
+
+        setTabInfo({
+          isConnected: isConnected,
+          tabUrl: tabUrl,
+          isEnabledOnPage: isEnabledOnPage
+        });
+
+        if (!popupRequest?.expression && selectedText) {
+          handleInputText(selectedText);
+        }
+      } catch (err) {
+        log.warn(logDir, "getTabInfo failed", err);
+      }
+    };
+
+    init();
+
+    return () => {
+      mounted = false;
+      clearTimerRef(loadingTimer);
+      if (themeClass.current) {
+        document.documentElement.classList.remove(themeClass.current);
+        document.body.classList.remove(themeClass.current);
+      }
+    };
+  }, [handleInputText, handleLoadFullArticle]);
+
   /* -------- render -------- */
   return (
     <div
       className={[
         rtlLanguageClassName,
-        activeFullArticle && "popup-page-full-article"
+        isFullArticleOpen && "popup-page-full-article"
       ].filter(Boolean).join(" ")}
     >
       <Header
@@ -293,6 +335,10 @@ export default function PopupPage() {
         active={activeView === "home"}
         language={targetLang}
         onOpenArticle={handleLoadFullArticle}
+        addToFavorites={handleAddFavorite}
+        removeFromFavorites={handleRemoveFavorite}
+        favorites={favorites}
+        fullArticles={fullArticles}
       />
       {activeView === "favorites" && (
         <FavoritesPage
@@ -300,6 +346,8 @@ export default function PopupPage() {
           onSelect={handleFavoriteSelect}
           onRemove={handleRemoveFavorite}
           onAdd={handleAddFavorite}
+          language={targetLang}
+          loadFullArticle={handleLoadFullArticle}
         />
       )}
       {activeView === "history" && (
@@ -310,25 +358,41 @@ export default function PopupPage() {
           defaultOpen
         />
       )}
-      {activeView === "search" && (results.length > 0 || isLoadingSearch) && (
-        <>
-          <hr />
-          <div id="resultArea">
-            {isLoadingSearch ? (
-              <LoadingCaption />
-            ) : (
-              <ResultArea
-                dismissHint={dismissHint}
-                results={results}
-                hideInformationLabel={hideInformationLabel}
-                addToFavorites={handleAddFavorite}
-                loadFullArticle={handleLoadFullArticle}
-                fullArticles={fullArticles}
-              />
-            )}
+      {activeView === "search" && (
+        inputText.trim() === "" ? (
+          <div className="search-empty">
+            <span className="empty-icon" aria-hidden="true">
+              <SearchIcon />
+            </span>
+            <h3>{getLocaleMessage("searchLabel")}</h3>
+            <p>{getLocaleMessage("searchEmptyMessage")}</p>
           </div>
-        </>
-      )}
+        ) :
+
+          (results.length > 0 || isLoadingSearch) && (
+            <>
+              <hr />
+              <div
+                id="resultArea"
+                className={isLoadingSearch && results.length > 0 ? "isRefreshing" : ""}
+                aria-busy={isLoadingSearch}
+              >
+                {results.length > 0 && (
+                  <ResultArea
+                    dismissHint={dismissHint}
+                    results={results}
+                    hideInformationLabel={hideInformationLabel}
+                    addToFavorites={handleAddFavorite}
+                    removeFromFavorites={handleRemoveFavorite}
+                    favorites={favorites}
+                    loadFullArticle={handleLoadFullArticle}
+                    fullArticles={fullArticles}
+                  />
+                )}
+                {isLoadingSearch && <LoadingCaption />}
+              </div>
+            </>
+          ))}
       {activeFullArticle && (
         <FullArticleView
           fullArticleState={fullArticles[activeFullArticle.key]}

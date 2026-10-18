@@ -35,8 +35,20 @@
     "searchLabel": {
         "message": "Keresés"
     },
+    "searchEmptyMessage": {
+        "message": "Írja be a keresett szöveget, hogy megjelenjenek a javaslatok és a cikkek."
+    },
+    "feedLabel": {
+        "message": "Feed"
+    },
+    "feedLoadingLabel": {
+        "message": "Feed betöltése..."
+    },
     "dailyFeaturedArticleLabel": {
         "message": "Napi kiemelt cikk"
+    },
+    "dailyLatestFeaturedArticleLabel": {
+        "message": "Legutóbbi kiemelt cikk"
     },
     "dailyFeaturedArticleLoading": {
         "message": "A napi kiemelt cikk betöltése..."
@@ -59,8 +71,41 @@
     "dailyImageLicenseLabel": {
         "message": "Licenc"
     },
+    "dailyTrendingArticleLabel": {
+        "message": "Felkapott cikk"
+    },
+    "dailyTrendingArticleError": {
+        "message": "A felkapott cikk nem tölthető be."
+    },
+    "dailyImageOfDayError": {
+        "message": "A nap képe nem tölthető be."
+    },
+    "dailyArticleImageError": {
+        "message": "A cikk képe nem tölthető be."
+    },
     "dailyMostReadLabel": {
         "message": "Legolvasottabb cikkek"
+    },
+    "dailyMostReadError": {
+        "message": "A legtöbbet olvasott cikkek nem tölthetők be."
+    },
+    "dailyDidYouKnowLabel": {
+        "message": "Tudtad-e?"
+    },
+    "dailyNewsLabel": {
+        "message": "Hírek"
+    },
+    "dailyOnThisDayLabel": {
+        "message": "Ezen a napon"
+    },
+    "readmoreLabel": {
+        "message": "Olvas"
+    },
+    "moreResultsLabel": {
+        "message": "További találatok"
+    },
+    "wikipediaLabel": {
+        "message": "Wikipédia"
     },
     "favoritesLabel": {
         "message": "Kedvencek"
@@ -72,10 +117,10 @@
         "message": "Még nincsenek kedvenc elemek"
     },
     "addedToFavoritesLabel": {
-        "message": "Hozzáadva a kedvencekhez"
+        "message": "Mentve"
     },
     "addToFavoritesLabel": {
-        "message": "Hozzáadás a kedvencekhez"
+        "message": "Mentés"
     },
     "removeFromFavoritesConfirmLabel": {
         "message": "Biztosan el akarja távolítani ezt az elemet a kedvencekből?"
@@ -811,9 +856,6 @@
     },
     "lang_zh": {
         "message": "kínai"
-    },
-    "wikipedia": {
-        "message": "Wikipédia"
     },
     "notFound": {
         "message": "Nincs egyezés a keresett szöveggel."

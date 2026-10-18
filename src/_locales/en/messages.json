@@ -35,8 +35,20 @@
     "searchLabel": {
         "message": "Search"
     },
+    "searchEmptyMessage": {
+        "message": "Type into search to get debounced results, suggestions, and ready-to-read article cards."
+    },
+    "feedLabel": {
+        "message": "Feed"
+    },
+    "feedLoadingLabel": {
+        "message": "Feed loading..."
+    },
     "dailyFeaturedArticleLabel": {
         "message": "Featured article of the day"
+    },
+    "dailyLatestFeaturedArticleLabel": {
+        "message": "Latest featured article"
     },
     "dailyFeaturedArticleLoading": {
         "message": "Loading today's featured article..."
@@ -59,8 +71,41 @@
     "dailyImageLicenseLabel": {
         "message": "License"
     },
+    "dailyTrendingArticleLabel": {
+        "message": "Trending article"
+    },
+    "dailyTrendingArticleError": {
+        "message": "The trending article could not be loaded."
+    },
+    "dailyImageOfDayError": {
+        "message": "The picture of the day could not be loaded."
+    },
+    "dailyArticleImageError": {
+        "message": "The article image could not be loaded."
+    },
     "dailyMostReadLabel": {
         "message": "Most-read articles"
+    },
+    "dailyMostReadError": {
+        "message": "The most-read articles could not be loaded."
+    },
+    "readmoreLabel": {
+        "message": "Read"
+    },
+    "moreResultsLabel": {
+        "message": "More results"
+    },
+    "wikipediaLabel": {
+        "message": "Wikipedia"
+    },
+    "dailyDidYouKnowLabel": {
+        "message": "Did you know?"
+    },
+    "dailyNewsLabel": {
+        "message": "In the news"
+    },
+    "dailyOnThisDayLabel": {
+        "message": "On this day"
     },
     "favoritesLabel": {
         "message": "Favorites"
@@ -78,7 +123,7 @@
         "message": "Are you sure you want to remove this item from favorites?"
     },
     "addedToFavoritesLabel": {
-        "message": "Added to favorites"
+        "message": "Saved"
     },
     "loadingSearchLabel": {
         "message": "Loading search results..."
@@ -811,9 +856,6 @@
     },
     "lang_zh": {
         "message": "Chinese"
-    },
-    "wikipedia": {
-        "message": "Wikipedia"
     },
     "notFound": {
         "message": "There were no results matching the query."

@@ -18,29 +18,55 @@ export default function ResultArea({
   hideInformationLabel,
   dismissHint,
   addToFavorites,
+  removeFromFavorites,
+  favorites,
   loadFullArticle,
-  fullArticles = {}
+  fullArticles = {},
+  searchExpression,
+  openPopup,
+  showFirstResultPerLanguage = false
 }) {
   const information = getLocaleMessage("firstInformationText");
   const useSecondLang = getSettings("shouldUseSecondTargetLang");
+  const seenLanguages = new Set();
+  const visibleResults = showFirstResultPerLanguage
+    ? results.filter(({ lang }) => {
+      if (seenLanguages.has(lang)) return false;
+      seenLanguages.add(lang);
+      return true;
+    })
+    : results;
 
   return (
     <>
-      {results.map(
+      {visibleResults.map(
         ({ errorMessage, isError, lang, text, title, url }, index) => (
-          <ResultSection
-            addToFavorites={addToFavorites}
+          <div
+            className={
+              index > 0 && visibleResults[index - 1]?.lang !== lang
+                ? "result-language-separator"
+                : undefined
+            }
             key={`${lang}-${index}`}
-            errorMessage={errorMessage}
-            isError={isError}
-            text={text}
-            title={title}
-            url={url}
-            wikipedia={getWikipediaName(lang)}
-            fullArticleState={fullArticles[JSON.stringify([lang, title])]}
-            loadFullArticle={loadFullArticle}
-            lang={lang}
-          />
+          >
+            <ResultSection
+              addToFavorites={addToFavorites}
+              removeFromFavorites={removeFromFavorites}
+              favorites={favorites}
+              showHeader={index === 0 || visibleResults[index - 1]?.lang !== lang}
+              errorMessage={errorMessage}
+              isError={isError}
+              text={text}
+              title={title}
+              url={url}
+              wikipedia={getWikipediaName(lang)}
+              fullArticleState={fullArticles[JSON.stringify([lang, title])]}
+              loadFullArticle={loadFullArticle}
+              lang={lang}
+              searchExpression={searchExpression}
+              openPopup={openPopup}
+            />
+          </div>
         )
       )}
       {!hideInformationLabel && !useSecondLang && (

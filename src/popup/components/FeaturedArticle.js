@@ -3,74 +3,26 @@ import log from "loglevel";
 import { fetchDailyFeaturedArticle } from "../../api/wikipediaApi";
 import { getLocaleMessage } from "../../common/i18n";
 import "../styles/FeaturedArticle.scss";
-import { sanitizeExtractHtml } from "../../common/htmlUtils";
+import { extractTextFromHtml, sanitizeExtractHtml } from "../../common/htmlUtils";
+import { getWikipediaName } from "../../common/urlUtils";
+import { ResultFooter } from "../../components/ResultFooter";
+import WikipediaIcon from "../icons/wikipedia.svg";
 
 const logDir = "popup/FeaturedArticle";
-/* const allowedTags = new Set([
-  "A", "B", "BR", "EM", "I", "LI", "OL", "P", "SPAN", "STRONG", "SUB", "SUP", "UL"
-]);
-const blockedTags = new Set(["IFRAME", "MATH", "OBJECT", "SCRIPT", "STYLE", "SVG", "TEMPLATE"]);
- */
-/* function sanitizeExtractHtml(html, language) {
-  const parsed = new DOMParser().parseFromString(html, "text/html");
-  const baseUrl = `https://${language}.wikipedia.org`;
 
-  const copyNode = (node) => {
-    if (node.nodeType === Node.TEXT_NODE) {
-      return document.createTextNode(node.textContent || "");
-    }
-    if (node.nodeType !== Node.ELEMENT_NODE) {
-      return null;
-    }
-
-    const sourceElement = node;
-    if (blockedTags.has(sourceElement.tagName)) {
-      return null;
-    }
-
-    const safeTag = allowedTags.has(sourceElement.tagName)
-      ? sourceElement.tagName.toLowerCase()
-      : "span";
-    const safeElement = document.createElement(safeTag);
-
-    if (sourceElement.tagName === "A") {
-      const href = sourceElement.getAttribute("href");
-      if (href) {
-        try {
-          const articleUrl = new URL(href, baseUrl);
-          if (
-            articleUrl.protocol === "https:" &&
-            articleUrl.hostname === `${language}.wikipedia.org`
-          ) {
-            safeElement.setAttribute("href", articleUrl.href);
-            safeElement.setAttribute("target", "_blank");
-            safeElement.setAttribute("rel", "noopener noreferrer");
-          }
-        } catch (error) {
-          log.warn(logDir, "Ignored invalid link in featured article extract", error);
-        }
-      }
-    }
-
-    for (const child of sourceElement.childNodes) {
-      const safeChild = copyNode(child);
-      if (safeChild) safeElement.appendChild(safeChild);
-    }
-    return safeElement;
-  };
-
-  const container = document.createElement("div");
-  for (const child of parsed.body.childNodes) {
-    const safeChild = copyNode(child);
-    if (safeChild) container.appendChild(safeChild);
-  }
-  return container.innerHTML;
-} */
-
-export default function FeaturedArticle({ active, language, onOpenArticle }) {
+export default function FeaturedArticle({
+  active,
+  language,
+  onOpenArticle,
+  addToFavorites,
+  removeFromFavorites,
+  favorites,
+  fullArticles
+}) {
   const [article, setArticle] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [failedImages, setFailedImages] = useState({});
 
   useEffect(() => {
     if (!active || !language || article || hasError) return undefined;
@@ -104,6 +56,7 @@ export default function FeaturedArticle({ active, language, onOpenArticle }) {
   const retry = () => {
     setArticle(null);
     setHasError(false);
+    setFailedImages({});
   };
 
   const handleArticleLinkClick = (event) => {
@@ -135,19 +88,95 @@ export default function FeaturedArticle({ active, language, onOpenArticle }) {
     onOpenArticle(languageCode, title);
   };
 
+  const imageOfDay = article?.imageOfDay;
+  const hasFeaturedArticle = Boolean(article?.articleUrl);
+  const didYouKnow = Array.isArray(article?.didYouKnow) ? article.didYouKnow : [];
+  const news = Array.isArray(article?.news) ? article.news : [];
+  const onThisDay = Array.isArray(article?.onThisDay) ? article.onThisDay : [];
+  const trendingArticle = article?.trendingArticle?.articleUrl !== article?.articleUrl
+    ? article?.trendingArticle
+    : null;
+  const mostReadArticles = Array.isArray(article?.mostReadArticles)
+    ? article.mostReadArticles
+    : [];
+  const hasSupplementaryContent = Boolean(
+    imageOfDay || trendingArticle || mostReadArticles.length ||
+    didYouKnow.length || news.length || onThisDay.length
+  );
+
+  const renderArticleCard = (articleToRender) => (
+    <article className="featuredArticleCard">
+      {articleToRender.thumbnailUrl && !failedImages[articleToRender.articleUrl] && (
+        <img
+          className="featuredArticleImage"
+          src={articleToRender.thumbnailUrl}
+          alt=""
+          onError={() => setFailedImages((current) => ({
+            ...current,
+            [articleToRender.articleUrl]: true
+          }))}
+        />
+      )}
+      {failedImages[articleToRender.articleUrl] && (
+        <p className="featuredArticleStatus" role="alert">
+          {getLocaleMessage("dailyArticleImageError")}
+        </p>
+      )}
+      <h3>
+        {articleToRender.title.replace(/_/g, " ")}
+      </h3>
+      {articleToRender.description && (
+        <p className="featuredArticleDescription">
+          {articleToRender.description}
+        </p>
+      )}
+      <div
+        className="featuredArticleExtract"
+        onClick={handleArticleLinkClick}
+        dangerouslySetInnerHTML={{
+          __html: sanitizeExtractHtml(articleToRender.extractHtml, language.toLowerCase())
+        }}
+      />
+      <ResultFooter
+        text={
+          articleToRender.extractText ||
+          extractTextFromHtml(articleToRender.extractHtml, language.toLowerCase())
+        }
+        addToFavorites={addToFavorites}
+        removeFromFavorites={removeFromFavorites}
+        favorites={favorites}
+        wikipedia={getWikipediaName(language)}
+        title={articleToRender.title}
+        language={language}
+        loadFullArticle={onOpenArticle}
+        fullArticleState={fullArticles[JSON.stringify([
+          language,
+          articleToRender.title
+        ])]}
+        url={articleToRender.articleUrl}
+      />
+    </article>
+  );
+
   if (!active) return null;
 
   return (
     <section className="featuredArticle">
-      <h2>{getLocaleMessage("dailyFeaturedArticleLabel")}</h2>
+      <h1><WikipediaIcon style={{ width: "1.2em", height: "1.2em" }} /> {getWikipediaName(language)}</h1>
+      <h2>
+        {isLoading || !hasFeaturedArticle
+          ? getLocaleMessage("feedLabel")
+          : getLocaleMessage(
+            article.isFallback
+              ? "dailyTrendingArticleLabel"
+              : article.isLatestFeatured
+                ? "dailyLatestFeaturedArticleLabel"
+                : "dailyFeaturedArticleLabel"
+          )}
+      </h2>
       {isLoading && (
         <p className="featuredArticleStatus" role="status">
-          {getLocaleMessage("dailyFeaturedArticleLoading")}
-        </p>
-      )}
-      {article?.isFallback && (
-        <p className="featuredArticleStatus" role="status">
-          {getLocaleMessage("dailyFeaturedArticleFallback")}
+          {getLocaleMessage("feedLoadingLabel")}
         </p>
       )}
       {hasError && (
@@ -158,83 +187,154 @@ export default function FeaturedArticle({ active, language, onOpenArticle }) {
           </button>
         </div>
       )}
-      {article && (
-        <article className="featuredArticleCard">
-          {article.thumbnailUrl && (
-            <img
-              className="featuredArticleImage"
-              src={article.thumbnailUrl}
-              alt=""
-            />
-          )}
-          <h3>
-            <a
-              href={article.articleUrl}
-              onClick={(event) => {
-                event.preventDefault();
-                onOpenArticle(language, article.title);
-              }}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              {article.title.replace(/_/g, " ")}
-            </a>
-          </h3>
-          {article.description && (
-            <p className="featuredArticleDescription">
-              {article.description}
-            </p>
-          )}
-          <div
-            className="featuredArticleExtract"
-            onClick={handleArticleLinkClick}
-            dangerouslySetInnerHTML={{
-              __html: sanitizeExtractHtml(article.extractHtml, language.toLowerCase())
-            }}
-          />
-        </article>
+      {article && !hasFeaturedArticle && !hasSupplementaryContent && (
+        <div className="featuredArticleStatus" role="alert">
+          <p>{getLocaleMessage("dailyFeaturedArticleError")}</p>
+          <button onClick={retry} type="button">
+            {getLocaleMessage("dailyFeaturedArticleRetryLabel")}
+          </button>
+        </div>
       )}
-      {article?.imageOfDay && (
+      {hasFeaturedArticle && renderArticleCard(article)}
+      {didYouKnow.length > 0 && (
+        <section className="featuredArticleSupplement">
+          <h3>{getLocaleMessage("dailyDidYouKnowLabel")}</h3>
+          <ul className="featuredArticleEntries">
+            {didYouKnow.map((item, index) => (
+              <li key={`${item.text}-${index}`}>
+                {item.html ? (
+                  <div
+                    className="featuredArticleFeedHtml"
+                    onClick={handleArticleLinkClick}
+                    dangerouslySetInnerHTML={{
+                      __html: sanitizeExtractHtml(item.html, language.toLowerCase())
+                    }}
+                  />
+                ) : (
+                  <p>{item.text}</p>
+                )}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+      {news.length > 0 && (
+        <section className="featuredArticleSupplement">
+          <h3>{getLocaleMessage("dailyNewsLabel")}</h3>
+          <ul className="featuredArticleEntries">
+            {news.map((item, index) => (
+              <li key={`${item.story}-${index}`}>
+                <div
+                  className="featuredArticleFeedHtml"
+                  onClick={handleArticleLinkClick}
+                  dangerouslySetInnerHTML={{
+                    __html: sanitizeExtractHtml(item.story, language.toLowerCase())
+                  }}
+                />
+                {item.links.length > 0 && (
+                  <ul className="featuredArticleFeedLinks" onClick={handleArticleLinkClick}>
+                    {item.links.map((link) => (
+                      <li key={link.articleUrl}>
+                        <a href={link.articleUrl} rel="noopener noreferrer" target="_blank">
+                          {link.title.replace(/_/g, " ")}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+      {onThisDay.length > 0 && (
+        <section className="featuredArticleSupplement">
+          <h3>{getLocaleMessage("dailyOnThisDayLabel")}</h3>
+          <ul className="featuredArticleEntries">
+            {onThisDay.map((item, index) => (
+              <li key={`${item.year}-${item.text}-${index}`}>
+                {item.year && <strong>{item.year}: </strong>}
+                {item.text}
+                {item.articles.length > 0 && (
+                  <ul className="featuredArticleFeedLinks" onClick={handleArticleLinkClick}>
+                    {item.articles.map((linkedArticle) => (
+                      <li key={linkedArticle.articleUrl}>
+                        <a
+                          href={linkedArticle.articleUrl}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
+                          {linkedArticle.title.replace(/_/g, " ")}
+                        </a>
+                        {linkedArticle.description && ` — ${linkedArticle.description}`}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+      {trendingArticle && (
+        <section className="featuredArticleSupplement">
+          <h3>{getLocaleMessage("dailyTrendingArticleLabel")}</h3>
+          {renderArticleCard(trendingArticle)}
+        </section>
+      )}
+      {imageOfDay && (
         <section className="featuredArticleSupplement">
           <h3>{getLocaleMessage("dailyImageOfDayLabel")}</h3>
           <figure className="featuredArticleImageOfDay">
-            {article.imageOfDay.thumbnailUrl && (
+            {imageOfDay.thumbnailUrl && !failedImages.imageOfDay && (
               <a
-                href={article.imageOfDay.filePageUrl}
+                href={imageOfDay.filePageUrl}
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <img
-                  src={article.imageOfDay.thumbnailUrl}
-                  alt={article.imageOfDay.description}
+                  src={imageOfDay.thumbnailUrl}
+                  alt={imageOfDay.description}
+                  onError={() => setFailedImages((current) => ({
+                    ...current,
+                    imageOfDay: true
+                  }))}
                 />
               </a>
             )}
-            {article.imageOfDay.description && (
-              <figcaption>{article.imageOfDay.description}</figcaption>
+            {failedImages.imageOfDay && (
+              <p className="featuredArticleStatus" role="alert">
+                {getLocaleMessage("dailyImageOfDayError")}
+                <button onClick={retry} type="button">
+                  {getLocaleMessage("dailyFeaturedArticleRetryLabel")}
+                </button>
+              </p>
             )}
-            {(article.imageOfDay.artist || article.imageOfDay.licenseName) && (
+            {imageOfDay.description && (
+              <figcaption>{imageOfDay.description}</figcaption>
+            )}
+            {(imageOfDay.artist || imageOfDay.licenseName) && (
               <p className="featuredArticleImageCredit">
-                {article.imageOfDay.artist && (
+                {imageOfDay.artist && (
                   <>
-                    {getLocaleMessage("dailyImageArtistLabel")}: {article.imageOfDay.artist}
+                    {getLocaleMessage("dailyImageArtistLabel")}: {imageOfDay.artist}
                   </>
                 )}
-                {article.imageOfDay.artist && article.imageOfDay.licenseName && " · "}
-                {article.imageOfDay.licenseName && (
+                {imageOfDay.artist && imageOfDay.licenseName && " · "}
+                {imageOfDay.licenseName && (
                   <>
                     {getLocaleMessage("dailyImageLicenseLabel")}:{" "}
-                    {article.imageOfDay.licenseUrl ? (
+                    {imageOfDay.licenseUrl ? (
                       <a
-                        href={article.imageOfDay.licenseUrl}
+                        href={imageOfDay.licenseUrl}
                         rel="noopener noreferrer"
                         target="_blank"
                         style={{ textDecoration: "none", color: "blue" }}
                       >
-                        {article.imageOfDay.licenseName}
+                        {imageOfDay.licenseName}
                       </a>
                     ) : (
-                      article.imageOfDay.licenseName
+                      imageOfDay.licenseName
                     )}
                   </>
                 )}
@@ -243,19 +343,23 @@ export default function FeaturedArticle({ active, language, onOpenArticle }) {
           </figure>
         </section>
       )}
-      {article?.mostReadArticles.length > 0 && (
+      {mostReadArticles.length > 0 && (
         <section className="featuredArticleSupplement">
-          <h3>{getLocaleMessage("dailyMostReadLabel")}</h3>
+          <h3>
+            {getLocaleMessage("dailyMostReadLabel")}
+            {article.mostReadDate && ` (${article.mostReadDate})`}
+          </h3>
           <ol
             className="featuredArticleMostRead"
             onClick={handleArticleLinkClick}
           >
-            {article.mostReadArticles.map((mostReadArticle) => (
+            {mostReadArticles.map((mostReadArticle) => (
               <li key={mostReadArticle.articleUrl}>
                 <a
                   href={mostReadArticle.articleUrl}
                   rel="noopener noreferrer"
                   target="_blank"
+                  style={{ textDecoration: "none", color: "blue" }}
                 >
                   {mostReadArticle.title.replace(/_/g, " ")}
                 </a>

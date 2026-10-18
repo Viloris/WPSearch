@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import HeartIcon from "../icons/bookmark-solar-add.svg";
-import "../styles/CopyButton.scss";
 import { getLocaleMessage } from "../common/i18n";
-
-const buttonCaption = getLocaleMessage("addToFavoritesLabel");
 
 /**
  *
@@ -12,35 +9,36 @@ const buttonCaption = getLocaleMessage("addToFavoritesLabel");
  * @param {Function} addToFavorites
  * @returns {JSX.Element} Button that adds the given text to favorites
  */
-export default function AddToFavoritesButton({ text, addToFavorites, wikipedia, title }) {
-  const labelAdded = getLocaleMessage("addedToFavoritesLabel");
-  const [added, setAdded] = useState(false);
+export default function AddToFavoritesButton({
+  className,
+  text,
+  addToFavorites,
+  removeFromFavorites,
+  wikipedia,
+  title,
+  isSaved = false
+}) {
+  const buttonClassName = [
+    className,
+    isSaved && "resultFooterButton--saved"
+  ].filter(Boolean).join(" ");
 
-  const handleAddToFavorites = () => {
-    addToFavorites(text, wikipedia, title);
-    setAdded(true);
+  const handleToggleFavorite = () => {
+    if (isSaved) {
+      removeFromFavorites(text);
+    } else {
+      addToFavorites(text, wikipedia, title);
+    }
   };
 
-  React.useEffect(() => {
-    if (added) {
-      const timeoutId = setTimeout(() => setAdded(false), 2000);
-      return () => clearTimeout(timeoutId);
-    }
-  }, [added]);
-
   return (
-    <div className="copy">
-      <button
-        className="copyButton"
-        title={buttonCaption}
-        onClick={handleAddToFavorites}
-        type="button"
-      >
-        <HeartIcon /> Save
-      </button>
-      {added && (
-        <span className="copiedText">{labelAdded}</span>
-      )}
-    </div>
+    <button
+      type="button"
+      className={buttonClassName}
+      onClick={handleToggleFavorite}
+    >
+      <HeartIcon className="resultFooterButtonIcon" />
+      {getLocaleMessage(isSaved ? "addedToFavoritesLabel" : "addToFavoritesLabel")}
+    </button>
   );
 }

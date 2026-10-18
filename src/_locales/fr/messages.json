@@ -35,8 +35,20 @@
     "searchLabel": {
         "message": "Recherche"
     },
+    "searchEmptyMessage": {
+        "message": "Tapez dans la zone de recherche pour obtenir des résultats débouncés, des suggestions et des cartes d'articles prêts à être lus."
+    },
+    "feedLabel": {
+        "message": "Feed"
+    },
+    "feedLoadingLabel": {
+        "message": "Chargement du Feed..."
+    },
     "dailyFeaturedArticleLabel": {
         "message": "Article du jour"
+    },
+    "dailyLatestFeaturedArticleLabel": {
+        "message": "Dernier article sélectionné"
     },
     "dailyFeaturedArticleLoading": {
         "message": "Chargement de l’article du jour..."
@@ -59,8 +71,41 @@
     "dailyImageLicenseLabel": {
         "message": "Licence"
     },
+    "dailyTrendingArticleLabel": {
+        "message": "Article tendance"
+    },
+    "dailyTrendingArticleError": {
+        "message": "Impossible de charger l’article tendance."
+    },
+    "dailyImageOfDayError": {
+        "message": "Impossible de charger l’image du jour."
+    },
+    "dailyArticleImageError": {
+        "message": "Impossible de charger l’image de l’article."
+    },
     "dailyMostReadLabel": {
         "message": "Articles les plus lus"
+    },
+    "dailyMostReadError": {
+        "message": "Impossible de charger les articles les plus lus."
+    },
+    "readmoreLabel": {
+        "message": "Lire plus"
+    },
+    "moreResultsLabel": {
+        "message": "Plus de résultats"
+    },
+    "wikipediaLabel": {
+        "message": "Wikipedia"
+    },
+    "dailyDidYouKnowLabel": {
+        "message": "Le saviez-vous ?"
+    },
+    "dailyNewsLabel": {
+        "message": "À la une"
+    },
+    "dailyOnThisDayLabel": {
+        "message": "En ce jour"
     },
     "favoritesLabel": {
         "message": "Favoris"
@@ -75,7 +120,7 @@
         "message": "Ajouter aux favoris"
     },
     "addedToFavoritesLabel": {
-        "message": "Ajouté aux favoris"
+        "message": "Enregistré"
     },
     "removeFromFavoritesConfirmLabel": {
         "message": "Êtes-vous sûr de vouloir retirer cet élément des favoris?"

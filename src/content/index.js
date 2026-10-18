@@ -220,8 +220,7 @@ const handleMessage = async (request) => {
             else return empty;
         case GET_SELECTED_TEXT:
             if (!isEnabled) return empty;
-            if (prevSelectedText.length === 0) return empty;
-            else return prevSelectedText;
+            return getSelectedText() || prevSelectedText || empty;
         case WP_SEARCH_SELECTED_TEXT: {
             if (!isEnabled) return empty;
             const selectedText = getSelectedText();
@@ -246,8 +245,6 @@ const handleMessage = async (request) => {
 };
 
 const handleMouseUp = async (e) => {
-    await waitTime(10);
-
     const isLeftClick = e.button === 0;
     if (!isLeftClick) return;
 
@@ -264,22 +261,29 @@ const handleMouseUp = async (e) => {
     const isInThisElement = searchContainer && searchContainer.contains(e.target);
     if (isInThisElement) return;
 
-    removeSearchContainer();
-
     const ignoredDocumentLang = getSettings("ignoredDocumentLang")
         .split(",")
         .map((s) => s.trim())
         .filter((s) => !!s);
-    if (ignoredDocumentLang.length) {
-        const ignoredLangSelector = ignoredDocumentLang
-            .map((lang) => `[lang="${lang}"]`)
-            .join(",");
-        if (!!e.target.closest && !!e.target.closest(ignoredLangSelector))
-            return;
-    }
+    const ignoredLangSelector = ignoredDocumentLang
+        .map((lang) => `[lang="${lang}"]`)
+        .join(",");
+    const isInIgnoredDocumentLang =
+        ignoredDocumentLang.length > 0 &&
+        !!e.target.closest &&
+        !!e.target.closest(ignoredLangSelector);
 
-    const selectedText = getSelectedText();
-    prevSelectedText = selectedText;
+    const selectedTextOnMouseUp = getSelectedText();
+    let selectedText = selectedTextOnMouseUp;
+    if (!isInIgnoredDocumentLang) prevSelectedText = selectedText;
+
+    await waitTime(10);
+    removeSearchContainer();
+
+    if (isInIgnoredDocumentLang) return;
+
+    selectedText = getSelectedText() || selectedTextOnMouseUp;
+    if (selectedText) prevSelectedText = selectedText;
     if (selectedText.length === 0) return;
 
     if (getSettings("isDisabledInTextFields")) {

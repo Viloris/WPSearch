@@ -17,6 +17,7 @@ import { ResultHeader } from "./ResultHeader";
  */
 export function ResultSection({
   addToFavorites,
+  removeFromFavorites,
   errorMessage,
   isError,
   text,
@@ -25,11 +26,15 @@ export function ResultSection({
   wikipedia,
   fullArticleState,
   loadFullArticle,
-  lang
+  lang,
+  favorites,
+  showHeader = true,
+  searchExpression,
+  openPopup
 }) {
   return (
     <>
-      <ResultHeader wikipedia={wikipedia} />
+      {showHeader && <ResultHeader wikipedia={wikipedia} />}
       {isError ? (
         <ErrorSection message={errorMessage} />
       ) : (
@@ -42,12 +47,16 @@ export function ResultSection({
           <ResultFooter
             text={text}
             addToFavorites={addToFavorites}
+            removeFromFavorites={removeFromFavorites}
             wikipedia={wikipedia}
             title={title}
             language={lang}
             loadFullArticle={loadFullArticle}
             fullArticleState={fullArticleState}
             url={url}
+            favorites={favorites}
+            searchExpression={searchExpression}
+            openPopup={openPopup}
           />
         </>
       )}

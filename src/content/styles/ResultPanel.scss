@@ -93,6 +93,9 @@
                     color: var(--simple-wikipedia-search-main-text);
                     margin-bottom: 1em;
                 }
+                .result-language-separator {
+                    margin-top: 12px;
+                }
                 .simple-wikipedia-search-candidate,
                 .error {
                     color: red;

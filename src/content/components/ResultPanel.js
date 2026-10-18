@@ -12,7 +12,16 @@ import ResultArea from "../../components/ResultArea"
  * @returns {JSX.Element} Component to display a draggable panel with search results, 
  * which positions itself based on the provided coordinates and adjusts its layout according to the content and settings
  */
-export default function ResultPanel({ shouldShow, position, results }) {
+export default function ResultPanel({
+  shouldShow,
+  position,
+  results,
+  selectedText,
+  openPopup,
+  favorites,
+  addToFavorites,
+  removeFromFavorites
+}) {
   const panelRef = useRef(null);
   const wrapperRef = useRef(null);
 
@@ -132,6 +141,12 @@ export default function ResultPanel({ shouldShow, position, results }) {
         <div className="simple-wikipedia-search-result-contents">
           <ResultArea
             results={results}
+            favorites={favorites}
+            addToFavorites={addToFavorites}
+            removeFromFavorites={removeFromFavorites}
+            searchExpression={selectedText}
+            openPopup={openPopup}
+            showFirstResultPerLanguage
             hideInformationLabel={hideInfoLabel}
             dismissHint={dismissHint}
           />

@@ -114,3 +114,9 @@ export function sanitizeExtractHtml(html, language) {
     }
     return container.innerHTML;
 }
+
+export function extractTextFromHtml(html, language) {
+    const sanitizedHtml = sanitizeExtractHtml(html, language);
+    const parsed = new DOMParser().parseFromString(sanitizedHtml, "text/html");
+    return parsed.body.textContent?.trim() || "";
+}
