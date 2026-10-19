@@ -44,6 +44,9 @@
     "readFullArticleLabel": {
         "message": "Teljes cikk betöltése..."
     },
+    "recentSearchTerms": {
+        "message": "Legutóbbiak"
+    },
     "feedLabel": {
         "message": "Feed"
     },

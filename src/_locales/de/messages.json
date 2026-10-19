@@ -41,6 +41,9 @@
     "searchEmptyMessage": {
         "message": "Geben Sie in das Suchfeld ein, um verzögerte Ergebnisse, Vorschläge und sofort lesbare Artikelseiten zu erhalten."
     },
+    "recentSearchTerms": {
+        "message": "Kürzliche"
+    },
     "readFullArticleLabel": {
         "message": "Vollständigen Artikel lesen"
     },

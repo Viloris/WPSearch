@@ -333,7 +333,7 @@ export default function PopupPage() {
       {searchHistory.length > 0 && <div
         style={{ display: "flex", justifyContent: "flex-start", alignitems: "center", margin: "5px 10px 15px 10px", fontSize: "0.9em" }}
       >
-        Recent:&nbsp;&nbsp;
+        {getLocaleMessage("recentSearchTerms")}:&nbsp;&nbsp;
         {searchHistory.slice(0, 3).map((term, index) => (
           <span key={term}>
             {index > 0 && <span style={{ margin: "0 0.5em" }} aria-hidden="true">•</span>}
