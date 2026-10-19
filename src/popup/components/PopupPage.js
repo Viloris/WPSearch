@@ -331,7 +331,7 @@ export default function PopupPage() {
         inputRef={inputRef}
       />
       {searchHistory.length > 0 && <div
-        style={{ display: "flex", justifyContent: "flex-start", alignitems: "center", margin: "5px 10px 15px 10px" }}
+        style={{ display: "flex", justifyContent: "flex-start", alignitems: "center", margin: "5px 10px 15px 10px", fontSize: "0.9em" }}
       >
         Recent:&nbsp;&nbsp;
         {searchHistory.slice(0, 3).map((term, index) => (

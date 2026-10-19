@@ -8,6 +8,7 @@ export function ClearSearchHistoryButton({ onClear, history }) {
             disabled={history.length === 0}
             onClick={onClear}
             type="button"
+            style={{ color: "#5276b4" }}
         >
             {clearSearchHistoryLabel}
         </button>

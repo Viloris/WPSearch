@@ -42,6 +42,7 @@ export default function FavoritesPage({ favorites, onSelect, onRemove, language,
                 }}
                 role="button"
                 tabIndex={0}
+                title={getLocaleMessage("readFullArticleLabel")}
               >
                 <div className="favorite-text">
                   {wikipedia && <span className="favorite-wikipedia">{wikipedia}</span>}

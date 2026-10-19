@@ -41,6 +41,9 @@
     "searchEmptyMessage": {
         "message": "Type into search to get debounced results, suggestions, and ready-to-read article cards."
     },
+    "readFullArticleLabel": {
+        "message": "Read the full article"
+    },
     "feedLabel": {
         "message": "Feed"
     },

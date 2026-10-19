@@ -41,6 +41,9 @@
     "searchEmptyMessage": {
         "message": "Tapez dans la zone de recherche pour obtenir des résultats débouncés, des suggestions et des cartes d'articles prêts à être lus."
     },
+    "readFullArticleLabel": {
+        "message": "Lire l’article complet"
+    },
     "feedLabel": {
         "message": "Feed"
     },

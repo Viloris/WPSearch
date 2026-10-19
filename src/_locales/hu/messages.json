@@ -41,6 +41,9 @@
     "searchEmptyMessage": {
         "message": "Írja be a keresett szöveget, hogy megjelenjenek a javaslatok és a cikkek."
     },
+    "readFullArticleLabel": {
+        "message": "Teljes cikk betöltése..."
+    },
     "feedLabel": {
         "message": "Feed"
     },
