@@ -212,7 +212,7 @@ async function fetchDailyFeaturedArticleFromApi(languageCode, today, todayDate, 
                     title: typeof link?.title === "string" ? link.title : "",
                     articleUrl: getArticleUrl(link)
                 }))
-                .filter((link) => link.title && link.articleUrl)
+                .filter((link) => link.title)
         }));
     const onThisDay = (Array.isArray(data?.onthisday) ? data.onthisday : [])
         .filter((item) => typeof item?.text === "string" && item.text)
@@ -227,7 +227,7 @@ async function fetchDailyFeaturedArticleFromApi(languageCode, today, todayDate, 
                         typeof page?.description === "string" ? page.description : "",
                     articleUrl: getArticleUrl(page)
                 }))
-                .filter((page) => page.title && page.articleUrl)
+                .filter((page) => page.title)
         }));
 
     const sourceMostReadArticles = mostReadArticlesData || [];

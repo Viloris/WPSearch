@@ -49,6 +49,7 @@ export default function ResultArea({
             }
             key={`${lang}-${index}`}
           >
+            {index > 0 && visibleResults[index - 1]?.lang !== lang && <hr />}
             <ResultSection
               addToFavorites={addToFavorites}
               removeFromFavorites={removeFromFavorites}

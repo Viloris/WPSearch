@@ -10,10 +10,10 @@ import { WikipediaLink } from "./WikiLink";
  * @param {string} url
  * @returns {JSX.Element} Component to display Wikipedia search result with a link and summary
  */
-export function ResultContent({ text, title, url }) {
+export function ResultContent({ text, title }) {
   return (
     <>
-      <WikipediaLink title={title} url={url} />
+      <WikipediaLink title={title} />
       <ResultSummary text={text} />
     </>
   );

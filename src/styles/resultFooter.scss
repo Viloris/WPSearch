@@ -10,7 +10,9 @@
   margin-inline-end: 5px;
   //padding-right: 10px;
   & > .resultFooterButton,
-  & > .copy > .resultFooterButton {
+  & > .copy > .resultFooterButton,
+  #simple-wikipedia-search & > .resultFooterButton,
+  #simple-wikipedia-search & > .copy > .resultFooterButton {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -47,11 +49,13 @@
     }
   }
 
-  & > .resultFooterButton:first-child {
+  & > .resultFooterButton:first-child,
+  #simple-wikipedia-search & > .resultFooterButton:first-child {
     background: #eaf3ff;
   }
 
-  & > .resultFooterButton--saved {
+  & > .resultFooterButton--saved,
+  #simple-wikipedia-search & > .resultFooterButton--saved {
     border-color: #bfdbfe;
     color: #1e3a8a;
     background: #eaf3ff;
@@ -63,9 +67,15 @@
     }
   }
 
-  .resultFooterButtonIcon {
+  .resultFooterButtonIcon,
+  #simple-wikipedia-search & .resultFooterButtonIcon {
     width: 16px;
     height: 16px;
     flex: 0 0 auto;
+  }
+
+  #simple-wikipedia-search & > .resultFooterButton,
+  #simple-wikipedia-search & > .copy > .resultFooterButton {
+    border: none;
   }
 }

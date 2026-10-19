@@ -42,7 +42,6 @@ export function ResultSection({
           <ResultContent
             text={text}
             title={title}
-            url={url}
           />
           <ResultFooter
             text={text}

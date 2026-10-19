@@ -27,7 +27,7 @@ const readerViewSelectors = [
     ".shortdescription",
     ".mw-indicators",
     ".noprint",
-    "a[href*='action=edit']"
+    "a[href*='action=edit']:not(.new):not([href*='redlink=1'])"
 ].join(",");
 
 
@@ -50,9 +50,31 @@ export function sanitizeExtractHtml(html, language) {
             return null;
         }
 
-        const safeTag = allowedTags.has(sourceElement.tagName)
-            ? sourceElement.tagName.toLowerCase()
-            : "span";
+        let articleUrl = null;
+        if (sourceElement.tagName === "A") {
+            const href = sourceElement.getAttribute("href");
+            if (href) {
+                try {
+                    articleUrl = new URL(href, baseUrl);
+                } catch (error) {
+                    log.warn(logDir, "Ignored invalid link in featured article extract", error);
+                }
+            }
+        }
+
+        const isRedLink = sourceElement.tagName === "A" && (
+            sourceElement.classList.contains("new") ||
+            (
+                articleUrl?.protocol === "https:" &&
+                articleUrl.hostname === `${language}.wikipedia.org` &&
+                articleUrl.searchParams.get("redlink") === "1"
+            )
+        );
+        const safeTag = isRedLink
+            ? "span"
+            : allowedTags.has(sourceElement.tagName)
+                ? sourceElement.tagName.toLowerCase()
+                : "span";
         const safeElement = document.createElement(safeTag);
 
         if (sourceElement.tagName === "IMG") {
@@ -82,21 +104,14 @@ export function sanitizeExtractHtml(html, language) {
         }
 
         if (sourceElement.tagName === "A") {
-            const href = sourceElement.getAttribute("href");
-            if (href) {
-                try {
-                    const articleUrl = new URL(href, baseUrl);
-                    if (
-                        articleUrl.protocol === "https:" &&
-                        articleUrl.hostname === `${language}.wikipedia.org`
-                    ) {
-                        safeElement.setAttribute("href", articleUrl.href);
-                        safeElement.setAttribute("target", "_blank");
-                        safeElement.setAttribute("rel", "noopener noreferrer");
-                    }
-                } catch (error) {
-                    log.warn(logDir, "Ignored invalid link in featured article extract", error);
-                }
+            if (
+                !isRedLink &&
+                articleUrl?.protocol === "https:" &&
+                articleUrl.hostname === `${language}.wikipedia.org`
+            ) {
+                safeElement.setAttribute("href", articleUrl.href);
+                safeElement.setAttribute("target", "_blank");
+                safeElement.setAttribute("rel", "noopener noreferrer");
             }
         }
 

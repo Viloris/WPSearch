@@ -25,6 +25,15 @@
     overflow-wrap: break-word;
   }
 
+  .result-language-separator {
+    padding-block: 12px;
+
+    > hr {
+      margin: 0 10px;
+      margin-bottom: 1em;
+    }
+  }
+
   p {
     box-sizing: border-box;
     max-width: 100%;
@@ -87,5 +96,4 @@
     margin-left: 0.5em;
     margin-right: 0.5em;
   }
-
 }

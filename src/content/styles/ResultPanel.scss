@@ -1,126 +1,127 @@
 #simple-wikipedia-search {
-    .simple-wikipedia-search-panel {
-        all: initial;
-        position: fixed;
-        overflow: hidden;
-        background-color: var(--simple-wikipedia-search-main-bg);
-        box-shadow:
-            0 2px 2px 0 rgba(0, 0, 0, 0.16),
-            0 0 0 1px rgba(0, 0, 0, 0.08);
-        border-radius: 10px;
-        z-index: 2147483646;
+  .simple-wikipedia-search-panel {
+    all: initial;
+    position: fixed;
+    overflow: hidden;
+    background-color: var(--simple-wikipedia-search-main-bg);
+    box-shadow:
+      0 2px 2px 0 rgba(0, 0, 0, 0.16),
+      0 0 0 1px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    z-index: 2147483646;
 
-        transition-property: opacity, visibility;
-        transition-duration: 200ms;
-        opacity: 0;
-        visibility: hidden;
-        &.isShow {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .simple-wikipedia-search-result-wrapper {
-            all: initial;
-            position: absolute;
-            font-size: inherit;
-            visibility: inherit;
-            opacity: inherit;
-            box-sizing: border-box;
-            width: max-content;
-            height: max-content;
-            width: -moz-max-content;
-            height: -moz-max-content;
-            max-width: 100%;
-            max-height: 100%;
-            overflow: auto;
-
-            .simple-wikipedia-search-move {
-                height: 20px;
-                cursor: grab;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background-color: #ffffff;
-                //border-bottom: 1px solid #ddd;
-            }
-
-            .simple-wikipedia-search-move::before {
-                content: "";
-                width: 30px;
-                height: 4px;
-                background: radial-gradient(
-                    circle,
-                    #888 1.5px,
-                    transparent 1.5px
-                );
-                background-size: 6px 6px;
-                background-repeat: repeat-x;
-                opacity: 0.6;
-            }
-
-            .simple-wikipedia-search-move:active {
-                cursor: grabbing;
-            }
-
-            .simple-wikipedia-search-result-contents {
-                padding: 5px 8px 15px 15px;
-                p,
-                a {
-                    all: initial;
-                    display: block;
-                    margin: 0;
-                    font-family:
-                        "Segoe UI", "San Francisco", "Ubuntu", "Fira Sans",
-                        "Roboto", "Arial", "Helvetica", sans-serif !important;
-                    word-wrap: break-word;
-                    font-size: inherit;
-                    line-height: 150%;
-                    visibility: inherit;
-                    opacity: inherit;
-                }
-
-                a {
-                    color: var(--simple-wikipedia-search-highlight);
-                    cursor: pointer;
-                    font-weight: 600;
-                }
-
-                &::-moz-selection {
-                    background: var(--simple-wikipedia-search-line);
-                }
-
-                .simple-wikipedia-search-result {
-                    color: var(--simple-wikipedia-search-main-text);
-                    margin-bottom: 1em;
-                }
-                .result-language-separator {
-                    margin-top: 12px;
-                }
-                .simple-wikipedia-search-candidate,
-                .error {
-                    color: red;
-                    margin-top: 1em;
-                    margin-bottom: 1em;
-                    &:empty {
-                        margin-top: 0;
-                    }
-                }
-                .actionBar {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: flex-end;
-                    margin-top: 0.5em;
-
-                    .copyButton {
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: flex-end;
-                        & > * {
-                            margin-inline-start: 10px;
-                        }
-                    }
-                }
-            }
-        }
+    transition-property: opacity, visibility;
+    transition-duration: 200ms;
+    opacity: 0;
+    visibility: hidden;
+    &.isShow {
+      opacity: 1;
+      visibility: visible;
     }
+
+    .simple-wikipedia-search-result-wrapper {
+      all: initial;
+      position: absolute;
+      font-size: inherit;
+      visibility: inherit;
+      opacity: inherit;
+      box-sizing: border-box;
+      width: max-content;
+      height: max-content;
+      width: -moz-max-content;
+      height: -moz-max-content;
+      max-width: 100%;
+      max-height: 100%;
+      overflow: auto;
+
+      .simple-wikipedia-search-move {
+        height: 20px;
+        cursor: grab;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffffff;
+        //border-bottom: 1px solid #ddd;
+      }
+
+      .simple-wikipedia-search-move::before {
+        content: "";
+        width: 30px;
+        height: 4px;
+        background: radial-gradient(circle, #888 1.5px, transparent 1.5px);
+        background-size: 6px 6px;
+        background-repeat: repeat-x;
+        opacity: 0.6;
+      }
+
+      .simple-wikipedia-search-move:active {
+        cursor: grabbing;
+      }
+
+      .simple-wikipedia-search-result-contents {
+        padding: 5px 8px 15px 15px;
+        p,
+        a {
+          all: initial;
+          display: block;
+          margin: 0;
+          font-family: "Segoe UI", "San Francisco", "Ubuntu", "Fira Sans", "Roboto", "Arial", "Helvetica", sans-serif !important;
+          word-wrap: break-word;
+          font-size: inherit;
+          line-height: 150%;
+          visibility: inherit;
+          opacity: inherit;
+        }
+
+        a {
+          color: var(--simple-wikipedia-search-highlight);
+          cursor: pointer;
+          font-weight: 600;
+        }
+
+        &::-moz-selection {
+          background: var(--simple-wikipedia-search-line);
+        }
+
+        .simple-wikipedia-search-result {
+          color: var(--simple-wikipedia-search-main-text);
+          margin-bottom: 1em;
+        }
+        .result-language-separator {
+          padding-block: 12px;
+
+          > hr {
+            margin: 0 10px;
+            margin-bottom: 1em;
+            border: 0;
+            border-top: 1px solid #f5f5f5;
+          }
+        }
+        .simple-wikipedia-search-candidate,
+        .error {
+          color: red;
+          margin-top: 1em;
+          margin-bottom: 1em;
+          &:empty {
+            margin-top: 0;
+          }
+        }
+        .actionBar {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          margin-top: 0.5em;
+
+          .copyButton {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            & > * {
+              margin-inline-start: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -23,6 +23,9 @@
     "searchHistoryLabel": {
         "message": "Historique de recherche"
     },
+    "searchTermLabel": {
+        "message": "Terme de recherche"
+    },
     "clearSearchHistoryLabel": {
         "message": "Effacer l’historique"
     },

@@ -330,6 +330,23 @@ export default function PopupPage() {
         handleInputText={handleInputText}
         inputRef={inputRef}
       />
+      {searchHistory.length > 0 && <div
+        style={{ display: "flex", justifyContent: "flex-start", alignitems: "center", margin: "5px 10px 15px 10px" }}
+      >
+        Recent:&nbsp;&nbsp;
+        {searchHistory.slice(0, 3).map((term, index) => (
+          <span key={term}>
+            {index > 0 && <span style={{ margin: "0 0.5em" }} aria-hidden="true">•</span>}
+            <a
+              onClick={() => handleHistorySelect(term)}
+              type="button"
+              style={{ cursor: "pointer", color: "#5276b4" }}
+            >
+              {term}
+            </a>
+          </span>
+        ))}
+      </div>}
       <MainNavigation activeView={activeView} onChange={handleViewChange} />
       <FeaturedArticle
         active={activeView === "home"}

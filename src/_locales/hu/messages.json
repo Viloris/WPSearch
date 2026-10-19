@@ -23,6 +23,9 @@
     "searchHistoryLabel": {
         "message": "Keresési előzmények"
     },
+    "searchTermLabel": {
+        "message": "Kifejezés"
+    },
     "clearSearchHistoryLabel": {
         "message": "Előzmények törlése"
     },
