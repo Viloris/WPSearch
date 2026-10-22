@@ -18,28 +18,26 @@
     justify-content: center;
     gap: 4px;
     padding: 4px 8px;
-    border: 1px solid var(--simple-wikipedia-search-button);
-    border-radius: 4px;
-    color: var(--simple-wikipedia-search-main-text);
-    background: var(--simple-wikipedia-search-main-bg);
+    border: none;
+    border-radius: 7px;
+    color: var(--main-text, var(--simple-wikipedia-search-main-text, #172033));
+    background: var(--main-bg, var(--simple-wikipedia-search-main-bg, #ffffff));
     font: inherit;
     cursor: pointer;
     transition:
-      border-color 120ms ease,
       color 120ms ease,
       background-color 120ms ease,
       box-shadow 120ms ease,
       transform 120ms ease;
 
     &:hover:not(:disabled) {
-      border-color: #1e3a8a;
-      color: #1e3a8a;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
+      color: var(--highlight, var(--simple-wikipedia-search-highlight, #2563eb));
+      background: var(--highlight-bg, var(--simple-wikipedia-search-highlight-bg, #eff6ff));
       transform: translateY(-1px);
     }
 
     &:focus-visible {
-      outline: 2px solid var(--simple-wikipedia-search-highlight);
+      outline: 2px solid var(--highlight, var(--simple-wikipedia-search-highlight, #2563eb));
       outline-offset: 2px;
     }
 
@@ -51,19 +49,17 @@
 
   & > .resultFooterButton:first-child,
   #simple-wikipedia-search & > .resultFooterButton:first-child {
-    background: #eaf3ff;
+    background: var(--highlight-bg, var(--simple-wikipedia-search-highlight-bg, #eff6ff));
   }
 
   & > .resultFooterButton--saved,
   #simple-wikipedia-search & > .resultFooterButton--saved {
-    border-color: #bfdbfe;
-    color: #1e3a8a;
-    background: #eaf3ff;
+    color: var(--highlight, var(--simple-wikipedia-search-highlight, #2563eb));
+    background: var(--highlight-bg, var(--simple-wikipedia-search-highlight-bg, #eff6ff));
 
     &:hover:not(:disabled) {
-      border-color: #93c5fd;
-      color: #1e3a8a;
-      background: #dbeafe;
+      color: var(--highlight, var(--simple-wikipedia-search-highlight, #2563eb));
+      background: var(--highlight-bg, var(--simple-wikipedia-search-highlight-bg, #eff6ff));
     }
   }
 
@@ -74,8 +70,4 @@
     flex: 0 0 auto;
   }
 
-  #simple-wikipedia-search & > .resultFooterButton,
-  #simple-wikipedia-search & > .copy > .resultFooterButton {
-    border: none;
-  }
 }
