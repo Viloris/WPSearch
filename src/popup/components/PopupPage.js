@@ -166,6 +166,9 @@ export default function PopupPage() {
     if (view === "search") {
       inputRef.current?.focus();
     }
+    /*     if (view === "favorites") {
+          getFavorites(() => true, setFavorites);
+        } */
   }, []);
 
   const handleFavoriteSelect = useCallback((favorite) => {
@@ -350,12 +353,13 @@ export default function PopupPage() {
       <MainNavigation activeView={activeView} onChange={handleViewChange} />
       <FeaturedArticle
         active={activeView === "home"}
-        language={targetLang}
-        onOpenArticle={handleLoadFullArticle}
         addToFavorites={handleAddFavorite}
-        removeFromFavorites={handleRemoveFavorite}
         favorites={favorites}
         fullArticles={fullArticles}
+        key={targetLang}
+        language={targetLang}
+        onOpenArticle={handleLoadFullArticle}
+        removeFromFavorites={handleRemoveFavorite}
       />
       {activeView === "favorites" && (
         <FavoritesPage

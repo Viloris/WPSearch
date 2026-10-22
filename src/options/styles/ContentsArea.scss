@@ -1,13 +1,15 @@
 .contentsArea {
-  margin-inline-start: 150px;
-  width: 650px;
+  box-sizing: border-box;
+  max-width: 760px;
+  margin-inline-start: 220px;
+  padding: 8px 0 40px;
 
   .contentTitle {
-    font-size: 33px;
-    font-weight: 200;
-    color: var(--sub-text);
-    line-height: 2;
-    margin: 0;
+    font-size: 28px;
+    font-weight: 650;
+    color: var(--main-text);
+    line-height: 1.35;
+    margin: 0 0 20px;
   }
 
   hr {
@@ -15,8 +17,15 @@
     background-color: var(--line);
     height: 1px;
     border: none;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 22px;
+    margin-bottom: 22px;
+  }
+
+  @media (max-width: 720px) {
+    .contentsArea {
+      max-width: none;
+      margin-inline-start: 0;
+    }
   }
   ul {
     padding: 0;

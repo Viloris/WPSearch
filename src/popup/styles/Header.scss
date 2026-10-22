@@ -2,8 +2,9 @@
   position: sticky;
   top: 0;
   z-index: 10;
-  padding: 10px;
-  background-color: var(--line);
+  padding: 12px 14px;
+  background-color: var(--main-bg);
+  border-bottom: 1px solid var(--line);
   display: flex;
   flex-direction: row;
   flex-shrink: 0;
@@ -15,8 +16,8 @@
 
   .title {
     font-size: 15px;
-    font-weight: 400;
-    color: var(--sub-text);
+    font-weight: 600;
+    color: var(--main-text);
     cursor: default;
     flex-shrink: 0;
     display: flex;
@@ -43,7 +44,7 @@
         .react-toggle-track {
           height: 10px;
           width: 50px - $offset-width;
-          background-color: var(--sub-text);
+          background-color: var(--line);
           -webkit-box-transition: all 100ms ease;
           -moz-box-transition: all 100ms ease;
           transition: all 100ms ease;

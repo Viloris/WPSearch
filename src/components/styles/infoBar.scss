@@ -1,7 +1,7 @@
 /* Styles for the InfoBar component */
 
-$hover-color: #5a9fbd;
-$default-button-color: #6bb9e3;
+$hover-color: var(--highlight);
+$default-button-color: var(--info);
 
 .infoBar-container {
     margin-bottom: 0.5rem;
@@ -13,11 +13,11 @@ $default-button-color: #6bb9e3;
         flex-direction: column;
         justify-content: space-between;
         align-items: flex-start;
-        background-color: #e5f6fd;
+        background-color: var(--highlight-bg);
         border-left: 4px solid $default-button-color;
         padding: 1rem;
-        border-radius: 4px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
     }
 
     .infoBar-top-section {
@@ -54,7 +54,7 @@ $default-button-color: #6bb9e3;
     .infoBar-settings-button {
         background-color: $default-button-color;
         border: none;
-        border-radius: 4px;
+        border-radius: 7px;
         color: white;
         cursor: pointer;
         font-size: 0.7rem;

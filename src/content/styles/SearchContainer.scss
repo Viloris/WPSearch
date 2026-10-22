@@ -5,35 +5,80 @@
   }
   position: absolute;
 
-  --simple-wikipedia-search-line: #ededf0;
-  --simple-wikipedia-search-button: #d7d7db;
-  --simple-wikipedia-search-highlight: #5595ff;
+  --simple-wikipedia-search-line: #e2e8f0;
+  --simple-wikipedia-search-button: #cbd5e1;
+  --simple-wikipedia-search-highlight: #2563eb;
+  --simple-wikipedia-search-highlight-bg: #eff6ff;
+  --simple-wikipedia-search-panel-bg: #f8fafc;
+  --simple-wikipedia-search-error: #dc2626;
 }
 
 .simple-wikipedia-search-light-theme {
-  --simple-wikipedia-search-main-text: #0c0c0d;
-  --simple-wikipedia-search-sub-text: #737373;
+  --simple-wikipedia-search-main-text: #172033;
+  --simple-wikipedia-search-sub-text: #64748b;
   --simple-wikipedia-search-main-bg: #ffffff;
+  --main-text: var(--simple-wikipedia-search-main-text);
+  --sub-text: var(--simple-wikipedia-search-sub-text);
+  --main-bg: var(--simple-wikipedia-search-main-bg);
+  --line: var(--simple-wikipedia-search-line);
+  --button: var(--simple-wikipedia-search-button);
+  --highlight: var(--simple-wikipedia-search-highlight);
+  --highlight-bg: var(--simple-wikipedia-search-highlight-bg);
+  --error: var(--simple-wikipedia-search-error);
 }
 
 .simple-wikipedia-search-dark-theme {
-  --simple-wikipedia-search-main-text: #e6e6e6;
-  --simple-wikipedia-search-sub-text: #aaaaaa;
-  --simple-wikipedia-search-main-bg: #181818;
+  --simple-wikipedia-search-line: #293548;
+  --simple-wikipedia-search-button: #475569;
+  --simple-wikipedia-search-highlight: #60a5fa;
+  --simple-wikipedia-search-highlight-bg: #172b46;
+  --simple-wikipedia-search-panel-bg: #111c30;
+  --simple-wikipedia-search-error: #f87171;
+  --simple-wikipedia-search-main-text: #e2e8f0;
+  --simple-wikipedia-search-sub-text: #94a3b8;
+  --simple-wikipedia-search-main-bg: #0f172a;
+  --main-text: var(--simple-wikipedia-search-main-text);
+  --sub-text: var(--simple-wikipedia-search-sub-text);
+  --main-bg: var(--simple-wikipedia-search-main-bg);
+  --line: var(--simple-wikipedia-search-line);
+  --button: var(--simple-wikipedia-search-button);
+  --highlight: var(--simple-wikipedia-search-highlight);
+  --highlight-bg: var(--simple-wikipedia-search-highlight-bg);
+  --error: var(--simple-wikipedia-search-error);
 }
 
-// copy of .light-theme
 .simple-wikipedia-search-system-theme {
-  --simple-wikipedia-search-main-text: #000000;
-  --simple-wikipedia-search-sub-text: #737373;
+  --simple-wikipedia-search-main-text: #172033;
+  --simple-wikipedia-search-sub-text: #64748b;
   --simple-wikipedia-search-main-bg: #ffffff;
+  --main-text: var(--simple-wikipedia-search-main-text);
+  --sub-text: var(--simple-wikipedia-search-sub-text);
+  --main-bg: var(--simple-wikipedia-search-main-bg);
+  --line: var(--simple-wikipedia-search-line);
+  --button: var(--simple-wikipedia-search-button);
+  --highlight: var(--simple-wikipedia-search-highlight);
+  --highlight-bg: var(--simple-wikipedia-search-highlight-bg);
+  --error: var(--simple-wikipedia-search-error);
 }
 
 @media (prefers-color-scheme: dark) {
-  // copy of .dark-theme
   .simple-wikipedia-search-system-theme {
-    --simple-wikipedia-search-main-text: #e6e6e6;
-    --simple-wikipedia-search-sub-text: #aaaaaa;
-    --simple-wikipedia-search-main-bg: #181818;
+    --simple-wikipedia-search-line: #293548;
+    --simple-wikipedia-search-button: #475569;
+    --simple-wikipedia-search-highlight: #60a5fa;
+    --simple-wikipedia-search-highlight-bg: #172b46;
+    --simple-wikipedia-search-panel-bg: #111c30;
+    --simple-wikipedia-search-error: #f87171;
+    --simple-wikipedia-search-main-text: #e2e8f0;
+    --simple-wikipedia-search-sub-text: #94a3b8;
+    --simple-wikipedia-search-main-bg: #0f172a;
+    --main-text: var(--simple-wikipedia-search-main-text);
+    --sub-text: var(--simple-wikipedia-search-sub-text);
+    --main-bg: var(--simple-wikipedia-search-main-bg);
+    --line: var(--simple-wikipedia-search-line);
+    --button: var(--simple-wikipedia-search-button);
+    --highlight: var(--simple-wikipedia-search-highlight);
+    --highlight-bg: var(--simple-wikipedia-search-highlight-bg);
+    --error: var(--simple-wikipedia-search-error);
   }
 }

@@ -13,19 +13,12 @@ export default function SearchHistory({ history, onSelect, onClear, defaultOpen 
     setIsOpen(false);
   };
 
-  // const searchHistoryLabel = getLocaleMessage("searchHistoryLabel");
-  // const toggleSearchHistory = () => setIsOpen((open) => !open);
   const createSearchHandler = (query) => () => selectQuery(query);
 
   if (!hasSearchHistory && !isOpen) return null;
 
   return (
     <section className="searchHistory">
-      {/*  {hasSearchHistory && (
-        <h2>
-          {searchHistoryLabel}
-        </h2>
-      )} */}
       {isOpen && hasSearchHistory ? (
         <div className="searchHistoryPanel" id="searchHistoryList">
           <SearchHistoryHeader

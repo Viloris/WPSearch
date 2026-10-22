@@ -2,14 +2,15 @@
   list-style-type: none;
 
   .categoryTitle {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--sub-text);
-    margin: 0;
+    font-size: 14px;
+    font-weight: 650;
+    color: var(--main-text);
+    margin: 0 0 6px;
   }
 
   .categoryElements {
-    padding-inline-start: 20px;
-    margin-bottom: 30px;
+    padding: 8px 18px;
+    margin-bottom: 24px;
+    border-inline-start: 2px solid var(--line);
   }
 }

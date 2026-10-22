@@ -5,7 +5,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 10px 0px 10px 0px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
 
     &.showColumn {
       flex-direction: column;
@@ -45,7 +46,7 @@
   }
   .childElements {
     padding-inline-start: 20px;
-    border-inline-start: solid 10px var(--line);
+    border-inline-start: solid 2px var(--line);
   }
 }
 
@@ -83,7 +84,7 @@ input,
 textarea {
   font-family: inherit;
   font-size: 14px;
-  background-color: var(--sub-bg);
+  background-color: var(--main-bg);
   color: var(--main-text);
 }
 
@@ -91,7 +92,7 @@ textarea {
   appearance: textfield;
   -moz-appearance: textfield;
   border: 1px var(--button) solid;
-  border-radius: 2px;
+  border-radius: 8px;
   padding-inline-start: 5px;
   padding-inline-end: 5px;
   padding: 5px;
@@ -114,7 +115,7 @@ input[type="color"] {
   padding-inline-start: 5px;
   padding-inline-end: 5px;
   border: 1px solid var(--button);
-  border-radius: 2px;
+  border-radius: 8px;
 
   &:hover,
   &:focus {
@@ -172,7 +173,7 @@ input[type="checkbox"] {
     width: 20px;
     height: 20px;
     border: 1px solid var(--button);
-    border-radius: 2px;
+    border-radius: 5px;
   }
   &:hover::before {
     border-color: var(--highlight);
@@ -233,14 +234,14 @@ input[type="color"] {
 /*select*/
 
 select {
-  background-color: var(--sub-bg);
+  background-color: var(--main-bg);
   color: var(--main-text);
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
   text-overflow: ellipsis;
   border: var(--button) solid 1px;
-  border-radius: 2px;
+  border-radius: 8px;
   padding: 3px 5px;
   padding-inline-end: 20px;
   width: 100%;
@@ -295,14 +296,15 @@ input[type="button"],
   font-size: 13px;
   color: var(--main-text);
   border: 1px solid var(--button);
-  border-radius: 2px;
-  background-color: var(--line);
+  border-radius: 8px;
+  background-color: var(--sub-bg);
   cursor: pointer;
   white-space: nowrap;
   &:hover,
   &:focus {
-    background-color: var(--button);
+    background-color: var(--highlight-bg);
     border-color: var(--highlight);
+    color: var(--highlight);
   }
   &.includeSpan {
     padding: 0px;
@@ -410,4 +412,13 @@ input[type="file"] {
 iframe {
   border: none;
   width: 100%;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+button:focus-visible,
+.button:focus-visible {
+  outline: 2px solid var(--highlight);
+  outline-offset: 2px;
 }

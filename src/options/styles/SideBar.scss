@@ -1,6 +1,8 @@
 .sideBar {
   position: fixed;
-  font-size: 17px;
+  top: 28px;
+  width: 190px;
+  font-size: 15px;
   font-weight: 400;
   text-align: end;
   user-select: none;
@@ -11,18 +13,18 @@
   .titleContainer {
     display: flex;
     flex-direction: column;
-    padding: 10px 15px;
+    padding: 10px 12px 20px;
     align-items: center;
 
     .logo {
-      height: 64px;
-      width: 64px;
-      margin-inline-end: 5px;
+      height: 56px;
+      width: 56px;
+      margin-bottom: 8px;
     }
     .logoTitle {
       text-align: start;
-      font-size: 14px;
-      font-weight: 300;
+      font-size: 13px;
+      font-weight: 500;
       color: var(--sub-text);
       margin: auto;
     }
@@ -34,21 +36,53 @@
 
     .sideBarItem {
       list-style-type: none;
-      padding: 10px 15px;
-
-      :hover {
-        text-decoration-line: underline;
-        color: var(--highlight);
-      }
+      padding: 0;
 
       a {
+        display: block;
+        padding: 9px 12px;
+        border-radius: 9px;
         color: var(--sub-text);
-        text-decoration-line: none;
+        text-decoration: none;
+        transition: color 140ms ease, background-color 140ms ease;
+
+        &:hover {
+          color: var(--highlight);
+          background: var(--highlight-bg);
+        }
       }
 
       &.selected a {
         color: var(--highlight);
+        background: var(--highlight-bg);
+        font-weight: 600;
       }
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  .sideBar {
+    position: static;
+    width: auto;
+    margin-bottom: 20px;
+
+    .titleContainer {
+      flex-direction: row;
+      justify-content: flex-start;
+
+      .logo {
+        height: 36px;
+        width: 36px;
+        margin-inline-end: 10px;
+        margin-bottom: 0;
+      }
+    }
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
     }
   }
 }

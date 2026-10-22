@@ -1,5 +1,5 @@
 .searchHistory {
-  margin: 0 10px 10px;
+  margin: 0 14px 14px;
 
   button {
     font: inherit;
@@ -14,12 +14,12 @@
     width: 100%;
     align-items: center;
     gap: 8px;
-    margin-bottom: 12px;
-    padding: 0 0 8px;
+    margin-bottom: 10px;
+    padding: 0 0 10px;
     border-bottom: 1px solid var(--line);
     color: var(--main-text);
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 16px;
+    font-weight: 650;
 
     svg {
       display: block;
@@ -42,9 +42,11 @@
   }
 
   .searchHistoryPanel {
-    // margin-top: 6px;
-    border: 1px solid var(--button);
-    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    height: var(--popup-card-height, 260px);
+    border: 1px solid var(--line);
+    border-radius: 10px;
     background-color: var(--main-bg);
     overflow: hidden;
   }
@@ -53,7 +55,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 6px 8px;
+    padding: 8px 10px;
     border-bottom: 1px solid var(--line);
     color: var(--sub-text);
 
@@ -74,8 +76,9 @@
 
   ul {
     box-sizing: border-box;
-    min-height: 150px;
-    max-height: 150px;
+    flex: 1;
+    min-height: 0;
+    max-height: none;
     overflow-y: auto;
     margin: 0;
     padding: 0;
@@ -86,13 +89,13 @@
     display: block;
     width: 100%;
     overflow: hidden;
-    padding: 6px 8px;
+    padding: 8px 10px;
     text-align: start;
     text-overflow: ellipsis;
     white-space: nowrap;
 
     &:hover {
-      background-color: var(--line);
+      background-color: var(--highlight-bg);
     }
   }
 
@@ -101,7 +104,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 32px 16px;
+    box-sizing: border-box;
+    height: var(--popup-card-height, 260px);
+    padding: 24px 16px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--main-bg);
     color: var(--sub-text);
     text-align: center;
 

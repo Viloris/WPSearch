@@ -1,7 +1,9 @@
 import React, { useLayoutEffect, useRef } from "react";
-import { sanitizeExtractHtml } from "../../common/htmlUtils";
-import { getLocaleMessage } from "../../common/i18n";
-import { getWikipediaName } from "../../common/urlUtils";
+import CONFIG from "../../config.json"
+import { ArticleHeader } from "./fullArticleView/ArticleHeader";
+import { ArticleContent } from "./fullArticleView/ArticleContent";
+
+const { ARTICLE_PATH, HTTPS, WIKIPEDIA_DOMAIN } = CONFIG;
 
 export function FullArticleView({
     fullArticleState,
@@ -39,17 +41,17 @@ export function FullArticleView({
 
         const articleUrl = new URL(anchor.href);
         const languageCode = language.toLowerCase();
-        const articlePath = "/wiki/";
+        const formattedUrl = `${HTTPS}${languageCode}${WIKIPEDIA_DOMAIN}`;
         if (
-            articleUrl.origin !== `https://${languageCode}.wikipedia.org` ||
-            !articleUrl.pathname.startsWith(articlePath)
+            articleUrl.origin !== formattedUrl ||
+            !articleUrl.pathname.startsWith(ARTICLE_PATH)
         ) {
             return;
         }
 
         let linkedTitle;
         try {
-            linkedTitle = decodeURIComponent(articleUrl.pathname.slice(articlePath.length))
+            linkedTitle = decodeURIComponent(articleUrl.pathname.slice(ARTICLE_PATH.length))
                 .replaceAll("_", " ");
         } catch {
             return;
@@ -62,52 +64,20 @@ export function FullArticleView({
 
     return (
         <section className="fullArticleView" aria-label={title}>
-            <header className="fullArticleView-header">
-                <button
-                    className="fullArticleView-back-button"
-                    type="button"
-                    onClick={onBack}
-                    disabled={!canGoBack}
-                    aria-label={getLocaleMessage("backFullArticleLabel")}
-                    title={getLocaleMessage("backFullArticleLabel")}
-                >
-                    ←
-                </button>
-                <div className="fullArticleView-header-text">
-                    <a href={fullArticleState?.url} target="_blank" rel="noopener noreferrer"
-                        style={{
-                            textDecoration: "none"
-                        }}>
-                        <h2>{title.replaceAll(/_/g, " ")}</h2>
-                    </a>
-                    <h5>{getWikipediaName(language)}</h5>
-                </div>
-                <button
-                    type="button"
-                    onClick={onClose}
-                    aria-label={getLocaleMessage("closeFullArticleLabel")}
-                    title={getLocaleMessage("closeFullArticleLabel")}
-                >
-                    ×
-                </button>
-            </header>
-            <div
-                className="fullArticleView-content"
-                ref={contentRef}
-                onClick={handleContentClick}
-            >
-                {fullArticleState?.isLoading ? (
-                    <p>{getLocaleMessage("loadingFullArticleLabel")}</p>
-                ) : fullArticleState?.html ? (
-                    <div
-                        dangerouslySetInnerHTML={{
-                            __html: sanitizeExtractHtml(fullArticleState.html, language.toLowerCase())
-                        }}
-                    />
-                ) : (
-                    <p role="alert">{fullArticleState?.error || getLocaleMessage("unknownError")}</p>
-                )}
-            </div>
+            <ArticleHeader
+                canGoBack={canGoBack}
+                fullArticleState={fullArticleState}
+                language={language}
+                onBack={onBack}
+                onClose={onClose}
+                title={title}
+            />
+            <ArticleContent
+                contentRef={contentRef}
+                handleContentClick={handleContentClick}
+                fullArticleState={fullArticleState}
+                language={language}
+            />
         </section>
     );
 }
