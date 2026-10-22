@@ -31,11 +31,32 @@ const readerViewSelectors = [
 ].join(",");
 
 
-export function sanitizeExtractHtml(html, language) {
+export function sanitizeExtractHtml(html, language, disableReferenceLinks = false) {
     const parsed = new DOMParser().parseFromString(html, "text/html");
     const baseUrl = `https://${language}.wikipedia.org`;
     let imageCount = 0;
     parsed.body.querySelectorAll(readerViewSelectors).forEach((element) => element.remove());
+    if (disableReferenceLinks) {
+        parsed.body.querySelectorAll("a").forEach((anchor) => {
+            const href = anchor.getAttribute("href") || "";
+            let isReferenceTarget = false;
+            try {
+                const decodedHref = decodeURIComponent(href);
+                const url = new URL(decodedHref, baseUrl);
+                isReferenceTarget = /^#(?:cite_(?:note|ref)|CITEREF)/i.test(url.hash);
+            } catch (error) {
+                log.warn(logDir, "Ignored invalid link in full article", error);
+            }
+
+            if (
+                isReferenceTarget ||
+                anchor.matches(".mw-ref, .reference, .mw-cite-backlink, [id^='cite_ref']") ||
+                anchor.closest(".mw-ref, .reference, .mw-cite-backlink")
+            ) {
+                anchor.replaceWith(document.createTextNode(anchor.textContent || ""));
+            }
+        });
+    }
 
     const copyNode = (node) => {
         if (node.nodeType === Node.TEXT_NODE) {
@@ -70,7 +91,13 @@ export function sanitizeExtractHtml(html, language) {
                 articleUrl.searchParams.get("redlink") === "1"
             )
         );
-        const safeTag = isRedLink
+        const isReferenceLink = disableReferenceLinks &&
+            sourceElement.tagName === "A" &&
+            (
+                sourceElement.closest(".mw-ref, .reference, .mw-cite-backlink") ||
+                /^#(?:cite_(?:note|ref)|CITEREF)/i.test(articleUrl?.hash || "")
+            );
+        const safeTag = isRedLink || isReferenceLink
             ? "span"
             : allowedTags.has(sourceElement.tagName)
                 ? sourceElement.tagName.toLowerCase()
@@ -106,6 +133,7 @@ export function sanitizeExtractHtml(html, language) {
         if (sourceElement.tagName === "A") {
             if (
                 !isRedLink &&
+                !isReferenceLink &&
                 articleUrl?.protocol === "https:" &&
                 articleUrl.hostname === `${language}.wikipedia.org`
             ) {
