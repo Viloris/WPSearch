@@ -14,7 +14,12 @@ export function FullArticleView({
     canGoBack,
     onBack,
     onNavigateArticle,
-    onClose
+    onClose,
+    favorites,
+    removeFromFavorites,
+    text,
+    addToFavorites,
+    wikipedia
 }) {
     const contentRef = useRef(null);
 
@@ -71,6 +76,11 @@ export function FullArticleView({
                 onBack={onBack}
                 onClose={onClose}
                 title={title}
+                favorites={favorites}
+                removeFromFavorites={removeFromFavorites}
+                text={text}
+                addToFavorites={addToFavorites}
+                wikipedia={wikipedia}
             />
             <ArticleContent
                 contentRef={contentRef}
