@@ -4,6 +4,10 @@ import WP_LANG from "../settings/wikipedia.json";
 import { CONFIG } from "./constans";
 
 const {
+    ARTICLE_PATH,
+    HTTPS,
+    WIKIPEDIA_API_URL,
+    WIKIPEDIA_DOMAIN,
     requestMessages: {
         GET_TAB_URL,
         GET_SELECTED_TEXT,
@@ -69,3 +73,31 @@ export const getTabInfo = async () => {
         };
     }
 };
+
+/**
+ * 
+ * @param {*} language 
+ * @returns 
+ */
+export function buildWikipediaUrl(language) {
+    return `${HTTPS}${language}${WIKIPEDIA_DOMAIN}`;
+}
+
+/**
+ * 
+ * @param {*} language 
+ * @returns 
+ */
+export function getWikipediaArticleUrl(language) {
+    return `${buildWikipediaUrl(language)}${ARTICLE_PATH}`;
+}
+
+/**
+ * 
+ * @param {*} language 
+ * @param {*} params 
+ * @returns 
+ */
+export function buildWikipediaAPIUrl(language, params) {
+    return `${HTTPS}${language}${WIKIPEDIA_API_URL}${params}`;
+}
