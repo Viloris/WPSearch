@@ -1,5 +1,12 @@
 import log from "loglevel";
+import { buildWikipediaUrl } from "./urlUtils";
+import CONFIG from "../config.json";
 
+const {
+    WIKIPEDIA_DOMAIN,
+    WKIMEDIA_THUMB_API_URL,
+    WKIMEDIA_UPLOAD_API_URL
+} = CONFIG;
 const logDir = "common/htmlUtils";
 
 const allowedTags = new Set([
@@ -30,20 +37,27 @@ const readerViewSelectors = [
     "a[href*='action=edit']:not(.new):not([href*='redlink=1'])"
 ].join(",");
 
+const refRegex = /^#(?:cite_(?:note|ref)|CITEREF)/i;
+const protocolHttps = "https:";
+const textHtml = "text/html";
+const HTML_A = "A";
+const HTML_IMG = "IMG";
+const HTML_href = "href";
+const HTML_span = "span";
 
 export function sanitizeExtractHtml(html, language, disableReferenceLinks = false) {
-    const parsed = new DOMParser().parseFromString(html, "text/html");
-    const baseUrl = `https://${language}.wikipedia.org`;
+    const parsed = new DOMParser().parseFromString(html, textHtml);
+    const baseUrl = buildWikipediaUrl(language); //`https://${language}.wikipedia.org`;
     let imageCount = 0;
     parsed.body.querySelectorAll(readerViewSelectors).forEach((element) => element.remove());
     if (disableReferenceLinks) {
         parsed.body.querySelectorAll("a").forEach((anchor) => {
-            const href = anchor.getAttribute("href") || "";
+            const href = anchor.getAttribute(HTML_href) || "";
             let isReferenceTarget = false;
             try {
                 const decodedHref = decodeURIComponent(href);
                 const url = new URL(decodedHref, baseUrl);
-                isReferenceTarget = /^#(?:cite_(?:note|ref)|CITEREF)/i.test(url.hash);
+                isReferenceTarget = refRegex.test(url.hash);
             } catch (error) {
                 log.warn(logDir, "Ignored invalid link in full article", error);
             }
@@ -72,8 +86,8 @@ export function sanitizeExtractHtml(html, language, disableReferenceLinks = fals
         }
 
         let articleUrl = null;
-        if (sourceElement.tagName === "A") {
-            const href = sourceElement.getAttribute("href");
+        if (sourceElement.tagName === HTML_A) {
+            const href = sourceElement.getAttribute(HTML_href);
             if (href) {
                 try {
                     articleUrl = new URL(href, baseUrl);
@@ -83,28 +97,28 @@ export function sanitizeExtractHtml(html, language, disableReferenceLinks = fals
             }
         }
 
-        const isRedLink = sourceElement.tagName === "A" && (
+        const isRedLink = sourceElement.tagName === HTML_A && (
             sourceElement.classList.contains("new") ||
             (
-                articleUrl?.protocol === "https:" &&
-                articleUrl.hostname === `${language}.wikipedia.org` &&
+                articleUrl?.protocol === protocolHttps &&
+                articleUrl.hostname === `${language}${WIKIPEDIA_DOMAIN}` &&
                 articleUrl.searchParams.get("redlink") === "1"
             )
         );
         const isReferenceLink = disableReferenceLinks &&
-            sourceElement.tagName === "A" &&
+            sourceElement.tagName === HTML_A &&
             (
                 sourceElement.closest(".mw-ref, .reference, .mw-cite-backlink") ||
-                /^#(?:cite_(?:note|ref)|CITEREF)/i.test(articleUrl?.hash || "")
+                refRegex.test(articleUrl?.hash || "")
             );
         const safeTag = isRedLink || isReferenceLink
-            ? "span"
+            ? HTML_span
             : allowedTags.has(sourceElement.tagName)
                 ? sourceElement.tagName.toLowerCase()
-                : "span";
+                : HTML_span;
         const safeElement = document.createElement(safeTag);
 
-        if (sourceElement.tagName === "IMG") {
+        if (sourceElement.tagName === HTML_IMG) {
             if (imageCount >= 5) return null;
 
             const src = sourceElement.getAttribute("src");
@@ -113,8 +127,8 @@ export function sanitizeExtractHtml(html, language, disableReferenceLinks = fals
             try {
                 const imageUrl = new URL(src, baseUrl);
                 if (
-                    imageUrl.protocol !== "https:" ||
-                    !["thumb.wikimedia.org", "upload.wikimedia.org"].includes(imageUrl.hostname)
+                    imageUrl.protocol !== protocolHttps ||
+                    ![WKIMEDIA_THUMB_API_URL, WKIMEDIA_UPLOAD_API_URL].includes(imageUrl.hostname)
                 ) {
                     return null;
                 }
@@ -130,14 +144,14 @@ export function sanitizeExtractHtml(html, language, disableReferenceLinks = fals
             }
         }
 
-        if (sourceElement.tagName === "A") {
+        if (sourceElement.tagName === HTML_A) {
             if (
                 !isRedLink &&
                 !isReferenceLink &&
-                articleUrl?.protocol === "https:" &&
-                articleUrl.hostname === `${language}.wikipedia.org`
+                articleUrl?.protocol === protocolHttps &&
+                articleUrl.hostname === `${language}${WIKIPEDIA_DOMAIN}`
             ) {
-                safeElement.setAttribute("href", articleUrl.href);
+                safeElement.setAttribute(HTML_href, articleUrl.href);
                 safeElement.setAttribute("target", "_blank");
                 safeElement.setAttribute("rel", "noopener noreferrer");
             }
@@ -160,6 +174,6 @@ export function sanitizeExtractHtml(html, language, disableReferenceLinks = fals
 
 export function extractTextFromHtml(html, language) {
     const sanitizedHtml = sanitizeExtractHtml(html, language);
-    const parsed = new DOMParser().parseFromString(sanitizedHtml, "text/html");
+    const parsed = new DOMParser().parseFromString(sanitizedHtml, textHtml);
     return parsed.body.textContent?.trim() || "";
 }
