@@ -1,5 +1,6 @@
 import React from "react";
-import HeartIcon from "../icons/bookmark-solar-add.svg";
+import AddIcon from "../icons/bookmark-filled.svg"
+import BlankIcon from "../icons/bookmark-blank.svg"
 import { getLocaleMessage } from "../common/i18n";
 
 /**
@@ -37,7 +38,9 @@ export default function AddToFavoritesButton({
       className={buttonClassName}
       onClick={handleToggleFavorite}
     >
-      <HeartIcon className="resultFooterButtonIcon" />
+      {isSaved ?
+        <AddIcon className="resultFooterButtonIcon" /> :
+        <BlankIcon className="resultFooterButtonIcon" />}
       {getLocaleMessage(isSaved ? "addedToFavoritesLabel" : "addToFavoritesLabel")}
     </button>
   );
