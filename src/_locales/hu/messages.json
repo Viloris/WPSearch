@@ -53,7 +53,7 @@
     "feedLoadingLabel": {
         "message": "Feed betöltése..."
     },
-    "dailyFeaturedArticleLabel": {
+    "featuredArticleLabel": {
         "message": "Napi kiemelt cikk"
     },
     "dailyLatestFeaturedArticleLabel": {
@@ -107,11 +107,14 @@
     "dailyOnThisDayLabel": {
         "message": "Ezen a napon"
     },
-    "readmoreLabel": {
+    "readMoreLabel": {
         "message": "Olvas"
     },
     "moreResultsLabel": {
         "message": "További találatok"
+    },
+    "shareLabel": {
+        "message": "Megosztás"
     },
     "wikipediaLabel": {
         "message": "Wikipédia"

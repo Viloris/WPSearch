@@ -53,7 +53,7 @@
     "feedLoadingLabel": {
         "message": "Feed loading..."
     },
-    "dailyFeaturedArticleLabel": {
+    "featuredArticleLabel": {
         "message": "Featured article of the day"
     },
     "dailyLatestFeaturedArticleLabel": {
@@ -98,11 +98,14 @@
     "dailyMostReadError": {
         "message": "The most-read articles could not be loaded."
     },
-    "readmoreLabel": {
+    "readMoreLabel": {
         "message": "Read"
     },
     "moreResultsLabel": {
         "message": "More results"
+    },
+    "shareLabel": {
+        "message": "Share"
     },
     "wikipediaLabel": {
         "message": "Wikipedia"
