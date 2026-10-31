@@ -13,3 +13,12 @@ export function splitLine(text) {
         .split(regex)
         .map((line, i) => (line.match(regex) ? React.createElement("br", { key: i }) : line));
 }
+
+/**
+ * 
+ * @param {*} string 
+ * @returns 
+ */
+export function normalizeString(string) {
+    return string.trim().replace(/_/g, " ").toLowerCase();
+}
