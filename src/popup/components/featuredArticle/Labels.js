@@ -17,7 +17,7 @@ export function ArticleLabel({ isLoading, hasFeaturedArticle, article }) {
                         ? "dailyTrendingArticleLabel"
                         : article.isLatestFeatured
                             ? "dailyLatestFeaturedArticleLabel"
-                            : "dailyFeaturedArticleLabel"
+                            : "featuredArticleLabel"
                 )}
         </h2>
     );

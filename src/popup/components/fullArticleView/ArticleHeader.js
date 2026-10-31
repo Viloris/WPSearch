@@ -1,21 +1,37 @@
 import React from "react";
-import { getLocaleMessage } from "../../../common/i18n";
 import { getWikipediaName } from "../../../common/urlUtils";
+import { BackButton } from "./BackButton";
+import { CloseButton } from "./Closebutton";
+import { AddToFavoritesButton } from "./AddToFavoritesButton";
 
-export function ArticleHeader({ canGoBack, fullArticleState, language, onBack, onClose, title }) {
+export function ArticleHeader({
+    addToFavorites,
+    canGoBack,
+    favorites,
+    fullArticleState,
+    language,
+    onBack,
+    onClose,
+    removeFromFavorites,
+    text,
+    title,
+    wikipedia
+}) {
+    const isSaved = favorites.some((favorite) => favorite.summary === text);
+    const handleToggleFavorite = () => {
+        if (isSaved) {
+            removeFromFavorites(text);
+        } else {
+            addToFavorites(text, wikipedia, title);
+        }
+    };
     return (
 
         <header className="fullArticleView-header">
-            <button
-                className="fullArticleView-back-button"
-                type="button"
-                onClick={onBack}
-                disabled={!canGoBack}
-                aria-label={getLocaleMessage("backFullArticleLabel")}
-                title={getLocaleMessage("backFullArticleLabel")}
-            >
-                ←
-            </button>
+            <BackButton
+                canGoBack={canGoBack}
+                onBack={onBack}
+            />
             <div className="fullArticleView-header-text">
                 <a href={fullArticleState?.url} target="_blank" rel="noopener noreferrer"
                     style={{
@@ -25,14 +41,13 @@ export function ArticleHeader({ canGoBack, fullArticleState, language, onBack, o
                 </a>
                 <h5>{getWikipediaName(language)}</h5>
             </div>
-            <button
-                type="button"
-                onClick={onClose}
-                aria-label={getLocaleMessage("closeFullArticleLabel")}
-                title={getLocaleMessage("closeFullArticleLabel")}
-            >
-                ×
-            </button>
+            <AddToFavoritesButton
+                handleToggleFavorite={handleToggleFavorite}
+                isSaved={isSaved}
+            />
+            <CloseButton
+                onClose={onClose}
+            />
         </header>
     )
 }
