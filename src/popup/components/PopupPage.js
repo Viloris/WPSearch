@@ -15,7 +15,7 @@ import {
 import { fetchWikiFullArticle } from "../../api/wikipediaApi";
 import "../../components/styles/ResultArea.scss";
 import ResultArea from "../../components/ResultArea";
-import { getTabInfo } from "../../common/urlUtils";
+import { getTabInfo, getWikipediaArticleUrl, getWikipediaName } from "../../common/urlUtils";
 import { LoadingCaption } from "./LoadingCaption";
 import { handleToggleEnabledOnPage } from "../handleToggleEnabledOnPage";
 import { clearSearchHistory, getSearchHistory } from "../handleSearchHistory";
@@ -28,14 +28,14 @@ import FeaturedArticle from "./FeaturedArticle";
 import { FullArticleView } from "./fullArticleView";
 import SearchIcon from "../icons/search-solar.svg";
 import { CONFIG } from "../../common/constans";
+import { extractTextFromHtml } from "../../common/htmlUtils";
 const logDir = "popup/PopupPage";
-const { POPUP_REQUEST_STORAGE_KEY } = CONFIG;
+const { navigationMenu: { HOME, SEARCH, FAVORITES, HISTORY }, POPUP_REQUEST_STORAGE_KEY } = CONFIG;
 
 const clearTimerRef = (timerRef) => {
   clearTimeout(timerRef.current);
   timerRef.current = null;
 };
-
 
 /* ---------------- utils ---------------- */
 
@@ -44,6 +44,7 @@ const UILanguage = getUILanguage();
 const rtlLanguageClassName = ["he", "ar"].includes(UILanguage)
   ? "popup-page-rtl-language"
   : "";
+const popupWidth = "348px";
 
 /* ---------------- component ---------------- */
 
@@ -66,7 +67,7 @@ export default function PopupPage() {
   const [isLoadingSearch, setIsLoadingSearch] = useState(false);
   const [hideInformationLabel, setHideInformationLabel] = useState(false);
   const [searchRequest, setSearchRequest] = useState(null);
-  const [activeView, setActiveView] = useState("home");
+  const [activeView, setActiveView] = useState(HOME);
   const [favorites, setFavorites] = useState([]);
   const [fullArticles, setFullArticles] = useState({});
   const fullArticlesRef = useRef({});
@@ -111,7 +112,7 @@ export default function PopupPage() {
   const handleInputText = useCallback((text, isHistorySearch = false) => {
     setInputText(text);
     setResults([]);
-    setActiveView("search");
+    setActiveView(SEARCH);
     setFullArticleHistory([]);
     clearTimeout(loadingTimer.current);
 
@@ -130,7 +131,7 @@ export default function PopupPage() {
   }, []);
 
   const handleHistorySelect = useCallback((query) => {
-    setActiveView("search");
+    setActiveView(SEARCH);
     const currentQuery = inputText.replaceAll("\n", "").trim();
     if (query === currentQuery && results.length > 0 && !isLoadingSearch) {
       return;
@@ -163,7 +164,7 @@ export default function PopupPage() {
 
   const handleViewChange = useCallback((view) => {
     setActiveView(view);
-    if (view === "search") {
+    if (view === SEARCH) {
       inputRef.current?.focus();
     }
     /*     if (view === "favorites") {
@@ -172,7 +173,7 @@ export default function PopupPage() {
   }, []);
 
   const handleFavoriteSelect = useCallback((favorite) => {
-    setActiveView("search");
+    setActiveView(SEARCH);
     handleInputText(favorite);
   }, [handleInputText]);
 
@@ -186,7 +187,8 @@ export default function PopupPage() {
 
   const handleLoadFullArticle = useCallback(async (language, title, currentScrollTop = 0) => {
     const key = JSON.stringify([language, title]);
-    const url = `https://${language}.wikipedia.org/wiki/${encodeURIComponent(
+    // ${HTTPS}${language}${WIKIPEDIA_DOMAIN}${ARTICLE_PATH}
+    const url = `${getWikipediaArticleUrl(language)}${encodeURIComponent(
       title.replace(/ /g, "_")
     )}`;
     setFullArticleHistory((current) => {
@@ -262,7 +264,7 @@ export default function PopupPage() {
       themeClass.current = `${getSettings("theme")}-theme`;
       document.documentElement.classList.add(themeClass.current);
       document.body.classList.add(themeClass.current);
-      document.body.style.width = "348px";
+      document.body.style.width = popupWidth;
 
       if (!mounted) return;
 
@@ -352,7 +354,7 @@ export default function PopupPage() {
       </div>}
       <MainNavigation activeView={activeView} onChange={handleViewChange} />
       <FeaturedArticle
-        active={activeView === "home"}
+        active={activeView === HOME}
         addToFavorites={handleAddFavorite}
         favorites={favorites}
         fullArticles={fullArticles}
@@ -361,7 +363,7 @@ export default function PopupPage() {
         onOpenArticle={handleLoadFullArticle}
         removeFromFavorites={handleRemoveFavorite}
       />
-      {activeView === "favorites" && (
+      {activeView === FAVORITES && (
         <FavoritesPage
           favorites={favorites}
           onSelect={handleFavoriteSelect}
@@ -371,7 +373,7 @@ export default function PopupPage() {
           loadFullArticle={handleLoadFullArticle}
         />
       )}
-      {activeView === "history" && (
+      {activeView === HISTORY && (
         <SearchHistory
           history={searchHistory}
           onSelect={handleHistorySelect}
@@ -379,7 +381,7 @@ export default function PopupPage() {
           defaultOpen
         />
       )}
-      {activeView === "search" && (
+      {activeView === SEARCH && (
         inputText.trim() === "" ? (
           <div className="search-empty">
             <span className="empty-icon" aria-hidden="true">
@@ -425,6 +427,13 @@ export default function PopupPage() {
           onBack={handleBackFullArticle}
           onNavigateArticle={handleLoadFullArticle}
           onClose={handleCloseFullArticle}
+          isSaved={favorites}
+          addToFavorites={handleAddFavorite}
+          removeFromFavorites={handleRemoveFavorite}
+          wikipedia={getWikipediaName(activeFullArticle.language)}
+          favorites={favorites}
+          text={activeFullArticle.extractText ||
+            extractTextFromHtml(activeFullArticle.extractHtml, activeFullArticle.language.toLowerCase())}
         />
       )}
     </div>
