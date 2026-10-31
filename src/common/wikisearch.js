@@ -3,6 +3,7 @@ import { getLocaleMessage, getSecondTargetLang, getTargetLang } from "./i18n";
 import { getSettings } from "../settings/settings";
 import { CONFIG } from "./constans";
 import { fetchWikiSummary, getSearchResultTitles, handleHttpError } from "../api/wikipediaApi";
+import { getWikipediaArticleUrl } from "./urlUtils";
 
 const { DASH, NO_SUMMARY } = CONFIG;
 const logDir = "common/wikisearch";
@@ -34,9 +35,10 @@ async function getWikipediaExtract(language, title) {
 
     const data = await response.json();
     const articleTitle = data.title || title;
+    const wikiArticleBaseUrl = getWikipediaArticleUrl(language)
     const articleUrl =
       data.content_urls?.desktop?.page ||
-      `https://${language}.wikipedia.org/wiki/${encodeURIComponent(
+      `${wikiArticleBaseUrl}${encodeURIComponent(
         articleTitle.replace(/ /g, "_")
       )}`;
 
