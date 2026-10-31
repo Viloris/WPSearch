@@ -2,9 +2,16 @@ import browser from "webextension-polyfill";
 import log from "loglevel";
 import { getLocaleMessage } from "../common/i18n";
 import { CONFIG, HTTP_CODES } from "../common/constans";
+import { buildWikipediaAPIUrl } from "../common/urlUtils";
 
 const {
-    WIKIPEDIA_API_URL,
+    COMMONS_BASE_URL,
+    CREATIVECOMMONS_BASE_URL,
+    numberDataType,
+    protocolHttps,
+    stringType,
+    WIKIPEDIA_DOMAIN,
+    WIKIPEDIA_SEARCH_API_URL,
     WIKIPEDIA_SUMMARY_API_URL,
     WIKIPEDIA_FEATURED_API_URL,
     HTTPS
@@ -14,6 +21,7 @@ const logDir = "common/wikisearch";
 const SEARCH_RESULTS_LIMIT = 5;
 const FEATURED_FEED_LOOKBACK_DAYS = 7;
 const dailyFeaturedArticleRequests = new Map();
+const wikiLanguagePattern = /^[a-z0-9-]+$/i;
 
 /**
  * 
@@ -23,7 +31,7 @@ const dailyFeaturedArticleRequests = new Map();
  * @returns {string} URL for Wikipedia search API
  */
 const getSearchUrl = (language, term) => {
-    return `${HTTPS}${language}${WIKIPEDIA_API_URL}${encodeURIComponent(term)}&srlimit=${SEARCH_RESULTS_LIMIT}&format=json&origin=*`;
+    return `${HTTPS}${language}${WIKIPEDIA_SEARCH_API_URL}${encodeURIComponent(term)}&srlimit=${SEARCH_RESULTS_LIMIT}&format=json&origin=*`;
 }
 
 /**
@@ -39,7 +47,7 @@ const getSummaryUrl = (language, title) => {
 };
 
 const getPageQueryUrl = (language, title, extraParams = {}) => {
-    if (!/^[a-z0-9-]+$/i.test(language)) {
+    if (!wikiLanguagePattern.test(language)) {
         throw new Error(`Invalid Wikipedia language code: ${language}`);
     }
 
@@ -52,11 +60,11 @@ const getPageQueryUrl = (language, title, extraParams = {}) => {
         origin: "*",
         ...extraParams
     });
-    return `${HTTPS}${language}.wikipedia.org/w/api.php?${params}`;
+    return buildWikipediaAPIUrl(language, params);
 };
 
 const getPageParseUrl = (language, title) => {
-    if (!/^[a-z0-9-]+$/i.test(language)) {
+    if (!wikiLanguagePattern.test(language)) {
         throw new Error(`Invalid Wikipedia language code: ${language}`);
     }
 
@@ -68,7 +76,7 @@ const getPageParseUrl = (language, title) => {
         formatversion: "2",
         origin: "*"
     });
-    return `${HTTPS}${language}.wikipedia.org/w/api.php?${params}`;
+    return buildWikipediaAPIUrl(language, params);
 };
 
 /**
@@ -102,7 +110,7 @@ export async function fetchWikiFullArticle(language, title) {
 
     const data = await response.json();
     const html = data?.parse?.text;
-    if (typeof html !== "string" || !html) {
+    if (typeof html !== stringType || !html) {
         throw new Error(data?.error?.info || `Full article response is missing content for "${title}"`);
     }
 
@@ -120,9 +128,9 @@ async function fetchDailyFeaturedArticleFromApi(languageCode, today, todayDate, 
         return response.json();
     };
     const hasArticleData = (article) =>
-        typeof article?.title === "string" &&
-        (typeof article?.extract_html === "string" || typeof article?.extract === "string") &&
-        typeof article?.content_urls?.desktop?.page === "string";
+        typeof article?.title === stringType &&
+        (typeof article?.extract_html === stringType || typeof article?.extract === stringType) &&
+        typeof article?.content_urls?.desktop?.page === stringType;
     const data = await fetchFeed(todayDate);
     let latestFeaturedArticle = hasArticleData(data?.tfa)
         ? { article: data.tfa, date: todayDate }
@@ -165,7 +173,7 @@ async function fetchDailyFeaturedArticleFromApi(languageCode, today, todayDate, 
     const getArticleUrl = (item) => {
         try {
             const url = new URL(item.content_urls.desktop.page);
-            return url.protocol === "https:" && url.hostname === `${languageCode}.wikipedia.org`
+            return url.protocol === protocolHttps && url.hostname === `${languageCode}${WIKIPEDIA_DOMAIN}`
                 ? url.href
                 : "";
         } catch {
@@ -177,11 +185,11 @@ async function fetchDailyFeaturedArticleFromApi(languageCode, today, todayDate, 
     const articleUrl = article ? candidateArticleUrl : "";
 
     const getThumbnailUrl = (item) => {
-        if (typeof item?.thumbnail?.source !== "string") return "";
+        if (typeof item?.thumbnail?.source !== stringType) return "";
         try {
             const thumbnail = new URL(item.thumbnail.source);
             if (
-                thumbnail.protocol === "https:" &&
+                thumbnail.protocol === protocolHttps &&
                 ["upload.wikimedia.org", "thumb.wikimedia.org"].includes(thumbnail.hostname)
             ) {
                 return thumbnail.href;
@@ -194,37 +202,37 @@ async function fetchDailyFeaturedArticleFromApi(languageCode, today, todayDate, 
 
     const didYouKnow = (Array.isArray(data?.dyk) ? data.dyk : [])
         .filter((item) =>
-            (typeof item?.html === "string" && item.html) ||
-            (typeof item?.text === "string" && item.text)
+            (typeof item?.html === stringType && item.html) ||
+            (typeof item?.text === stringType && item.text)
         )
         .slice(0, 6)
         .map((item) => ({
-            html: typeof item.html === "string" ? item.html : "",
-            text: typeof item.text === "string" ? item.text : ""
+            html: typeof item.html === stringType ? item.html : "",
+            text: typeof item.text === stringType ? item.text : ""
         }));
     const news = (Array.isArray(data?.news) ? data.news : [])
-        .filter((item) => typeof item?.story === "string" && item.story)
+        .filter((item) => typeof item?.story === stringType && item.story)
         .slice(0, 5)
         .map((item) => ({
             story: item.story,
             links: (Array.isArray(item.links) ? item.links : [])
                 .map((link) => ({
-                    title: typeof link?.title === "string" ? link.title : "",
+                    title: typeof link?.title === stringType ? link.title : "",
                     articleUrl: getArticleUrl(link)
                 }))
                 .filter((link) => link.title)
         }));
     const onThisDay = (Array.isArray(data?.onthisday) ? data.onthisday : [])
-        .filter((item) => typeof item?.text === "string" && item.text)
+        .filter((item) => typeof item?.text === stringType && item.text)
         .slice(0, 8)
         .map((item) => ({
             text: item.text,
-            year: typeof item.year === "number" || typeof item.year === "string" ? item.year : "",
+            year: typeof item.year === numberDataType || typeof item.year === stringType ? item.year : "",
             articles: (Array.isArray(item.pages) ? item.pages : [])
                 .map((page) => ({
-                    title: typeof page?.title === "string" ? page.title : "",
+                    title: typeof page?.title === stringType ? page.title : "",
                     description:
-                        typeof page?.description === "string" ? page.description : "",
+                        typeof page?.description === stringType ? page.description : "",
                     articleUrl: getArticleUrl(page)
                 }))
                 .filter((page) => page.title)
@@ -241,10 +249,10 @@ async function fetchDailyFeaturedArticleFromApi(languageCode, today, todayDate, 
         trendingArticleUrl !== articleUrl
         ? {
             title: trendingSource.title,
-            description: typeof trendingSource.description === "string" ? trendingSource.description : "",
-            extractText: typeof trendingSource.extract === "string" ? trendingSource.extract : "",
+            description: typeof trendingSource.description === stringType ? trendingSource.description : "",
+            extractText: typeof trendingSource.extract === stringType ? trendingSource.extract : "",
             extractHtml:
-                typeof trendingSource.extract_html === "string"
+                typeof trendingSource.extract_html === stringType
                     ? trendingSource.extract_html
                     : trendingSource.extract,
             articleUrl: trendingArticleUrl,
@@ -253,8 +261,8 @@ async function fetchDailyFeaturedArticleFromApi(languageCode, today, todayDate, 
         : null;
     const mostReadArticles = sourceMostReadArticles
         .map((item) => ({
-            title: typeof item?.title === "string" ? item.title : "",
-            description: typeof item?.description === "string" ? item.description : "",
+            title: typeof item?.title === stringType ? item.title : "",
+            description: typeof item?.description === stringType ? item.description : "",
             articleUrl: getArticleUrl(item)
         }))
         .slice(0, 6)
@@ -270,7 +278,7 @@ async function fetchDailyFeaturedArticleFromApi(languageCode, today, todayDate, 
     let imagePageUrl = "";
     try {
         const url = new URL(image?.file_page);
-        if (url.protocol === "https:" && url.hostname === "commons.wikimedia.org") {
+        if (url.protocol === protocolHttps && url.hostname === COMMONS_BASE_URL) {
             imagePageUrl = url.href;
         }
     } catch {
@@ -279,7 +287,7 @@ async function fetchDailyFeaturedArticleFromApi(languageCode, today, todayDate, 
     let licenseUrl = "";
     try {
         const url = new URL(image?.license?.url);
-        if (url.protocol === "https:" && url.hostname === "creativecommons.org") {
+        if (url.protocol === protocolHttps && url.hostname === CREATIVECOMMONS_BASE_URL) {
             licenseUrl = url.href;
         }
     } catch {
@@ -287,14 +295,14 @@ async function fetchDailyFeaturedArticleFromApi(languageCode, today, todayDate, 
     }
     const imageOfDay = imagePageUrl
         ? {
-            description: typeof image?.description?.text === "string" ? image.description.text : "",
+            description: typeof image?.description?.text === stringType ? image.description.text : "",
             thumbnailUrl: getThumbnailUrl(image),
             filePageUrl: imagePageUrl,
-            artist: typeof image?.artist?.text === "string" ? image.artist.text : "",
+            artist: typeof image?.artist?.text === stringType ? image.artist.text : "",
             licenseName:
-                typeof image?.license?.type === "string"
+                typeof image?.license?.type === stringType
                     ? image.license.type
-                    : typeof image?.license?.code === "string"
+                    : typeof image?.license?.code === stringType
                         ? image.license.code
                         : "",
             licenseUrl
@@ -307,12 +315,12 @@ async function fetchDailyFeaturedArticleFromApi(languageCode, today, todayDate, 
 
     return {
         title: article?.title || "",
-        description: typeof article?.description === "string" ? article.description : "",
-        extractText: typeof article?.extract === "string" ? article.extract : "",
+        description: typeof article?.description === stringType ? article.description : "",
+        extractText: typeof article?.extract === stringType ? article.extract : "",
         extractHtml:
-            typeof article?.extract_html === "string"
+            typeof article?.extract_html === stringType
                 ? article.extract_html
-                : typeof article?.extract === "string"
+                : typeof article?.extract === stringType
                     ? article.extract
                     : "",
         articleUrl,
@@ -364,7 +372,7 @@ async function loadDailyFeaturedArticle(languageCode, today, todayDate, signal) 
  * Article fields are empty when no usable featured or most-read article is available.
  */
 export async function fetchDailyFeaturedArticle(language, signal) {
-    if (!/^[a-z0-9-]+$/i.test(language)) {
+    if (!wikiLanguagePattern.test(language)) {
         throw new Error(`Invalid Wikipedia language code: ${language}`);
     }
 
@@ -427,7 +435,7 @@ export async function getSearchResultTitles(language, term) {
         return data.query.search
             .slice(0, SEARCH_RESULTS_LIMIT)
             .map((item) => item?.title)
-            .filter((title) => typeof title === "string" && title);
+            .filter((title) => typeof title === stringType && title);
     } catch (err) {
         log.error(`${logDir} - Search API error: `, err);
         return {
