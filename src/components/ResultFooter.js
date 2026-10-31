@@ -2,9 +2,10 @@ import React from "react";
 import CopyButton from "./CopyButton";
 import "../styles/resultFooter.scss";
 import AddToFavoritesButton from "./AddToFavoritesButton";
-import NewWindowIcon from "../icons/open-in-new-window.svg";
-import BookIcon from "../icons/book-solar.svg";
-import { getLocaleMessage } from "../common/i18n";
+// import NewWindowIcon from "../icons/open-in-new-window.svg";
+// import BookIcon from "../icons/book-solar.svg";
+// import { getLocaleMessage } from "../common/i18n";
+import { MoreResultButton, OpenInWikipediaButton, ReadFullArticleButton } from "./MediaButtons";
 
 /**
  *
@@ -26,14 +27,8 @@ export function ResultFooter({
   searchExpression,
   openPopup
 }) {
-  const openWikipediaLink = () => {
-    window.open(url, "_blank");
-  }
   const isSaved = favorites.some((favorite) => favorite.summary === text);
   const hasMatchingArticle = Boolean(url);
-  const readMoreLabel = fullArticleState?.isLoading ? "Loading…" : getLocaleMessage("readmoreLabel");
-  const wikipediaLabel = getLocaleMessage("wikipediaLabel");
-  const moreResultsLabel = getLocaleMessage("moreResultsLabel");
   const openInPopup = (article = null) => {
     openPopup({
       expression: searchExpression,
@@ -45,35 +40,23 @@ export function ResultFooter({
     return (
       <div className={"mediaButtons"}>
         {openPopup && searchExpression && (
-          <button
-            type="button"
-            className="resultFooterButton"
-            onClick={() => openInPopup()}
-          >
-            {moreResultsLabel}
-          </button>
+          <MoreResultButton
+            openInPopup={openInPopup}
+          />
         )}
         {hasMatchingArticle && (
           <>
-            <button
-              type="button"
-              className="resultFooterButton"
-              onClick={() => openPopup
-                ? openInPopup({ language, title })
-                : loadFullArticle(language, title)}
-              disabled={fullArticleState?.isLoading}
-            >
-              <BookIcon className="resultFooterButtonIcon" />
-              {readMoreLabel}
-            </button>
-            <button
-              type="button"
-              className="resultFooterButton"
-              onClick={() => openWikipediaLink()}
-            >
-              <NewWindowIcon className="resultFooterButtonIcon" />
-              {wikipediaLabel}
-            </button>
+            <ReadFullArticleButton
+              fullArticleState={fullArticleState}
+              openPopup={openPopup}
+              language={language}
+              loadFullArticle={loadFullArticle}
+              title={title}
+            />
+            <OpenInWikipediaButton
+              title={title}
+              url={url}
+            />
             <AddToFavoritesButton
               className="resultFooterButton"
               text={text}
