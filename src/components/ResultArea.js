@@ -71,9 +71,10 @@ export default function ResultArea({
         )
       )}
       {!hideInformationLabel && !useSecondLang && (
-        <div className="infoBar">
-          <InfoBar message={information} onClick={dismissHint} />
-        </div>
+        <InfoBar
+          message={information}
+          onClick={dismissHint}
+        />
       )}
     </>
   );
