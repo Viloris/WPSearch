@@ -4,6 +4,8 @@ import { getLocaleMessage } from "../../../common/i18n";
 
 export function ArticleContent({ contentRef, handleContentClick, fullArticleState, language }) {
 
+    const loadingLabel = getLocaleMessage("loadingFullArticleLabel");
+    const errorLabel = fullArticleState?.error || getLocaleMessage("unknownError");
     return (
         <div
             className="fullArticleView-content"
@@ -11,7 +13,7 @@ export function ArticleContent({ contentRef, handleContentClick, fullArticleStat
             onClick={handleContentClick}
         >
             {fullArticleState?.isLoading ? (
-                <p>{getLocaleMessage("loadingFullArticleLabel")}</p>
+                <p>{loadingLabel}</p>
             ) : fullArticleState?.html ? (
                 <div
                     dangerouslySetInnerHTML={{
@@ -19,7 +21,7 @@ export function ArticleContent({ contentRef, handleContentClick, fullArticleStat
                     }}
                 />
             ) : (
-                <p role="alert">{fullArticleState?.error || getLocaleMessage("unknownError")}</p>
+                <p role="alert">{errorLabel}</p>
             )}
         </div>
     )
