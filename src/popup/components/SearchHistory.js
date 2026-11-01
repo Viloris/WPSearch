@@ -30,11 +30,9 @@ export default function SearchHistory({ history, onSelect, onClear, defaultOpen 
             createSearchHandler={createSearchHandler}
           />
         </div>
-      ) : isOpen ? (
-        <EmptySearchLabel />
-      ) : (
-        null
-      )}
+      ) : isOpen ?
+        (<EmptySearchLabel />) :
+        (null)}
     </section>
   );
 
