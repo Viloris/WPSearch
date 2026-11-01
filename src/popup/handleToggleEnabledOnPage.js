@@ -10,6 +10,8 @@ const {
 
 export const handleToggleEnabledOnPage = async (e, setTabInfo) => {
     const isEnabled = e.target.checked;
+    const extensionMode = isEnabled ? ENABLE_EXTENSION : DISABLE_EXTENSION;
+
     setTabInfo((prev) => ({ ...prev, isEnabledOnPage: isEnabled }));
 
     try {
@@ -19,7 +21,7 @@ export const handleToggleEnabledOnPage = async (e, setTabInfo) => {
         });
         await tabsSendMessage(
             tab,
-            isEnabled ? ENABLE_EXTENSION : DISABLE_EXTENSION
+            extensionMode
         );
     } catch (e) {
         log.error(logDir, "HandleToggleEnabledOnPage failed", e);
