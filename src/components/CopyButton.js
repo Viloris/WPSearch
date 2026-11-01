@@ -40,9 +40,6 @@ export default function CopyButton({ text, className = "resultFooterButton" }) {
 
   return (
     <div className="copy">
-      {/*  {isCopied && copiedForText === text && (
-        <span className="copiedText">{labelCopied}</span>
-      )} */}
       {copyError && <span className="copyError">{copyError}</span>}
       <button
         type="button"
