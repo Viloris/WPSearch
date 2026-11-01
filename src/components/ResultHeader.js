@@ -8,8 +8,10 @@ import React from "react";
  */
 export function ResultHeader({ wikipedia }) {
   return (
-    <p>
-      <strong>{wikipedia}</strong>
-    </p>
+    <section
+      style={{ padding: "0.6em 1em 1em 1em" }}
+    >
+      <h3 style={{ margin: 0, fontWeight: 600, color: "#222" }}>{wikipedia}</h3>
+    </section>
   );
 }
