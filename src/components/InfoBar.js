@@ -24,22 +24,32 @@ export default function InfoBar({ message, onClick }) {
   };
 
   return (
-    <div className="infoBar-container">
-      <div className="infoBar-wrapper">
-        <div className="infoBar-top-section">
-          <p className="infoBar-message">{message}</p>
-          <button
-            className="infoBar-close-button"
-            onClick={onClick}
-            title="Dismiss"
-          >
-            ✕
-          </button>
-        </div>
-        <button className="infoBar-settings-button" onClick={openSettings}>
-          {settings}
-        </button>
+    <div className="infoBar">
+      <div className="infoBar-top-section">
+        <p className="infoBar-message">{message}</p>
+        <CloseButton onClick={onClick} />
       </div>
+      <SettingsButton
+        openSettings={openSettings}
+        settings={settings}
+      />
     </div>
+  );
+}
+function SettingsButton({ openSettings, settings }) {
+  return <button className="infoBar-settings-button" onClick={openSettings}>
+    {settings}
+  </button>;
+}
+
+function CloseButton({ onClick }) {
+  return (
+    <button
+      className="infoBar-close-button"
+      onClick={onClick}
+      title="Dismiss"
+    >
+      ✕
+    </button>
   );
 }
