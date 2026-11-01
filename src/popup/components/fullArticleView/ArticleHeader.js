@@ -1,8 +1,8 @@
 import React from "react";
-import { getWikipediaName } from "../../../common/urlUtils";
 import { BackButton } from "./BackButton";
 import { CloseButton } from "./Closebutton";
 import { AddToFavoritesButton } from "./AddToFavoritesButton";
+import { ArticleTitle } from "./ArticleTitle";
 
 export function ArticleHeader({
     addToFavorites,
@@ -15,14 +15,18 @@ export function ArticleHeader({
     removeFromFavorites,
     text,
     title,
-    wikipedia
+    wikipedia,
+    url
 }) {
+    const canSave = typeof text === "string" && text.trim().length > 0;
     const isSaved = favorites.some((favorite) => favorite.summary === text);
     const handleToggleFavorite = () => {
+        if (!canSave) return;
+
         if (isSaved) {
             removeFromFavorites(text);
         } else {
-            addToFavorites(text, wikipedia, title);
+            addToFavorites(text, wikipedia, title, url);
         }
     };
     return (
@@ -32,7 +36,12 @@ export function ArticleHeader({
                 canGoBack={canGoBack}
                 onBack={onBack}
             />
-            <div className="fullArticleView-header-text">
+            <ArticleTitle
+                fullArticleState={fullArticleState}
+                language={language}
+                title={title}
+            />
+            {/* <div className="fullArticleView-header-text">
                 <a href={fullArticleState?.url} target="_blank" rel="noopener noreferrer"
                     style={{
                         textDecoration: "none"
@@ -40,10 +49,11 @@ export function ArticleHeader({
                     <h2>{title.replaceAll(/_/g, " ")}</h2>
                 </a>
                 <h5>{getWikipediaName(language)}</h5>
-            </div>
+            </div> */}
             <AddToFavoritesButton
                 handleToggleFavorite={handleToggleFavorite}
                 isSaved={isSaved}
+                disabled={!canSave}
             />
             <CloseButton
                 onClose={onClose}

@@ -15,6 +15,7 @@ const normalizeFavorites = (savedFavorites) => {
             return [{
                 wikipedia: typeof entry.wikipedia === "string" ? entry.wikipedia : "",
                 title: typeof entry.title === "string" ? entry.title : "",
+                url: typeof entry.url === "string" ? entry.url : "",
                 summary: entry.summary.trim()
             }];
         }
@@ -34,12 +35,12 @@ export const getFavorites = async (isMounted, setFavorites) => {
     }
 }
 
-export const addFavorite = async (summary, setFavorites, wikipedia, title) => {
+export const addFavorite = async (summary, setFavorites, wikipedia, title, url) => {
     try {
         const stored = await browser.storage.local.get("favorites");
         const favorites = normalizeFavorites(stored["favorites"]);
         if (!favorites.some((entry) => entry.summary === summary)) {
-            const nextFavorites = [{ wikipedia, title, summary }, ...favorites];
+            const nextFavorites = [{ wikipedia, title, url, summary }, ...favorites];
             await browser.storage.local.set({ "favorites": nextFavorites });
             setFavorites(nextFavorites);
         }

@@ -17,6 +17,7 @@ export default function AddToFavoritesButton({
   removeFromFavorites,
   wikipedia,
   title,
+  url,
   isSaved = false
 }) {
   const buttonClassName = [
@@ -28,9 +29,14 @@ export default function AddToFavoritesButton({
     if (isSaved) {
       removeFromFavorites(text);
     } else {
-      addToFavorites(text, wikipedia, title);
+      addToFavorites(text, wikipedia, title, url);
     }
   };
+
+  const favoriteButtonLabel = getLocaleMessage(isSaved ? "addedToFavoritesLabel" : "addToFavoritesLabel");
+  const favoriteIcon = isSaved ?
+    <AddIcon className="resultFooterButtonIcon" /> :
+    <BlankIcon className="resultFooterButtonIcon" />;
 
   return (
     <button
@@ -38,10 +44,8 @@ export default function AddToFavoritesButton({
       className={buttonClassName}
       onClick={handleToggleFavorite}
     >
-      {isSaved ?
-        <AddIcon className="resultFooterButtonIcon" /> :
-        <BlankIcon className="resultFooterButtonIcon" />}
-      {getLocaleMessage(isSaved ? "addedToFavoritesLabel" : "addToFavoritesLabel")}
+      {favoriteIcon}
+      {favoriteButtonLabel}
     </button>
   );
 }

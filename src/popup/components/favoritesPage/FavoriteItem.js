@@ -1,5 +1,6 @@
 import React from "react";
 import { getLocaleMessage } from "../../../common/i18n";
+import { getWikipediaLanguageCode } from "../../../common/urlUtils";
 import CONFIG from "../../../config.json"
 
 const { ENTER, SPACE_CHAR } = CONFIG;
@@ -9,7 +10,8 @@ export function FavoriteItem({ language, loadFullArticle, onSelect, summary, tit
     const allowedKeys = [ENTER, SPACE_CHAR];
 
     const handleFavoriteAction = () => {
-        title ? loadFullArticle(language, title) : onSelect(summary);
+        const favoriteLanguage = getWikipediaLanguageCode(wikipedia) || language;
+        title ? loadFullArticle(favoriteLanguage, title) : onSelect(summary);
     };
 
     const handleKeyPress = (event) => {

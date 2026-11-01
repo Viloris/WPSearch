@@ -12,7 +12,6 @@ export default function FavoritesPage({ favorites, onSelect, onRemove, language,
       {hasFavorites && (
         <FavoritesHeader />
       )}
-
       {!hasFavorites ? (
         <FavoritesEmpty />
       ) : (

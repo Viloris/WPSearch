@@ -64,6 +64,7 @@ export function ResultFooter({
               removeFromFavorites={removeFromFavorites}
               wikipedia={wikipedia}
               title={title}
+              url={url}
               isSaved={isSaved}
             />
           </>

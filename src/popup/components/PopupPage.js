@@ -73,6 +73,9 @@ export default function PopupPage() {
   const fullArticlesRef = useRef({});
   const [fullArticleHistory, setFullArticleHistory] = useState([]);
   const activeFullArticle = fullArticleHistory.at(-1) || null;
+  const activeFullArticleState = activeFullArticle
+    ? fullArticles[activeFullArticle.key]
+    : null;
   const isFullArticleOpen = Boolean(activeFullArticle);
   const inputRef = useRef(null);
 
@@ -177,8 +180,8 @@ export default function PopupPage() {
     handleInputText(favorite);
   }, [handleInputText]);
 
-  const handleAddFavorite = useCallback((favorite, wikipedia, title) => {
-    addFavorite(favorite, setFavorites, wikipedia, title);
+  const handleAddFavorite = useCallback((favorite, wikipedia, title, url) => {
+    addFavorite(favorite, setFavorites, wikipedia, title, url);
   }, []);
 
   const handleRemoveFavorite = useCallback((favorite) => {
@@ -335,7 +338,7 @@ export default function PopupPage() {
         handleInputText={handleInputText}
         inputRef={inputRef}
       />
-      {searchHistory.length > 0 && <div
+      {!activeFullArticle && searchHistory.length > 0 && <div
         style={{ display: "flex", justifyContent: "flex-start", alignitems: "center", margin: "5px 10px 15px 10px", fontSize: "0.9em" }}
       >
         {getLocaleMessage("recentSearchTerms")}:&nbsp;&nbsp;
@@ -418,7 +421,7 @@ export default function PopupPage() {
           ))}
       {activeFullArticle && (
         <FullArticleView
-          fullArticleState={fullArticles[activeFullArticle.key]}
+          fullArticleState={activeFullArticleState}
           language={activeFullArticle.language}
           title={activeFullArticle.title}
           articleKey={activeFullArticle.key}
@@ -432,8 +435,9 @@ export default function PopupPage() {
           removeFromFavorites={handleRemoveFavorite}
           wikipedia={getWikipediaName(activeFullArticle.language)}
           favorites={favorites}
-          text={activeFullArticle.extractText ||
-            extractTextFromHtml(activeFullArticle.extractHtml, activeFullArticle.language.toLowerCase())}
+          text={activeFullArticleState?.html
+            ? extractTextFromHtml(activeFullArticleState.html, activeFullArticle.language.toLowerCase())
+            : ""}
         />
       )}
     </div>

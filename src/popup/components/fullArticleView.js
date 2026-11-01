@@ -81,6 +81,7 @@ export function FullArticleView({
                 text={text}
                 addToFavorites={addToFavorites}
                 wikipedia={wikipedia}
+                url={fullArticleState?.url}
             />
             <ArticleContent
                 contentRef={contentRef}

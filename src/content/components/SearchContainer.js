@@ -66,8 +66,8 @@ export default function SearchContainer({
 
   /* ---------------- CORE ACTIONS ---------------- */
 
-  const addToFavorites = useCallback((summary, wikipedia, title) => {
-    addFavoriteToStorage(summary, setFavorites, wikipedia, title);
+  const addToFavorites = useCallback((summary, wikipedia, title, url) => {
+    addFavoriteToStorage(summary, setFavorites, wikipedia, title, url);
   }, []);
 
   const removeFromFavorites = useCallback((summary) => {

@@ -3,12 +3,13 @@ import AddIcon from "../../icons/bookmark-filled.svg";
 import BlankIcon from "../../icons/bookmark-blank.svg";
 import { getLocaleMessage } from "../../../common/i18n";
 
-export function AddToFavoritesButton({ handleToggleFavorite, isSaved }) {
+export function AddToFavoritesButton({ handleToggleFavorite, isSaved, disabled }) {
     const addToFavoritesLabel = getLocaleMessage("addToFavoritesLabel")
     return (
         <button
             type="button"
             onClick={handleToggleFavorite}
+            disabled={disabled}
             aria-label={addToFavoritesLabel}
             title={addToFavoritesLabel}
         >
