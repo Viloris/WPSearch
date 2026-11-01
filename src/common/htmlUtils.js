@@ -118,6 +118,24 @@ export function sanitizeExtractHtml(html, language, disableReferenceLinks = fals
                 : HTML_span;
         const safeElement = document.createElement(safeTag);
 
+        /* Preserve merged cells */
+        if (sourceElement.tagName === "TD" || sourceElement.tagName === "TH") {
+            for (const [attribute, maxValue] of [["colspan", 1000], ["rowspan", 65534]]) {
+                const value = sourceElement.getAttribute(attribute);
+                if (value !== null && /^\d+$/.test(value)) {
+                    const span = Number(value);
+                    if (
+                        Number.isSafeInteger(span) &&
+                        span <= maxValue &&
+                        (attribute === "rowspan" || span >= 1)
+                    ) {
+                        safeElement.setAttribute(attribute, String(span));
+                    }
+                }
+            }
+        }
+
+        /* Preserve images from Wikimedia */
         if (sourceElement.tagName === HTML_IMG) {
             if (imageCount >= 5) return null;
 
@@ -145,6 +163,7 @@ export function sanitizeExtractHtml(html, language, disableReferenceLinks = fals
             }
         }
 
+        /* Preserve links to other Wikipedia articles */
         if (sourceElement.tagName === HTML_A) {
             if (
                 !isRedLink &&
