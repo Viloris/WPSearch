@@ -7,17 +7,30 @@ export default function MainNavigation({ activeView, onChange }) {
   return (
     <nav className="mainNavigation" aria-label={getLocaleMessage("mainMenuLabel")}>
       {navigationItems.map(({ id, label, icon }) => (
-        <button
+        <NavigationItem
+          activeView={activeView}
+          icon={icon}
+          id={id}
           key={id}
-          aria-pressed={activeView === id}
-          className={activeView === id ? "is-active" : ""}
-          onClick={() => onChange(id)}
-          type="button"
-        >
-          {icon}
-          <span>{getLocaleMessage(label)}</span>
-        </button>
+          label={label}
+          onChange={onChange}
+        />
       ))}
     </nav>
+  );
+}
+
+function NavigationItem({ id, activeView, onChange, icon, label }) {
+  return (
+    <button
+      key={id}
+      aria-pressed={activeView === id}
+      className={activeView === id ? "is-active" : ""}
+      onClick={() => onChange(id)}
+      type="button"
+    >
+      {icon}
+      <span>{getLocaleMessage(label)}</span>
+    </button>
   );
 }
