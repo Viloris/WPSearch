@@ -3,6 +3,7 @@ import { buildWikipediaUrl } from "./urlUtils";
 import CONFIG from "../config.json";
 
 const {
+    protocolHttps,
     WIKIPEDIA_DOMAIN,
     WKIMEDIA_THUMB_API_URL,
     WKIMEDIA_UPLOAD_API_URL
@@ -38,7 +39,6 @@ const readerViewSelectors = [
 ].join(",");
 
 const refRegex = /^#(?:cite_(?:note|ref)|CITEREF)/i;
-const protocolHttps = "https:";
 const textHtml = "text/html";
 const HTML_A = "A";
 const HTML_IMG = "IMG";
@@ -128,7 +128,8 @@ export function sanitizeExtractHtml(html, language, disableReferenceLinks = fals
                 const imageUrl = new URL(src, baseUrl);
                 if (
                     imageUrl.protocol !== protocolHttps ||
-                    ![WKIMEDIA_THUMB_API_URL, WKIMEDIA_UPLOAD_API_URL].includes(imageUrl.hostname)
+                    ![WKIMEDIA_THUMB_API_URL,
+                        WKIMEDIA_UPLOAD_API_URL].includes(imageUrl.hostname)
                 ) {
                     return null;
                 }

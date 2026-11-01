@@ -36,6 +36,10 @@ export function getWikipediaName(langCode) {
     return WP_LANG[langCode];
 }
 
+export function getWikipediaLanguageCode(wikipediaName) {
+    return Object.entries(WP_LANG).find(([, name]) => name === wikipediaName)?.[0] || "";
+}
+
 /**
  *
  * @returns {Object<{ isConnected: true, url, selectedText, isEnabledOnPage }>} Tab information including connection status, url,
