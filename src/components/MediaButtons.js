@@ -15,7 +15,7 @@ export function ReadFullArticleButton({ fullArticleState, openPopup, openInPopup
                 : loadFullArticle(language, title)}
             disabled={fullArticleState?.isLoading}
         >
-            <ReadIcon class="resultFooterButtonIcon" />
+            <ReadIcon className="resultFooterButtonIcon" />
             {readMoreLabel}
         </button>
     )
