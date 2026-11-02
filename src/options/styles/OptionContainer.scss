@@ -359,11 +359,9 @@ input[type="file"] {
     &.clearButton {
       inset-inline-end: 0px;
       margin: 3px;
-      svg {
-        fill: var(--sub-text);
-      }
-      &:hover svg {
-        fill: var(--new);
+      color: var(--sub-text);
+      &:hover {
+        color: var(--new);
       }
     }
 
