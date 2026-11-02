@@ -18,7 +18,7 @@ export function MostReadArticleSection({ article, handleArticleLinkClick, mostRe
                             href={mostReadArticle.articleUrl}
                             rel="noopener noreferrer"
                             target="_blank"
-                            style={{ textDecoration: "none", color: "blue" }}
+                            style={{ textDecoration: "none" }}
                         >
                             {mostReadArticle.title.replace(/_/g, " ")}
                         </a>

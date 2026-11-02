@@ -115,6 +115,10 @@
     border-radius: 10px;
     background: var(--sub-bg, var(--main-bg));
 
+    a {
+      color: var(--highlight);
+    }
+
     img {
       display: block;
       max-width: 100%;

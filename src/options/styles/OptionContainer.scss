@@ -385,7 +385,7 @@ input[type="file"] {
 
   input {
     &::placeholder {
-      color: #fff;
+      color: var(--sub-text);
     }
     &:focus::placeholder {
       color: var(--main-text);

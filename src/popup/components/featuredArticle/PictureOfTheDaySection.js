@@ -48,7 +48,7 @@ export function PictureOfTheDaySection({ imageOfDay, failedImages, setFailedImag
                                         href={imageOfDay.licenseUrl}
                                         rel="noopener noreferrer"
                                         target="_blank"
-                                        style={{ textDecoration: "none", color: "blue" }}
+                                        style={{ textDecoration: "none" }}
                                     >
                                         {imageOfDay.licenseName}
                                     </a>

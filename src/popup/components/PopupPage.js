@@ -348,7 +348,7 @@ export default function PopupPage() {
             <a
               onClick={() => handleHistorySelect(term)}
               type="button"
-              style={{ cursor: "pointer", color: "#5276b4" }}
+              style={{ cursor: "pointer", color: "var(--highlight)" }}
             >
               {term}
             </a>

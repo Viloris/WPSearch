@@ -52,7 +52,7 @@ $default-button-color: var(--info);
     background-color: $default-button-color;
     border: none;
     border-radius: 7px;
-    color: white;
+    color: var(--main-bg);
     cursor: pointer;
     font-size: 0.7rem;
     font-weight: 600;

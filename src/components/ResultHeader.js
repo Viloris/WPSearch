@@ -11,7 +11,7 @@ export function ResultHeader({ wikipedia }) {
     <section
       style={{ padding: "0.6em 1em 1em 1em" }}
     >
-      <h3 style={{ margin: 0, fontWeight: 600, color: "#222" }}>{wikipedia}</h3>
+      <h3 style={{ margin: 0, fontWeight: 600, color: "var(--main-text)" }}>{wikipedia}</h3>
     </section>
   );
 }
