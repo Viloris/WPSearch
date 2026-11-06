@@ -32,6 +32,28 @@ import { extractTextFromHtml } from "../../common/htmlUtils";
 const logDir = "popup/PopupPage";
 const { navigationMenu: { HOME, SEARCH, FAVORITES, HISTORY }, POPUP_REQUEST_STORAGE_KEY } = CONFIG;
 
+const getStoredFullArticleHistory = () => {
+  const storedHistory = localStorage.getItem("fullArticleHistory");
+  if (!storedHistory) return [];
+
+  try {
+    const history = JSON.parse(storedHistory);
+    if (Array.isArray(history)) {
+      return history.filter((article) =>
+        article &&
+        typeof article.key === "string" &&
+        typeof article.language === "string" &&
+        typeof article.title === "string"
+      );
+    }
+    log.warn(logDir, "Stored full article history is not an array");
+  } catch (error) {
+    log.warn(logDir, "Failed to parse stored full article history", error);
+  }
+
+  return [];
+};
+
 const clearTimerRef = (timerRef) => {
   clearTimeout(timerRef.current);
   timerRef.current = null;
@@ -67,12 +89,13 @@ export default function PopupPage() {
   const [isLoadingSearch, setIsLoadingSearch] = useState(false);
   const [hideInformationLabel, setHideInformationLabel] = useState(false);
   const [searchRequest, setSearchRequest] = useState(null);
-  const [activeView, setActiveView] = useState(HOME);
+  const [activeView, setActiveView] = useState(localStorage.getItem("navigationView") || HOME);
   const [favorites, setFavorites] = useState([]);
   const [fullArticles, setFullArticles] = useState({});
   const fullArticlesRef = useRef({});
-  const [fullArticleHistory, setFullArticleHistory] = useState([]);
+  const [fullArticleHistory, setFullArticleHistory] = useState(getStoredFullArticleHistory);
   const activeFullArticle = fullArticleHistory.at(-1) || null;
+  const fullArticleToRestore = useRef(activeFullArticle);
   const activeFullArticleState = activeFullArticle
     ? fullArticles[activeFullArticle.key]
     : null;
@@ -97,6 +120,14 @@ export default function PopupPage() {
     searchRequest,
     searchRequest?.delay ?? 0
   );
+
+  useEffect(() => {
+    localStorage.setItem("fullArticleHistory", JSON.stringify(fullArticleHistory));
+  }, [fullArticleHistory]);
+
+  useEffect(() => {
+    localStorage.setItem("navigationView", activeView);
+  }, [activeView]);
 
   useEffect(() => {
     if (!isFullArticleOpen) return undefined;
@@ -252,6 +283,7 @@ export default function PopupPage() {
 
   const handleCloseFullArticle = useCallback(() => {
     setFullArticleHistory([]);
+    localStorage.removeItem("fullArticleHistory");
   }, []);
 
   /* -------- init -------- */
@@ -284,13 +316,6 @@ export default function PopupPage() {
           await browser.storage.local.remove(POPUP_REQUEST_STORAGE_KEY);
         }
 
-        if (popupRequest?.expression) {
-          handleInputText(popupRequest.expression);
-        }
-        if (popupRequest?.language && popupRequest?.title) {
-          void handleLoadFullArticle(popupRequest.language, popupRequest.title);
-        }
-
         const { isConnected, tabUrl, isEnabledOnPage, selectedText } = await getTabInfo();
         if (!mounted) return;
 
@@ -300,8 +325,17 @@ export default function PopupPage() {
           isEnabledOnPage: isEnabledOnPage
         });
 
-        if (!popupRequest?.expression && selectedText) {
+        if (popupRequest?.expression) {
+          handleInputText(popupRequest.expression);
+        }
+        if (popupRequest?.language && popupRequest?.title) {
+          void handleLoadFullArticle(popupRequest.language, popupRequest.title);
+        } else if (!popupRequest?.expression && selectedText) {
           handleInputText(selectedText);
+        } else if (!popupRequest?.expression && fullArticleToRestore.current) {
+          const article = fullArticleToRestore.current;
+          fullArticleToRestore.current = null;
+          void handleLoadFullArticle(article.language, article.title, article.scrollTop);
         }
       } catch (err) {
         log.warn(logDir, "getTabInfo failed", err);
