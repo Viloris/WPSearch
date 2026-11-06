@@ -26,6 +26,10 @@
     border-radius: 10px;
     background: var(--sub-bg, var(--main-bg));
     line-height: 1.45;
+
+    .mediaButtons {
+      margin-left: 0;
+    }
   }
 
   .featuredArticleImage {
