@@ -7,6 +7,7 @@ export function ArticleHeader({ language }) {
         <h1>{getWikipediaName(language)}</h1>
     )
 }
+
 export function ArticleLabel({ isLoading, hasFeaturedArticle, article }) {
     return (
         <h2>
