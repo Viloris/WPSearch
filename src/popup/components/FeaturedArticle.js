@@ -138,9 +138,11 @@ export default function FeaturedArticle({
   const featuredArticleLabel = getLocaleMessage("featuredArticleLabel");
   return (
     <section className="featuredArticle">
-      <ArticleHeader
-        language={language}
-      />
+      {!isLoading && (
+        <ArticleHeader
+          language={language}
+        />
+      )}
       {isLoading && <ArticleLabel
         hasFeaturedArticle={hasFeaturedArticle}
         article={article}
