@@ -35,6 +35,7 @@ const readerViewSelectors = [
     ".shortdescription",
     ".mw-indicators",
     ".noprint",
+    "tr.nyitasinfo",
     "a[href*='action=edit']:not(.new):not([href*='redlink=1'])"
 ].join(",");
 
