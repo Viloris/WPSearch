@@ -20,22 +20,37 @@ export const useWpSearch = ({
     loadingTimer,
     setIsLoadingSearch,
     setResults
-}) => useCallback(async (expression, isHistorySearch = false, searchId) => {
+}) => useCallback(async (expression, isHistorySearch = false, searchId, offset = 0, limit = 5, language) => {
     log.info(logDir, "wpSearchText()", expression);
 
     try {
-        await recordSearch(
-            expression,
-            searchHistoryRef,
-            setSearchHistory
-        );
+        if (offset === 0) {
+            await recordSearch(
+                expression,
+                searchHistoryRef,
+                setSearchHistory
+            );
+        }
 
         const res = await browser.runtime.sendMessage({
             message: WIKIPEDIA_SEARCH,
-            expression: expression.replaceAll("\n", "")
+            expression: expression.replaceAll("\n", ""),
+            offset,
+            limit,
+            language
         });
         if (historySearchId.current === searchId) {
-            setResults(res);
+            setResults((currentPages) => {
+                const nextPage = { id: searchId, offset, limit, language, results: res };
+                return offset === 0
+                    ? [nextPage]
+                    : [
+                        ...currentPages.filter((page) =>
+                            page.language !== language || page.offset !== offset
+                        ),
+                        nextPage
+                    ];
+            });
         }
     } finally {
         if (historySearchId.current === searchId && isHistorySearch) {

@@ -59,8 +59,8 @@ async function getWikipediaExtract(language, title) {
   }
 }
 
-async function getWikipediaExtracts(language, expression) {
-  const titles = await getSearchResultTitles(language, expression);
+async function getWikipediaExtracts(language, expression, offset = 0, limit = 5) {
+  const titles = await getSearchResultTitles(language, expression, offset, limit);
   if (!Array.isArray(titles)) {
     return [{
       lang: language,
@@ -91,7 +91,7 @@ async function getWikipediaExtracts(language, expression) {
  * @param {string} expression 
  * @returns {Promise<Array>} Search result objects, with up to five per target language
  */
-async function wikisearch(expression) {
+async function wikisearch(expression, offset = 0, limit = 5, language) {
   const trimmed = expression?.trim();
   if (!trimmed) return [];
 
@@ -102,8 +102,10 @@ async function wikisearch(expression) {
       if (second) langSet.add(second);
     }
 
+    if (language && !langSet.has(language)) return [];
+    const languages = language ? [language] : Array.from(langSet);
     const results = await Promise.all(
-      Array.from(langSet).map((lang) => getWikipediaExtracts(lang, trimmed))
+      languages.map((lang) => getWikipediaExtracts(lang, trimmed, offset, limit))
     );
     const flattenedResults = results.flat();
 

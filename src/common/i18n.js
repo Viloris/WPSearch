@@ -25,8 +25,8 @@ export function getSecondTargetLang() {
  * @param {string} key
  * @returns {string} get message from the locale message.json
  */
-export function getLocaleMessage(key) {
-    return browser.i18n.getMessage(key);
+export function getLocaleMessage(key, substitutions) {
+    return browser.i18n.getMessage(key, substitutions);
 }
 
 /**

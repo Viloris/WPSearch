@@ -26,11 +26,13 @@ import FavoritesPage from "./FavoritesPage";
 import MainNavigation from "./MainNavigation";
 import FeaturedArticle from "./FeaturedArticle";
 import { FullArticleView } from "./fullArticleView";
+import NextResults from "./NextResults";
 import SearchIcon from "../icons/search-solar.svg";
 import { CONFIG } from "../../common/constans";
 import { extractTextFromHtml } from "../../common/htmlUtils";
 const logDir = "popup/PopupPage";
 const { navigationMenu: { HOME, SEARCH, FAVORITES, HISTORY }, POPUP_REQUEST_STORAGE_KEY } = CONFIG;
+const POPUP_VIEW_STATE_KEY = "popupViewState";
 
 const getStoredFullArticleHistory = () => {
   const storedHistory = localStorage.getItem("fullArticleHistory");
@@ -52,6 +54,41 @@ const getStoredFullArticleHistory = () => {
   }
 
   return [];
+};
+
+const getStoredPopupViewState = () => {
+  try {
+    const storedState = JSON.parse(localStorage.getItem(POPUP_VIEW_STATE_KEY) || "null");
+    if (!storedState || typeof storedState !== "object") return null;
+
+    const resultPages = Array.isArray(storedState.resultPages)
+      ? storedState.resultPages.filter((page) =>
+        page &&
+        ["number", "string"].includes(typeof page.id) &&
+        typeof page.offset === "number" &&
+        Array.isArray(page.results)
+      )
+      : [];
+    const activeNextResultsId = storedState.activeNextResultsId;
+    const hasActiveNextResults = resultPages.some((page) => page.id === activeNextResultsId);
+
+    return {
+      inputText: typeof storedState.inputText === "string" ? storedState.inputText : "",
+      activeView: [HOME, SEARCH, FAVORITES, HISTORY].includes(storedState.activeView)
+        ? storedState.activeView
+        : localStorage.getItem("navigationView") || HOME,
+      resultPages,
+      activeNextResultsId: hasActiveNextResults ? activeNextResultsId : null,
+      searchRequest: storedState.searchRequest &&
+        typeof storedState.searchRequest === "object" &&
+        typeof storedState.searchRequest.text === "string"
+        ? storedState.searchRequest
+        : null
+    };
+  } catch (error) {
+    log.warn(logDir, "Failed to restore popup view state", error);
+    return null;
+  }
 };
 
 const clearTimerRef = (timerRef) => {
@@ -77,19 +114,29 @@ const popupWidth = "348px";
  * input area and result area components, and initializing settings and theme on mount
  */
 export default function PopupPage() {
+  const [storedPopupViewState] = useState(getStoredPopupViewState);
   const [targetLang, setTargetLang] = useState("");
-  const [inputText, setInputText] = useState("");
+  const [inputText, setInputText] = useState(storedPopupViewState?.inputText || "");
   const [tabInfo, setTabInfo] = useState({
     isConnected: true,
     tabUrl: "",
     isEnabledOnPage: true
   });
-  const [results, setResults] = useState([]);
+  const [resultPages, setResultPages] = useState(storedPopupViewState?.resultPages || []);
+  const [activeNextResultsId, setActiveNextResultsId] = useState(
+    storedPopupViewState?.activeNextResultsId ?? null
+  );
+  const initialResultPage = resultPages.find((page) => page.offset === 0 && !page.language);
+  const activeNextResultPage = resultPages.find((page) => page.id === activeNextResultsId);
+  const results = initialResultPage?.results || [];
   const [searchHistory, setSearchHistory] = useState([]);
   const [isLoadingSearch, setIsLoadingSearch] = useState(false);
   const [hideInformationLabel, setHideInformationLabel] = useState(false);
-  const [searchRequest, setSearchRequest] = useState(null);
-  const [activeView, setActiveView] = useState(localStorage.getItem("navigationView") || HOME);
+  const [searchRequest, setSearchRequest] = useState(storedPopupViewState?.searchRequest || null);
+  const [activeView, setActiveView] = useState(
+    storedPopupViewState?.activeView || localStorage.getItem("navigationView") || HOME
+  );
+  const [popupViewStateReady, setPopupViewStateReady] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [fullArticles, setFullArticles] = useState({});
   const fullArticlesRef = useRef({});
@@ -99,13 +146,21 @@ export default function PopupPage() {
   const activeFullArticleState = activeFullArticle
     ? fullArticles[activeFullArticle.key]
     : null;
-  const isFullArticleOpen = Boolean(activeFullArticle);
+  const isFullArticleOpen = popupViewStateReady && Boolean(activeFullArticle);
+  const isNextResultsOpen = popupViewStateReady && activeNextResultsId !== null;
+  const isNextResultsVisible = isNextResultsOpen && !isFullArticleOpen;
   const inputRef = useRef(null);
 
   const loadingTimer = useRef(null);
   const themeClass = useRef(null);
   const searchHistoryRef = useRef([]);
-  const historySearchId = useRef(0);
+  const historySearchId = useRef(Math.max(
+    0,
+    Number(storedPopupViewState?.searchRequest?.searchId) || 0,
+    ...(storedPopupViewState?.resultPages || [])
+      .map((page) => typeof page.id === "number" ? page.id : 0)
+  ));
+  const restoredSearchRequestId = useRef(storedPopupViewState?.searchRequest?.searchId ?? null);
   const historySearchStartedAt = useRef(0);
   const wpSearchText = useWpSearch({
     searchHistoryRef,
@@ -114,7 +169,7 @@ export default function PopupPage() {
     historySearchStartedAt,
     loadingTimer,
     setIsLoadingSearch,
-    setResults
+    setResults: setResultPages
   });
   const debouncedSearchRequest = useDebouncedValue(
     searchRequest,
@@ -130,11 +185,34 @@ export default function PopupPage() {
   }, [activeView]);
 
   useEffect(() => {
+    if (!popupViewStateReady) return;
+
+    try {
+      localStorage.setItem(POPUP_VIEW_STATE_KEY, JSON.stringify({
+        inputText,
+        activeView,
+        resultPages,
+        activeNextResultsId,
+        searchRequest
+      }));
+    } catch (error) {
+      log.warn(logDir, "Failed to save popup view state", error);
+    }
+  }, [popupViewStateReady, inputText, activeView, resultPages, activeNextResultsId, searchRequest]);
+
+  useEffect(() => {
     if (!isFullArticleOpen) return undefined;
 
     document.body.classList.add("popup-page-full-article");
     return () => document.body.classList.remove("popup-page-full-article");
   }, [isFullArticleOpen]);
+
+  useEffect(() => {
+    if (!isNextResultsVisible) return undefined;
+
+    document.body.classList.add("popup-page-next-results");
+    return () => document.body.classList.remove("popup-page-next-results");
+  }, [isNextResultsVisible]);
 
   /* -------- handlers -------- */
 
@@ -145,7 +223,8 @@ export default function PopupPage() {
 
   const handleInputText = useCallback((text, isHistorySearch = false) => {
     setInputText(text);
-    setResults([]);
+    setResultPages([]);
+    setActiveNextResultsId(null);
     setActiveView(SEARCH);
     setFullArticleHistory([]);
     clearTimeout(loadingTimer.current);
@@ -153,13 +232,17 @@ export default function PopupPage() {
     const searchId = ++historySearchId.current;
     setIsLoadingSearch(true);
     if (isHistorySearch) {
-      setResults([]);
+      setResultPages([]);
       historySearchStartedAt.current = Date.now();
     }
     setSearchRequest({
       text,
       isHistorySearch,
       searchId,
+      offset: 0,
+      limit: 5,
+      initialLimit: 5,
+      languageOffsets: {},
       delay: isHistorySearch ? 0 : getSettings("waitTime")
     });
   }, []);
@@ -173,13 +256,115 @@ export default function PopupPage() {
     handleInputText(query, true);
   }, [handleInputText, inputText, isLoadingSearch, results.length]);
 
+  const handleFetchNextResults = useCallback((language, nextLimit, pageOffset, pageLimit) => {
+    if (!searchRequest || isLoadingSearch) return;
+
+    const offset = pageOffset !== undefined
+      ? pageOffset + pageLimit
+      : searchRequest.languageOffsets?.[language] ?? searchRequest.initialLimit ?? 5;
+    const cachedPage = resultPages.find((page) =>
+      page.language === language && page.offset === offset
+    );
+    if (cachedPage) {
+      setActiveNextResultsId(cachedPage.id);
+      return;
+    }
+
+    clearTimerRef(loadingTimer);
+    const languageOffsets = {
+      ...searchRequest.languageOffsets,
+      [language]: Math.max(searchRequest.languageOffsets?.[language] ?? 0, offset + nextLimit)
+    };
+    const searchId = ++historySearchId.current;
+    setActiveNextResultsId(searchId);
+    setIsLoadingSearch(true);
+    setSearchRequest({
+      ...searchRequest,
+      isHistorySearch: false,
+      searchId,
+      offset,
+      limit: nextLimit,
+      language,
+      languageOffsets,
+      delay: 0
+    });
+  }, [isLoadingSearch, resultPages, searchRequest]);
+
+  const handlePreviousResults = useCallback((page) => {
+    if (!page || page.offset === 0) return;
+
+    const previousOffset = Math.max(0, page.offset - page.limit);
+    const cachedPage = resultPages.find((resultPage) =>
+      resultPage.language === page.language && resultPage.offset === previousOffset
+    );
+    if (cachedPage) {
+      setActiveNextResultsId(cachedPage.id);
+      return;
+    }
+
+    if (previousOffset === 0) {
+      const initialPage = resultPages.find((resultPage) =>
+        resultPage.offset === 0 && !resultPage.language
+      );
+      if (!initialPage) return;
+
+      const firstLanguagePage = {
+        id: `${initialPage.id}:${page.language}:0`,
+        offset: 0,
+        limit: searchRequest?.initialLimit ?? 5,
+        language: page.language,
+        results: initialPage.results.filter((result) => result.lang === page.language)
+      };
+      setResultPages((current) => [...current, firstLanguagePage]);
+      setActiveNextResultsId(firstLanguagePage.id);
+      return;
+    }
+
+    clearTimerRef(loadingTimer);
+    const searchId = ++historySearchId.current;
+    setActiveNextResultsId(searchId);
+    setIsLoadingSearch(true);
+    setSearchRequest((current) => current ? {
+      ...current,
+      isHistorySearch: false,
+      searchId,
+      offset: previousOffset,
+      limit: page.limit,
+      language: page.language,
+      delay: 0
+    } : current);
+  }, [resultPages, searchRequest]);
+
+  const handleCloseNextResults = useCallback(() => {
+    if (activeNextResultsId === null) return;
+    if (historySearchId.current === activeNextResultsId) {
+      historySearchId.current += 1;
+    }
+    setResultPages((current) =>
+      current.filter((page) => page.offset === 0 && !page.language)
+    );
+    setActiveNextResultsId(null);
+    setIsLoadingSearch(false);
+  }, [activeNextResultsId]);
+
   useEffect(() => {
     if (!debouncedSearchRequest) return;
 
-    const { text, isHistorySearch, searchId } = debouncedSearchRequest;
+    const {
+      text,
+      isHistorySearch,
+      searchId,
+      offset = 0,
+      limit = 5,
+      language
+    } = debouncedSearchRequest;
+    if (restoredSearchRequestId.current === searchId) {
+      restoredSearchRequestId.current = null;
+      return;
+    }
     const search = async () => {
       try {
-        await wpSearchText(text, isHistorySearch, searchId);
+        await wpSearchText(text, isHistorySearch, searchId, offset, limit, language);
       } catch (error) {
         log.error(logDir, "wpSearchText failed", error);
       }
@@ -339,6 +524,8 @@ export default function PopupPage() {
         }
       } catch (err) {
         log.warn(logDir, "getTabInfo failed", err);
+      } finally {
+        if (mounted) setPopupViewStateReady(true);
       }
     };
 
@@ -359,7 +546,8 @@ export default function PopupPage() {
     <div
       className={[
         rtlLanguageClassName,
-        isFullArticleOpen && "popup-page-full-article"
+        isFullArticleOpen && "popup-page-full-article",
+        isNextResultsVisible && "popup-page-next-results"
       ].filter(Boolean).join(" ")}
     >
       <Header
@@ -372,7 +560,7 @@ export default function PopupPage() {
         handleInputText={handleInputText}
         inputRef={inputRef}
       />
-      {!activeFullArticle && searchHistory.length > 0 && <div
+      {!activeFullArticle && !isNextResultsOpen && searchHistory.length > 0 && <div
         style={{ display: "flex", justifyContent: "flex-start", alignitems: "center", margin: "5px 10px 15px 10px", fontSize: "0.9em" }}
       >
         {getLocaleMessage("recentSearchTerms")}:&nbsp;&nbsp;
@@ -429,24 +617,27 @@ export default function PopupPage() {
           </div>
         ) :
 
-          (results.length > 0 || isLoadingSearch) && (
+          (resultPages.length > 0 || isLoadingSearch) && (
             <>
               <hr />
               <div
                 id="resultArea"
-                className={isLoadingSearch && results.length > 0 ? "isRefreshing" : ""}
+                className={isLoadingSearch && resultPages.length > 0 ? "isRefreshing" : ""}
                 aria-busy={isLoadingSearch}
               >
-                {results.length > 0 && (
+                {initialResultPage && (
                   <ResultArea
                     dismissHint={dismissHint}
-                    results={results}
+                    results={initialResultPage.results}
                     hideInformationLabel={hideInformationLabel}
                     addToFavorites={handleAddFavorite}
                     removeFromFavorites={handleRemoveFavorite}
                     favorites={favorites}
                     loadFullArticle={handleLoadFullArticle}
                     fullArticles={fullArticles}
+                    fetchNextResults={handleFetchNextResults}
+                    pageOffset={0}
+                    pageLimit={searchRequest?.initialLimit ?? 5}
                   />
                 )}
                 {isLoadingSearch && <LoadingCaption />}
@@ -473,6 +664,43 @@ export default function PopupPage() {
             ? extractTextFromHtml(activeFullArticleState.html, activeFullArticle.language.toLowerCase())
             : ""}
         />
+      )}
+      {isNextResultsOpen && (
+        <NextResults
+          isLoading={isLoadingSearch}
+          pageId={activeNextResultsId}
+          rangeStart={(activeNextResultPage?.offset ?? searchRequest?.offset ?? 0) + 1}
+          rangeEnd={activeNextResultPage
+            ? activeNextResultPage.offset + activeNextResultPage.results.length
+            : (searchRequest?.offset ?? 0) + (searchRequest?.limit ?? 0)}
+          canGoPrevious={(activeNextResultPage?.offset ?? searchRequest?.offset ?? 0) > 0}
+          canGoNext={Boolean(activeNextResultPage)}
+          onPrevious={() => handlePreviousResults(activeNextResultPage)}
+          onNext={() => activeNextResultPage && handleFetchNextResults(
+            activeNextResultPage.language,
+            10,
+            activeNextResultPage.offset,
+            activeNextResultPage.limit
+          )}
+          onClose={handleCloseNextResults}
+        >
+          {activeNextResultPage ? (
+            <ResultArea
+              dismissHint={dismissHint}
+              results={activeNextResultPage.results}
+              hideInformationLabel
+              addToFavorites={handleAddFavorite}
+              removeFromFavorites={handleRemoveFavorite}
+              favorites={favorites}
+              loadFullArticle={handleLoadFullArticle}
+              fullArticles={fullArticles}
+              pageOffset={activeNextResultPage.offset}
+              pageLimit={activeNextResultPage.limit}
+            />
+          ) : (
+            <LoadingCaption />
+          )}
+        </NextResults>
       )}
     </div>
   );

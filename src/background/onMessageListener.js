@@ -20,7 +20,7 @@ export default async (data) => {
 
   switch (data.message) {
     case WIKIPEDIA_SEARCH: {
-      return await wikisearch(data.expression);
+      return await wikisearch(data.expression, data.offset, data.limit, data.language);
     }
 
     case OPEN_OPTIONS_PAGE: {

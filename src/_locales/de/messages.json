@@ -41,6 +41,15 @@
     "searchEmptyMessage": {
         "message": "Geben Sie in das Suchfeld ein, um verzögerte Ergebnisse, Vorschläge und sofort lesbare Artikelseiten zu erhalten."
     },
+    "moreResultsFor": {
+        "message": "Weitere Ergebnisse hier:"
+    },
+    "previousResultsLabel": {
+        "message": "Vorherige"
+    },
+    "resultsRangeLabel": {
+        "message": "Ergebnisse $1–$2"
+    },
     "recentSearchTerms": {
         "message": "Kürzliche"
     },
@@ -102,7 +111,7 @@
         "message": "Lesen"
     },
     "moreResultsLabel": {
-        "message": "Weitere Ergebnisse"
+        "message": "Nächste"
     },
     "shareLabel": {
         "message": "Teilen"
@@ -151,6 +160,9 @@
     },
     "closeFullArticleLabel": {
         "message": "Vollständigen Artikel schließen"
+    },
+    "closeNextResultsLabel": {
+        "message": "Zusätzliche Ergebnisse schließen"
     },
     "copyLabel": {
         "message": "Kopieren"

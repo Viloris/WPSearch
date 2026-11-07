@@ -41,6 +41,15 @@
     "searchEmptyMessage": {
         "message": "Tapez dans la zone de recherche pour obtenir des résultats débouncés, des suggestions et des cartes d'articles prêts à être lus."
     },
+    "moreResultsFor": {
+        "message": "Plus de résultats ici:"
+    },
+    "previousResultsLabel": {
+        "message": "Précédent"
+    },
+    "resultsRangeLabel": {
+        "message": "Résultats $1–$2"
+    },
     "recentSearchTerms": {
         "message": "Récents"
     },
@@ -102,7 +111,7 @@
         "message": "Lire plus"
     },
     "moreResultsLabel": {
-        "message": "Plus de résultats"
+        "message": "Suivant"
     },
     "shareLabel": {
         "message": "Partager"
@@ -151,6 +160,9 @@
     },
     "closeFullArticleLabel": {
         "message": "Fermer l’article complet"
+    },
+    "closeNextResultsLabel": {
+        "message": "Fermer les résultats supplémentaires"
     },
     "copyLabel": {
         "message": "Copier"

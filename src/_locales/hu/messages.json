@@ -41,6 +41,15 @@
     "searchEmptyMessage": {
         "message": "Írja be a keresett szöveget, hogy megjelenjenek a javaslatok és a cikkek."
     },
+    "moreResultsFor": {
+        "message": "Több találat itt:"
+    },
+    "previousResultsLabel": {
+        "message": "Előző"
+    },
+    "resultsRangeLabel": {
+        "message": "Találatok: $1–$2"
+    },
     "readFullArticleLabel": {
         "message": "Teljes cikk betöltése..."
     },
@@ -111,7 +120,7 @@
         "message": "Olvas"
     },
     "moreResultsLabel": {
-        "message": "További találatok"
+        "message": "Következő"
     },
     "shareLabel": {
         "message": "Megosztás"
@@ -151,6 +160,9 @@
     },
     "closeFullArticleLabel": {
         "message": "Teljes cikk bezárása"
+    },
+    "closeNextResultsLabel": {
+        "message": "További találatok bezárása"
     },
     "copyLabel": {
         "message": "Másolás"

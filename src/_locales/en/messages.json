@@ -41,6 +41,15 @@
     "searchEmptyMessage": {
         "message": "Type into search to get debounced results, suggestions, and ready-to-read article cards."
     },
+    "moreResultsFor": {
+        "message": "More results here:"
+    },
+    "previousResultsLabel": {
+        "message": "Previous"
+    },
+    "resultsRangeLabel": {
+        "message": "Results $1–$2"
+    },
     "recentSearchTerms": {
         "message": "Recent"
     },
@@ -102,7 +111,7 @@
         "message": "Read"
     },
     "moreResultsLabel": {
-        "message": "More results"
+        "message": "Next"
     },
     "shareLabel": {
         "message": "Share"
@@ -148,6 +157,9 @@
     },
     "closeFullArticleLabel": {
         "message": "Close full article"
+    },
+    "closeNextResultsLabel": {
+        "message": "Close additional results"
     },
     "openInNewWindowLabel": {
         "message": "Open in new window"

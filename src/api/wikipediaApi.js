@@ -30,8 +30,8 @@ const wikiLanguagePattern = /^[a-z0-9-]+$/i;
  * @param {string} term 
  * @returns {string} URL for Wikipedia search API
  */
-const getSearchUrl = (language, term) => {
-    return `${HTTPS}${language}${WIKIPEDIA_SEARCH_API_URL}${encodeURIComponent(term)}&srlimit=${SEARCH_RESULTS_LIMIT}&format=json&origin=*`;
+const getSearchUrl = (language, term, offset, limit) => {
+    return `${HTTPS}${language}${WIKIPEDIA_SEARCH_API_URL}${encodeURIComponent(term)}&srlimit=${limit}&sroffset=${offset}&format=json&origin=*`;
 }
 
 /**
@@ -418,11 +418,12 @@ export function handleHttpError(status, language) {
  * @description Retrieves up to five search result titles for a given language and search term
  * @param {string} language 
  * @param {string} term 
+ * @param {number} offset 
  * @returns {Promise<string[]|{errorData: Object}>} Search result titles or a structured error
  */
-export async function getSearchResultTitles(language, term) {
+export async function getSearchResultTitles(language, term, offset = 0, limit = SEARCH_RESULTS_LIMIT) {
     try {
-        const response = await fetch(getSearchUrl(language, term));
+        const response = await fetch(getSearchUrl(language, term, offset, limit));
         if (!response.ok) {
             return { errorData: handleHttpError(response.status, language) };
         }
@@ -433,7 +434,7 @@ export async function getSearchResultTitles(language, term) {
         }
 
         return data.query.search
-            .slice(0, SEARCH_RESULTS_LIMIT)
+            .slice(0, limit)
             .map((item) => item?.title)
             .filter((title) => typeof title === stringType && title);
     } catch (err) {
