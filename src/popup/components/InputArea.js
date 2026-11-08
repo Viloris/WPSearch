@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useCallback } from "react";
 import "../styles/InputArea.scss";
 import { getLocaleMessage } from "../../common/i18n";
+import ClearIcon from "../../options/icons/clear.svg";
 
 /**
  *
@@ -43,6 +44,11 @@ function InputArea({ inputText, handleInputText, inputRef }) {
     handleInputText(e.target.value);
   }, [handleInputText]);
 
+  const handleClearInput = useCallback(() => {
+    handleInputText("");
+    textareaRef.current?.focus();
+  }, [handleInputText]);
+
   const getPlaceholder = () => {
     return getLocaleMessage("initialTextArea");
   };
@@ -58,6 +64,17 @@ function InputArea({ inputText, handleInputText, inputRef }) {
         spellCheck={false}
         value={inputText}
       />
+      {inputText && (
+        <button
+          aria-label={getLocaleMessage("clear")}
+          className="clearInputButton"
+          onClick={handleClearInput}
+          title={getLocaleMessage("clear")}
+          type="button"
+        >
+          <ClearIcon />
+        </button>
+      )}
     </div>
   );
 }
