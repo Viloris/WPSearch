@@ -619,7 +619,6 @@ export default function PopupPage() {
 
           (resultPages.length > 0 || isLoadingSearch) && (
             <>
-              <hr />
               <div
                 id="resultArea"
                 className={isLoadingSearch && resultPages.length > 0 ? "isRefreshing" : ""}
