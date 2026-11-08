@@ -1,6 +1,6 @@
 import React from "react";
 import NewWindowIcon from "../icons/open-in-new-window.svg";
-import ShareIcon from "../icons/share-solar.svg";
+// import ShareIcon from "../icons/share-solar.svg";
 import ReadIcon from "../icons/book-solar.svg";
 import { getLocaleMessage } from "../common/i18n";
 
@@ -54,7 +54,7 @@ export function MoreResultButton({ openInPopup }) {
     )
 }
 
-export function ShareButton({ title, summary }) {
+/* export function ShareButton({ title, summary }) {
     const moreResultsLabel = getLocaleMessage("shareLabel");
     return (
         <button
@@ -66,4 +66,4 @@ export function ShareButton({ title, summary }) {
             {moreResultsLabel}
         </button>
     )
-}
+} */
