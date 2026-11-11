@@ -116,6 +116,21 @@
     "shareLabel": {
         "message": "Teilen"
     },
+    "emailLabel": {
+        "message": "E-Mail"
+    },
+    "downloadLabel": {
+        "message": "Herunterladen"
+    },
+    "downloadErrorLabel": {
+        "message": "Der Download ist fehlgeschlagen."
+    },
+    "shareCopiedLabel": {
+        "message": "Inhalt in die Zwischenablage kopiert."
+    },
+    "shareErrorLabel": {
+        "message": "Teilen fehlgeschlagen."
+    },
     "wikipediaLabel": {
         "message": "Wikipedia"
     },
@@ -190,6 +205,15 @@
     },
     "targetLangCaptionLabel": {
         "message": "Wählen Sie die standardmäßige Zielsprache aus."
+    },
+    "feedLangLabel": {
+        "message": "Wikipedia-Feed"
+    },
+    "feedLangSettingLabel": {
+        "message": "Wikipedia-Feed-Einstellungen"
+    },
+    "feedLangCaptionLabel": {
+        "message": "Wählen Sie die standardmäßige Wikipedia für den Feed aus."
     },
     "webPageLabel": {
         "message": "Webseite"

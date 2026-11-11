@@ -42,7 +42,7 @@
         "message": "Írja be a keresett szöveget, hogy megjelenjenek a javaslatok és a cikkek."
     },
     "moreResultsFor": {
-        "message": "Több találat itt:"
+        "message": "További találatok itt:"
     },
     "previousResultsLabel": {
         "message": "Előző"
@@ -125,6 +125,21 @@
     "shareLabel": {
         "message": "Megosztás"
     },
+    "emailLabel": {
+        "message": "E-mail"
+    },
+    "downloadLabel": {
+        "message": "Letöltés"
+    },
+    "downloadErrorLabel": {
+        "message": "A letöltés nem sikerült."
+    },
+    "shareCopiedLabel": {
+        "message": "A tartalom a vágólapra másolva."
+    },
+    "shareErrorLabel": {
+        "message": "A megosztás nem sikerült."
+    },
     "wikipediaLabel": {
         "message": "Wikipédia"
     },
@@ -190,6 +205,15 @@
     },
     "targetLangCaptionLabel": {
         "message": "Válassza ki az alapértelmezett wikipédiát a kereséshez."
+    },
+    "feedLangLabel": {
+        "message": "Wikipédia Feed"
+    },
+    "feedLangSettingLabel": {
+        "message": "A Wikipédia feed beállítása"
+    },
+    "feedLangCaptionLabel": {
+        "message": "Válassza ki az alapértelmezett wikipédiát a feedhez."
     },
     "webPageLabel": {
         "message": "Honlap"
