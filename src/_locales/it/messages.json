@@ -1,0 +1,914 @@
+{
+    "extName": {
+        "message": "Wikipedia Preview"
+    },
+    "extDescription": {
+        "message": "Cerca su Wikipedia in base al testo selezionato"
+    },
+    "donateWithPaypalLabel": {
+        "message": "Fai una donazione con PayPal"
+    },
+    "donateLabel": {
+        "message": "Fai una donazione"
+    },
+    "enableOnThisPage": {
+        "message": "Attiva la ricerca in questa pagina"
+    },
+    "disableOnThisPage": {
+        "message": "Disattiva la ricerca in questa pagina"
+    },
+    "initialTextArea": {
+        "message": "Inserisci il testo"
+    },
+    "searchHistoryLabel": {
+        "message": "Cronologia delle ricerche"
+    },
+    "searchTermLabel": {
+        "message": "Termine di ricerca"
+    },
+    "clearSearchHistoryLabel": {
+        "message": "Cancella la cronologia"
+    },
+    "emptySearchHistoryLabel": {
+        "message": "Ancora nessuna ricerca"
+    },
+    "mainMenuLabel": {
+        "message": "Home"
+    },
+    "searchLabel": {
+        "message": "Cerca"
+    },
+    "searchEmptyMessage": {
+        "message": "Digita nella casella di ricerca per ottenere risultati aggiornati, suggerimenti e schede degli articoli pronte da leggere."
+    },
+    "moreResultsFor": {
+        "message": "Altri risultati qui:"
+    },
+    "previousResultsLabel": {
+        "message": "Precedente"
+    },
+    "resultsRangeLabel": {
+        "message": "Risultati $1–$2"
+    },
+    "recentSearchTerms": {
+        "message": "Recenti"
+    },
+    "readFullArticleLabel": {
+        "message": "Leggi l'articolo completo"
+    },
+    "feedLabel": {
+        "message": "Feed"
+    },
+    "feedLoadingLabel": {
+        "message": "Caricamento del feed..."
+    },
+    "featuredArticleLabel": {
+        "message": "Articolo in vetrina del giorno"
+    },
+    "dailyLatestFeaturedArticleLabel": {
+        "message": "Ultimo articolo in vetrina"
+    },
+    "dailyFeaturedArticleLoading": {
+        "message": "Caricamento dell'articolo in vetrina di oggi..."
+    },
+    "dailyFeaturedArticleFallback": {
+        "message": "Oggi non è disponibile alcun articolo in vetrina; viene mostrato l'articolo più letto."
+    },
+    "dailyFeaturedArticleError": {
+        "message": "Impossibile caricare l'articolo in vetrina di oggi."
+    },
+    "dailyFeaturedArticleRetryLabel": {
+        "message": "Riprova"
+    },
+    "dailyImageOfDayLabel": {
+        "message": "Immagine del giorno"
+    },
+    "dailyImageArtistLabel": {
+        "message": "Fotografo"
+    },
+    "dailyImageLicenseLabel": {
+        "message": "Licenza"
+    },
+    "dailyTrendingArticleLabel": {
+        "message": "Articolo di tendenza"
+    },
+    "dailyTrendingArticleError": {
+        "message": "Impossibile caricare l'articolo di tendenza."
+    },
+    "dailyImageOfDayError": {
+        "message": "Impossibile caricare l'immagine del giorno."
+    },
+    "dailyArticleImageError": {
+        "message": "Impossibile caricare l'immagine dell'articolo."
+    },
+    "dailyMostReadLabel": {
+        "message": "Articoli più letti"
+    },
+    "dailyMostReadError": {
+        "message": "Impossibile caricare gli articoli più letti."
+    },
+    "readMoreLabel": {
+        "message": "Leggi"
+    },
+    "moreResultsLabel": {
+        "message": "Avanti"
+    },
+    "shareLabel": {
+        "message": "Condividi"
+    },
+    "emailLabel": {
+        "message": "E-mail"
+    },
+    "downloadLabel": {
+        "message": "Scarica"
+    },
+    "downloadErrorLabel": {
+        "message": "Download non riuscito."
+    },
+    "shareCopiedLabel": {
+        "message": "Contenuto copiato negli appunti."
+    },
+    "shareErrorLabel": {
+        "message": "Condivisione non riuscita."
+    },
+    "wikipediaLabel": {
+        "message": "Wikipedia"
+    },
+    "dailyDidYouKnowLabel": {
+        "message": "Lo sapevi?"
+    },
+    "dailyNewsLabel": {
+        "message": "Nelle notizie"
+    },
+    "dailyOnThisDayLabel": {
+        "message": "Accadde oggi"
+    },
+    "favoritesLabel": {
+        "message": "Preferiti"
+    },
+    "removeFromFavoritesLabel": {
+        "message": "Rimuovi dai preferiti"
+    },
+    "emptyFavoritesLabel": {
+        "message": "Ancora nessun preferito"
+    },
+    "addToFavoritesLabel": {
+        "message": "Aggiungi ai preferiti"
+    },
+    "removeFromFavoritesConfirmLabel": {
+        "message": "Vuoi davvero rimuovere questo elemento dai preferiti?"
+    },
+    "addedToFavoritesLabel": {
+        "message": "Salvato"
+    },
+    "loadingSearchLabel": {
+        "message": "Caricamento dei risultati di ricerca..."
+    },
+    "loadingFullArticleLabel": {
+        "message": "Caricamento dell'articolo completo..."
+    },
+    "backFullArticleLabel": {
+        "message": "Torna all'articolo precedente"
+    },
+    "closeFullArticleLabel": {
+        "message": "Chiudi l'articolo completo"
+    },
+    "closeNextResultsLabel": {
+        "message": "Chiudi i risultati aggiuntivi"
+    },
+    "openInNewWindowLabel": {
+        "message": "Apri in una nuova finestra"
+    },
+    "copyLabel": {
+        "message": "Copia"
+    },
+    "copiedLabel": {
+        "message": "Copiato"
+    },
+    "listenLabel": {
+        "message": "Ascolta"
+    },
+    "targetLangLabel": {
+        "message": "Lingua di destinazione"
+    },
+    "allLangLabel": {
+        "message": "Tutte le lingue"
+    },
+    "recentLangLabel": {
+        "message": "Lingue recenti"
+    },
+    "settingsLabel": {
+        "message": "Impostazioni"
+    },
+    "generalLabel": {
+        "message": "Generale"
+    },
+    "targetLangCaptionLabel": {
+        "message": "Seleziona la lingua di destinazione predefinita."
+    },
+    "feedLangLabel": {
+        "message": "Feed di Wikipedia"
+    },
+    "feedLangSettingLabel": {
+        "message": "Impostazioni del feed di Wikipedia"
+    },
+    "feedLangCaptionLabel": {
+        "message": "Seleziona la Wikipedia predefinita per il feed."
+    },
+    "webPageLabel": {
+        "message": "Pagina web"
+    },
+    "whenSelectTextLabel": {
+        "message": "Comportamento alla selezione del testo"
+    },
+    "ifAutoSearchLabel": {
+        "message": "Mostra il pannello di ricerca"
+    },
+    "ifAutoSearchCaptionLabel": {
+        "message": "Mostra direttamente il pannello di ricerca senza visualizzare il pulsante."
+    },
+    "ifShowButtonLabel": {
+        "message": "Mostra il pulsante di ricerca"
+    },
+    "ifShowButtonCaptionLabel": {
+        "message": "Mostra il pulsante di ricerca per aprire il pannello al clic."
+    },
+    "dontshowbuttonlabel": {
+        "message": "Non mostrare né il pulsante né il pannello"
+    },
+    "dontshowbuttonCaptionlabel": {
+        "message": "Non mostrare il pulsante né il pannello di ricerca."
+    },
+    "disableWikipediaSearchLabel": {
+        "message": "Disattiva la ricerca"
+    },
+    "isDisabledInTextFieldsLabel": {
+        "message": "Disattiva la ricerca nei campi di testo"
+    },
+    "isDisabledInTextFieldsCaptionLabel": {
+        "message": "Non mostrare il pulsante o il pannello di ricerca quando selezioni testo in un campo di testo."
+    },
+    "isDisabledInCodeElementLabel": {
+        "message": "Disattiva la ricerca nei tag di codice"
+    },
+    "isDisabledInCodeElementCaptionLabel": {
+        "message": "Non mostrare il pulsante o il pannello di ricerca quando selezioni testo in un tag di codice."
+    },
+    "ifOnlySearchWhenModifierKeyPressedLabel": {
+        "message": "Cerca quando viene premuto un tasto modificatore"
+    },
+    "ifOnlySearchWhenModifierKeyPressedCaptionLabel": {
+        "message": "Mostra la ricerca solo quando viene premuto il tasto modificatore specificato."
+    },
+    "modifierKeyLabel": {
+        "message": "Tasto modificatore"
+    },
+    "shiftLabel": {
+        "message": "Maiusc"
+    },
+    "ctrlLabel": {
+        "message": "Ctrl"
+    },
+    "altLabel": {
+        "message": "Alt"
+    },
+    "cmdLabel": {
+        "message": "Comando"
+    },
+    "disableUrlListLabel": {
+        "message": "Elenco di URL in cui disattivare la ricerca"
+    },
+    "disableUrlListCaptionLabel": {
+        "message": "Se l'URL della pagina corrisponde a un elemento dell'elenco, la ricerca nella pagina web viene disattivata. L'elenco consente i caratteri jolly \"*\"."
+    },
+    "toolbarLabel": {
+        "message": "Popup della barra degli strumenti"
+    },
+    "secondTargetLangLabel": {
+        "message": "Seconda lingua"
+    },
+    "secondTargetLangCaptionLabel": {
+        "message": "Seleziona la seconda lingua di destinazione."
+    },
+    "ignoredDocumentLangLabel": {
+        "message": "Disattiva la ricerca in base all'attributo lang"
+    },
+    "ignoredDocumentLangCaptionLabel": {
+        "message": "Disattiva la ricerca se l'attributo lang dell'elemento HTML della pagina corrisponde all'elenco. Inserisci i tag di lingua separati da virgole."
+    },
+    "waitTimeLabel": {
+        "message": "Tempo di attesa per la ricerca"
+    },
+    "waitTimeCaptionLabel": {
+        "message": "Specifica il tempo di attesa tra l'inserimento di un carattere e l'inizio della ricerca (millisecondi)."
+    },
+    "waitTime2CaptionLabel": {
+        "message": "Se esegui molte ricerche in poco tempo, il servizio potrebbe diventare temporaneamente inutilizzabile."
+    },
+    "menuLabel": {
+        "message": "Menu contestuale"
+    },
+    "ifShowMenuLabel": {
+        "message": "Mostra il menu contestuale"
+    },
+    "ifShowMenuCaptionLabel": {
+        "message": "Aggiungi elementi al menu contestuale visualizzato facendo clic con il tasto destro sulla pagina web o sulla scheda."
+    },
+    "styleLabel": {
+        "message": "Stile"
+    },
+    "themeLabel": {
+        "message": "Tema"
+    },
+    "themeCaptionLabel": {
+        "message": "Specifica la combinazione di colori."
+    },
+    "lightLabel": {
+        "message": "Chiaro"
+    },
+    "darkLabel": {
+        "message": "Scuro"
+    },
+    "systemLabel": {
+        "message": "Sistema"
+    },
+    "buttonStyleLabel": {
+        "message": "Pulsante di ricerca"
+    },
+    "buttonStyleCaptionLabel": {
+        "message": "Specifica lo stile del pulsante di ricerca visualizzato nella pagina web."
+    },
+    "buttonSizeLabel": {
+        "message": "Dimensione"
+    },
+    "buttonPositionLabel": {
+        "message": "Posizione di visualizzazione"
+    },
+    "topRightLabel": {
+        "message": "In alto a destra"
+    },
+    "bottomRightLabel": {
+        "message": "In basso a destra"
+    },
+    "topLeftLabel": {
+        "message": "In alto a sinistra"
+    },
+    "bottomLeftLabel": {
+        "message": "In basso a sinistra"
+    },
+    "topLabel": {
+        "message": "In alto"
+    },
+    "bottomLabel": {
+        "message": "In basso"
+    },
+    "leftLabel": {
+        "message": "Sinistra"
+    },
+    "rightLabel": {
+        "message": "Destra"
+    },
+    "positionOffsetLabel": {
+        "message": "Posizione di visualizzazione - Scostamento"
+    },
+    "panelStyleLabel": {
+        "message": "Pannello di ricerca"
+    },
+    "panelStyleCaptionLabel": {
+        "message": "Specifica lo stile del pannello di ricerca visualizzato nella pagina web."
+    },
+    "widthLabel": {
+        "message": "Larghezza"
+    },
+    "heightLabel": {
+        "message": "Altezza"
+    },
+    "fontSizeLabel": {
+        "message": "Dimensione del carattere"
+    },
+    "referencePointLabel": {
+        "message": "Posizione di visualizzazione - Punto di riferimento"
+    },
+    "bottomSelectedTextLabel": {
+        "message": "Sotto il testo selezionato"
+    },
+    "topSelectedTextLabel": {
+        "message": "Sopra il testo selezionato"
+    },
+    "clickedPointLabel": {
+        "message": "Punto cliccato"
+    },
+    "displayDirectionLabel": {
+        "message": "Posizione di visualizzazione - Direzione"
+    },
+    "resultFontColorLabel": {
+        "message": "Colore del testo dei risultati di ricerca"
+    },
+    "isOverrideColorsLabel": {
+        "message": "Sostituisci i colori predefiniti con quelli indicati sotto"
+    },
+    "bgColorLabel": {
+        "message": "Colore di sfondo"
+    },
+    "otherLabel": {
+        "message": "Altro"
+    },
+    "isShowOptionsPageWhenUpdatedLabel": {
+        "message": "Mostra la pagina delle opzioni durante l'aggiornamento"
+    },
+    "isShowOptionsPageWhenUpdatedCaptionLabel": {
+        "message": "Mostra la pagina delle opzioni quando Wikipedia Preview viene aggiornato. Potrai vedere rapidamente le novità."
+    },
+    "isDebugModeLabel": {
+        "message": "Attiva la modalità di debug"
+    },
+    "isDebugModeCaptionLabel": {
+        "message": "Quando la modalità di debug è attiva, i log vengono inviati al debugger."
+    },
+    "exportSettingsLabel": {
+        "message": "Esporta le impostazioni"
+    },
+    "exportSettingsCaptionLabel": {
+        "message": "Salva le impostazioni in un file JSON sul computer."
+    },
+    "exportButtonLabel": {
+        "message": "Esporta"
+    },
+    "importSettingsLabel": {
+        "message": "Importa le impostazioni"
+    },
+    "importSettingsCaptionLabel": {
+        "message": "Carica il file delle impostazioni salvato sul computer."
+    },
+    "importButtonLabel": {
+        "message": "Importa"
+    },
+    "resetSettingsLabel": {
+        "message": "Ripristina le impostazioni"
+    },
+    "resetSettingsCaptionLabel": {
+        "message": "Ripristina tutte le impostazioni predefinite."
+    },
+    "resetSettingsButtonLabel": {
+        "message": "Ripristina"
+    },
+    "shortcutsLabel": {
+        "message": "Scorciatoie"
+    },
+    "keyboardShortcutsLabel": {
+        "message": "Scorciatoie da tastiera"
+    },
+    "setKeyboardShortCutsMessage": {
+        "message": "Imposta le scorciatoie da tastiera."
+    },
+    "typeShortcutMessage": {
+        "message": "Digita una scorciatoia"
+    },
+    "typeLetterMessage": {
+        "message": "Digita una lettera"
+    },
+    "includeModifierKeysMessage": {
+        "message": "Includi Ctrl oppure Alt"
+    },
+    "includeMacModifierKeysMessage": {
+        "message": "Includi Comando, Ctrl oppure Alt"
+    },
+    "invalidLetterMessage": {
+        "message": "Questa lettera non può essere utilizzata"
+    },
+    "invalidShortcutMessage": {
+        "message": "Questa scorciatoia non può essere utilizzata"
+    },
+    "clear": {
+        "message": "Cancella"
+    },
+    "reset": {
+        "message": "Ripristina"
+    },
+    "informationLabel": {
+        "message": "Informazioni"
+    },
+    "settingsLoadingLabel": {
+        "message": "Caricamento delle impostazioni..."
+    },
+    "settingsLoadErrorLabel": {
+        "message": "Impossibile caricare le impostazioni. Controlla la console del browser e ricarica questa pagina."
+    },
+    "additionalPermissionLabel": {
+        "message": "Attiva la ricerca nelle pagine web"
+    },
+    "additionalPermissionCaptionLabel": {
+        "message": "Per utilizzare Wikipedia Preview nelle pagine web sono necessarie autorizzazioni aggiuntive."
+    },
+    "enableLabel": {
+        "message": "Attiva"
+    },
+    "backersLabel": {
+        "message": "Sostenitori"
+    },
+    "licenseLabel": {
+        "message": "Licenza"
+    },
+    "iconAttributionsLabel": {
+        "message": "Attribuzioni di icone e vettori"
+    },
+    "donationLabel": {
+        "message": "Fai una donazione"
+    },
+    "donationCaptionLabel": {
+        "message": "Grazie per utilizzare Wikipedia Preview.<br>Il tuo sostegno mi incoraggia molto a continuare a sviluppare l'estensione.<br>Se apprezzi Wikipedia Preview, ti sarei grato se prendessi in considerazione una donazione."
+    },
+    "sponsorsLabel": {
+        "message": "Sponsor"
+    },
+    "addonPageLabel": {
+        "message": "Pagina del componente aggiuntivo"
+    },
+    "extensionPageLabel": {
+        "message": "Pagina dell'estensione"
+    },
+    "privacyPolicyLabel": {
+        "message": "Informativa sulla privacy"
+    },
+    "addonUrl": {
+        "message": "https://addons.mozilla.org/hu/firefox/addon/wikipedia-preview/"
+    },
+    "networkError": {
+        "message": "Errore: controlla la connessione di rete."
+    },
+    "unavailableError": {
+        "message": "Errore: è stato raggiunto il limite di utilizzo del servizio. Attendi qualche minuto e riprova."
+    },
+    "deeplAuthError": {
+        "message": "Errore: autenticazione dell'API DeepL non riuscita. Imposta correttamente la chiave di autenticazione e il piano nella pagina delle impostazioni."
+    },
+    "unknownError": {
+        "message": "Errore: errore sconosciuto"
+    },
+    "wikipediaSearchTextMenu": {
+        "message": "Wikipedia Preview per il testo selezionato"
+    },
+    "openPopupDescription": {
+        "message": "Apri il popup della barra degli strumenti"
+    },
+    "shouldUseSecondTargetLangLabel": {
+        "message": "Cerca in una seconda Wikipedia"
+    },
+    "shouldUseSecondTargetLangCaptionLabel": {
+        "message": "Se selezionato, la ricerca verrà effettuata anche su Wikipedia in questa lingua."
+    },
+    "firstInformationText": {
+        "message": "Nelle preferenze puoi aggiungere una seconda Wikipedia per visualizzare i risultati in un'altra lingua."
+    },
+    "lang_af": {
+        "message": "Afrikaans"
+    },
+    "lang_sq": {
+        "message": "Albanese"
+    },
+    "lang_am": {
+        "message": "Amarico"
+    },
+    "lang_ar": {
+        "message": "Arabo"
+    },
+    "lang_hy": {
+        "message": "Armeno"
+    },
+    "lang_az": {
+        "message": "Azero"
+    },
+    "lang_eu": {
+        "message": "Basco"
+    },
+    "lang_be": {
+        "message": "Bielorusso"
+    },
+    "lang_bn": {
+        "message": "Bengalese"
+    },
+    "lang_bs": {
+        "message": "Bosniaco"
+    },
+    "lang_bg": {
+        "message": "Bulgaro"
+    },
+    "lang_ca": {
+        "message": "Catalano"
+    },
+    "lang_ceb": {
+        "message": "Cebuano"
+    },
+    "lang_ny": {
+        "message": "Chewa"
+    },
+    "lang_zh_CN": {
+        "message": "Cinese (semplificato)"
+    },
+    "lang_zh_TW": {
+        "message": "Cinese (tradizionale)"
+    },
+    "lang_co": {
+        "message": "Corso"
+    },
+    "lang_hr": {
+        "message": "Croato"
+    },
+    "lang_cs": {
+        "message": "Ceco"
+    },
+    "lang_da": {
+        "message": "Danese"
+    },
+    "lang_nl": {
+        "message": "Olandese"
+    },
+    "lang_en": {
+        "message": "Inglese"
+    },
+    "lang_eo": {
+        "message": "Esperanto"
+    },
+    "lang_et": {
+        "message": "Estone"
+    },
+    "lang_fi": {
+        "message": "Finlandese"
+    },
+    "lang_fr": {
+        "message": "Francese"
+    },
+    "lang_fy": {
+        "message": "Frisone"
+    },
+    "lang_gl": {
+        "message": "Galiziano"
+    },
+    "lang_ka": {
+        "message": "Georgiano"
+    },
+    "lang_de": {
+        "message": "Tedesco"
+    },
+    "lang_el": {
+        "message": "Greco"
+    },
+    "lang_gu": {
+        "message": "Gujarati"
+    },
+    "lang_ht": {
+        "message": "Creolo haitiano"
+    },
+    "lang_ha": {
+        "message": "Hausa"
+    },
+    "lang_haw": {
+        "message": "Hawaiano"
+    },
+    "lang_he": {
+        "message": "Ebraico"
+    },
+    "lang_hi": {
+        "message": "Hindi"
+    },
+    "lang_hu": {
+        "message": "Ungherese"
+    },
+    "lang_is": {
+        "message": "Islandese"
+    },
+    "lang_ig": {
+        "message": "Igbo"
+    },
+    "lang_id": {
+        "message": "Indonesiano"
+    },
+    "lang_ga": {
+        "message": "Irlandese"
+    },
+    "lang_it": {
+        "message": "Italiano"
+    },
+    "lang_ja": {
+        "message": "Giapponese"
+    },
+    "lang_jv": {
+        "message": "Giavanese"
+    },
+    "lang_kn": {
+        "message": "Kannada"
+    },
+    "lang_kk": {
+        "message": "Kazako"
+    },
+    "lang_km": {
+        "message": "Khmer"
+    },
+    "lang_rw": {
+        "message": "Kinyarwanda"
+    },
+    "lang_ky": {
+        "message": "Kirghiso"
+    },
+    "lang_ko": {
+        "message": "Coreano"
+    },
+    "lang_ku": {
+        "message": "Curdo"
+    },
+    "lang_lo": {
+        "message": "Laotiano"
+    },
+    "lang_la": {
+        "message": "Latino"
+    },
+    "lang_lv": {
+        "message": "Lettone"
+    },
+    "lang_lt": {
+        "message": "Lituano"
+    },
+    "lang_lb": {
+        "message": "Lussemburghese"
+    },
+    "lang_mk": {
+        "message": "Macedone"
+    },
+    "lang_mg": {
+        "message": "Malgascio"
+    },
+    "lang_ms": {
+        "message": "Malese"
+    },
+    "lang_ml": {
+        "message": "Malayalam"
+    },
+    "lang_mt": {
+        "message": "Maltese"
+    },
+    "lang_mi": {
+        "message": "Maori"
+    },
+    "lang_mr": {
+        "message": "Marathi"
+    },
+    "lang_mn": {
+        "message": "Mongolo"
+    },
+    "lang_hmn": {
+        "message": "Hmong"
+    },
+    "lang_my": {
+        "message": "Birmano"
+    },
+    "lang_ne": {
+        "message": "Nepalese"
+    },
+    "lang_no": {
+        "message": "Norvegese"
+    },
+    "lang_nb": {
+        "message": "Norvegese (bokmål)"
+    },
+    "lang_or": {
+        "message": "Odia (oriya)"
+    },
+    "lang_fa": {
+        "message": "Persiano"
+    },
+    "lang_pl": {
+        "message": "Polacco"
+    },
+    "lang_pt": {
+        "message": "Portoghese"
+    },
+    "lang_pa": {
+        "message": "Punjabi"
+    },
+    "lang_ps": {
+        "message": "Pashtu"
+    },
+    "lang_ro": {
+        "message": "Rumeno"
+    },
+    "lang_ru": {
+        "message": "Russo"
+    },
+    "lang_sm": {
+        "message": "Samoano"
+    },
+    "lang_gd": {
+        "message": "Gaelico scozzese"
+    },
+    "lang_sr": {
+        "message": "Serbo"
+    },
+    "lang_st": {
+        "message": "Sesotho"
+    },
+    "lang_sn": {
+        "message": "Shona"
+    },
+    "lang_sd": {
+        "message": "Sindhi"
+    },
+    "lang_si": {
+        "message": "Singalese"
+    },
+    "lang_sk": {
+        "message": "Slovacco"
+    },
+    "lang_sl": {
+        "message": "Sloveno"
+    },
+    "lang_so": {
+        "message": "Somalo"
+    },
+    "lang_es": {
+        "message": "Spagnolo"
+    },
+    "lang_su": {
+        "message": "Sundanese"
+    },
+    "lang_sw": {
+        "message": "Swahili"
+    },
+    "lang_sv": {
+        "message": "Svedese"
+    },
+    "lang_tl": {
+        "message": "Tagalog"
+    },
+    "lang_tg": {
+        "message": "Tagiko"
+    },
+    "lang_ta": {
+        "message": "Tamil"
+    },
+    "lang_tt": {
+        "message": "Tataro"
+    },
+    "lang_te": {
+        "message": "Telugu"
+    },
+    "lang_th": {
+        "message": "Thailandese"
+    },
+    "lang_tr": {
+        "message": "Turco"
+    },
+    "lang_tk": {
+        "message": "Turkmeno"
+    },
+    "lang_uk": {
+        "message": "Ucraino"
+    },
+    "lang_ur": {
+        "message": "Urdu"
+    },
+    "lang_ug": {
+        "message": "Uiguro"
+    },
+    "lang_uz": {
+        "message": "Uzbeko"
+    },
+    "lang_vi": {
+        "message": "Vietnamita"
+    },
+    "lang_cy": {
+        "message": "Gallese"
+    },
+    "lang_xh": {
+        "message": "Xhosa"
+    },
+    "lang_yi": {
+        "message": "Yiddish"
+    },
+    "lang_yo": {
+        "message": "Yoruba"
+    },
+    "lang_zu": {
+        "message": "Zulu"
+    },
+    "lang_en_US": {
+        "message": "Inglese (americano)"
+    },
+    "lang_en_GB": {
+        "message": "Inglese (britannico)"
+    },
+    "lang_pt_PT": {
+        "message": "Portoghese"
+    },
+    "lang_pt_BR": {
+        "message": "Portoghese (brasiliano)"
+    },
+    "lang_zh": {
+        "message": "Cinese"
+    },
+    "notFound": {
+        "message": "Nessun risultato corrisponde alla ricerca."
+    },
+    "privacyPolicyMenuTitle": {
+        "message": "Informativa sulla privacy"
+    }
+}
