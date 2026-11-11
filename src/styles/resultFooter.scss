@@ -12,8 +12,12 @@
   //padding-right: 10px;
   & > .resultFooterButton,
   & > .copy > .resultFooterButton,
+  & > .mediaAction > .resultFooterButton,
+  & > .mediaAction > .shareOptions > .resultFooterButton,
   #simple-wikipedia-search & > .resultFooterButton,
-  #simple-wikipedia-search & > .copy > .resultFooterButton {
+  #simple-wikipedia-search & > .copy > .resultFooterButton,
+  #simple-wikipedia-search & > .mediaAction > .resultFooterButton,
+  #simple-wikipedia-search & > .mediaAction > .shareOptions > .resultFooterButton {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -25,6 +29,7 @@
     background: var(--main-bg, var(--simple-wikipedia-search-main-bg, #ffffff));
     font: inherit;
     cursor: pointer;
+    text-decoration: none;
     transition:
       color 120ms ease,
       background-color 120ms ease,
@@ -69,5 +74,26 @@
     width: 16px;
     height: 16px;
     flex: 0 0 auto;
+  }
+
+  .mediaAction {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .shareOptions {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 4px;
+    border-radius: 7px;
+    background: var(--main-bg, var(--simple-wikipedia-search-main-bg, #ffffff));
+    box-shadow: 0 2px 8px rgb(0 0 0 / 16%);
   }
 }
