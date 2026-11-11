@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
+import { useLocation } from "react-router-dom";
 import { updateLogLevel, overWriteLogLevel } from "src/common/log";
 import {
   initSettings,
@@ -25,6 +26,9 @@ import { getLocaleMessage } from "../../common/i18n";
  */
 export default function SettingsPage() {
   const [currentValues, setCurrentValues] = useState(null);
+  const { search } = useLocation();
+  const highlightFeedLang = new URLSearchParams(search).get("highlight") === "feedLang";
+  const settingsReady = currentValues !== null;
 
   /* -------- init -------- */
 
@@ -57,6 +61,16 @@ export default function SettingsPage() {
       removeSettingsChangeListener(handleStorageChange);
     };
   }, []);
+
+  useEffect(() => {
+    if (!settingsReady || !highlightFeedLang) return;
+
+    const input = document.getElementById("feedLang");
+    if (input) {
+      input.scrollIntoView({ block: "center" });
+      input.focus({ preventScroll: true });
+    }
+  }, [settingsReady, highlightFeedLang]);
 
   /* -------- handlers -------- */
 
@@ -112,6 +126,7 @@ export default function SettingsPage() {
             key={category.category || index}
             {...category}
             currentValues={currentValues}
+            highlightedOption={highlightFeedLang ? "feedLang" : null}
           />
         ))}
         <CategoryContainer

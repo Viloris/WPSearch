@@ -1,11 +1,11 @@
 import React from "react";
-import { getLocaleMessage } from "../../../common/i18n";
+import { getFeedSectionLanguage, getFeedSectionMessage } from "./feedSectionMessages";
 
-export function MostReadArticleSection({ article, handleArticleLinkClick, mostReadArticles }) {
+export function MostReadArticleSection({ article, handleArticleLinkClick, mostReadArticles, language }) {
     return (
         <section className="featuredArticleSupplement">
-            <h3>
-                {getLocaleMessage("dailyMostReadLabel")}
+            <h3 lang={getFeedSectionLanguage(language)}>
+                {getFeedSectionMessage(language, "dailyMostReadLabel")}
                 {article.mostReadDate && ` (${article.mostReadDate})`}
             </h3>
             <ol

@@ -186,7 +186,7 @@ export default function OptionContainer(props) {
   return (
     shouldShow && (
       <li
-        className={`optionContainer ${props.updated ? "updated" : ""} ${props.new ? "new" : ""}`}
+        className={`optionContainer ${props.updated ? "updated" : ""} ${props.new ? "new" : ""} ${props.highlighted ? "highlighted" : ""}`}
       >
         {props.hr && <hr />}
         <div

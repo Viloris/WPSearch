@@ -1,11 +1,11 @@
 import React from "react";
-import { getLocaleMessage } from "../../../common/i18n";
+import { getFeedSectionLanguage, getFeedSectionMessage } from "./feedSectionMessages";
 import { sanitizeExtractHtml } from "../../../common/htmlUtils";
 
 export function NewsSection({ news, handleArticleLinkClick, language }) {
     return (
         <section className="featuredArticleSupplement">
-            <h3>{getLocaleMessage("dailyNewsLabel")}</h3>
+            <h3 lang={getFeedSectionLanguage(language)}>{getFeedSectionMessage(language, "dailyNewsLabel")}</h3>
             <ul className="featuredArticleEntries">
                 {news.map((item, index) => (
                     <li key={`${item.story}-${index}`}>

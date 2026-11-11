@@ -1,11 +1,11 @@
 import React from "react";
 import { sanitizeExtractHtml } from "../../../common/htmlUtils";
-import { getLocaleMessage } from "../../../common/i18n";
+import { getFeedSectionLanguage, getFeedSectionMessage } from "./feedSectionMessages";
 
 export function DidYouKnowSection({ didYouKnow, handleArticleLinkClick, language }) {
     return (
         <section className="featuredArticleSupplement">
-            <h3>{getLocaleMessage("dailyDidYouKnowLabel")}</h3>
+            <h3 lang={getFeedSectionLanguage(language)}>{getFeedSectionMessage(language, "dailyDidYouKnowLabel")}</h3>
             <ul className="featuredArticleEntries">
                 {didYouKnow.map((item, index) => (
                     <li key={`${item.text}-${index}`}>

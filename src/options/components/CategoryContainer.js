@@ -10,7 +10,7 @@ import { getLocaleMessage } from "../../common/i18n";
  * @returns {JSX.Element} Component to display a category of options in the settings page, with a title and a list of option containers for each setting element
  */
 export default function CategoryContainer(props) {
-  const { category, elements, currentValues = {} } = props;
+  const { category, elements, currentValues = {}, highlightedOption } = props;
   return (
     <li className="categoryContainer">
       <fieldset>
@@ -25,6 +25,7 @@ export default function CategoryContainer(props) {
               <OptionContainer
                 {...option}
                 currentValue={currentValues[option.id]}
+                highlighted={option.id === highlightedOption}
               >
                 {option?.childElements && (
                   <ul className="childElements">

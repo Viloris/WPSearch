@@ -61,7 +61,16 @@ export default [
                         useRawOptionName: true
                     }
                 ]
-            }
+            },
+            {
+                id: "feedLang",
+                title: "feedLangLabel",
+                captions: ["feedLangCaptionLabel"],
+                type: SELECT,
+                default: defaultLangs.targetLang,
+                options: WIKIPEDIA_LANGUAGES,
+                useRawOptionName: true
+            },
         ]
     },
     {

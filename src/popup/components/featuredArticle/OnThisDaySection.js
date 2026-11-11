@@ -1,10 +1,10 @@
 import React from "react";
-import { getLocaleMessage } from "../../../common/i18n";
+import { getFeedSectionLanguage, getFeedSectionMessage } from "./feedSectionMessages";
 
-export function OnThisDaySection({ onThisDay, handleArticleLinkClick }) {
+export function OnThisDaySection({ onThisDay, handleArticleLinkClick, language }) {
     return (
         <section className="featuredArticleSupplement">
-            <h3>{getLocaleMessage("dailyOnThisDayLabel")}</h3>
+            <h3 lang={getFeedSectionLanguage(language)}>{getFeedSectionMessage(language, "dailyOnThisDayLabel")}</h3>
             <ul className="featuredArticleEntries">
                 {onThisDay.map((item, index) => (
                     <li key={`${item.year}-${item.text}-${index}`}>

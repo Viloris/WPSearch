@@ -13,7 +13,7 @@ import { ArticleHeader, ArticleLabel } from "./featuredArticle/Labels";
 import { renderArticleCard } from "./featuredArticle/ArticleCard";
 import CONFIG from "../../config.json"
 import { normalizeString } from "../../common/textUtils";
-import { getLocaleMessage } from "../../common/i18n";
+import { getFeedSectionLanguage, getFeedSectionMessage } from "./featuredArticle/feedSectionMessages";
 
 const { ARTICLE_PATH, protocolHttps, WIKIPEDIA_DOMAIN } = CONFIG;
 
@@ -135,10 +135,10 @@ export default function FeaturedArticle({
 
   if (!active) return null;
 
-  const featuredArticleLabel = getLocaleMessage("featuredArticleLabel");
+  const sectionLanguage = getFeedSectionLanguage(language);
   return (
     <section className="featuredArticle">
-      {!isLoading && (
+      {language && (
         <ArticleHeader
           language={language}
         />
@@ -153,7 +153,9 @@ export default function FeaturedArticle({
       {article && !hasFeaturedArticle && !hasSupplementaryContent && (
         <ErrorMessage retry={retry} />
       )}
-      {hasFeaturedArticle && <h3>{featuredArticleLabel}</h3>}
+      {hasFeaturedArticle && <h3 className="featuredArticleSectionTitle" lang={sectionLanguage}>
+        {getFeedSectionMessage(language, "featuredArticleLabel")}
+      </h3>}
       {hasFeaturedArticle && createArticleCard()}
       {didYouKnow.length > 0 && (
         <DidYouKnowSection
@@ -173,12 +175,14 @@ export default function FeaturedArticle({
         <OnThisDaySection
           onThisDay={onThisDay}
           handleArticleLinkClick={handleArticleLinkClick}
+          language={language}
         />
       )}
       {trendingArticle && (
         <TrendingArticleSection
           renderArticleCard={createArticleCard}
           trendingArticle={trendingArticle}
+          language={language}
         />
       )}
       {imageOfDay && (
@@ -187,6 +191,7 @@ export default function FeaturedArticle({
           failedImages={failedImages}
           setFailedImages={setFailedImages}
           retry={retry}
+          language={language}
         />
       )}
       {mostReadArticles.length > 0 && (
@@ -194,6 +199,7 @@ export default function FeaturedArticle({
           article={article}
           handleArticleLinkClick={handleArticleLinkClick}
           mostReadArticles={mostReadArticles}
+          language={language}
         />
       )}
     </section>

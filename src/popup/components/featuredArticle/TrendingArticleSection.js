@@ -1,11 +1,11 @@
 import React from "react";
-import { getLocaleMessage } from "../../../common/i18n";
+import { getFeedSectionLanguage, getFeedSectionMessage } from "./feedSectionMessages";
 
-export function TrendingArticleSection({ renderArticleCard, trendingArticle }) {
-    const articleTitle = getLocaleMessage("dailyTrendingArticleLabel");
+export function TrendingArticleSection({ renderArticleCard, trendingArticle, language }) {
+    const articleTitle = getFeedSectionMessage(language, "dailyTrendingArticleLabel");
 
     return <section className="featuredArticleSupplement">
-        <h3>{articleTitle}</h3>
+        <h3 lang={getFeedSectionLanguage(language)}>{articleTitle}</h3>
         {renderArticleCard(trendingArticle)}
     </section>;
 }

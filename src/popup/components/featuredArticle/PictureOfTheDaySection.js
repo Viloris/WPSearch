@@ -1,10 +1,11 @@
 import React from "react";
 import { getLocaleMessage } from "../../../common/i18n";
+import { getFeedSectionLanguage, getFeedSectionMessage } from "./feedSectionMessages";
 
-export function PictureOfTheDaySection({ imageOfDay, failedImages, setFailedImages, retry }) {
+export function PictureOfTheDaySection({ imageOfDay, failedImages, setFailedImages, retry, language }) {
     return (
         <section className="featuredArticleSupplement">
-            <h3>{getLocaleMessage("dailyImageOfDayLabel")}</h3>
+            <h3 lang={getFeedSectionLanguage(language)}>{getFeedSectionMessage(language, "dailyImageOfDayLabel")}</h3>
             <figure className="featuredArticleImageOfDay">
                 {imageOfDay.thumbnailUrl && !failedImages.imageOfDay && (
                     <a

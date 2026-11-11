@@ -19,7 +19,9 @@ export const initSettings = async () => {
     const pushSettings = (element) => {
         if (element.id == undefined || element.default == undefined) return;
         if (currentSettings[element.id] == undefined) {
-            currentSettings[element.id] = element.default;
+            currentSettings[element.id] = element.id === "feedLang"
+                ? (currentSettings.targetLang ?? element.default)
+                : element.default;
             shouldSave = true;
         }
     };

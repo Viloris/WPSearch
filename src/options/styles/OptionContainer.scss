@@ -1,6 +1,17 @@
 .optionContainer {
   list-style-type: none;
 
+  &.highlighted > .optionElement {
+    background-color: var(--highlight-bg);
+    border-radius: 8px;
+    box-shadow: inset 3px 0 var(--highlight);
+    padding-inline: 12px;
+  }
+
+  .rtl-language &.highlighted > .optionElement {
+    box-shadow: inset -3px 0 var(--highlight);
+  }
+
   .optionElement {
     display: flex;
     flex-direction: row;

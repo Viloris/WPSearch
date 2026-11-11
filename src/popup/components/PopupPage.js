@@ -116,6 +116,7 @@ const popupWidth = "348px";
 export default function PopupPage() {
   const [storedPopupViewState] = useState(getStoredPopupViewState);
   const [targetLang, setTargetLang] = useState("");
+  const [feedLang, setFeedLang] = useState("");
   const [inputText, setInputText] = useState(storedPopupViewState?.inputText || "");
   const [tabInfo, setTabInfo] = useState({
     isConnected: true,
@@ -492,6 +493,7 @@ export default function PopupPage() {
       await getFavorites(() => mounted, setFavorites);
 
       setTargetLang(getTargetLang());
+      setFeedLang(getSettings("feedLang"));
       setHideInformationLabel(!!getSettings("hidePopupInformationLabel"));
 
       try {
@@ -583,8 +585,8 @@ export default function PopupPage() {
         addToFavorites={handleAddFavorite}
         favorites={favorites}
         fullArticles={fullArticles}
-        key={targetLang}
-        language={targetLang}
+        key={feedLang}
+        language={feedLang}
         onOpenArticle={handleLoadFullArticle}
         removeFromFavorites={handleRemoveFavorite}
       />
