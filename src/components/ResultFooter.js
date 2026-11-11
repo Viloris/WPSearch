@@ -5,7 +5,13 @@ import AddToFavoritesButton from "./AddToFavoritesButton";
 // import NewWindowIcon from "../icons/open-in-new-window.svg";
 // import BookIcon from "../icons/book-solar.svg";
 // import { getLocaleMessage } from "../common/i18n";
-import { MoreResultButton, OpenInWikipediaButton, ReadFullArticleButton } from "./MediaButtons";
+import {
+  DownloadButton,
+  MoreResultButton,
+  OpenInWikipediaButton,
+  ReadFullArticleButton,
+  ShareButton
+} from "./MediaButtons";
 
 /**
  *
@@ -72,6 +78,16 @@ export function ResultFooter({
         <CopyButton
           className="resultFooterButton"
           text={text}
+        />
+        <DownloadButton
+          title={title}
+          summary={text}
+          url={url}
+        />
+        <ShareButton
+          title={title}
+          summary={text}
+          url={url}
         />
       </div>
     );
