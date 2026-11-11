@@ -2,10 +2,7 @@
 .next-results__content {
   box-sizing: border-box;
   width: auto;
-  height: var(--popup-card-height, 260px);
   min-width: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
   position: relative;
   background-color: var(--main-bg);
   margin: 8px 14px 14px;
@@ -100,8 +97,15 @@
   }
 }
 
+#resultArea {
+  margin-top: 0;
+  padding-top: 4px;
+}
+
 .next-results__content {
   height: auto;
   flex: 1 1 auto;
   min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
