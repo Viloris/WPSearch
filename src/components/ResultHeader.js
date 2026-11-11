@@ -9,7 +9,7 @@ import React from "react";
 export function ResultHeader({ wikipedia }) {
   return (
     <section
-      style={{ padding: "0.6em 1em 1em 1em" }}
+      style={{ padding: "0em 1em 0em 0.5em" }}
     >
       <h3 style={{ margin: 0, fontWeight: 600, color: "var(--main-text)" }}>{wikipedia}</h3>
     </section>
