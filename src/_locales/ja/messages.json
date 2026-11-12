@@ -1,306 +1,914 @@
 {
-    "extName": {"message": "Wikipedia Preview"},
-    "extDescription": {"message": "選択したテキストをもとにWikipediaを検索"},
-    "donateWithPaypalLabel": {"message": "PayPalで寄付"},
-    "donateLabel": {"message": "寄付"},
-    "enableOnThisPage": {"message": "このページでの検索を有効にする"},
-    "disableOnThisPage": {"message": "このページでの検索を無効にする"},
-    "initialTextArea": {"message": "テキストを入力"},
-    "searchHistoryLabel": {"message": "検索履歴"},
-    "searchTermLabel": {"message": "検索語"},
-    "clearSearchHistoryLabel": {"message": "履歴を消去"},
-    "emptySearchHistoryLabel": {"message": "検索履歴はありません"},
-    "mainMenuLabel": {"message": "ホーム"},
-    "searchLabel": {"message": "検索"},
-    "searchEmptyMessage": {"message": "検索欄に入力すると、候補やすぐに読める記事カードが表示されます。"},
-    "moreResultsFor": {"message": "その他の検索結果:"},
-    "previousResultsLabel": {"message": "前へ"},
-    "resultsRangeLabel": {"message": "$1～$2件目の結果"},
-    "recentSearchTerms": {"message": "最近の検索"},
-    "readFullArticleLabel": {"message": "記事全文を読む"},
-    "feedLabel": {"message": "フィード"},
-    "feedLoadingLabel": {"message": "フィードを読み込み中..."},
-    "featuredArticleLabel": {"message": "今日の秀逸な記事"},
-    "dailyLatestFeaturedArticleLabel": {"message": "最新の秀逸な記事"},
-    "dailyFeaturedArticleLoading": {"message": "今日の秀逸な記事を読み込み中..."},
-    "dailyFeaturedArticleFallback": {"message": "今日は秀逸な記事がありません。代わりに最も読まれている記事を表示します。"},
-    "dailyFeaturedArticleError": {"message": "今日の秀逸な記事を読み込めませんでした。"},
-    "dailyFeaturedArticleRetryLabel": {"message": "再試行"},
-    "dailyImageOfDayLabel": {"message": "今日の画像"},
-    "dailyImageArtistLabel": {"message": "撮影者"},
-    "dailyImageLicenseLabel": {"message": "ライセンス"},
-    "dailyTrendingArticleLabel": {"message": "話題の記事"},
-    "dailyTrendingArticleError": {"message": "話題の記事を読み込めませんでした。"},
-    "dailyImageOfDayError": {"message": "今日の画像を読み込めませんでした。"},
-    "dailyArticleImageError": {"message": "記事の画像を読み込めませんでした。"},
-    "dailyMostReadLabel": {"message": "最も読まれている記事"},
-    "dailyMostReadError": {"message": "最も読まれている記事を読み込めませんでした。"},
-    "readMoreLabel": {"message": "読む"},
-    "moreResultsLabel": {"message": "次へ"},
-    "shareLabel": {"message": "共有"},
-    "emailLabel": {"message": "メール"},
-    "downloadLabel": {"message": "ダウンロード"},
-    "downloadErrorLabel": {"message": "ダウンロードに失敗しました。"},
-    "shareCopiedLabel": {"message": "コンテンツをクリップボードにコピーしました。"},
-    "shareErrorLabel": {"message": "共有に失敗しました。"},
-    "wikipediaLabel": {"message": "Wikipedia"},
-    "dailyDidYouKnowLabel": {"message": "ご存じですか"},
-    "dailyNewsLabel": {"message": "ニュース"},
-    "dailyOnThisDayLabel": {"message": "今日は何の日"},
-    "favoritesLabel": {"message": "お気に入り"},
-    "removeFromFavoritesLabel": {"message": "お気に入りから削除"},
-    "emptyFavoritesLabel": {"message": "お気に入りはありません"},
-    "addToFavoritesLabel": {"message": "お気に入りに追加"},
-    "removeFromFavoritesConfirmLabel": {"message": "この記事をお気に入りから削除しますか？"},
-    "addedToFavoritesLabel": {"message": "保存しました"},
-    "loadingSearchLabel": {"message": "検索結果を読み込み中..."},
-    "loadingFullArticleLabel": {"message": "記事全文を読み込み中..."},
-    "backFullArticleLabel": {"message": "前の記事に戻る"},
-    "closeFullArticleLabel": {"message": "記事全文を閉じる"},
-    "closeNextResultsLabel": {"message": "追加の検索結果を閉じる"},
-    "openInNewWindowLabel": {"message": "新しいウィンドウで開く"},
-    "copyLabel": {"message": "コピー"},
-    "copiedLabel": {"message": "コピーしました"},
-    "listenLabel": {"message": "読み上げ"},
-    "targetLangLabel": {"message": "検索対象の言語"},
-    "allLangLabel": {"message": "すべての言語"},
-    "recentLangLabel": {"message": "最近使用した言語"},
-    "settingsLabel": {"message": "設定"},
-    "generalLabel": {"message": "一般"},
-    "targetLangCaptionLabel": {"message": "デフォルトの検索対象言語を選択してください。"},
-    "feedLangLabel": {"message": "ウィキペディアのフィード"},
-    "feedLangSettingLabel": {"message": "ウィキペディアのフィード設定"},
-    "feedLangCaptionLabel": {"message": "フィードに使用するデフォルトのウィキペディアを選択してください。"},
-    "webPageLabel": {"message": "ウェブページ"},
-    "whenSelectTextLabel": {"message": "テキスト選択時の動作"},
-    "ifAutoSearchLabel": {"message": "検索パネルを表示"},
-    "ifAutoSearchCaptionLabel": {"message": "ボタンを表示せずに検索パネルを直接表示します。"},
-    "ifShowButtonLabel": {"message": "検索ボタンを表示"},
-    "ifShowButtonCaptionLabel": {"message": "クリックするとパネルを開く検索ボタンを表示します。"},
-    "dontshowbuttonlabel": {"message": "ボタンもパネルも表示しない"},
-    "dontshowbuttonCaptionlabel": {"message": "検索ボタンと検索パネルを表示しません。"},
-    "disableWikipediaSearchLabel": {"message": "検索を無効にする"},
-    "isDisabledInTextFieldsLabel": {"message": "テキスト入力欄での検索を無効にする"},
-    "isDisabledInTextFieldsCaptionLabel": {"message": "テキスト入力欄で文字列を選択したときに検索ボタンやパネルを表示しません。"},
-    "isDisabledInCodeElementLabel": {"message": "コードタグ内での検索を無効にする"},
-    "isDisabledInCodeElementCaptionLabel": {"message": "コードタグ内の文字列を選択したときに検索ボタンやパネルを表示しません。"},
-    "ifOnlySearchWhenModifierKeyPressedLabel": {"message": "修飾キーを押したときに検索"},
-    "ifOnlySearchWhenModifierKeyPressedCaptionLabel": {"message": "指定した修飾キーを押したときだけ検索を表示します。"},
-    "modifierKeyLabel": {"message": "修飾キー"},
-    "shiftLabel": {"message": "Shift"},
-    "ctrlLabel": {"message": "Ctrl"},
-    "altLabel": {"message": "Alt"},
-    "cmdLabel": {"message": "Command"},
-    "disableUrlListLabel": {"message": "検索を無効にするURLリスト"},
-    "disableUrlListCaptionLabel": {"message": "ページのURLがリストに一致すると、そのウェブページでの検索を無効にします。ワイルドカード「*」を使用できます。"},
-    "toolbarLabel": {"message": "ツールバーのポップアップ"},
-    "secondTargetLangLabel": {"message": "2つ目の言語"},
-    "secondTargetLangCaptionLabel": {"message": "2つ目の検索対象言語を選択してください。"},
-    "ignoredDocumentLangLabel": {"message": "lang属性に基づいて検索を無効にする"},
-    "ignoredDocumentLangCaptionLabel": {"message": "ページのHTML要素のlang属性がリストに一致すると検索を無効にします。言語タグをカンマ区切りで入力してください。"},
-    "waitTimeLabel": {"message": "検索の待ち時間"},
-    "waitTimeCaptionLabel": {"message": "文字を入力してから検索を開始するまでの待ち時間を指定します（ミリ秒）。"},
-    "waitTime2CaptionLabel": {"message": "短時間に何度も検索すると、一時的に利用できなくなる場合があります。"},
-    "menuLabel": {"message": "コンテキストメニュー"},
-    "ifShowMenuLabel": {"message": "コンテキストメニューを表示"},
-    "ifShowMenuCaptionLabel": {"message": "ウェブページまたはタブを右クリックしたときに表示されるコンテキストメニューに項目を追加します。"},
-    "styleLabel": {"message": "スタイル"},
-    "themeLabel": {"message": "テーマ"},
-    "themeCaptionLabel": {"message": "配色を指定します。"},
-    "lightLabel": {"message": "ライト"},
-    "darkLabel": {"message": "ダーク"},
-    "systemLabel": {"message": "システム"},
-    "buttonStyleLabel": {"message": "検索ボタン"},
-    "buttonStyleCaptionLabel": {"message": "ウェブページに表示する検索ボタンのスタイルを指定します。"},
-    "buttonSizeLabel": {"message": "サイズ"},
-    "buttonPositionLabel": {"message": "表示位置"},
-    "topRightLabel": {"message": "右上"},
-    "bottomRightLabel": {"message": "右下"},
-    "topLeftLabel": {"message": "左上"},
-    "bottomLeftLabel": {"message": "左下"},
-    "topLabel": {"message": "上"},
-    "bottomLabel": {"message": "下"},
-    "leftLabel": {"message": "左"},
-    "rightLabel": {"message": "右"},
-    "positionOffsetLabel": {"message": "表示位置 - オフセット"},
-    "panelStyleLabel": {"message": "検索パネル"},
-    "panelStyleCaptionLabel": {"message": "ウェブページに表示する検索パネルのスタイルを指定します。"},
-    "widthLabel": {"message": "幅"},
-    "heightLabel": {"message": "高さ"},
-    "fontSizeLabel": {"message": "文字サイズ"},
-    "referencePointLabel": {"message": "表示位置 - 基準点"},
-    "bottomSelectedTextLabel": {"message": "選択したテキストの下"},
-    "topSelectedTextLabel": {"message": "選択したテキストの上"},
-    "clickedPointLabel": {"message": "クリックした位置"},
-    "displayDirectionLabel": {"message": "表示位置 - 方向"},
-    "resultFontColorLabel": {"message": "検索結果の文字色"},
-    "isOverrideColorsLabel": {"message": "下記の色でデフォルトの色を上書きする"},
-    "bgColorLabel": {"message": "背景色"},
-    "otherLabel": {"message": "その他"},
-    "isShowOptionsPageWhenUpdatedLabel": {"message": "更新時にオプションページを表示"},
-    "isShowOptionsPageWhenUpdatedCaptionLabel": {"message": "Wikipedia Previewの更新時にオプションページを表示し、更新内容をすぐに確認できるようにします。"},
-    "isDebugModeLabel": {"message": "デバッグモードを有効にする"},
-    "isDebugModeCaptionLabel": {"message": "デバッグモードを有効にすると、ログがデバッガーに出力されます。"},
-    "exportSettingsLabel": {"message": "設定をエクスポート"},
-    "exportSettingsCaptionLabel": {"message": "設定をJSONファイルとしてコンピューターに保存します。"},
-    "exportButtonLabel": {"message": "エクスポート"},
-    "importSettingsLabel": {"message": "設定をインポート"},
-    "importSettingsCaptionLabel": {"message": "コンピューターに保存した設定ファイルを読み込みます。"},
-    "importButtonLabel": {"message": "インポート"},
-    "resetSettingsLabel": {"message": "設定をリセット"},
-    "resetSettingsCaptionLabel": {"message": "すべての設定をデフォルトに戻します。"},
-    "resetSettingsButtonLabel": {"message": "リセット"},
-    "shortcutsLabel": {"message": "ショートカット"},
-    "keyboardShortcutsLabel": {"message": "キーボードショートカット"},
-    "setKeyboardShortCutsMessage": {"message": "キーボードショートカットを設定します。"},
-    "typeShortcutMessage": {"message": "ショートカットを入力"},
-    "typeLetterMessage": {"message": "文字を入力"},
-    "includeModifierKeysMessage": {"message": "CtrlまたはAltを含めてください"},
-    "includeMacModifierKeysMessage": {"message": "Command、Ctrl、またはAltを含めてください"},
-    "invalidLetterMessage": {"message": "この文字は使用できません"},
-    "invalidShortcutMessage": {"message": "このショートカットは使用できません"},
-    "clear": {"message": "消去"},
-    "reset": {"message": "リセット"},
-    "informationLabel": {"message": "情報"},
-    "settingsLoadingLabel": {"message": "設定を読み込み中..."},
-    "settingsLoadErrorLabel": {"message": "設定を読み込めませんでした。ブラウザーのコンソールを確認して、このページを再読み込みしてください。"},
-    "additionalPermissionLabel": {"message": "ウェブページでの検索を有効にする"},
-    "additionalPermissionCaptionLabel": {"message": "ウェブページでWikipedia Previewを使用するには追加の権限が必要です。"},
-    "enableLabel": {"message": "有効にする"},
-    "backersLabel": {"message": "支援者"},
-    "licenseLabel": {"message": "ライセンス"},
-    "iconAttributionsLabel": {"message": "アイコンとベクター画像のクレジット"},
-    "donationLabel": {"message": "寄付をお願いします"},
-    "donationCaptionLabel": {"message": "Wikipedia Previewをご利用いただきありがとうございます。<br>拡張機能の開発を続けるうえで、皆さまのご支援が大きな励みになります。<br>お気に召しましたら、ぜひ寄付をご検討ください。"},
-    "sponsorsLabel": {"message": "スポンサー"},
-    "addonPageLabel": {"message": "アドオンページ"},
-    "extensionPageLabel": {"message": "拡張機能のページ"},
-    "privacyPolicyLabel": {"message": "プライバシーポリシー"},
-    "addonUrl": {"message": "https://addons.mozilla.org/hu/firefox/addon/wikipedia-preview/"},
-    "networkError": {"message": "エラー: ネットワーク接続を確認してください。"},
-    "unavailableError": {"message": "エラー: サービスの利用上限に達しました。しばらくしてからもう一度お試しください。"},
-    "deeplAuthError": {"message": "エラー: DeepL APIの認証に失敗しました。設定ページで認証キーとプランを正しく設定してください。"},
-    "unknownError": {"message": "エラー: 不明なエラー"},
-    "wikipediaSearchTextMenu": {"message": "選択したテキストをWikipedia Previewで検索"},
-    "openPopupDescription": {"message": "ツールバーのポップアップを開く"},
-    "shouldUseSecondTargetLangLabel": {"message": "2つ目のWikipediaでも検索"},
-    "shouldUseSecondTargetLangCaptionLabel": {"message": "有効にすると、Wikipediaをこの言語でも検索します。"},
-    "firstInformationText": {"message": "別の言語で結果を表示するには、設定から2つ目のWikipediaを追加できます。"},
-    "lang_af": {"message": "アフリカーンス語"},
-    "lang_sq": {"message": "アルバニア語"},
-    "lang_am": {"message": "アムハラ語"},
-    "lang_ar": {"message": "アラビア語"},
-    "lang_hy": {"message": "アルメニア語"},
-    "lang_az": {"message": "アゼルバイジャン語"},
-    "lang_eu": {"message": "バスク語"},
-    "lang_be": {"message": "ベラルーシ語"},
-    "lang_bn": {"message": "ベンガル語"},
-    "lang_bs": {"message": "ボスニア語"},
-    "lang_bg": {"message": "ブルガリア語"},
-    "lang_ca": {"message": "カタルーニャ語"},
-    "lang_ceb": {"message": "セブアノ語"},
-    "lang_ny": {"message": "チェワ語"},
-    "lang_zh_CN": {"message": "中国語（簡体字）"},
-    "lang_zh_TW": {"message": "中国語（繁体字）"},
-    "lang_co": {"message": "コルシカ語"},
-    "lang_hr": {"message": "クロアチア語"},
-    "lang_cs": {"message": "チェコ語"},
-    "lang_da": {"message": "デンマーク語"},
-    "lang_nl": {"message": "オランダ語"},
-    "lang_en": {"message": "英語"},
-    "lang_eo": {"message": "エスペラント語"},
-    "lang_et": {"message": "エストニア語"},
-    "lang_fi": {"message": "フィンランド語"},
-    "lang_fr": {"message": "フランス語"},
-    "lang_fy": {"message": "西フリジア語"},
-    "lang_gl": {"message": "ガリシア語"},
-    "lang_ka": {"message": "ジョージア語"},
-    "lang_de": {"message": "ドイツ語"},
-    "lang_el": {"message": "ギリシャ語"},
-    "lang_gu": {"message": "グジャラート語"},
-    "lang_ht": {"message": "ハイチ語"},
-    "lang_ha": {"message": "ハウサ語"},
-    "lang_haw": {"message": "ハワイ語"},
-    "lang_he": {"message": "ヘブライ語"},
-    "lang_hi": {"message": "ヒンディー語"},
-    "lang_hu": {"message": "ハンガリー語"},
-    "lang_is": {"message": "アイスランド語"},
-    "lang_ig": {"message": "イボ語"},
-    "lang_id": {"message": "インドネシア語"},
-    "lang_ga": {"message": "アイルランド語"},
-    "lang_it": {"message": "イタリア語"},
-    "lang_ja": {"message": "日本語"},
-    "lang_jv": {"message": "ジャワ語"},
-    "lang_kn": {"message": "カンナダ語"},
-    "lang_kk": {"message": "カザフ語"},
-    "lang_km": {"message": "クメール語"},
-    "lang_rw": {"message": "ルワンダ語"},
-    "lang_ky": {"message": "キルギス語"},
-    "lang_ko": {"message": "韓国語"},
-    "lang_ku": {"message": "クルド語"},
-    "lang_lo": {"message": "ラオ語"},
-    "lang_la": {"message": "ラテン語"},
-    "lang_lv": {"message": "ラトビア語"},
-    "lang_lt": {"message": "リトアニア語"},
-    "lang_lb": {"message": "ルクセンブルク語"},
-    "lang_mk": {"message": "マケドニア語"},
-    "lang_mg": {"message": "マダガスカル語"},
-    "lang_ms": {"message": "マレー語"},
-    "lang_ml": {"message": "マラヤーラム語"},
-    "lang_mt": {"message": "マルタ語"},
-    "lang_mi": {"message": "マオリ語"},
-    "lang_mr": {"message": "マラーティー語"},
-    "lang_mn": {"message": "モンゴル語"},
-    "lang_hmn": {"message": "モン語"},
-    "lang_my": {"message": "ミャンマー語"},
-    "lang_ne": {"message": "ネパール語"},
-    "lang_no": {"message": "ノルウェー語"},
-    "lang_nb": {"message": "ノルウェー語（ブークモール）"},
-    "lang_or": {"message": "オディア語（オリヤー語）"},
-    "lang_fa": {"message": "ペルシア語"},
-    "lang_pl": {"message": "ポーランド語"},
-    "lang_pt": {"message": "ポルトガル語"},
-    "lang_pa": {"message": "パンジャブ語"},
-    "lang_ps": {"message": "パシュトー語"},
-    "lang_ro": {"message": "ルーマニア語"},
-    "lang_ru": {"message": "ロシア語"},
-    "lang_sm": {"message": "サモア語"},
-    "lang_gd": {"message": "スコットランド・ゲール語"},
-    "lang_sr": {"message": "セルビア語"},
-    "lang_st": {"message": "ソト語"},
-    "lang_sn": {"message": "ショナ語"},
-    "lang_sd": {"message": "シンド語"},
-    "lang_si": {"message": "シンハラ語"},
-    "lang_sk": {"message": "スロバキア語"},
-    "lang_sl": {"message": "スロベニア語"},
-    "lang_so": {"message": "ソマリ語"},
-    "lang_es": {"message": "スペイン語"},
-    "lang_su": {"message": "スンダ語"},
-    "lang_sw": {"message": "スワヒリ語"},
-    "lang_sv": {"message": "スウェーデン語"},
-    "lang_tl": {"message": "タガログ語"},
-    "lang_tg": {"message": "タジク語"},
-    "lang_ta": {"message": "タミル語"},
-    "lang_tt": {"message": "タタール語"},
-    "lang_te": {"message": "テルグ語"},
-    "lang_th": {"message": "タイ語"},
-    "lang_tr": {"message": "トルコ語"},
-    "lang_tk": {"message": "トルクメン語"},
-    "lang_uk": {"message": "ウクライナ語"},
-    "lang_ur": {"message": "ウルドゥー語"},
-    "lang_ug": {"message": "ウイグル語"},
-    "lang_uz": {"message": "ウズベク語"},
-    "lang_vi": {"message": "ベトナム語"},
-    "lang_cy": {"message": "ウェールズ語"},
-    "lang_xh": {"message": "コサ語"},
-    "lang_yi": {"message": "イディッシュ語"},
-    "lang_yo": {"message": "ヨルバ語"},
-    "lang_zu": {"message": "ズールー語"},
-    "lang_en_US": {"message": "英語（アメリカ）"},
-    "lang_en_GB": {"message": "英語（イギリス）"},
-    "lang_pt_PT": {"message": "ポルトガル語"},
-    "lang_pt_BR": {"message": "ポルトガル語（ブラジル）"},
-    "lang_zh": {"message": "中国語"},
-    "notFound": {"message": "検索条件に一致する結果はありません。"},
-    "privacyPolicyMenuTitle": {"message": "プライバシーポリシー"}
+    "extName": {
+        "message": "Wikipedia Preview"
+    },
+    "extDescription": {
+        "message": "選択したテキストをもとにWikipediaを検索"
+    },
+    "donateWithPaypalLabel": {
+        "message": "PayPalで寄付"
+    },
+    "donateLabel": {
+        "message": "寄付"
+    },
+    "enableOnThisPage": {
+        "message": "このページでの検索を有効にする"
+    },
+    "disableOnThisPage": {
+        "message": "このページでの検索を無効にする"
+    },
+    "initialTextArea": {
+        "message": "テキストを入力"
+    },
+    "searchHistoryLabel": {
+        "message": "検索履歴"
+    },
+    "searchTermLabel": {
+        "message": "検索語"
+    },
+    "clearSearchHistoryLabel": {
+        "message": "履歴を消去"
+    },
+    "emptySearchHistoryLabel": {
+        "message": "検索履歴はありません"
+    },
+    "mainMenuLabel": {
+        "message": "ホーム"
+    },
+    "searchLabel": {
+        "message": "検索"
+    },
+    "searchEmptyMessage": {
+        "message": "検索欄に入力すると、候補やすぐに読める記事カードが表示されます。"
+    },
+    "moreResultsFor": {
+        "message": "その他の検索結果:"
+    },
+    "previousResultsLabel": {
+        "message": "前へ"
+    },
+    "resultsRangeLabel": {
+        "message": "$1～$2件目の結果"
+    },
+    "recentSearchTerms": {
+        "message": "最近の検索"
+    },
+    "readFullArticleLabel": {
+        "message": "記事全文を読む"
+    },
+    "feedLabel": {
+        "message": "フィード"
+    },
+    "feedLoadingLabel": {
+        "message": "フィードを読み込み中..."
+    },
+    "featuredArticleLabel": {
+        "message": "今日の秀逸な記事"
+    },
+    "dailyLatestFeaturedArticleLabel": {
+        "message": "最新の秀逸な記事"
+    },
+    "dailyFeaturedArticleLoading": {
+        "message": "今日の秀逸な記事を読み込み中..."
+    },
+    "dailyFeaturedArticleFallback": {
+        "message": "今日は秀逸な記事がありません。代わりに最も読まれている記事を表示します。"
+    },
+    "dailyFeaturedArticleError": {
+        "message": "今日の秀逸な記事を読み込めませんでした。"
+    },
+    "dailyFeaturedArticleRetryLabel": {
+        "message": "再試行"
+    },
+    "dailyImageOfDayLabel": {
+        "message": "今日の画像"
+    },
+    "dailyImageArtistLabel": {
+        "message": "撮影者"
+    },
+    "dailyImageLicenseLabel": {
+        "message": "ライセンス"
+    },
+    "dailyTrendingArticleLabel": {
+        "message": "話題の記事"
+    },
+    "dailyTrendingArticleError": {
+        "message": "話題の記事を読み込めませんでした。"
+    },
+    "dailyImageOfDayError": {
+        "message": "今日の画像を読み込めませんでした。"
+    },
+    "dailyArticleImageError": {
+        "message": "記事の画像を読み込めませんでした。"
+    },
+    "dailyMostReadLabel": {
+        "message": "最も読まれている記事"
+    },
+    "dailyMostReadError": {
+        "message": "最も読まれている記事を読み込めませんでした。"
+    },
+    "readMoreLabel": {
+        "message": "読む"
+    },
+    "moreResultsLabel": {
+        "message": "次へ"
+    },
+    "shareLabel": {
+        "message": "共有"
+    },
+    "emailLabel": {
+        "message": "メール"
+    },
+    "downloadLabel": {
+        "message": "ダウンロード"
+    },
+    "downloadErrorLabel": {
+        "message": "ダウンロードに失敗しました。"
+    },
+    "shareCopiedLabel": {
+        "message": "コンテンツをクリップボードにコピーしました。"
+    },
+    "shareErrorLabel": {
+        "message": "共有に失敗しました。"
+    },
+    "wikipediaLabel": {
+        "message": "Wikipedia"
+    },
+    "dailyDidYouKnowLabel": {
+        "message": "ご存じですか"
+    },
+    "dailyNewsLabel": {
+        "message": "ニュース"
+    },
+    "dailyOnThisDayLabel": {
+        "message": "今日は何の日"
+    },
+    "favoritesLabel": {
+        "message": "お気に入り"
+    },
+    "removeFromFavoritesLabel": {
+        "message": "お気に入りから削除"
+    },
+    "emptyFavoritesLabel": {
+        "message": "お気に入りはありません"
+    },
+    "addToFavoritesLabel": {
+        "message": "お気に入りに追加"
+    },
+    "removeFromFavoritesConfirmLabel": {
+        "message": "この記事をお気に入りから削除しますか？"
+    },
+    "addedToFavoritesLabel": {
+        "message": "保存しました"
+    },
+    "loadingSearchLabel": {
+        "message": "検索結果を読み込み中..."
+    },
+    "loadingFullArticleLabel": {
+        "message": "記事全文を読み込み中..."
+    },
+    "backFullArticleLabel": {
+        "message": "前の記事に戻る"
+    },
+    "closeFullArticleLabel": {
+        "message": "記事全文を閉じる"
+    },
+    "closeNextResultsLabel": {
+        "message": "追加の検索結果を閉じる"
+    },
+    "openInNewWindowLabel": {
+        "message": "新しいウィンドウで開く"
+    },
+    "copyLabel": {
+        "message": "コピー"
+    },
+    "copiedLabel": {
+        "message": "コピーしました"
+    },
+    "listenLabel": {
+        "message": "読み上げ"
+    },
+    "targetLangLabel": {
+        "message": "検索対象の言語"
+    },
+    "allLangLabel": {
+        "message": "すべての言語"
+    },
+    "recentLangLabel": {
+        "message": "最近使用した言語"
+    },
+    "settingsLabel": {
+        "message": "設定"
+    },
+    "generalLabel": {
+        "message": "一般"
+    },
+    "targetLangCaptionLabel": {
+        "message": "デフォルトの検索対象言語を選択してください。"
+    },
+    "feedLangLabel": {
+        "message": "ウィキペディアのフィード"
+    },
+    "feedLangSettingLabel": {
+        "message": "ウィキペディアのフィード設定"
+    },
+    "feedLangCaptionLabel": {
+        "message": "フィードに使用するデフォルトのウィキペディアを選択してください。"
+    },
+    "webPageLabel": {
+        "message": "ウェブページ"
+    },
+    "whenSelectTextLabel": {
+        "message": "テキスト選択時の動作"
+    },
+    "ifAutoSearchLabel": {
+        "message": "検索パネルを表示"
+    },
+    "ifAutoSearchCaptionLabel": {
+        "message": "ボタンを表示せずに検索パネルを直接表示します。"
+    },
+    "ifShowButtonLabel": {
+        "message": "検索ボタンを表示"
+    },
+    "ifShowButtonCaptionLabel": {
+        "message": "クリックするとパネルを開く検索ボタンを表示します。"
+    },
+    "dontshowbuttonlabel": {
+        "message": "ボタンもパネルも表示しない"
+    },
+    "dontshowbuttonCaptionlabel": {
+        "message": "検索ボタンと検索パネルを表示しません。"
+    },
+    "disableWikipediaSearchLabel": {
+        "message": "検索を無効にする"
+    },
+    "isDisabledInTextFieldsLabel": {
+        "message": "テキスト入力欄での検索を無効にする"
+    },
+    "isDisabledInTextFieldsCaptionLabel": {
+        "message": "テキスト入力欄で文字列を選択したときに検索ボタンやパネルを表示しません。"
+    },
+    "isDisabledInCodeElementLabel": {
+        "message": "コードタグ内での検索を無効にする"
+    },
+    "isDisabledInCodeElementCaptionLabel": {
+        "message": "コードタグ内の文字列を選択したときに検索ボタンやパネルを表示しません。"
+    },
+    "ifOnlySearchWhenModifierKeyPressedLabel": {
+        "message": "修飾キーを押したときに検索"
+    },
+    "ifOnlySearchWhenModifierKeyPressedCaptionLabel": {
+        "message": "指定した修飾キーを押したときだけ検索を表示します。"
+    },
+    "modifierKeyLabel": {
+        "message": "修飾キー"
+    },
+    "shiftLabel": {
+        "message": "Shift"
+    },
+    "ctrlLabel": {
+        "message": "Ctrl"
+    },
+    "altLabel": {
+        "message": "Alt"
+    },
+    "cmdLabel": {
+        "message": "Command"
+    },
+    "disableUrlListLabel": {
+        "message": "検索を無効にするURLリスト"
+    },
+    "disableUrlListCaptionLabel": {
+        "message": "ページのURLがリストに一致すると、そのウェブページでの検索を無効にします。ワイルドカード「*」を使用できます。"
+    },
+    "toolbarLabel": {
+        "message": "ツールバーのポップアップ"
+    },
+    "secondTargetLangLabel": {
+        "message": "2つ目の言語"
+    },
+    "secondTargetLangCaptionLabel": {
+        "message": "2つ目の検索対象言語を選択してください。"
+    },
+    "ignoredDocumentLangLabel": {
+        "message": "lang属性に基づいて検索を無効にする"
+    },
+    "ignoredDocumentLangCaptionLabel": {
+        "message": "ページのHTML要素のlang属性がリストに一致すると検索を無効にします。言語タグをカンマ区切りで入力してください。"
+    },
+    "waitTimeLabel": {
+        "message": "検索の待ち時間"
+    },
+    "waitTimeCaptionLabel": {
+        "message": "文字を入力してから検索を開始するまでの待ち時間を指定します（ミリ秒）。"
+    },
+    "waitTime2CaptionLabel": {
+        "message": "短時間に何度も検索すると、一時的に利用できなくなる場合があります。"
+    },
+    "menuLabel": {
+        "message": "コンテキストメニュー"
+    },
+    "ifShowMenuLabel": {
+        "message": "コンテキストメニューを表示"
+    },
+    "ifShowMenuCaptionLabel": {
+        "message": "ウェブページまたはタブを右クリックしたときに表示されるコンテキストメニューに項目を追加します。"
+    },
+    "styleLabel": {
+        "message": "スタイル"
+    },
+    "themeLabel": {
+        "message": "テーマ"
+    },
+    "themeCaptionLabel": {
+        "message": "配色を指定します。"
+    },
+    "lightLabel": {
+        "message": "ライト"
+    },
+    "darkLabel": {
+        "message": "ダーク"
+    },
+    "systemLabel": {
+        "message": "システム"
+    },
+    "buttonStyleLabel": {
+        "message": "検索ボタン"
+    },
+    "buttonStyleCaptionLabel": {
+        "message": "ウェブページに表示する検索ボタンのスタイルを指定します。"
+    },
+    "buttonSizeLabel": {
+        "message": "サイズ"
+    },
+    "buttonPositionLabel": {
+        "message": "表示位置"
+    },
+    "topRightLabel": {
+        "message": "右上"
+    },
+    "bottomRightLabel": {
+        "message": "右下"
+    },
+    "topLeftLabel": {
+        "message": "左上"
+    },
+    "bottomLeftLabel": {
+        "message": "左下"
+    },
+    "topLabel": {
+        "message": "上"
+    },
+    "bottomLabel": {
+        "message": "下"
+    },
+    "leftLabel": {
+        "message": "左"
+    },
+    "rightLabel": {
+        "message": "右"
+    },
+    "positionOffsetLabel": {
+        "message": "表示位置 - オフセット"
+    },
+    "panelStyleLabel": {
+        "message": "検索パネル"
+    },
+    "panelStyleCaptionLabel": {
+        "message": "ウェブページに表示する検索パネルのスタイルを指定します。"
+    },
+    "widthLabel": {
+        "message": "幅"
+    },
+    "heightLabel": {
+        "message": "高さ"
+    },
+    "fontSizeLabel": {
+        "message": "文字サイズ"
+    },
+    "referencePointLabel": {
+        "message": "表示位置 - 基準点"
+    },
+    "bottomSelectedTextLabel": {
+        "message": "選択したテキストの下"
+    },
+    "topSelectedTextLabel": {
+        "message": "選択したテキストの上"
+    },
+    "clickedPointLabel": {
+        "message": "クリックした位置"
+    },
+    "displayDirectionLabel": {
+        "message": "表示位置 - 方向"
+    },
+    "resultFontColorLabel": {
+        "message": "検索結果の文字色"
+    },
+    "isOverrideColorsLabel": {
+        "message": "下記の色でデフォルトの色を上書きする"
+    },
+    "bgColorLabel": {
+        "message": "背景色"
+    },
+    "otherLabel": {
+        "message": "その他"
+    },
+    "isShowOptionsPageWhenUpdatedLabel": {
+        "message": "更新時にオプションページを表示"
+    },
+    "isShowOptionsPageWhenUpdatedCaptionLabel": {
+        "message": "Wikipedia Previewの更新時にオプションページを表示し、更新内容をすぐに確認できるようにします。"
+    },
+    "isDebugModeLabel": {
+        "message": "デバッグモードを有効にする"
+    },
+    "isDebugModeCaptionLabel": {
+        "message": "デバッグモードを有効にすると、ログがデバッガーに出力されます。"
+    },
+    "exportSettingsLabel": {
+        "message": "設定をエクスポート"
+    },
+    "exportSettingsCaptionLabel": {
+        "message": "設定をJSONファイルとしてコンピューターに保存します。"
+    },
+    "exportButtonLabel": {
+        "message": "エクスポート"
+    },
+    "importSettingsLabel": {
+        "message": "設定をインポート"
+    },
+    "importSettingsCaptionLabel": {
+        "message": "コンピューターに保存した設定ファイルを読み込みます。"
+    },
+    "importButtonLabel": {
+        "message": "インポート"
+    },
+    "resetSettingsLabel": {
+        "message": "設定をリセット"
+    },
+    "resetSettingsCaptionLabel": {
+        "message": "すべての設定をデフォルトに戻します。"
+    },
+    "resetSettingsButtonLabel": {
+        "message": "リセット"
+    },
+    "shortcutsLabel": {
+        "message": "ショートカット"
+    },
+    "keyboardShortcutsLabel": {
+        "message": "キーボードショートカット"
+    },
+    "setKeyboardShortCutsMessage": {
+        "message": "キーボードショートカットを設定します。"
+    },
+    "typeShortcutMessage": {
+        "message": "ショートカットを入力"
+    },
+    "typeLetterMessage": {
+        "message": "文字を入力"
+    },
+    "includeModifierKeysMessage": {
+        "message": "CtrlまたはAltを含めてください"
+    },
+    "includeMacModifierKeysMessage": {
+        "message": "Command、Ctrl、またはAltを含めてください"
+    },
+    "invalidLetterMessage": {
+        "message": "この文字は使用できません"
+    },
+    "invalidShortcutMessage": {
+        "message": "このショートカットは使用できません"
+    },
+    "clear": {
+        "message": "消去"
+    },
+    "reset": {
+        "message": "リセット"
+    },
+    "informationLabel": {
+        "message": "情報"
+    },
+    "settingsLoadingLabel": {
+        "message": "設定を読み込み中..."
+    },
+    "settingsLoadErrorLabel": {
+        "message": "設定を読み込めませんでした。ブラウザーのコンソールを確認して、このページを再読み込みしてください。"
+    },
+    "additionalPermissionLabel": {
+        "message": "ウェブページでの検索を有効にする"
+    },
+    "additionalPermissionCaptionLabel": {
+        "message": "ウェブページでWikipedia Previewを使用するには追加の権限が必要です。"
+    },
+    "enableLabel": {
+        "message": "有効にする"
+    },
+    "backersLabel": {
+        "message": "支援者"
+    },
+    "licenseLabel": {
+        "message": "ライセンス"
+    },
+    "iconAttributionsLabel": {
+        "message": "アイコンとベクター画像のクレジット"
+    },
+    "donationLabel": {
+        "message": "寄付をお願いします"
+    },
+    "donationCaptionLabel": {
+        "message": "Wikipedia Previewをご利用いただきありがとうございます。<br>拡張機能の開発を続けるうえで、皆さまのご支援が大きな励みになります。<br>お気に召しましたら、ぜひ寄付をご検討ください。"
+    },
+    "sponsorsLabel": {
+        "message": "スポンサー"
+    },
+    "addonPageLabel": {
+        "message": "アドオンページ"
+    },
+    "extensionPageLabel": {
+        "message": "拡張機能のページ"
+    },
+    "privacyPolicyLabel": {
+        "message": "プライバシーポリシー"
+    },
+    "addonUrl": {
+        "message": "https://addons.mozilla.org/hu/firefox/addon/wikipedia-preview/"
+    },
+    "networkError": {
+        "message": "エラー: ネットワーク接続を確認してください。"
+    },
+    "unavailableError": {
+        "message": "エラー: サービスの利用上限に達しました。しばらくしてからもう一度お試しください。"
+    },
+    "deeplAuthError": {
+        "message": "エラー: DeepL APIの認証に失敗しました。設定ページで認証キーとプランを正しく設定してください。"
+    },
+    "unknownError": {
+        "message": "エラー: 不明なエラー"
+    },
+    "wikipediaSearchTextMenu": {
+        "message": "選択したテキストをWikipedia Previewで検索"
+    },
+    "openPopupDescription": {
+        "message": "ツールバーのポップアップを開く"
+    },
+    "shouldUseSecondTargetLangLabel": {
+        "message": "2つ目のWikipediaでも検索"
+    },
+    "shouldUseSecondTargetLangCaptionLabel": {
+        "message": "有効にすると、Wikipediaをこの言語でも検索します。"
+    },
+    "firstInformationText": {
+        "message": "別の言語で結果を表示するには、設定から2つ目のWikipediaを追加できます。"
+    },
+    "lang_af": {
+        "message": "アフリカーンス語"
+    },
+    "lang_sq": {
+        "message": "アルバニア語"
+    },
+    "lang_am": {
+        "message": "アムハラ語"
+    },
+    "lang_ar": {
+        "message": "アラビア語"
+    },
+    "lang_hy": {
+        "message": "アルメニア語"
+    },
+    "lang_az": {
+        "message": "アゼルバイジャン語"
+    },
+    "lang_eu": {
+        "message": "バスク語"
+    },
+    "lang_be": {
+        "message": "ベラルーシ語"
+    },
+    "lang_bn": {
+        "message": "ベンガル語"
+    },
+    "lang_bs": {
+        "message": "ボスニア語"
+    },
+    "lang_bg": {
+        "message": "ブルガリア語"
+    },
+    "lang_ca": {
+        "message": "カタルーニャ語"
+    },
+    "lang_ceb": {
+        "message": "セブアノ語"
+    },
+    "lang_ny": {
+        "message": "チェワ語"
+    },
+    "lang_zh_CN": {
+        "message": "中国語（簡体字）"
+    },
+    "lang_zh_TW": {
+        "message": "中国語（繁体字）"
+    },
+    "lang_co": {
+        "message": "コルシカ語"
+    },
+    "lang_hr": {
+        "message": "クロアチア語"
+    },
+    "lang_cs": {
+        "message": "チェコ語"
+    },
+    "lang_da": {
+        "message": "デンマーク語"
+    },
+    "lang_nl": {
+        "message": "オランダ語"
+    },
+    "lang_en": {
+        "message": "英語"
+    },
+    "lang_eo": {
+        "message": "エスペラント語"
+    },
+    "lang_et": {
+        "message": "エストニア語"
+    },
+    "lang_fi": {
+        "message": "フィンランド語"
+    },
+    "lang_fr": {
+        "message": "フランス語"
+    },
+    "lang_fy": {
+        "message": "西フリジア語"
+    },
+    "lang_gl": {
+        "message": "ガリシア語"
+    },
+    "lang_ka": {
+        "message": "ジョージア語"
+    },
+    "lang_de": {
+        "message": "ドイツ語"
+    },
+    "lang_el": {
+        "message": "ギリシャ語"
+    },
+    "lang_gu": {
+        "message": "グジャラート語"
+    },
+    "lang_ht": {
+        "message": "ハイチ語"
+    },
+    "lang_ha": {
+        "message": "ハウサ語"
+    },
+    "lang_haw": {
+        "message": "ハワイ語"
+    },
+    "lang_he": {
+        "message": "ヘブライ語"
+    },
+    "lang_hi": {
+        "message": "ヒンディー語"
+    },
+    "lang_hu": {
+        "message": "ハンガリー語"
+    },
+    "lang_is": {
+        "message": "アイスランド語"
+    },
+    "lang_ig": {
+        "message": "イボ語"
+    },
+    "lang_id": {
+        "message": "インドネシア語"
+    },
+    "lang_ga": {
+        "message": "アイルランド語"
+    },
+    "lang_it": {
+        "message": "イタリア語"
+    },
+    "lang_ja": {
+        "message": "日本語"
+    },
+    "lang_jv": {
+        "message": "ジャワ語"
+    },
+    "lang_kn": {
+        "message": "カンナダ語"
+    },
+    "lang_kk": {
+        "message": "カザフ語"
+    },
+    "lang_km": {
+        "message": "クメール語"
+    },
+    "lang_rw": {
+        "message": "ルワンダ語"
+    },
+    "lang_ky": {
+        "message": "キルギス語"
+    },
+    "lang_ko": {
+        "message": "韓国語"
+    },
+    "lang_ku": {
+        "message": "クルド語"
+    },
+    "lang_lo": {
+        "message": "ラオ語"
+    },
+    "lang_la": {
+        "message": "ラテン語"
+    },
+    "lang_lv": {
+        "message": "ラトビア語"
+    },
+    "lang_lt": {
+        "message": "リトアニア語"
+    },
+    "lang_lb": {
+        "message": "ルクセンブルク語"
+    },
+    "lang_mk": {
+        "message": "マケドニア語"
+    },
+    "lang_mg": {
+        "message": "マダガスカル語"
+    },
+    "lang_ms": {
+        "message": "マレー語"
+    },
+    "lang_ml": {
+        "message": "マラヤーラム語"
+    },
+    "lang_mt": {
+        "message": "マルタ語"
+    },
+    "lang_mi": {
+        "message": "マオリ語"
+    },
+    "lang_mr": {
+        "message": "マラーティー語"
+    },
+    "lang_mn": {
+        "message": "モンゴル語"
+    },
+    "lang_hmn": {
+        "message": "モン語"
+    },
+    "lang_my": {
+        "message": "ミャンマー語"
+    },
+    "lang_ne": {
+        "message": "ネパール語"
+    },
+    "lang_no": {
+        "message": "ノルウェー語"
+    },
+    "lang_nb": {
+        "message": "ノルウェー語（ブークモール）"
+    },
+    "lang_or": {
+        "message": "オディア語（オリヤー語）"
+    },
+    "lang_fa": {
+        "message": "ペルシア語"
+    },
+    "lang_pl": {
+        "message": "ポーランド語"
+    },
+    "lang_pt": {
+        "message": "ポルトガル語"
+    },
+    "lang_pa": {
+        "message": "パンジャブ語"
+    },
+    "lang_ps": {
+        "message": "パシュトー語"
+    },
+    "lang_ro": {
+        "message": "ルーマニア語"
+    },
+    "lang_ru": {
+        "message": "ロシア語"
+    },
+    "lang_sm": {
+        "message": "サモア語"
+    },
+    "lang_gd": {
+        "message": "スコットランド・ゲール語"
+    },
+    "lang_sr": {
+        "message": "セルビア語"
+    },
+    "lang_st": {
+        "message": "ソト語"
+    },
+    "lang_sn": {
+        "message": "ショナ語"
+    },
+    "lang_sd": {
+        "message": "シンド語"
+    },
+    "lang_si": {
+        "message": "シンハラ語"
+    },
+    "lang_sk": {
+        "message": "スロバキア語"
+    },
+    "lang_sl": {
+        "message": "スロベニア語"
+    },
+    "lang_so": {
+        "message": "ソマリ語"
+    },
+    "lang_es": {
+        "message": "スペイン語"
+    },
+    "lang_su": {
+        "message": "スンダ語"
+    },
+    "lang_sw": {
+        "message": "スワヒリ語"
+    },
+    "lang_sv": {
+        "message": "スウェーデン語"
+    },
+    "lang_tl": {
+        "message": "タガログ語"
+    },
+    "lang_tg": {
+        "message": "タジク語"
+    },
+    "lang_ta": {
+        "message": "タミル語"
+    },
+    "lang_tt": {
+        "message": "タタール語"
+    },
+    "lang_te": {
+        "message": "テルグ語"
+    },
+    "lang_th": {
+        "message": "タイ語"
+    },
+    "lang_tr": {
+        "message": "トルコ語"
+    },
+    "lang_tk": {
+        "message": "トルクメン語"
+    },
+    "lang_uk": {
+        "message": "ウクライナ語"
+    },
+    "lang_ur": {
+        "message": "ウルドゥー語"
+    },
+    "lang_ug": {
+        "message": "ウイグル語"
+    },
+    "lang_uz": {
+        "message": "ウズベク語"
+    },
+    "lang_vi": {
+        "message": "ベトナム語"
+    },
+    "lang_cy": {
+        "message": "ウェールズ語"
+    },
+    "lang_xh": {
+        "message": "コサ語"
+    },
+    "lang_yi": {
+        "message": "イディッシュ語"
+    },
+    "lang_yo": {
+        "message": "ヨルバ語"
+    },
+    "lang_zu": {
+        "message": "ズールー語"
+    },
+    "lang_en_US": {
+        "message": "英語（アメリカ）"
+    },
+    "lang_en_GB": {
+        "message": "英語（イギリス）"
+    },
+    "lang_pt_PT": {
+        "message": "ポルトガル語"
+    },
+    "lang_pt_BR": {
+        "message": "ポルトガル語（ブラジル）"
+    },
+    "lang_zh": {
+        "message": "中国語"
+    },
+    "notFound": {
+        "message": "検索条件に一致する結果はありません。"
+    },
+    "privacyPolicyMenuTitle": {
+        "message": "プライバシーポリシー"
+    }
 }

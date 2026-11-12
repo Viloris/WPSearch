@@ -1,306 +1,914 @@
 {
-    "extName": {"message": "Wikipedia Preview"},
-    "extDescription": {"message": "Zoek op Wikipedia op basis van de geselecteerde tekst"},
-    "donateWithPaypalLabel": {"message": "Doneer met PayPal"},
-    "donateLabel": {"message": "Doneren"},
-    "enableOnThisPage": {"message": "Zoeken op deze pagina inschakelen"},
-    "disableOnThisPage": {"message": "Zoeken op deze pagina uitschakelen"},
-    "initialTextArea": {"message": "Tekst invoeren"},
-    "searchHistoryLabel": {"message": "Zoekgeschiedenis"},
-    "searchTermLabel": {"message": "Zoekterm"},
-    "clearSearchHistoryLabel": {"message": "Geschiedenis wissen"},
-    "emptySearchHistoryLabel": {"message": "Nog geen zoekopdrachten"},
-    "mainMenuLabel": {"message": "Startpagina"},
-    "searchLabel": {"message": "Zoeken"},
-    "searchEmptyMessage": {"message": "Typ in het zoekveld voor bijgewerkte resultaten, suggesties en artikelkaarten die klaar zijn om te lezen."},
-    "moreResultsFor": {"message": "Meer resultaten:"},
-    "previousResultsLabel": {"message": "Vorige"},
-    "resultsRangeLabel": {"message": "Resultaten $1–$2"},
-    "recentSearchTerms": {"message": "Recent"},
-    "readFullArticleLabel": {"message": "Lees het volledige artikel"},
-    "feedLabel": {"message": "Feed"},
-    "feedLoadingLabel": {"message": "Feed laden..."},
-    "featuredArticleLabel": {"message": "Uitgelicht artikel van de dag"},
-    "dailyLatestFeaturedArticleLabel": {"message": "Nieuwste uitgelichte artikel"},
-    "dailyFeaturedArticleLoading": {"message": "Uitgelicht artikel van vandaag laden..."},
-    "dailyFeaturedArticleFallback": {"message": "Er is vandaag geen uitgelicht artikel beschikbaar; in plaats daarvan wordt het meest gelezen artikel getoond."},
-    "dailyFeaturedArticleError": {"message": "Het uitgelichte artikel van vandaag kon niet worden geladen."},
-    "dailyFeaturedArticleRetryLabel": {"message": "Opnieuw proberen"},
-    "dailyImageOfDayLabel": {"message": "Afbeelding van de dag"},
-    "dailyImageArtistLabel": {"message": "Fotograaf"},
-    "dailyImageLicenseLabel": {"message": "Licentie"},
-    "dailyTrendingArticleLabel": {"message": "Populair artikel"},
-    "dailyTrendingArticleError": {"message": "Het populaire artikel kon niet worden geladen."},
-    "dailyImageOfDayError": {"message": "De afbeelding van de dag kon niet worden geladen."},
-    "dailyArticleImageError": {"message": "De artikelafbeelding kon niet worden geladen."},
-    "dailyMostReadLabel": {"message": "Meest gelezen artikelen"},
-    "dailyMostReadError": {"message": "De meest gelezen artikelen konden niet worden geladen."},
-    "readMoreLabel": {"message": "Lezen"},
-    "moreResultsLabel": {"message": "Volgende"},
-    "shareLabel": {"message": "Delen"},
-    "emailLabel": {"message": "E-mail"},
-    "downloadLabel": {"message": "Downloaden"},
-    "downloadErrorLabel": {"message": "Downloaden mislukt."},
-    "shareCopiedLabel": {"message": "Inhoud naar het klembord gekopieerd."},
-    "shareErrorLabel": {"message": "Delen mislukt."},
-    "wikipediaLabel": {"message": "Wikipedia"},
-    "dailyDidYouKnowLabel": {"message": "Wist je dat?"},
-    "dailyNewsLabel": {"message": "In het nieuws"},
-    "dailyOnThisDayLabel": {"message": "Op deze dag"},
-    "favoritesLabel": {"message": "Favorieten"},
-    "removeFromFavoritesLabel": {"message": "Uit favorieten verwijderen"},
-    "emptyFavoritesLabel": {"message": "Nog geen favorieten"},
-    "addToFavoritesLabel": {"message": "Aan favorieten toevoegen"},
-    "removeFromFavoritesConfirmLabel": {"message": "Weet je zeker dat je dit item uit je favorieten wilt verwijderen?"},
-    "addedToFavoritesLabel": {"message": "Opgeslagen"},
-    "loadingSearchLabel": {"message": "Zoekresultaten laden..."},
-    "loadingFullArticleLabel": {"message": "Volledig artikel laden..."},
-    "backFullArticleLabel": {"message": "Terug naar het vorige artikel"},
-    "closeFullArticleLabel": {"message": "Volledig artikel sluiten"},
-    "closeNextResultsLabel": {"message": "Extra resultaten sluiten"},
-    "openInNewWindowLabel": {"message": "In een nieuw venster openen"},
-    "copyLabel": {"message": "Kopiëren"},
-    "copiedLabel": {"message": "Gekopieerd"},
-    "listenLabel": {"message": "Luisteren"},
-    "targetLangLabel": {"message": "Doeltaal"},
-    "allLangLabel": {"message": "Alle talen"},
-    "recentLangLabel": {"message": "Recente talen"},
-    "settingsLabel": {"message": "Instellingen"},
-    "generalLabel": {"message": "Algemeen"},
-    "targetLangCaptionLabel": {"message": "Selecteer de standaarddoeltaal."},
-    "feedLangLabel": {"message": "Wikipedia-feed"},
-    "feedLangSettingLabel": {"message": "Instellingen voor de Wikipedia-feed"},
-    "feedLangCaptionLabel": {"message": "Selecteer de standaard-Wikipedia voor de feed."},
-    "webPageLabel": {"message": "Webpagina"},
-    "whenSelectTextLabel": {"message": "Gedrag bij het selecteren van tekst"},
-    "ifAutoSearchLabel": {"message": "Zoekpaneel weergeven"},
-    "ifAutoSearchCaptionLabel": {"message": "Toon het zoekpaneel direct zonder de knop weer te geven."},
-    "ifShowButtonLabel": {"message": "Zoekknop weergeven"},
-    "ifShowButtonCaptionLabel": {"message": "Toon de zoekknop om het paneel te openen wanneer erop wordt geklikt."},
-    "dontshowbuttonlabel": {"message": "Knop en paneel niet weergeven"},
-    "dontshowbuttonCaptionlabel": {"message": "Toon de zoekknop en het zoekpaneel niet."},
-    "disableWikipediaSearchLabel": {"message": "Zoeken uitschakelen"},
-    "isDisabledInTextFieldsLabel": {"message": "Zoeken in tekstvelden uitschakelen"},
-    "isDisabledInTextFieldsCaptionLabel": {"message": "Toon de zoekknop of het zoekpaneel niet wanneer je tekst in een tekstveld selecteert."},
-    "isDisabledInCodeElementLabel": {"message": "Zoeken in codetags uitschakelen"},
-    "isDisabledInCodeElementCaptionLabel": {"message": "Toon de zoekknop of het zoekpaneel niet wanneer je tekst in een codetag selecteert."},
-    "ifOnlySearchWhenModifierKeyPressedLabel": {"message": "Zoeken bij indrukken van een modificatietoets"},
-    "ifOnlySearchWhenModifierKeyPressedCaptionLabel": {"message": "Toon zoeken alleen wanneer de opgegeven modificatietoets is ingedrukt."},
-    "modifierKeyLabel": {"message": "Modificatietoets"},
-    "shiftLabel": {"message": "Shift"},
-    "ctrlLabel": {"message": "Ctrl"},
-    "altLabel": {"message": "Alt"},
-    "cmdLabel": {"message": "Command"},
-    "disableUrlListLabel": {"message": "URL-lijst om zoeken uit te schakelen"},
-    "disableUrlListCaptionLabel": {"message": "Als de pagina-URL overeenkomt met de lijst, wordt zoeken op de webpagina uitgeschakeld. De lijst ondersteunt jokertekens \"*\"."},
-    "toolbarLabel": {"message": "Werkbalkpop-up"},
-    "secondTargetLangLabel": {"message": "Tweede taal"},
-    "secondTargetLangCaptionLabel": {"message": "Selecteer de tweede doeltaal."},
-    "ignoredDocumentLangLabel": {"message": "Zoeken uitschakelen op basis van het lang-attribuut"},
-    "ignoredDocumentLangCaptionLabel": {"message": "Schakel zoeken uit als het lang-attribuut van het HTML-element van de pagina overeenkomt met de lijst. Voer door komma's gescheiden taaltags in."},
-    "waitTimeLabel": {"message": "Wachttijd voor zoeken"},
-    "waitTimeCaptionLabel": {"message": "Geef de wachttijd op tussen het invoeren van een teken en het starten van de zoekopdracht (milliseconden)."},
-    "waitTime2CaptionLabel": {"message": "Als je in korte tijd vaak zoekt, is de functie mogelijk tijdelijk niet beschikbaar."},
-    "menuLabel": {"message": "Contextmenu"},
-    "ifShowMenuLabel": {"message": "Contextmenu weergeven"},
-    "ifShowMenuCaptionLabel": {"message": "Voeg items toe aan het contextmenu dat verschijnt wanneer je met de rechtermuisknop op de webpagina of het tabblad klikt."},
-    "styleLabel": {"message": "Stijl"},
-    "themeLabel": {"message": "Thema"},
-    "themeCaptionLabel": {"message": "Geef het kleurenschema op."},
-    "lightLabel": {"message": "Licht"},
-    "darkLabel": {"message": "Donker"},
-    "systemLabel": {"message": "Systeem"},
-    "buttonStyleLabel": {"message": "Zoekknop"},
-    "buttonStyleCaptionLabel": {"message": "Geef de stijl op van de zoekknop die op de webpagina wordt weergegeven."},
-    "buttonSizeLabel": {"message": "Grootte"},
-    "buttonPositionLabel": {"message": "Weergavepositie"},
-    "topRightLabel": {"message": "Rechtsboven"},
-    "bottomRightLabel": {"message": "Rechtsonder"},
-    "topLeftLabel": {"message": "Linksboven"},
-    "bottomLeftLabel": {"message": "Linksonder"},
-    "topLabel": {"message": "Boven"},
-    "bottomLabel": {"message": "Onder"},
-    "leftLabel": {"message": "Links"},
-    "rightLabel": {"message": "Rechts"},
-    "positionOffsetLabel": {"message": "Weergavepositie - Verschuiving"},
-    "panelStyleLabel": {"message": "Zoekpaneel"},
-    "panelStyleCaptionLabel": {"message": "Geef de stijl op van het zoekpaneel dat op de webpagina wordt weergegeven."},
-    "widthLabel": {"message": "Breedte"},
-    "heightLabel": {"message": "Hoogte"},
-    "fontSizeLabel": {"message": "Tekengrootte"},
-    "referencePointLabel": {"message": "Weergavepositie - Referentiepunt"},
-    "bottomSelectedTextLabel": {"message": "Onder de geselecteerde tekst"},
-    "topSelectedTextLabel": {"message": "Boven de geselecteerde tekst"},
-    "clickedPointLabel": {"message": "Aangeklikt punt"},
-    "displayDirectionLabel": {"message": "Weergavepositie - Richting"},
-    "resultFontColorLabel": {"message": "Tekstkleur van zoekresultaten"},
-    "isOverrideColorsLabel": {"message": "Vervang de standaardkleuren door onderstaande kleuren"},
-    "bgColorLabel": {"message": "Achtergrondkleur"},
-    "otherLabel": {"message": "Overig"},
-    "isShowOptionsPageWhenUpdatedLabel": {"message": "Optiepagina weergeven bij bijwerken"},
-    "isShowOptionsPageWhenUpdatedCaptionLabel": {"message": "Toon de optiepagina wanneer Wikipedia Preview wordt bijgewerkt, zodat je snel kunt zien wat er is veranderd."},
-    "isDebugModeLabel": {"message": "Foutopsporingsmodus inschakelen"},
-    "isDebugModeCaptionLabel": {"message": "Wanneer de foutopsporingsmodus is ingeschakeld, worden logboeken naar de debugger geschreven."},
-    "exportSettingsLabel": {"message": "Instellingen exporteren"},
-    "exportSettingsCaptionLabel": {"message": "Sla de instellingen op je computer op als JSON-bestand."},
-    "exportButtonLabel": {"message": "Exporteren"},
-    "importSettingsLabel": {"message": "Instellingen importeren"},
-    "importSettingsCaptionLabel": {"message": "Laad het instellingenbestand dat op je computer is opgeslagen."},
-    "importButtonLabel": {"message": "Importeren"},
-    "resetSettingsLabel": {"message": "Instellingen herstellen"},
-    "resetSettingsCaptionLabel": {"message": "Herstel alle standaardinstellingen."},
-    "resetSettingsButtonLabel": {"message": "Herstellen"},
-    "shortcutsLabel": {"message": "Snelkoppelingen"},
-    "keyboardShortcutsLabel": {"message": "Sneltoetsen"},
-    "setKeyboardShortCutsMessage": {"message": "Stel sneltoetsen in."},
-    "typeShortcutMessage": {"message": "Voer een sneltoets in"},
-    "typeLetterMessage": {"message": "Voer een letter in"},
-    "includeModifierKeysMessage": {"message": "Gebruik Ctrl of Alt"},
-    "includeMacModifierKeysMessage": {"message": "Gebruik Command, Ctrl of Alt"},
-    "invalidLetterMessage": {"message": "Deze letter kan niet worden gebruikt"},
-    "invalidShortcutMessage": {"message": "Deze sneltoets kan niet worden gebruikt"},
-    "clear": {"message": "Wissen"},
-    "reset": {"message": "Herstellen"},
-    "informationLabel": {"message": "Informatie"},
-    "settingsLoadingLabel": {"message": "Instellingen laden..."},
-    "settingsLoadErrorLabel": {"message": "De instellingen konden niet worden geladen. Controleer de browserconsole en laad deze pagina opnieuw."},
-    "additionalPermissionLabel": {"message": "Zoeken op webpagina's inschakelen"},
-    "additionalPermissionCaptionLabel": {"message": "Voor het gebruik van Wikipedia Preview op webpagina's zijn extra machtigingen nodig."},
-    "enableLabel": {"message": "Inschakelen"},
-    "backersLabel": {"message": "Supporters"},
-    "licenseLabel": {"message": "Licentie"},
-    "iconAttributionsLabel": {"message": "Bronvermeldingen voor pictogrammen en vectorafbeeldingen"},
-    "donationLabel": {"message": "Doe een donatie"},
-    "donationCaptionLabel": {"message": "Bedankt voor het gebruik van Wikipedia Preview.<br>Je steun is een grote aanmoediging terwijl ik de extensie verder ontwikkel.<br>Als je Wikipedia Preview waardeert, zou ik het fijn vinden als je een donatie overweegt."},
-    "sponsorsLabel": {"message": "Sponsors"},
-    "addonPageLabel": {"message": "Add-onpagina"},
-    "extensionPageLabel": {"message": "Extensiepagina"},
-    "privacyPolicyLabel": {"message": "Privacybeleid"},
-    "addonUrl": {"message": "https://addons.mozilla.org/hu/firefox/addon/wikipedia-preview/"},
-    "networkError": {"message": "Fout: controleer de netwerkverbinding."},
-    "unavailableError": {"message": "Fout: de gebruikslimiet van de service is bereikt. Wacht even en probeer het opnieuw."},
-    "deeplAuthError": {"message": "Fout: verificatie van de DeepL API is mislukt. Stel de verificatiesleutel en het abonnement correct in op de instellingenpagina."},
-    "unknownError": {"message": "Fout: onbekende fout"},
-    "wikipediaSearchTextMenu": {"message": "Wikipedia Preview voor geselecteerde tekst"},
-    "openPopupDescription": {"message": "Werkbalkpop-up openen"},
-    "shouldUseSecondTargetLangLabel": {"message": "Zoeken op een tweede Wikipedia"},
-    "shouldUseSecondTargetLangCaptionLabel": {"message": "Indien ingeschakeld, wordt ook op Wikipedia in deze taal gezocht."},
-    "firstInformationText": {"message": "Je kunt in de voorkeuren ook een tweede Wikipedia toevoegen om resultaten in een andere taal weer te geven."},
-    "lang_af": {"message": "Afrikaans"},
-    "lang_sq": {"message": "Albanees"},
-    "lang_am": {"message": "Amhaars"},
-    "lang_ar": {"message": "Arabisch"},
-    "lang_hy": {"message": "Armeens"},
-    "lang_az": {"message": "Azerbeidzjaans"},
-    "lang_eu": {"message": "Baskisch"},
-    "lang_be": {"message": "Wit-Russisch"},
-    "lang_bn": {"message": "Bengaals"},
-    "lang_bs": {"message": "Bosnisch"},
-    "lang_bg": {"message": "Bulgaars"},
-    "lang_ca": {"message": "Catalaans"},
-    "lang_ceb": {"message": "Cebuano"},
-    "lang_ny": {"message": "Chichewa"},
-    "lang_zh_CN": {"message": "Chinees (vereenvoudigd)"},
-    "lang_zh_TW": {"message": "Chinees (traditioneel)"},
-    "lang_co": {"message": "Corsicaans"},
-    "lang_hr": {"message": "Kroatisch"},
-    "lang_cs": {"message": "Tsjechisch"},
-    "lang_da": {"message": "Deens"},
-    "lang_nl": {"message": "Nederlands"},
-    "lang_en": {"message": "Engels"},
-    "lang_eo": {"message": "Esperanto"},
-    "lang_et": {"message": "Estisch"},
-    "lang_fi": {"message": "Fins"},
-    "lang_fr": {"message": "Frans"},
-    "lang_fy": {"message": "Fries"},
-    "lang_gl": {"message": "Galicisch"},
-    "lang_ka": {"message": "Georgisch"},
-    "lang_de": {"message": "Duits"},
-    "lang_el": {"message": "Grieks"},
-    "lang_gu": {"message": "Gujarati"},
-    "lang_ht": {"message": "Haïtiaans"},
-    "lang_ha": {"message": "Hausa"},
-    "lang_haw": {"message": "Hawaïaans"},
-    "lang_he": {"message": "Hebreeuws"},
-    "lang_hi": {"message": "Hindi"},
-    "lang_hu": {"message": "Hongaars"},
-    "lang_is": {"message": "IJslands"},
-    "lang_ig": {"message": "Igbo"},
-    "lang_id": {"message": "Indonesisch"},
-    "lang_ga": {"message": "Iers"},
-    "lang_it": {"message": "Italiaans"},
-    "lang_ja": {"message": "Japans"},
-    "lang_jv": {"message": "Javaans"},
-    "lang_kn": {"message": "Kannada"},
-    "lang_kk": {"message": "Kazachs"},
-    "lang_km": {"message": "Khmer"},
-    "lang_rw": {"message": "Rwanda"},
-    "lang_ky": {"message": "Kirgizisch"},
-    "lang_ko": {"message": "Koreaans"},
-    "lang_ku": {"message": "Koerdisch"},
-    "lang_lo": {"message": "Laotiaans"},
-    "lang_la": {"message": "Latijn"},
-    "lang_lv": {"message": "Lets"},
-    "lang_lt": {"message": "Litouws"},
-    "lang_lb": {"message": "Luxemburgs"},
-    "lang_mk": {"message": "Macedonisch"},
-    "lang_mg": {"message": "Malagassisch"},
-    "lang_ms": {"message": "Maleis"},
-    "lang_ml": {"message": "Malayalam"},
-    "lang_mt": {"message": "Maltees"},
-    "lang_mi": {"message": "Maori"},
-    "lang_mr": {"message": "Marathi"},
-    "lang_mn": {"message": "Mongools"},
-    "lang_hmn": {"message": "Hmong"},
-    "lang_my": {"message": "Birmaans"},
-    "lang_ne": {"message": "Nepalees"},
-    "lang_no": {"message": "Noors"},
-    "lang_nb": {"message": "Noors (Bokmål)"},
-    "lang_or": {"message": "Odia (Oriya)"},
-    "lang_fa": {"message": "Perzisch"},
-    "lang_pl": {"message": "Pools"},
-    "lang_pt": {"message": "Portugees"},
-    "lang_pa": {"message": "Punjabi"},
-    "lang_ps": {"message": "Pasjtoe"},
-    "lang_ro": {"message": "Roemeens"},
-    "lang_ru": {"message": "Russisch"},
-    "lang_sm": {"message": "Samoaans"},
-    "lang_gd": {"message": "Schots-Gaelisch"},
-    "lang_sr": {"message": "Servisch"},
-    "lang_st": {"message": "Zuid-Sotho"},
-    "lang_sn": {"message": "Shona"},
-    "lang_sd": {"message": "Sindhi"},
-    "lang_si": {"message": "Singalees"},
-    "lang_sk": {"message": "Slowaaks"},
-    "lang_sl": {"message": "Sloveens"},
-    "lang_so": {"message": "Somalisch"},
-    "lang_es": {"message": "Spaans"},
-    "lang_su": {"message": "Soendanees"},
-    "lang_sw": {"message": "Swahili"},
-    "lang_sv": {"message": "Zweeds"},
-    "lang_tl": {"message": "Tagalog"},
-    "lang_tg": {"message": "Tadzjieks"},
-    "lang_ta": {"message": "Tamil"},
-    "lang_tt": {"message": "Tataars"},
-    "lang_te": {"message": "Telugu"},
-    "lang_th": {"message": "Thais"},
-    "lang_tr": {"message": "Turks"},
-    "lang_tk": {"message": "Turkmeens"},
-    "lang_uk": {"message": "Oekraïens"},
-    "lang_ur": {"message": "Urdu"},
-    "lang_ug": {"message": "Oeigoers"},
-    "lang_uz": {"message": "Oezbeeks"},
-    "lang_vi": {"message": "Vietnamees"},
-    "lang_cy": {"message": "Welsh"},
-    "lang_xh": {"message": "Xhosa"},
-    "lang_yi": {"message": "Jiddisch"},
-    "lang_yo": {"message": "Yoruba"},
-    "lang_zu": {"message": "Zoeloe"},
-    "lang_en_US": {"message": "Engels (Amerikaans)"},
-    "lang_en_GB": {"message": "Engels (Brits)"},
-    "lang_pt_PT": {"message": "Portugees"},
-    "lang_pt_BR": {"message": "Portugees (Braziliaans)"},
-    "lang_zh": {"message": "Chinees"},
-    "notFound": {"message": "Er zijn geen resultaten gevonden die overeenkomen met de zoekopdracht."},
-    "privacyPolicyMenuTitle": {"message": "Privacybeleid"}
+    "extName": {
+        "message": "Wikipedia Preview"
+    },
+    "extDescription": {
+        "message": "Zoek op Wikipedia op basis van de geselecteerde tekst"
+    },
+    "donateWithPaypalLabel": {
+        "message": "Doneer met PayPal"
+    },
+    "donateLabel": {
+        "message": "Doneren"
+    },
+    "enableOnThisPage": {
+        "message": "Zoeken op deze pagina inschakelen"
+    },
+    "disableOnThisPage": {
+        "message": "Zoeken op deze pagina uitschakelen"
+    },
+    "initialTextArea": {
+        "message": "Tekst invoeren"
+    },
+    "searchHistoryLabel": {
+        "message": "Zoekgeschiedenis"
+    },
+    "searchTermLabel": {
+        "message": "Zoekterm"
+    },
+    "clearSearchHistoryLabel": {
+        "message": "Geschiedenis wissen"
+    },
+    "emptySearchHistoryLabel": {
+        "message": "Nog geen zoekopdrachten"
+    },
+    "mainMenuLabel": {
+        "message": "Startpagina"
+    },
+    "searchLabel": {
+        "message": "Zoeken"
+    },
+    "searchEmptyMessage": {
+        "message": "Typ in het zoekveld voor bijgewerkte resultaten, suggesties en artikelkaarten die klaar zijn om te lezen."
+    },
+    "moreResultsFor": {
+        "message": "Meer resultaten:"
+    },
+    "previousResultsLabel": {
+        "message": "Vorige"
+    },
+    "resultsRangeLabel": {
+        "message": "Resultaten $1–$2"
+    },
+    "recentSearchTerms": {
+        "message": "Recent"
+    },
+    "readFullArticleLabel": {
+        "message": "Lees het volledige artikel"
+    },
+    "feedLabel": {
+        "message": "Feed"
+    },
+    "feedLoadingLabel": {
+        "message": "Feed laden..."
+    },
+    "featuredArticleLabel": {
+        "message": "Uitgelicht artikel van de dag"
+    },
+    "dailyLatestFeaturedArticleLabel": {
+        "message": "Nieuwste uitgelichte artikel"
+    },
+    "dailyFeaturedArticleLoading": {
+        "message": "Uitgelicht artikel van vandaag laden..."
+    },
+    "dailyFeaturedArticleFallback": {
+        "message": "Er is vandaag geen uitgelicht artikel beschikbaar; in plaats daarvan wordt het meest gelezen artikel getoond."
+    },
+    "dailyFeaturedArticleError": {
+        "message": "Het uitgelichte artikel van vandaag kon niet worden geladen."
+    },
+    "dailyFeaturedArticleRetryLabel": {
+        "message": "Opnieuw proberen"
+    },
+    "dailyImageOfDayLabel": {
+        "message": "Afbeelding van de dag"
+    },
+    "dailyImageArtistLabel": {
+        "message": "Fotograaf"
+    },
+    "dailyImageLicenseLabel": {
+        "message": "Licentie"
+    },
+    "dailyTrendingArticleLabel": {
+        "message": "Populair artikel"
+    },
+    "dailyTrendingArticleError": {
+        "message": "Het populaire artikel kon niet worden geladen."
+    },
+    "dailyImageOfDayError": {
+        "message": "De afbeelding van de dag kon niet worden geladen."
+    },
+    "dailyArticleImageError": {
+        "message": "De artikelafbeelding kon niet worden geladen."
+    },
+    "dailyMostReadLabel": {
+        "message": "Meest gelezen artikelen"
+    },
+    "dailyMostReadError": {
+        "message": "De meest gelezen artikelen konden niet worden geladen."
+    },
+    "readMoreLabel": {
+        "message": "Lezen"
+    },
+    "moreResultsLabel": {
+        "message": "Volgende"
+    },
+    "shareLabel": {
+        "message": "Delen"
+    },
+    "emailLabel": {
+        "message": "E-mail"
+    },
+    "downloadLabel": {
+        "message": "Downloaden"
+    },
+    "downloadErrorLabel": {
+        "message": "Downloaden mislukt."
+    },
+    "shareCopiedLabel": {
+        "message": "Inhoud naar het klembord gekopieerd."
+    },
+    "shareErrorLabel": {
+        "message": "Delen mislukt."
+    },
+    "wikipediaLabel": {
+        "message": "Wikipedia"
+    },
+    "dailyDidYouKnowLabel": {
+        "message": "Wist je dat?"
+    },
+    "dailyNewsLabel": {
+        "message": "In het nieuws"
+    },
+    "dailyOnThisDayLabel": {
+        "message": "Op deze dag"
+    },
+    "favoritesLabel": {
+        "message": "Favorieten"
+    },
+    "removeFromFavoritesLabel": {
+        "message": "Uit favorieten verwijderen"
+    },
+    "emptyFavoritesLabel": {
+        "message": "Nog geen favorieten"
+    },
+    "addToFavoritesLabel": {
+        "message": "Aan favorieten toevoegen"
+    },
+    "removeFromFavoritesConfirmLabel": {
+        "message": "Weet je zeker dat je dit item uit je favorieten wilt verwijderen?"
+    },
+    "addedToFavoritesLabel": {
+        "message": "Opgeslagen"
+    },
+    "loadingSearchLabel": {
+        "message": "Zoekresultaten laden..."
+    },
+    "loadingFullArticleLabel": {
+        "message": "Volledig artikel laden..."
+    },
+    "backFullArticleLabel": {
+        "message": "Terug naar het vorige artikel"
+    },
+    "closeFullArticleLabel": {
+        "message": "Volledig artikel sluiten"
+    },
+    "closeNextResultsLabel": {
+        "message": "Extra resultaten sluiten"
+    },
+    "openInNewWindowLabel": {
+        "message": "In een nieuw venster openen"
+    },
+    "copyLabel": {
+        "message": "Kopiëren"
+    },
+    "copiedLabel": {
+        "message": "Gekopieerd"
+    },
+    "listenLabel": {
+        "message": "Luisteren"
+    },
+    "targetLangLabel": {
+        "message": "Doeltaal"
+    },
+    "allLangLabel": {
+        "message": "Alle talen"
+    },
+    "recentLangLabel": {
+        "message": "Recente talen"
+    },
+    "settingsLabel": {
+        "message": "Instellingen"
+    },
+    "generalLabel": {
+        "message": "Algemeen"
+    },
+    "targetLangCaptionLabel": {
+        "message": "Selecteer de standaarddoeltaal."
+    },
+    "feedLangLabel": {
+        "message": "Wikipedia-feed"
+    },
+    "feedLangSettingLabel": {
+        "message": "Instellingen voor de Wikipedia-feed"
+    },
+    "feedLangCaptionLabel": {
+        "message": "Selecteer de standaard-Wikipedia voor de feed."
+    },
+    "webPageLabel": {
+        "message": "Webpagina"
+    },
+    "whenSelectTextLabel": {
+        "message": "Gedrag bij het selecteren van tekst"
+    },
+    "ifAutoSearchLabel": {
+        "message": "Zoekpaneel weergeven"
+    },
+    "ifAutoSearchCaptionLabel": {
+        "message": "Toon het zoekpaneel direct zonder de knop weer te geven."
+    },
+    "ifShowButtonLabel": {
+        "message": "Zoekknop weergeven"
+    },
+    "ifShowButtonCaptionLabel": {
+        "message": "Toon de zoekknop om het paneel te openen wanneer erop wordt geklikt."
+    },
+    "dontshowbuttonlabel": {
+        "message": "Knop en paneel niet weergeven"
+    },
+    "dontshowbuttonCaptionlabel": {
+        "message": "Toon de zoekknop en het zoekpaneel niet."
+    },
+    "disableWikipediaSearchLabel": {
+        "message": "Zoeken uitschakelen"
+    },
+    "isDisabledInTextFieldsLabel": {
+        "message": "Zoeken in tekstvelden uitschakelen"
+    },
+    "isDisabledInTextFieldsCaptionLabel": {
+        "message": "Toon de zoekknop of het zoekpaneel niet wanneer je tekst in een tekstveld selecteert."
+    },
+    "isDisabledInCodeElementLabel": {
+        "message": "Zoeken in codetags uitschakelen"
+    },
+    "isDisabledInCodeElementCaptionLabel": {
+        "message": "Toon de zoekknop of het zoekpaneel niet wanneer je tekst in een codetag selecteert."
+    },
+    "ifOnlySearchWhenModifierKeyPressedLabel": {
+        "message": "Zoeken bij indrukken van een modificatietoets"
+    },
+    "ifOnlySearchWhenModifierKeyPressedCaptionLabel": {
+        "message": "Toon zoeken alleen wanneer de opgegeven modificatietoets is ingedrukt."
+    },
+    "modifierKeyLabel": {
+        "message": "Modificatietoets"
+    },
+    "shiftLabel": {
+        "message": "Shift"
+    },
+    "ctrlLabel": {
+        "message": "Ctrl"
+    },
+    "altLabel": {
+        "message": "Alt"
+    },
+    "cmdLabel": {
+        "message": "Command"
+    },
+    "disableUrlListLabel": {
+        "message": "URL-lijst om zoeken uit te schakelen"
+    },
+    "disableUrlListCaptionLabel": {
+        "message": "Als de pagina-URL overeenkomt met de lijst, wordt zoeken op de webpagina uitgeschakeld. De lijst ondersteunt jokertekens \"*\"."
+    },
+    "toolbarLabel": {
+        "message": "Werkbalkpop-up"
+    },
+    "secondTargetLangLabel": {
+        "message": "Tweede taal"
+    },
+    "secondTargetLangCaptionLabel": {
+        "message": "Selecteer de tweede doeltaal."
+    },
+    "ignoredDocumentLangLabel": {
+        "message": "Zoeken uitschakelen op basis van het lang-attribuut"
+    },
+    "ignoredDocumentLangCaptionLabel": {
+        "message": "Schakel zoeken uit als het lang-attribuut van het HTML-element van de pagina overeenkomt met de lijst. Voer door komma's gescheiden taaltags in."
+    },
+    "waitTimeLabel": {
+        "message": "Wachttijd voor zoeken"
+    },
+    "waitTimeCaptionLabel": {
+        "message": "Geef de wachttijd op tussen het invoeren van een teken en het starten van de zoekopdracht (milliseconden)."
+    },
+    "waitTime2CaptionLabel": {
+        "message": "Als je in korte tijd vaak zoekt, is de functie mogelijk tijdelijk niet beschikbaar."
+    },
+    "menuLabel": {
+        "message": "Contextmenu"
+    },
+    "ifShowMenuLabel": {
+        "message": "Contextmenu weergeven"
+    },
+    "ifShowMenuCaptionLabel": {
+        "message": "Voeg items toe aan het contextmenu dat verschijnt wanneer je met de rechtermuisknop op de webpagina of het tabblad klikt."
+    },
+    "styleLabel": {
+        "message": "Stijl"
+    },
+    "themeLabel": {
+        "message": "Thema"
+    },
+    "themeCaptionLabel": {
+        "message": "Geef het kleurenschema op."
+    },
+    "lightLabel": {
+        "message": "Licht"
+    },
+    "darkLabel": {
+        "message": "Donker"
+    },
+    "systemLabel": {
+        "message": "Systeem"
+    },
+    "buttonStyleLabel": {
+        "message": "Zoekknop"
+    },
+    "buttonStyleCaptionLabel": {
+        "message": "Geef de stijl op van de zoekknop die op de webpagina wordt weergegeven."
+    },
+    "buttonSizeLabel": {
+        "message": "Grootte"
+    },
+    "buttonPositionLabel": {
+        "message": "Weergavepositie"
+    },
+    "topRightLabel": {
+        "message": "Rechtsboven"
+    },
+    "bottomRightLabel": {
+        "message": "Rechtsonder"
+    },
+    "topLeftLabel": {
+        "message": "Linksboven"
+    },
+    "bottomLeftLabel": {
+        "message": "Linksonder"
+    },
+    "topLabel": {
+        "message": "Boven"
+    },
+    "bottomLabel": {
+        "message": "Onder"
+    },
+    "leftLabel": {
+        "message": "Links"
+    },
+    "rightLabel": {
+        "message": "Rechts"
+    },
+    "positionOffsetLabel": {
+        "message": "Weergavepositie - Verschuiving"
+    },
+    "panelStyleLabel": {
+        "message": "Zoekpaneel"
+    },
+    "panelStyleCaptionLabel": {
+        "message": "Geef de stijl op van het zoekpaneel dat op de webpagina wordt weergegeven."
+    },
+    "widthLabel": {
+        "message": "Breedte"
+    },
+    "heightLabel": {
+        "message": "Hoogte"
+    },
+    "fontSizeLabel": {
+        "message": "Tekengrootte"
+    },
+    "referencePointLabel": {
+        "message": "Weergavepositie - Referentiepunt"
+    },
+    "bottomSelectedTextLabel": {
+        "message": "Onder de geselecteerde tekst"
+    },
+    "topSelectedTextLabel": {
+        "message": "Boven de geselecteerde tekst"
+    },
+    "clickedPointLabel": {
+        "message": "Aangeklikt punt"
+    },
+    "displayDirectionLabel": {
+        "message": "Weergavepositie - Richting"
+    },
+    "resultFontColorLabel": {
+        "message": "Tekstkleur van zoekresultaten"
+    },
+    "isOverrideColorsLabel": {
+        "message": "Vervang de standaardkleuren door onderstaande kleuren"
+    },
+    "bgColorLabel": {
+        "message": "Achtergrondkleur"
+    },
+    "otherLabel": {
+        "message": "Overig"
+    },
+    "isShowOptionsPageWhenUpdatedLabel": {
+        "message": "Optiepagina weergeven bij bijwerken"
+    },
+    "isShowOptionsPageWhenUpdatedCaptionLabel": {
+        "message": "Toon de optiepagina wanneer Wikipedia Preview wordt bijgewerkt, zodat je snel kunt zien wat er is veranderd."
+    },
+    "isDebugModeLabel": {
+        "message": "Foutopsporingsmodus inschakelen"
+    },
+    "isDebugModeCaptionLabel": {
+        "message": "Wanneer de foutopsporingsmodus is ingeschakeld, worden logboeken naar de debugger geschreven."
+    },
+    "exportSettingsLabel": {
+        "message": "Instellingen exporteren"
+    },
+    "exportSettingsCaptionLabel": {
+        "message": "Sla de instellingen op je computer op als JSON-bestand."
+    },
+    "exportButtonLabel": {
+        "message": "Exporteren"
+    },
+    "importSettingsLabel": {
+        "message": "Instellingen importeren"
+    },
+    "importSettingsCaptionLabel": {
+        "message": "Laad het instellingenbestand dat op je computer is opgeslagen."
+    },
+    "importButtonLabel": {
+        "message": "Importeren"
+    },
+    "resetSettingsLabel": {
+        "message": "Instellingen herstellen"
+    },
+    "resetSettingsCaptionLabel": {
+        "message": "Herstel alle standaardinstellingen."
+    },
+    "resetSettingsButtonLabel": {
+        "message": "Herstellen"
+    },
+    "shortcutsLabel": {
+        "message": "Snelkoppelingen"
+    },
+    "keyboardShortcutsLabel": {
+        "message": "Sneltoetsen"
+    },
+    "setKeyboardShortCutsMessage": {
+        "message": "Stel sneltoetsen in."
+    },
+    "typeShortcutMessage": {
+        "message": "Voer een sneltoets in"
+    },
+    "typeLetterMessage": {
+        "message": "Voer een letter in"
+    },
+    "includeModifierKeysMessage": {
+        "message": "Gebruik Ctrl of Alt"
+    },
+    "includeMacModifierKeysMessage": {
+        "message": "Gebruik Command, Ctrl of Alt"
+    },
+    "invalidLetterMessage": {
+        "message": "Deze letter kan niet worden gebruikt"
+    },
+    "invalidShortcutMessage": {
+        "message": "Deze sneltoets kan niet worden gebruikt"
+    },
+    "clear": {
+        "message": "Wissen"
+    },
+    "reset": {
+        "message": "Herstellen"
+    },
+    "informationLabel": {
+        "message": "Informatie"
+    },
+    "settingsLoadingLabel": {
+        "message": "Instellingen laden..."
+    },
+    "settingsLoadErrorLabel": {
+        "message": "De instellingen konden niet worden geladen. Controleer de browserconsole en laad deze pagina opnieuw."
+    },
+    "additionalPermissionLabel": {
+        "message": "Zoeken op webpagina's inschakelen"
+    },
+    "additionalPermissionCaptionLabel": {
+        "message": "Voor het gebruik van Wikipedia Preview op webpagina's zijn extra machtigingen nodig."
+    },
+    "enableLabel": {
+        "message": "Inschakelen"
+    },
+    "backersLabel": {
+        "message": "Supporters"
+    },
+    "licenseLabel": {
+        "message": "Licentie"
+    },
+    "iconAttributionsLabel": {
+        "message": "Bronvermeldingen voor pictogrammen en vectorafbeeldingen"
+    },
+    "donationLabel": {
+        "message": "Doe een donatie"
+    },
+    "donationCaptionLabel": {
+        "message": "Bedankt voor het gebruik van Wikipedia Preview.<br>Je steun is een grote aanmoediging terwijl ik de extensie verder ontwikkel.<br>Als je Wikipedia Preview waardeert, zou ik het fijn vinden als je een donatie overweegt."
+    },
+    "sponsorsLabel": {
+        "message": "Sponsors"
+    },
+    "addonPageLabel": {
+        "message": "Add-onpagina"
+    },
+    "extensionPageLabel": {
+        "message": "Extensiepagina"
+    },
+    "privacyPolicyLabel": {
+        "message": "Privacybeleid"
+    },
+    "addonUrl": {
+        "message": "https://addons.mozilla.org/hu/firefox/addon/wikipedia-preview/"
+    },
+    "networkError": {
+        "message": "Fout: controleer de netwerkverbinding."
+    },
+    "unavailableError": {
+        "message": "Fout: de gebruikslimiet van de service is bereikt. Wacht even en probeer het opnieuw."
+    },
+    "deeplAuthError": {
+        "message": "Fout: verificatie van de DeepL API is mislukt. Stel de verificatiesleutel en het abonnement correct in op de instellingenpagina."
+    },
+    "unknownError": {
+        "message": "Fout: onbekende fout"
+    },
+    "wikipediaSearchTextMenu": {
+        "message": "Wikipedia Preview voor geselecteerde tekst"
+    },
+    "openPopupDescription": {
+        "message": "Werkbalkpop-up openen"
+    },
+    "shouldUseSecondTargetLangLabel": {
+        "message": "Zoeken op een tweede Wikipedia"
+    },
+    "shouldUseSecondTargetLangCaptionLabel": {
+        "message": "Indien ingeschakeld, wordt ook op Wikipedia in deze taal gezocht."
+    },
+    "firstInformationText": {
+        "message": "Je kunt in de voorkeuren ook een tweede Wikipedia toevoegen om resultaten in een andere taal weer te geven."
+    },
+    "lang_af": {
+        "message": "Afrikaans"
+    },
+    "lang_sq": {
+        "message": "Albanees"
+    },
+    "lang_am": {
+        "message": "Amhaars"
+    },
+    "lang_ar": {
+        "message": "Arabisch"
+    },
+    "lang_hy": {
+        "message": "Armeens"
+    },
+    "lang_az": {
+        "message": "Azerbeidzjaans"
+    },
+    "lang_eu": {
+        "message": "Baskisch"
+    },
+    "lang_be": {
+        "message": "Wit-Russisch"
+    },
+    "lang_bn": {
+        "message": "Bengaals"
+    },
+    "lang_bs": {
+        "message": "Bosnisch"
+    },
+    "lang_bg": {
+        "message": "Bulgaars"
+    },
+    "lang_ca": {
+        "message": "Catalaans"
+    },
+    "lang_ceb": {
+        "message": "Cebuano"
+    },
+    "lang_ny": {
+        "message": "Chichewa"
+    },
+    "lang_zh_CN": {
+        "message": "Chinees (vereenvoudigd)"
+    },
+    "lang_zh_TW": {
+        "message": "Chinees (traditioneel)"
+    },
+    "lang_co": {
+        "message": "Corsicaans"
+    },
+    "lang_hr": {
+        "message": "Kroatisch"
+    },
+    "lang_cs": {
+        "message": "Tsjechisch"
+    },
+    "lang_da": {
+        "message": "Deens"
+    },
+    "lang_nl": {
+        "message": "Nederlands"
+    },
+    "lang_en": {
+        "message": "Engels"
+    },
+    "lang_eo": {
+        "message": "Esperanto"
+    },
+    "lang_et": {
+        "message": "Estisch"
+    },
+    "lang_fi": {
+        "message": "Fins"
+    },
+    "lang_fr": {
+        "message": "Frans"
+    },
+    "lang_fy": {
+        "message": "Fries"
+    },
+    "lang_gl": {
+        "message": "Galicisch"
+    },
+    "lang_ka": {
+        "message": "Georgisch"
+    },
+    "lang_de": {
+        "message": "Duits"
+    },
+    "lang_el": {
+        "message": "Grieks"
+    },
+    "lang_gu": {
+        "message": "Gujarati"
+    },
+    "lang_ht": {
+        "message": "Haïtiaans"
+    },
+    "lang_ha": {
+        "message": "Hausa"
+    },
+    "lang_haw": {
+        "message": "Hawaïaans"
+    },
+    "lang_he": {
+        "message": "Hebreeuws"
+    },
+    "lang_hi": {
+        "message": "Hindi"
+    },
+    "lang_hu": {
+        "message": "Hongaars"
+    },
+    "lang_is": {
+        "message": "IJslands"
+    },
+    "lang_ig": {
+        "message": "Igbo"
+    },
+    "lang_id": {
+        "message": "Indonesisch"
+    },
+    "lang_ga": {
+        "message": "Iers"
+    },
+    "lang_it": {
+        "message": "Italiaans"
+    },
+    "lang_ja": {
+        "message": "Japans"
+    },
+    "lang_jv": {
+        "message": "Javaans"
+    },
+    "lang_kn": {
+        "message": "Kannada"
+    },
+    "lang_kk": {
+        "message": "Kazachs"
+    },
+    "lang_km": {
+        "message": "Khmer"
+    },
+    "lang_rw": {
+        "message": "Rwanda"
+    },
+    "lang_ky": {
+        "message": "Kirgizisch"
+    },
+    "lang_ko": {
+        "message": "Koreaans"
+    },
+    "lang_ku": {
+        "message": "Koerdisch"
+    },
+    "lang_lo": {
+        "message": "Laotiaans"
+    },
+    "lang_la": {
+        "message": "Latijn"
+    },
+    "lang_lv": {
+        "message": "Lets"
+    },
+    "lang_lt": {
+        "message": "Litouws"
+    },
+    "lang_lb": {
+        "message": "Luxemburgs"
+    },
+    "lang_mk": {
+        "message": "Macedonisch"
+    },
+    "lang_mg": {
+        "message": "Malagassisch"
+    },
+    "lang_ms": {
+        "message": "Maleis"
+    },
+    "lang_ml": {
+        "message": "Malayalam"
+    },
+    "lang_mt": {
+        "message": "Maltees"
+    },
+    "lang_mi": {
+        "message": "Maori"
+    },
+    "lang_mr": {
+        "message": "Marathi"
+    },
+    "lang_mn": {
+        "message": "Mongools"
+    },
+    "lang_hmn": {
+        "message": "Hmong"
+    },
+    "lang_my": {
+        "message": "Birmaans"
+    },
+    "lang_ne": {
+        "message": "Nepalees"
+    },
+    "lang_no": {
+        "message": "Noors"
+    },
+    "lang_nb": {
+        "message": "Noors (Bokmål)"
+    },
+    "lang_or": {
+        "message": "Odia (Oriya)"
+    },
+    "lang_fa": {
+        "message": "Perzisch"
+    },
+    "lang_pl": {
+        "message": "Pools"
+    },
+    "lang_pt": {
+        "message": "Portugees"
+    },
+    "lang_pa": {
+        "message": "Punjabi"
+    },
+    "lang_ps": {
+        "message": "Pasjtoe"
+    },
+    "lang_ro": {
+        "message": "Roemeens"
+    },
+    "lang_ru": {
+        "message": "Russisch"
+    },
+    "lang_sm": {
+        "message": "Samoaans"
+    },
+    "lang_gd": {
+        "message": "Schots-Gaelisch"
+    },
+    "lang_sr": {
+        "message": "Servisch"
+    },
+    "lang_st": {
+        "message": "Zuid-Sotho"
+    },
+    "lang_sn": {
+        "message": "Shona"
+    },
+    "lang_sd": {
+        "message": "Sindhi"
+    },
+    "lang_si": {
+        "message": "Singalees"
+    },
+    "lang_sk": {
+        "message": "Slowaaks"
+    },
+    "lang_sl": {
+        "message": "Sloveens"
+    },
+    "lang_so": {
+        "message": "Somalisch"
+    },
+    "lang_es": {
+        "message": "Spaans"
+    },
+    "lang_su": {
+        "message": "Soendanees"
+    },
+    "lang_sw": {
+        "message": "Swahili"
+    },
+    "lang_sv": {
+        "message": "Zweeds"
+    },
+    "lang_tl": {
+        "message": "Tagalog"
+    },
+    "lang_tg": {
+        "message": "Tadzjieks"
+    },
+    "lang_ta": {
+        "message": "Tamil"
+    },
+    "lang_tt": {
+        "message": "Tataars"
+    },
+    "lang_te": {
+        "message": "Telugu"
+    },
+    "lang_th": {
+        "message": "Thais"
+    },
+    "lang_tr": {
+        "message": "Turks"
+    },
+    "lang_tk": {
+        "message": "Turkmeens"
+    },
+    "lang_uk": {
+        "message": "Oekraïens"
+    },
+    "lang_ur": {
+        "message": "Urdu"
+    },
+    "lang_ug": {
+        "message": "Oeigoers"
+    },
+    "lang_uz": {
+        "message": "Oezbeeks"
+    },
+    "lang_vi": {
+        "message": "Vietnamees"
+    },
+    "lang_cy": {
+        "message": "Welsh"
+    },
+    "lang_xh": {
+        "message": "Xhosa"
+    },
+    "lang_yi": {
+        "message": "Jiddisch"
+    },
+    "lang_yo": {
+        "message": "Yoruba"
+    },
+    "lang_zu": {
+        "message": "Zoeloe"
+    },
+    "lang_en_US": {
+        "message": "Engels (Amerikaans)"
+    },
+    "lang_en_GB": {
+        "message": "Engels (Brits)"
+    },
+    "lang_pt_PT": {
+        "message": "Portugees"
+    },
+    "lang_pt_BR": {
+        "message": "Portugees (Braziliaans)"
+    },
+    "lang_zh": {
+        "message": "Chinees"
+    },
+    "notFound": {
+        "message": "Er zijn geen resultaten gevonden die overeenkomen met de zoekopdracht."
+    },
+    "privacyPolicyMenuTitle": {
+        "message": "Privacybeleid"
+    }
 }
