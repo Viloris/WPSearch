@@ -1,0 +1,914 @@
+{
+    "extName": {
+        "message": "Wikipedia Preview"
+    },
+    "extDescription": {
+        "message": "Vyhľadávať na Wikipédii podľa označeného textu"
+    },
+    "donateWithPaypalLabel": {
+        "message": "Prispieť cez PayPal"
+    },
+    "donateLabel": {
+        "message": "Prispieť"
+    },
+    "enableOnThisPage": {
+        "message": "Povoliť vyhľadávanie na tejto stránke"
+    },
+    "disableOnThisPage": {
+        "message": "Zakázať vyhľadávanie na tejto stránke"
+    },
+    "initialTextArea": {
+        "message": "Zadajte text"
+    },
+    "searchHistoryLabel": {
+        "message": "História vyhľadávania"
+    },
+    "searchTermLabel": {
+        "message": "Hľadaný výraz"
+    },
+    "clearSearchHistoryLabel": {
+        "message": "Vymazať históriu"
+    },
+    "emptySearchHistoryLabel": {
+        "message": "Zatiaľ žiadne vyhľadávania"
+    },
+    "mainMenuLabel": {
+        "message": "Domov"
+    },
+    "searchLabel": {
+        "message": "Hľadať"
+    },
+    "searchEmptyMessage": {
+        "message": "Začnite písať a zobrazia sa výsledky, návrhy a články pripravené na čítanie."
+    },
+    "moreResultsFor": {
+        "message": "Ďalšie výsledky nájdete tu:"
+    },
+    "previousResultsLabel": {
+        "message": "Predchádzajúce"
+    },
+    "resultsRangeLabel": {
+        "message": "Výsledky $1–$2"
+    },
+    "recentSearchTerms": {
+        "message": "Nedávne"
+    },
+    "readFullArticleLabel": {
+        "message": "Prečítať celý článok"
+    },
+    "feedLabel": {
+        "message": "Prehľad"
+    },
+    "feedLoadingLabel": {
+        "message": "Načítava sa prehľad..."
+    },
+    "featuredArticleLabel": {
+        "message": "Odporúčaný článok dňa"
+    },
+    "dailyLatestFeaturedArticleLabel": {
+        "message": "Najnovší odporúčaný článok"
+    },
+    "dailyFeaturedArticleLoading": {
+        "message": "Načítava sa dnešný odporúčaný článok..."
+    },
+    "dailyFeaturedArticleFallback": {
+        "message": "Dnes nie je dostupný odporúčaný článok; namiesto neho sa zobrazuje najčítanejší článok."
+    },
+    "dailyFeaturedArticleError": {
+        "message": "Dnešný odporúčaný článok sa nepodarilo načítať."
+    },
+    "dailyFeaturedArticleRetryLabel": {
+        "message": "Skúsiť znova"
+    },
+    "dailyImageOfDayLabel": {
+        "message": "Obrázok dňa"
+    },
+    "dailyImageArtistLabel": {
+        "message": "Fotograf"
+    },
+    "dailyImageLicenseLabel": {
+        "message": "Licencia"
+    },
+    "dailyTrendingArticleLabel": {
+        "message": "Trendujúci článok"
+    },
+    "dailyTrendingArticleError": {
+        "message": "Populárny článok sa nepodarilo načítať."
+    },
+    "dailyImageOfDayError": {
+        "message": "Obrázok dňa sa nepodarilo načítať."
+    },
+    "dailyArticleImageError": {
+        "message": "Obrázok článku sa nepodarilo načítať."
+    },
+    "dailyMostReadLabel": {
+        "message": "Najčítanejšie články"
+    },
+    "dailyMostReadError": {
+        "message": "Najčítanejšie články sa nepodarilo načítať."
+    },
+    "readMoreLabel": {
+        "message": "Čítať"
+    },
+    "moreResultsLabel": {
+        "message": "Ďalej"
+    },
+    "shareLabel": {
+        "message": "Zdieľať"
+    },
+    "emailLabel": {
+        "message": "E-mail"
+    },
+    "downloadLabel": {
+        "message": "Stiahnuť"
+    },
+    "downloadErrorLabel": {
+        "message": "Sťahovanie zlyhalo."
+    },
+    "shareCopiedLabel": {
+        "message": "Obsah bol skopírovaný do schránky."
+    },
+    "shareErrorLabel": {
+        "message": "Zdieľanie zlyhalo."
+    },
+    "wikipediaLabel": {
+        "message": "Wikipédia"
+    },
+    "dailyDidYouKnowLabel": {
+        "message": "Vedeli ste, že...?"
+    },
+    "dailyNewsLabel": {
+        "message": "Aktuálne správy"
+    },
+    "dailyOnThisDayLabel": {
+        "message": "V tento deň"
+    },
+    "favoritesLabel": {
+        "message": "Obľúbené"
+    },
+    "removeFromFavoritesLabel": {
+        "message": "Odstrániť z obľúbených"
+    },
+    "emptyFavoritesLabel": {
+        "message": "Zatiaľ žiadne obľúbené položky"
+    },
+    "addToFavoritesLabel": {
+        "message": "Pridať medzi obľúbené"
+    },
+    "removeFromFavoritesConfirmLabel": {
+        "message": "Naozaj chcete odstrániť túto položku z obľúbených?"
+    },
+    "addedToFavoritesLabel": {
+        "message": "Uložené"
+    },
+    "loadingSearchLabel": {
+        "message": "Načítavajú sa výsledky vyhľadávania..."
+    },
+    "loadingFullArticleLabel": {
+        "message": "Načítava sa celý článok..."
+    },
+    "backFullArticleLabel": {
+        "message": "Späť na predchádzajúci článok"
+    },
+    "closeFullArticleLabel": {
+        "message": "Zavrieť celý článok"
+    },
+    "closeNextResultsLabel": {
+        "message": "Zavrieť ďalšie výsledky"
+    },
+    "openInNewWindowLabel": {
+        "message": "Otvoriť v novom okne"
+    },
+    "copyLabel": {
+        "message": "Kopírovať"
+    },
+    "copiedLabel": {
+        "message": "Skopírované"
+    },
+    "listenLabel": {
+        "message": "Vypočuť"
+    },
+    "targetLangLabel": {
+        "message": "Cieľový jazyk"
+    },
+    "allLangLabel": {
+        "message": "Všetky jazyky"
+    },
+    "recentLangLabel": {
+        "message": "Nedávne jazyky"
+    },
+    "settingsLabel": {
+        "message": "Nastavenia"
+    },
+    "generalLabel": {
+        "message": "Všeobecné"
+    },
+    "targetLangCaptionLabel": {
+        "message": "Vyberte predvolený cieľový jazyk."
+    },
+    "feedLangLabel": {
+        "message": "Prehľad Wikipédie"
+    },
+    "feedLangSettingLabel": {
+        "message": "Nastavenia prehľadu Wikipédie"
+    },
+    "feedLangCaptionLabel": {
+        "message": "Vyberte predvolenú Wikipédiu pre prehľad."
+    },
+    "webPageLabel": {
+        "message": "Webová stránka"
+    },
+    "whenSelectTextLabel": {
+        "message": "Správanie pri označení textu"
+    },
+    "ifAutoSearchLabel": {
+        "message": "Zobraziť panel vyhľadávania"
+    },
+    "ifAutoSearchCaptionLabel": {
+        "message": "Zobraziť priamo panel vyhľadávania bez zobrazenia tlačidla."
+    },
+    "ifShowButtonLabel": {
+        "message": "Zobraziť tlačidlo vyhľadávania"
+    },
+    "ifShowButtonCaptionLabel": {
+        "message": "Zobraziť tlačidlo vyhľadávania, ktorým sa po kliknutí otvorí panel."
+    },
+    "dontshowbuttonlabel": {
+        "message": "Nezobrazovať tlačidlo ani panel"
+    },
+    "dontshowbuttonCaptionlabel": {
+        "message": "Nezobrazovať tlačidlo vyhľadávania ani panel vyhľadávania."
+    },
+    "disableWikipediaSearchLabel": {
+        "message": "Zakázať vyhľadávanie"
+    },
+    "isDisabledInTextFieldsLabel": {
+        "message": "Zakázať vyhľadávanie v textových poliach"
+    },
+    "isDisabledInTextFieldsCaptionLabel": {
+        "message": "Nezobrazovať tlačidlo ani panel vyhľadávania pri označení textu v textovom poli."
+    },
+    "isDisabledInCodeElementLabel": {
+        "message": "Zakázať vyhľadávanie v značkách code"
+    },
+    "isDisabledInCodeElementCaptionLabel": {
+        "message": "Nezobrazovať tlačidlo ani panel vyhľadávania pri označení textu v značke code."
+    },
+    "ifOnlySearchWhenModifierKeyPressedLabel": {
+        "message": "Vyhľadávať po stlačení modifikačného klávesu"
+    },
+    "ifOnlySearchWhenModifierKeyPressedCaptionLabel": {
+        "message": "Zobraziť vyhľadávanie iba po stlačení určeného modifikačného klávesu."
+    },
+    "modifierKeyLabel": {
+        "message": "Modifikačný kláves"
+    },
+    "shiftLabel": {
+        "message": "Shift"
+    },
+    "ctrlLabel": {
+        "message": "Ctrl"
+    },
+    "altLabel": {
+        "message": "Alt"
+    },
+    "cmdLabel": {
+        "message": "Command"
+    },
+    "disableUrlListLabel": {
+        "message": "Zoznam adries URL, na ktorých sa má vyhľadávanie zakázať"
+    },
+    "disableUrlListCaptionLabel": {
+        "message": "Ak adresa URL stránky zodpovedá položke v zozname, vyhľadávanie na stránke sa zakáže. Zoznam podporuje zástupný znak „*“."
+    },
+    "toolbarLabel": {
+        "message": "Vyskakovacie okno panela nástrojov"
+    },
+    "secondTargetLangLabel": {
+        "message": "Druhý jazyk"
+    },
+    "secondTargetLangCaptionLabel": {
+        "message": "Vyberte druhý cieľový jazyk."
+    },
+    "ignoredDocumentLangLabel": {
+        "message": "Zakázať vyhľadávanie podľa atribútu lang"
+    },
+    "ignoredDocumentLangCaptionLabel": {
+        "message": "Zakázať vyhľadávanie, ak atribút lang v prvku HTML stránky zodpovedá zoznamu. Zadajte značky jazykov oddelené čiarkami."
+    },
+    "waitTimeLabel": {
+        "message": "Čas čakania pred vyhľadávaním"
+    },
+    "waitTimeCaptionLabel": {
+        "message": "Určte čas od zadania znaku po začiatok vyhľadávania (v milisekundách)."
+    },
+    "waitTime2CaptionLabel": {
+        "message": "Pri častom vyhľadávaní v krátkom čase môže byť služba na chvíľu nedostupná."
+    },
+    "menuLabel": {
+        "message": "Kontextová ponuka"
+    },
+    "ifShowMenuLabel": {
+        "message": "Zobraziť kontextovú ponuku"
+    },
+    "ifShowMenuCaptionLabel": {
+        "message": "Pridať položky do kontextovej ponuky zobrazenej po kliknutí pravým tlačidlom myši na stránku alebo kartu."
+    },
+    "styleLabel": {
+        "message": "Štýl"
+    },
+    "themeLabel": {
+        "message": "Motív"
+    },
+    "themeCaptionLabel": {
+        "message": "Určte farebnú schému."
+    },
+    "lightLabel": {
+        "message": "Svetlý"
+    },
+    "darkLabel": {
+        "message": "Tmavý"
+    },
+    "systemLabel": {
+        "message": "Systém"
+    },
+    "buttonStyleLabel": {
+        "message": "Tlačidlo vyhľadávania"
+    },
+    "buttonStyleCaptionLabel": {
+        "message": "Určte štýl tlačidla vyhľadávania zobrazovaného na webových stránkach."
+    },
+    "buttonSizeLabel": {
+        "message": "Veľkosť"
+    },
+    "buttonPositionLabel": {
+        "message": "Pozícia zobrazenia"
+    },
+    "topRightLabel": {
+        "message": "Vpravo hore"
+    },
+    "bottomRightLabel": {
+        "message": "Vpravo dole"
+    },
+    "topLeftLabel": {
+        "message": "Vľavo hore"
+    },
+    "bottomLeftLabel": {
+        "message": "Vľavo dole"
+    },
+    "topLabel": {
+        "message": "Hore"
+    },
+    "bottomLabel": {
+        "message": "Dole"
+    },
+    "leftLabel": {
+        "message": "Vľavo"
+    },
+    "rightLabel": {
+        "message": "Vpravo"
+    },
+    "positionOffsetLabel": {
+        "message": "Pozícia zobrazenia – posun"
+    },
+    "panelStyleLabel": {
+        "message": "Panel vyhľadávania"
+    },
+    "panelStyleCaptionLabel": {
+        "message": "Určte štýl panela vyhľadávania zobrazovaného na webových stránkach."
+    },
+    "widthLabel": {
+        "message": "Šírka"
+    },
+    "heightLabel": {
+        "message": "Výška"
+    },
+    "fontSizeLabel": {
+        "message": "Veľkosť písma"
+    },
+    "referencePointLabel": {
+        "message": "Pozícia zobrazenia – referenčný bod"
+    },
+    "bottomSelectedTextLabel": {
+        "message": "Pod označeným textom"
+    },
+    "topSelectedTextLabel": {
+        "message": "Nad označeným textom"
+    },
+    "clickedPointLabel": {
+        "message": "Miesto kliknutia"
+    },
+    "displayDirectionLabel": {
+        "message": "Pozícia zobrazenia – smer"
+    },
+    "resultFontColorLabel": {
+        "message": "Farba písma výsledkov vyhľadávania"
+    },
+    "isOverrideColorsLabel": {
+        "message": "Prepísať predvolené farby nasledujúcimi farbami"
+    },
+    "bgColorLabel": {
+        "message": "Farba pozadia"
+    },
+    "otherLabel": {
+        "message": "Ostatné"
+    },
+    "isShowOptionsPageWhenUpdatedLabel": {
+        "message": "Zobraziť stránku nastavení pri aktualizácii"
+    },
+    "isShowOptionsPageWhenUpdatedCaptionLabel": {
+        "message": "Po aktualizácii Wikipedia Preview zobraziť stránku nastavení, aby ste sa rýchlo oboznámili s novinkami."
+    },
+    "isDebugModeLabel": {
+        "message": "Povoliť režim ladenia"
+    },
+    "isDebugModeCaptionLabel": {
+        "message": "Ak je režim ladenia povolený, záznamy sa vypisujú do nástroja na ladenie."
+    },
+    "exportSettingsLabel": {
+        "message": "Exportovať nastavenia"
+    },
+    "exportSettingsCaptionLabel": {
+        "message": "Uložiť nastavenia do počítača ako súbor JSON."
+    },
+    "exportButtonLabel": {
+        "message": "Exportovať"
+    },
+    "importSettingsLabel": {
+        "message": "Importovať nastavenia"
+    },
+    "importSettingsCaptionLabel": {
+        "message": "Načítať súbor s nastaveniami uložený v počítači."
+    },
+    "importButtonLabel": {
+        "message": "Importovať"
+    },
+    "resetSettingsLabel": {
+        "message": "Obnoviť nastavenia"
+    },
+    "resetSettingsCaptionLabel": {
+        "message": "Obnoviť všetky nastavenia na predvolené hodnoty."
+    },
+    "resetSettingsButtonLabel": {
+        "message": "Obnoviť"
+    },
+    "shortcutsLabel": {
+        "message": "Skratky"
+    },
+    "keyboardShortcutsLabel": {
+        "message": "Klávesové skratky"
+    },
+    "setKeyboardShortCutsMessage": {
+        "message": "Nastavte klávesové skratky."
+    },
+    "typeShortcutMessage": {
+        "message": "Zadajte skratku"
+    },
+    "typeLetterMessage": {
+        "message": "Zadajte písmeno"
+    },
+    "includeModifierKeysMessage": {
+        "message": "Použite Ctrl alebo Alt"
+    },
+    "includeMacModifierKeysMessage": {
+        "message": "Použite Command, Ctrl alebo Alt"
+    },
+    "invalidLetterMessage": {
+        "message": "Toto písmeno nemožno použiť"
+    },
+    "invalidShortcutMessage": {
+        "message": "Túto skratku nemožno použiť"
+    },
+    "clear": {
+        "message": "Vymazať"
+    },
+    "reset": {
+        "message": "Obnoviť"
+    },
+    "informationLabel": {
+        "message": "Informácie"
+    },
+    "settingsLoadingLabel": {
+        "message": "Načítavajú sa nastavenia..."
+    },
+    "settingsLoadErrorLabel": {
+        "message": "Nastavenia sa nepodarilo načítať. Skontrolujte konzolu prehliadača a znova načítajte túto stránku."
+    },
+    "additionalPermissionLabel": {
+        "message": "Povoliť vyhľadávanie na webových stránkach"
+    },
+    "additionalPermissionCaptionLabel": {
+        "message": "Na používanie Wikipedia Preview na webových stránkach sú potrebné ďalšie povolenia."
+    },
+    "enableLabel": {
+        "message": "Povoliť"
+    },
+    "backersLabel": {
+        "message": "Podporovatelia"
+    },
+    "licenseLabel": {
+        "message": "Licencia"
+    },
+    "iconAttributionsLabel": {
+        "message": "Zdroje ikon a vektorov"
+    },
+    "donationLabel": {
+        "message": "Prispejte, prosím"
+    },
+    "donationCaptionLabel": {
+        "message": "Ďakujeme, že používate Wikipedia Preview.<br>Vaša podpora ma povzbudí v ďalšom vývoji doplnku.<br>Ak sa vám Wikipedia Preview páči, zvážte, prosím, príspevok."
+    },
+    "sponsorsLabel": {
+        "message": "Sponzori"
+    },
+    "addonPageLabel": {
+        "message": "Stránka doplnku"
+    },
+    "extensionPageLabel": {
+        "message": "Stránka rozšírenia"
+    },
+    "privacyPolicyLabel": {
+        "message": "Zásady ochrany súkromia"
+    },
+    "addonUrl": {
+        "message": "https://addons.mozilla.org/sk/firefox/addon/wikipedia-preview/"
+    },
+    "networkError": {
+        "message": "Chyba: Skontrolujte stav sieťového pripojenia."
+    },
+    "unavailableError": {
+        "message": "Chyba: Dosiahol sa limit používania služby. Chvíľu počkajte a skúste to znova."
+    },
+    "deeplAuthError": {
+        "message": "Chyba: Overenie v rozhraní DeepL API zlyhalo. Na stránke nastavení zadajte správny overovací kľúč a plán."
+    },
+    "unknownError": {
+        "message": "Chyba: Neznáma chyba"
+    },
+    "wikipediaSearchTextMenu": {
+        "message": "Wikipedia Preview pre označený text"
+    },
+    "openPopupDescription": {
+        "message": "Otvoriť vyskakovacie okno panela nástrojov"
+    },
+    "shouldUseSecondTargetLangLabel": {
+        "message": "Vyhľadávať aj na druhej Wikipédii"
+    },
+    "shouldUseSecondTargetLangCaptionLabel": {
+        "message": "Ak túto možnosť zaškrtnete, rozšírenie bude vyhľadávať aj na Wikipédii v tomto jazyku."
+    },
+    "firstInformationText": {
+        "message": "V nastaveniach môžete pridať druhú Wikipédiu, ak chcete zobrazovať výsledky aj v inom jazyku."
+    },
+    "lang_af": {
+        "message": "afrikánčina"
+    },
+    "lang_sq": {
+        "message": "albánčina"
+    },
+    "lang_am": {
+        "message": "amharčina"
+    },
+    "lang_ar": {
+        "message": "arabčina"
+    },
+    "lang_hy": {
+        "message": "arménčina"
+    },
+    "lang_az": {
+        "message": "azerbajdžančina"
+    },
+    "lang_eu": {
+        "message": "baskičtina"
+    },
+    "lang_be": {
+        "message": "bieloruština"
+    },
+    "lang_bn": {
+        "message": "bengálčina"
+    },
+    "lang_bs": {
+        "message": "bosniačtina"
+    },
+    "lang_bg": {
+        "message": "bulharčina"
+    },
+    "lang_ca": {
+        "message": "katalánčina"
+    },
+    "lang_ceb": {
+        "message": "cebuánčina"
+    },
+    "lang_ny": {
+        "message": "ňandža"
+    },
+    "lang_zh_CN": {
+        "message": "čínština (zjednodušená)"
+    },
+    "lang_zh_TW": {
+        "message": "čínština (tradičná)"
+    },
+    "lang_co": {
+        "message": "korzičtina"
+    },
+    "lang_hr": {
+        "message": "chorvátčina"
+    },
+    "lang_cs": {
+        "message": "čeština"
+    },
+    "lang_da": {
+        "message": "dánčina"
+    },
+    "lang_nl": {
+        "message": "holandčina"
+    },
+    "lang_en": {
+        "message": "angličtina"
+    },
+    "lang_eo": {
+        "message": "esperanto"
+    },
+    "lang_et": {
+        "message": "estónčina"
+    },
+    "lang_fi": {
+        "message": "fínčina"
+    },
+    "lang_fr": {
+        "message": "francúzština"
+    },
+    "lang_fy": {
+        "message": "západná frízština"
+    },
+    "lang_gl": {
+        "message": "galícijčina"
+    },
+    "lang_ka": {
+        "message": "gruzínčina"
+    },
+    "lang_de": {
+        "message": "nemčina"
+    },
+    "lang_el": {
+        "message": "gréčtina"
+    },
+    "lang_gu": {
+        "message": "gudžarátčina"
+    },
+    "lang_ht": {
+        "message": "haitská kreolčina"
+    },
+    "lang_ha": {
+        "message": "hauština"
+    },
+    "lang_haw": {
+        "message": "havajčina"
+    },
+    "lang_he": {
+        "message": "hebrejčina"
+    },
+    "lang_hi": {
+        "message": "hindčina"
+    },
+    "lang_hu": {
+        "message": "maďarčina"
+    },
+    "lang_is": {
+        "message": "islandčina"
+    },
+    "lang_ig": {
+        "message": "igboština"
+    },
+    "lang_id": {
+        "message": "indonézština"
+    },
+    "lang_ga": {
+        "message": "írčina"
+    },
+    "lang_it": {
+        "message": "taliančina"
+    },
+    "lang_ja": {
+        "message": "japončina"
+    },
+    "lang_jv": {
+        "message": "jávčina"
+    },
+    "lang_kn": {
+        "message": "kannadčina"
+    },
+    "lang_kk": {
+        "message": "kazaština"
+    },
+    "lang_km": {
+        "message": "khmérčina"
+    },
+    "lang_rw": {
+        "message": "rwandčina"
+    },
+    "lang_ky": {
+        "message": "kirgizština"
+    },
+    "lang_ko": {
+        "message": "kórejčina"
+    },
+    "lang_ku": {
+        "message": "kurdčina"
+    },
+    "lang_lo": {
+        "message": "laoština"
+    },
+    "lang_la": {
+        "message": "latinčina"
+    },
+    "lang_lv": {
+        "message": "lotyština"
+    },
+    "lang_lt": {
+        "message": "litovčina"
+    },
+    "lang_lb": {
+        "message": "luxemburčina"
+    },
+    "lang_mk": {
+        "message": "macedónčina"
+    },
+    "lang_mg": {
+        "message": "malgaština"
+    },
+    "lang_ms": {
+        "message": "malajčina"
+    },
+    "lang_ml": {
+        "message": "malajálamčina"
+    },
+    "lang_mt": {
+        "message": "maltčina"
+    },
+    "lang_mi": {
+        "message": "maorijčina"
+    },
+    "lang_mr": {
+        "message": "maráthčina"
+    },
+    "lang_mn": {
+        "message": "mongolčina"
+    },
+    "lang_hmn": {
+        "message": "hmongčina"
+    },
+    "lang_my": {
+        "message": "barmčina"
+    },
+    "lang_ne": {
+        "message": "nepálčina"
+    },
+    "lang_no": {
+        "message": "nórčina"
+    },
+    "lang_nb": {
+        "message": "nórčina (bokmal)"
+    },
+    "lang_or": {
+        "message": "uríjčina"
+    },
+    "lang_fa": {
+        "message": "perzština"
+    },
+    "lang_pl": {
+        "message": "poľština"
+    },
+    "lang_pt": {
+        "message": "portugalčina"
+    },
+    "lang_pa": {
+        "message": "pandžábčina"
+    },
+    "lang_ps": {
+        "message": "paštčina"
+    },
+    "lang_ro": {
+        "message": "rumunčina"
+    },
+    "lang_ru": {
+        "message": "ruština"
+    },
+    "lang_sm": {
+        "message": "samojčina"
+    },
+    "lang_gd": {
+        "message": "škótska gaelčina"
+    },
+    "lang_sr": {
+        "message": "srbčina"
+    },
+    "lang_st": {
+        "message": "sothčina (južná)"
+    },
+    "lang_sn": {
+        "message": "šončina"
+    },
+    "lang_sd": {
+        "message": "sindhčina"
+    },
+    "lang_si": {
+        "message": "sinhalčina"
+    },
+    "lang_sk": {
+        "message": "slovenčina"
+    },
+    "lang_sl": {
+        "message": "slovinčina"
+    },
+    "lang_so": {
+        "message": "somálčina"
+    },
+    "lang_es": {
+        "message": "španielčina"
+    },
+    "lang_su": {
+        "message": "sundčina"
+    },
+    "lang_sw": {
+        "message": "swahilčina"
+    },
+    "lang_sv": {
+        "message": "švédčina"
+    },
+    "lang_tl": {
+        "message": "filipínčina"
+    },
+    "lang_tg": {
+        "message": "tadžičtina"
+    },
+    "lang_ta": {
+        "message": "tamilčina"
+    },
+    "lang_tt": {
+        "message": "tatárčina"
+    },
+    "lang_te": {
+        "message": "telugčina"
+    },
+    "lang_th": {
+        "message": "thajčina"
+    },
+    "lang_tr": {
+        "message": "turečtina"
+    },
+    "lang_tk": {
+        "message": "turkménčina"
+    },
+    "lang_uk": {
+        "message": "ukrajinčina"
+    },
+    "lang_ur": {
+        "message": "urdčina"
+    },
+    "lang_ug": {
+        "message": "ujgurčina"
+    },
+    "lang_uz": {
+        "message": "uzbečtina"
+    },
+    "lang_vi": {
+        "message": "vietnamčina"
+    },
+    "lang_cy": {
+        "message": "waleština"
+    },
+    "lang_xh": {
+        "message": "xhoština"
+    },
+    "lang_yi": {
+        "message": "jidiš"
+    },
+    "lang_yo": {
+        "message": "jorubčina"
+    },
+    "lang_zu": {
+        "message": "zuluština"
+    },
+    "lang_en_US": {
+        "message": "angličtina (americká)"
+    },
+    "lang_en_GB": {
+        "message": "angličtina (britská)"
+    },
+    "lang_pt_PT": {
+        "message": "portugalčina (európska)"
+    },
+    "lang_pt_BR": {
+        "message": "portugalčina (brazílska)"
+    },
+    "lang_zh": {
+        "message": "čínština"
+    },
+    "notFound": {
+        "message": "There were no results matching the query."
+    },
+    "privacyPolicyMenuTitle": {
+        "message": "Privacy policy"
+    }
+}
