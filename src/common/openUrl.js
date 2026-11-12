@@ -1,4 +1,6 @@
 import browser from "webextension-polyfill";
+import { getLocaleMessage } from "./i18n";
+import log from "loglevel";
 
 /**
  * 
@@ -15,3 +17,31 @@ export default async (url, isCurrentTab = false) => {
     if (isCurrentTab) browser.tabs.update({ url: url });
     else browser.tabs.create({ url: url, index: activeTab.index + 1 });
 };
+
+/**
+ * 
+ * @param {string} emailShareUrl
+ * @param {function} setIsOpen
+ * @param {function} setShareError
+ * @returns {function} Returns an async function that opens the email share URL in a new tab and handles errors
+ */
+export function createEmailShareTab(emailShareUrl, setIsOpen, setShareError) {
+    return async () => {
+        try {
+            await browser.tabs.create({ url: emailShareUrl, active: true });
+            setIsOpen(false);
+            setShareError("");
+        } catch (error) {
+            log.error("Email share failed", error);
+            setShareError(getLocaleMessage("shareErrorLabel"));
+        }
+    };
+}
+
+/**
+ * 
+ * @param {string} url
+ */
+export const openWikipediaLink = (url) => {
+    window.open(url, "_blank");
+}

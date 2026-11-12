@@ -1,11 +1,13 @@
-import React, { useId, useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 import log from "loglevel";
-import browser from "webextension-polyfill";
 import NewWindowIcon from "../icons/open-in-new-window.svg";
 import DownloadIcon from "../icons/download-solar.svg";
 import ShareIcon from "../icons/share-solar.svg";
 import ReadIcon from "../icons/book-solar.svg";
 import { getLocaleMessage } from "../common/i18n";
+import { createFacebookShareLink, createTwitterShareLink } from "../common/urlUtils";
+import { createEmailShareTab, openWikipediaLink } from "../common/openUrl";
+import { generateEmailBody, generateEmailShareLink, generateEmailSubject } from "../common/emailUtils";
 
 export function ReadFullArticleButton({ fullArticleState, openPopup, openInPopup, language, loadFullArticle, title }) {
     const readMoreLabel = getLocaleMessage("readMoreLabel")
@@ -27,15 +29,15 @@ export function ReadFullArticleButton({ fullArticleState, openPopup, openInPopup
 export function OpenInWikipediaButton({ title, url }) {
     const wikipediaLabel = getLocaleMessage("wikipediaLabel");
     const openInNewWindowLabel = getLocaleMessage("openInNewWindowLabel");
-    const openWikipediaLink = () => {
+    /* const openWikipediaLink = () => {
         window.open(url, "_blank");
-    }
+    } */
 
     return (
         <button
             type="button"
             className="resultFooterButton"
-            onClick={() => openWikipediaLink()}
+            onClick={() => openWikipediaLink(url)}
             title={openInNewWindowLabel + ": " + title}
         >
             <NewWindowIcon className="resultFooterButtonIcon" />
@@ -60,6 +62,14 @@ export function MoreResultButton({ openInPopup }) {
 export function DownloadButton({ title, summary, url }) {
     const [error, setError] = useState("");
     const downloadLabel = getLocaleMessage("downloadLabel");
+    function sanitizeTitle() {
+        return (title || "wikipedia-article")
+            .replace(/[<>:"/\\|?*]/g, "-")
+            .split("")
+            .filter((character) => character.charCodeAt(0) >= 32)
+            .join("")
+            .trim() || "wikipedia-article";
+    }
 
     return (
         <div className="mediaAction">
@@ -73,13 +83,7 @@ export function DownloadButton({ title, summary, url }) {
                         const file = new Blob([content], { type: "text/plain;charset=utf-8" });
                         const downloadUrl = URL.createObjectURL(file);
                         const link = document.createElement("a");
-                        const fileName = (title || "wikipedia-article")
-                            .replace(/[<>:"/\\|?*]/g, "-")
-                            .split("")
-                            .filter((character) => character.charCodeAt(0) >= 32)
-                            .join("")
-                            .trim() || "wikipedia-article";
-
+                        const fileName = sanitizeTitle();
                         link.href = downloadUrl;
                         link.download = `${fileName}.txt`;
                         try {
@@ -103,22 +107,76 @@ export function DownloadButton({ title, summary, url }) {
     );
 }
 
+function renderShareLink(url, title) {
+    return (
+        <a
+            className="resultFooterButton"
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            {title}
+        </a>
+    );
+}
+
+function renderEmailShareButton(onClick) {
+    return (
+        <button
+            type="button"
+            className="resultFooterButton"
+            onClick={onClick}
+        >
+            {getLocaleMessage("emailLabel")}
+        </button>
+    );
+}
+
+/* function renderTwitterShareLink(twitterShareUrl) {
+    return <a
+        className="resultFooterButton"
+        href={twitterShareUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        Twitter
+    </a>;
+} */
+
+
 export function ShareButton({ title, summary, url }) {
     const [isOpen, setIsOpen] = useState(false);
     const [shareError, setShareError] = useState("");
+    const shareRef = useRef(null);
     const optionsId = useId();
     const shareLabel = getLocaleMessage("shareLabel");
     const shareText = title || summary || "";
-    const twitterShareUrl = `https://twitter.com/intent/tweet?${new URLSearchParams({
-        ...(shareText && { text: shareText }),
-        ...(url && { url })
-    })}`;
-    const emailSubject = title || getLocaleMessage("shareLabel");
-    const emailBody = [summary, url].filter(Boolean).join("\n\n");
-    const emailShareUrl = `mailto:?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    const twitterShareUrl = createTwitterShareLink(shareText, url);
+    const facebookShareUrl = createFacebookShareLink(url);
+    const emailSubject = generateEmailSubject(title);
+    const emailBody = generateEmailBody(summary, url);
+    const emailShareUrl = generateEmailShareLink(emailSubject, emailBody);
+
+    function onClick() {
+        createEmailShareTab(emailShareUrl, setIsOpen, setShareError)();
+    }
+    useEffect(() => {
+        if (!isOpen) {
+            return undefined;
+        }
+
+        const handleOutsideClick = (event) => {
+            if (shareRef.current && !shareRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener("click", handleOutsideClick);
+        return () => document.removeEventListener("click", handleOutsideClick);
+    }, [isOpen]);
 
     return (
-        <div className="mediaAction">
+        <div className="mediaAction" ref={shareRef}>
             <button
                 type="button"
                 className="resultFooterButton"
@@ -132,40 +190,9 @@ export function ShareButton({ title, summary, url }) {
             {isOpen && (
                 <div className="shareOptions" id={optionsId} role="group" aria-label={shareLabel}>
                     {shareError && <span className="mediaActionError" role="alert">{shareError}</span>}
-                    {url && (
-                        <a
-                            className="resultFooterButton"
-                            href={`https://www.facebook.com/sharer/sharer.php?${new URLSearchParams({ u: url })}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Facebook
-                        </a>
-                    )}
-                    <a
-                        className="resultFooterButton"
-                        href={twitterShareUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Twitter
-                    </a>
-                    <button
-                        type="button"
-                        className="resultFooterButton"
-                        onClick={async () => {
-                            try {
-                                await browser.tabs.create({ url: emailShareUrl, active: true });
-                                setIsOpen(false);
-                                setShareError("");
-                            } catch (error) {
-                                log.error("Email share failed", error);
-                                setShareError(getLocaleMessage("shareErrorLabel"));
-                            }
-                        }}
-                    >
-                        {getLocaleMessage("emailLabel")}
-                    </button>
+                    {url && renderShareLink(facebookShareUrl, "Facebook")}
+                    {renderShareLink(twitterShareUrl, "Twitter")}
+                    {renderEmailShareButton(onClick)}
                 </div>
             )}
         </div>

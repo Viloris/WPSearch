@@ -5,7 +5,9 @@ import { CONFIG } from "./constans";
 
 const {
     ARTICLE_PATH,
+    FACEBOOK_BASE_URL,
     HTTPS,
+    TWITTER_BASE_URL,
     WIKIPEDIA_API_URL,
     WIKIPEDIA_DOMAIN,
     requestMessages: {
@@ -104,4 +106,15 @@ export function getWikipediaArticleUrl(language) {
  */
 export function buildWikipediaAPIUrl(language, params) {
     return `${HTTPS}${language}${WIKIPEDIA_API_URL}${params}`;
+}
+
+export function createTwitterShareLink(tweetText, tweetUrl) {
+    return `${TWITTER_BASE_URL}${new URLSearchParams({
+        ...(tweetText && { text: tweetText }),
+        ...(tweetUrl && { url: tweetUrl })
+    })}`;
+}
+
+export function createFacebookShareLink(url) {
+    return `${FACEBOOK_BASE_URL}${new URLSearchParams({ u: url })}`;
 }

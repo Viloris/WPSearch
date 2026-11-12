@@ -11,6 +11,8 @@
     "CREATIVECOMMONS_BASE_URL": "creativecommons.org",
     "WKIMEDIA_THUMB_API_URL": "thumb.wikimedia.org",
     "WKIMEDIA_UPLOAD_API_URL": "upload.wikimedia.org",
+    "TWITTER_BASE_URL": "https://twitter.com/intent/tweet?",
+    "FACEBOOK_BASE_URL": "https://www.facebook.com/sharer/sharer.php?",
     "protocolHttps": "https:",
     "HTTPS": "https://",
     "stringType": "string",
