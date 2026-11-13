@@ -14,9 +14,9 @@ Wikipedia Preview is owned and operated by [Viloris](https://github.com/Viloris)
 
 ## 2. Handling user data with Wikipedia Preview
 
-To provide search functionality, Wikipedia Preview retrieves the input/selected text and sends the request to Wikipedia's API.
+To provide search functionality, Wikipedia Preview sends entered search terms or text selected on a website to Wikipedia's API. The browser identifies these data types as search terms and website content.
 
-**We do not access/collect any of these data.**
+The developer does not collect these data. Wikipedia receives them to process the request.
 
 Please refer to the following link the privacy policy of Wikipedia.  
 [Wikipedia Privacy Policy](https://foundation.wikimedia.org/wiki/Policy:Privacy_policy)
