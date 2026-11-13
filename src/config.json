@@ -81,6 +81,7 @@
         "DISABLE_EXTENSION": "disableExtension",
         "WP_SEARCH_SELECTED_TEXT": "wpSearchSelectedText",
         "WIKIPEDIA_SEARCH": "wikipediaSearch",
+        "WIKIPEDIA_FULL_ARTICLE": "wikipediaFullArticle",
         "OPEN_OPTIONS_PAGE": "openOptionsPage",
         "OPEN_POPUP_PAGE": "openPopupPage"
     }
