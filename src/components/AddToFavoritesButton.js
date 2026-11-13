@@ -18,7 +18,8 @@ export default function AddToFavoritesButton({
   wikipedia,
   title,
   url,
-  isSaved = false
+  isSaved = false,
+  getMessage = getLocaleMessage
 }) {
   const buttonClassName = [
     className,
@@ -33,7 +34,7 @@ export default function AddToFavoritesButton({
     }
   };
 
-  const favoriteButtonLabel = getLocaleMessage(isSaved ? "addedToFavoritesLabel" : "addToFavoritesLabel");
+  const favoriteButtonLabel = getMessage(isSaved ? "addedToFavoritesLabel" : "addToFavoritesLabel");
   const favoriteIcon = isSaved ?
     <AddIcon className="resultFooterButtonIcon" /> :
     <BlankIcon className="resultFooterButtonIcon" />;

@@ -1,6 +1,7 @@
 import React from "react";
 import { getLocaleMessage } from "../../../common/i18n";
 import { getWikipediaName } from "../../../common/urlUtils";
+import { getFeedSectionLanguage, getFeedSectionMessage } from "./feedSectionMessages";
 import browser from "webextension-polyfill";
 import openUrl from "../../../common/openUrl";
 import { CONFIG } from "../../../common/constans";
@@ -25,12 +26,13 @@ export function ArticleHeader({ language }) {
     )
 }
 
-export function ArticleLabel({ isLoading, hasFeaturedArticle, article }) {
+export function ArticleLabel({ isLoading, hasFeaturedArticle, article, language }) {
     return (
-        <h2>
+        <h2 lang={getFeedSectionLanguage(language)}>
             {isLoading || !hasFeaturedArticle
-                ? getLocaleMessage("feedLoadingLabel")
-                : getLocaleMessage(
+                ? getFeedSectionMessage(language, "feedLoadingLabel")
+                : getFeedSectionMessage(
+                    language,
                     article.isFallback
                         ? "dailyTrendingArticleLabel"
                         : article.isLatestFeatured

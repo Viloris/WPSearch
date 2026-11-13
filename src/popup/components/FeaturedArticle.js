@@ -146,12 +146,13 @@ export default function FeaturedArticle({
       {isLoading && <ArticleLabel
         hasFeaturedArticle={hasFeaturedArticle}
         article={article}
+        language={language}
       />}
       {hasError && (
-        <ErrorMessage retry={retry} />
+        <ErrorMessage retry={retry} language={language} />
       )}
       {article && !hasFeaturedArticle && !hasSupplementaryContent && (
-        <ErrorMessage retry={retry} />
+        <ErrorMessage retry={retry} language={language} />
       )}
       {hasFeaturedArticle && <h3 className="featuredArticleSectionTitle" lang={sectionLanguage}>
         {getFeedSectionMessage(language, "featuredArticleLabel")}

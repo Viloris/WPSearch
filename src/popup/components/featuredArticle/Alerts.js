@@ -1,10 +1,12 @@
-import { getLocaleMessage } from "../../../common/i18n";
+import { getFeedSectionLanguage, getFeedSectionMessage } from "./feedSectionMessages";
 
-export function ErrorMessage({ retry }) {
+export function ErrorMessage({ retry, language }) {
     return <div className="featuredArticleStatus" role="alert">
-        <p>{getLocaleMessage("dailyFeaturedArticleError")}</p>
-        <button onClick={retry} type="button">
-            {getLocaleMessage("dailyFeaturedArticleRetryLabel")}
+        <p lang={getFeedSectionLanguage(language)}>
+            {getFeedSectionMessage(language, "dailyFeaturedArticleError")}
+        </p>
+        <button lang={getFeedSectionLanguage(language)} onClick={retry} type="button">
+            {getFeedSectionMessage(language, "dailyFeaturedArticleRetryLabel")}
         </button>
     </div>;
 }

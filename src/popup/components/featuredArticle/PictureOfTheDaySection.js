@@ -1,5 +1,4 @@
 import React from "react";
-import { getLocaleMessage } from "../../../common/i18n";
 import { getFeedSectionLanguage, getFeedSectionMessage } from "./feedSectionMessages";
 
 export function PictureOfTheDaySection({ imageOfDay, failedImages, setFailedImages, retry, language }) {
@@ -23,10 +22,14 @@ export function PictureOfTheDaySection({ imageOfDay, failedImages, setFailedImag
                     </a>
                 )}
                 {failedImages.imageOfDay && (
-                    <p className="featuredArticleStatus" role="alert">
-                        {getLocaleMessage("dailyImageOfDayError")}
-                        <button onClick={retry} type="button">
-                            {getLocaleMessage("dailyFeaturedArticleRetryLabel")}
+                    <p
+                        className="featuredArticleStatus"
+                        lang={getFeedSectionLanguage(language)}
+                        role="alert"
+                    >
+                        {getFeedSectionMessage(language, "dailyImageOfDayError")}
+                        <button lang={getFeedSectionLanguage(language)} onClick={retry} type="button">
+                            {getFeedSectionMessage(language, "dailyFeaturedArticleRetryLabel")}
                         </button>
                     </p>
                 )}
@@ -34,16 +37,19 @@ export function PictureOfTheDaySection({ imageOfDay, failedImages, setFailedImag
                     <figcaption>{imageOfDay.description}</figcaption>
                 )}
                 {(imageOfDay.artist || imageOfDay.licenseName) && (
-                    <p className="featuredArticleImageCredit">
+                    <p
+                        className="featuredArticleImageCredit"
+                        lang={getFeedSectionLanguage(language)}
+                    >
                         {imageOfDay.artist && (
                             <>
-                                {getLocaleMessage("dailyImageArtistLabel")}: {imageOfDay.artist}
+                                {getFeedSectionMessage(language, "dailyImageArtistLabel")}: {imageOfDay.artist}
                             </>
                         )}
                         {imageOfDay.artist && imageOfDay.licenseName && " · "}
                         {imageOfDay.licenseName && (
                             <>
-                                {getLocaleMessage("dailyImageLicenseLabel")}:{" "}
+                                {getFeedSectionMessage(language, "dailyImageLicenseLabel")}:{" "}
                                 {imageOfDay.licenseUrl ? (
                                     <a
                                         href={imageOfDay.licenseUrl}

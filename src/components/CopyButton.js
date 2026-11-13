@@ -5,16 +5,17 @@ import DoneIcon from "../icons/ok-icon.svg";
 import "../styles/CopyButton.scss";
 import { getLocaleMessage } from "../common/i18n";
 
-//const labelCopied = getLocaleMessage("copiedLabel");
-const buttonCaption = getLocaleMessage("copyLabel");
-
 /**
  *
  * @description Component to display a copy button for the given text, which allows users to copy the text to their clipboard and provides visual feedback when the text has been copied successfully
  * @param {string} text
  * @returns {JSX.Element} Copy button with copied state
  */
-export default function CopyButton({ text, className = "resultFooterButton" }) {
+export default function CopyButton({
+  text,
+  className = "resultFooterButton",
+  getMessage = getLocaleMessage
+}) {
   const [isCopied, setIsCopied] = useState(false);
   const [copyError, setCopyError] = useState("");
   const [copiedForText, setCopiedForText] = useState("");
@@ -44,13 +45,13 @@ export default function CopyButton({ text, className = "resultFooterButton" }) {
       <button
         type="button"
         className={className}
-        title={buttonCaption}
+        title={getMessage("copyLabel")}
         onClick={handleCopy}
       >
         {isCopied && copiedForText === text
           ? <DoneIcon className="resultFooterButtonIcon" style={{ fill: "green" }} />
           : <CopyIcon className="resultFooterButtonIcon" />}
-        {getLocaleMessage("copyLabel")}
+        {getMessage("copyLabel")}
       </button>
     </div>
   );

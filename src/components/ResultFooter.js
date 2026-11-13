@@ -2,6 +2,7 @@ import React from "react";
 import CopyButton from "./CopyButton";
 import "../styles/resultFooter.scss";
 import AddToFavoritesButton from "./AddToFavoritesButton";
+import { getLocaleMessage } from "../common/i18n";
 // import NewWindowIcon from "../icons/open-in-new-window.svg";
 // import BookIcon from "../icons/book-solar.svg";
 // import { getLocaleMessage } from "../common/i18n";
@@ -31,7 +32,9 @@ export function ResultFooter({
   url,
   favorites = [],
   searchExpression,
-  openPopup
+  openPopup,
+  getMessage = getLocaleMessage,
+  messageLanguage
 }) {
   const isSaved = favorites.some((favorite) => favorite.summary === text);
   const hasMatchingArticle = Boolean(url);
@@ -44,10 +47,11 @@ export function ResultFooter({
 
   if (text) {
     return (
-      <div className={"mediaButtons"}>
+      <div className={"mediaButtons"} lang={messageLanguage}>
         {openPopup && searchExpression && (
           <MoreResultButton
             openInPopup={openInPopup}
+            getMessage={getMessage}
           />
         )}
         {hasMatchingArticle && (
@@ -58,10 +62,12 @@ export function ResultFooter({
               language={language}
               loadFullArticle={loadFullArticle}
               title={title}
+              getMessage={getMessage}
             />
             <OpenInWikipediaButton
               title={title}
               url={url}
+              getMessage={getMessage}
             />
             <AddToFavoritesButton
               className="resultFooterButton"
@@ -72,22 +78,26 @@ export function ResultFooter({
               title={title}
               url={url}
               isSaved={isSaved}
+              getMessage={getMessage}
             />
           </>
         )}
         <CopyButton
           className="resultFooterButton"
           text={text}
+          getMessage={getMessage}
         />
         <DownloadButton
           title={title}
           summary={text}
           url={url}
+          getMessage={getMessage}
         />
         <ShareButton
           title={title}
           summary={text}
           url={url}
+          getMessage={getMessage}
         />
       </div>
     );

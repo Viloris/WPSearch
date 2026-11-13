@@ -9,8 +9,8 @@ import { createFacebookShareLink, createTwitterShareLink } from "../common/urlUt
 import { createEmailShareTab, openWikipediaLink } from "../common/openUrl";
 import { generateEmailBody, generateEmailShareLink, generateEmailSubject } from "../common/emailUtils";
 
-export function ReadFullArticleButton({ fullArticleState, openPopup, openInPopup, language, loadFullArticle, title }) {
-    const readMoreLabel = getLocaleMessage("readMoreLabel")
+export function ReadFullArticleButton({ fullArticleState, openPopup, openInPopup, language, loadFullArticle, title, getMessage = getLocaleMessage }) {
+    const readMoreLabel = getMessage("readMoreLabel")
     return (
         <button
             type="button"
@@ -26,9 +26,9 @@ export function ReadFullArticleButton({ fullArticleState, openPopup, openInPopup
     )
 }
 
-export function OpenInWikipediaButton({ title, url }) {
-    const wikipediaLabel = getLocaleMessage("wikipediaLabel");
-    const openInNewWindowLabel = getLocaleMessage("openInNewWindowLabel");
+export function OpenInWikipediaButton({ title, url, getMessage = getLocaleMessage }) {
+    const wikipediaLabel = getMessage("wikipediaLabel");
+    const openInNewWindowLabel = getMessage("openInNewWindowLabel");
     /* const openWikipediaLink = () => {
         window.open(url, "_blank");
     } */
@@ -46,8 +46,8 @@ export function OpenInWikipediaButton({ title, url }) {
     )
 }
 
-export function MoreResultButton({ openInPopup }) {
-    const moreResultsLabel = getLocaleMessage("moreResultsLabel");
+export function MoreResultButton({ openInPopup, getMessage = getLocaleMessage }) {
+    const moreResultsLabel = getMessage("moreResultsLabel");
     return (
         <button
             type="button"
@@ -59,9 +59,9 @@ export function MoreResultButton({ openInPopup }) {
     )
 }
 
-export function DownloadButton({ title, summary, url }) {
+export function DownloadButton({ title, summary, url, getMessage = getLocaleMessage }) {
     const [error, setError] = useState("");
-    const downloadLabel = getLocaleMessage("downloadLabel");
+    const downloadLabel = getMessage("downloadLabel");
     function sanitizeTitle() {
         return (title || "wikipedia-article")
             .replace(/[<>:"/\\|?*]/g, "-")
@@ -96,7 +96,7 @@ export function DownloadButton({ title, summary, url }) {
                         setError("");
                     } catch (downloadError) {
                         log.error("Download failed", downloadError);
-                        setError(getLocaleMessage("downloadErrorLabel"));
+                        setError(getMessage("downloadErrorLabel"));
                     }
                 }}
             >
@@ -120,14 +120,14 @@ function renderShareLink(url, title) {
     );
 }
 
-function renderEmailShareButton(onClick) {
+function renderEmailShareButton(onClick, getMessage) {
     return (
         <button
             type="button"
             className="resultFooterButton"
             onClick={onClick}
         >
-            {getLocaleMessage("emailLabel")}
+            {getMessage("emailLabel")}
         </button>
     );
 }
@@ -144,12 +144,12 @@ function renderEmailShareButton(onClick) {
 } */
 
 
-export function ShareButton({ title, summary, url }) {
+export function ShareButton({ title, summary, url, getMessage = getLocaleMessage }) {
     const [isOpen, setIsOpen] = useState(false);
     const [shareError, setShareError] = useState("");
     const shareRef = useRef(null);
     const optionsId = useId();
-    const shareLabel = getLocaleMessage("shareLabel");
+    const shareLabel = getMessage("shareLabel");
     const shareText = title || summary || "";
     const twitterShareUrl = createTwitterShareLink(shareText, url);
     const facebookShareUrl = createFacebookShareLink(url);
@@ -192,7 +192,7 @@ export function ShareButton({ title, summary, url }) {
                     {shareError && <span className="mediaActionError" role="alert">{shareError}</span>}
                     {url && renderShareLink(facebookShareUrl, "Facebook")}
                     {renderShareLink(twitterShareUrl, "Twitter")}
-                    {renderEmailShareButton(onClick)}
+                    {renderEmailShareButton(onClick, getMessage)}
                 </div>
             )}
         </div>

@@ -1,8 +1,8 @@
 import React from "react";
 import { extractTextFromHtml, sanitizeExtractHtml } from "../../../common/htmlUtils";
-import { getLocaleMessage } from "../../../common/i18n";
 import { getWikipediaName } from "../../../common/urlUtils";
 import { ResultFooter } from "../../../components/ResultFooter";
+import { getFeedSectionLanguage, getFeedSectionMessage } from "./feedSectionMessages";
 
 export const renderArticleCard = (
     articleToRender,
@@ -28,8 +28,8 @@ export const renderArticleCard = (
             />
         )}
         {failedImages[articleToRender.articleUrl] && (
-            <p className="featuredArticleStatus" role="alert">
-                {getLocaleMessage("dailyArticleImageError")}
+            <p className="featuredArticleStatus" lang={getFeedSectionLanguage(language)} role="alert">
+                {getFeedSectionMessage(language, "dailyArticleImageError")}
             </p>
         )}
         <h3>
@@ -64,6 +64,8 @@ export const renderArticleCard = (
                 articleToRender.title
             ])]}
             url={articleToRender.articleUrl}
+            getMessage={(key) => getFeedSectionMessage(language, key)}
+            messageLanguage={getFeedSectionLanguage(language)}
         />
     </article>
 );
