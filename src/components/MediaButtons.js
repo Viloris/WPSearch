@@ -15,9 +15,9 @@ export function ReadFullArticleButton({ fullArticleState, openPopup, openInPopup
         <button
             type="button"
             className="resultFooterButton"
-            onClick={() => openPopup
-                ? openInPopup({ language, title })
-                : loadFullArticle(language, title)}
+            onClick={() => loadFullArticle
+                ? loadFullArticle(language, title)
+                : openPopup && openInPopup({ language, title })}
             disabled={fullArticleState?.isLoading}
         >
             <ReadIcon className="resultFooterButtonIcon" />
@@ -59,7 +59,7 @@ export function MoreResultButton({ openInPopup, getMessage = getLocaleMessage })
     )
 }
 
-export function DownloadButton({ title, summary, url, getMessage = getLocaleMessage }) {
+export function DownloadButton({ title, summary, url, getMessage = getLocaleMessage, iconOnly = false, disabled = false }) {
     const [error, setError] = useState("");
     const downloadLabel = getMessage("downloadLabel");
     function sanitizeTitle() {
@@ -77,6 +77,9 @@ export function DownloadButton({ title, summary, url, getMessage = getLocaleMess
             <button
                 type="button"
                 className="resultFooterButton"
+                aria-label={iconOnly ? downloadLabel : undefined}
+                title={iconOnly ? downloadLabel : undefined}
+                disabled={disabled}
                 onClick={() => {
                     try {
                         const content = [title, summary, url].filter(Boolean).join("\n\n");
@@ -101,7 +104,7 @@ export function DownloadButton({ title, summary, url, getMessage = getLocaleMess
                 }}
             >
                 <DownloadIcon className="resultFooterButtonIcon" />
-                {downloadLabel}
+                {!iconOnly && downloadLabel}
             </button>
         </div>
     );
@@ -144,7 +147,7 @@ function renderEmailShareButton(onClick, getMessage) {
 } */
 
 
-export function ShareButton({ title, summary, url, getMessage = getLocaleMessage }) {
+export function ShareButton({ title, summary, url, getMessage = getLocaleMessage, iconOnly = false }) {
     const [isOpen, setIsOpen] = useState(false);
     const [shareError, setShareError] = useState("");
     const shareRef = useRef(null);
@@ -180,12 +183,14 @@ export function ShareButton({ title, summary, url, getMessage = getLocaleMessage
             <button
                 type="button"
                 className="resultFooterButton"
+                aria-label={iconOnly ? shareLabel : undefined}
+                title={iconOnly ? shareLabel : undefined}
                 aria-expanded={isOpen}
                 aria-controls={optionsId}
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <ShareIcon className="resultFooterButtonIcon" />
-                {shareLabel}
+                {!iconOnly && shareLabel}
             </button>
             {isOpen && (
                 <div className="shareOptions" id={optionsId} role="group" aria-label={shareLabel}>

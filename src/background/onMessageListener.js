@@ -1,6 +1,7 @@
 import browser from "webextension-polyfill";
 import { initSettings } from "../settings/settings";
 import wikisearch from "../common/wikisearch";
+import { fetchWikiFullArticle } from "../api/wikipediaApi";
 import { CONFIG } from "../common/constans";
 
 /**
@@ -10,7 +11,12 @@ import { CONFIG } from "../common/constans";
  * @returns {Promise} --- IGNORE ---
  */
 const {
-  requestMessages: { WIKIPEDIA_SEARCH, OPEN_OPTIONS_PAGE, OPEN_POPUP_PAGE },
+  requestMessages: {
+    WIKIPEDIA_SEARCH,
+    WIKIPEDIA_FULL_ARTICLE,
+    OPEN_OPTIONS_PAGE,
+    OPEN_POPUP_PAGE
+  },
   OPTIONS_PAGE_URL,
   POPUP_REQUEST_STORAGE_KEY
 } = CONFIG;
@@ -21,6 +27,10 @@ export default async (data) => {
   switch (data.message) {
     case WIKIPEDIA_SEARCH: {
       return await wikisearch(data.expression, data.offset, data.limit, data.language);
+    }
+
+    case WIKIPEDIA_FULL_ARTICLE: {
+      return await fetchWikiFullArticle(data.language, data.title);
     }
 
     case OPEN_OPTIONS_PAGE: {

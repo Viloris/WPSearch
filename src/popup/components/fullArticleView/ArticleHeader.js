@@ -3,6 +3,8 @@ import { BackButton } from "./BackButton";
 import { CloseButton } from "./Closebutton";
 import { AddToFavoritesButton } from "./AddToFavoritesButton";
 import { ArticleTitle } from "./ArticleTitle";
+import { DownloadButton, ShareButton } from "../../../components/MediaButtons";
+import "../../../styles/articleReaderActions.scss";
 
 export function ArticleHeader({
     addToFavorites,
@@ -50,11 +52,15 @@ export function ArticleHeader({
                 </a>
                 <h5>{getWikipediaName(language)}</h5>
             </div> */}
-            <AddToFavoritesButton
-                handleToggleFavorite={handleToggleFavorite}
-                isSaved={isSaved}
-                disabled={!canSave}
-            />
+            <div className="articleReaderActions">
+                <DownloadButton title={title} summary={text} url={url} iconOnly disabled={!canSave} />
+                <ShareButton title={title} summary={text} url={url} iconOnly />
+                <AddToFavoritesButton
+                    handleToggleFavorite={handleToggleFavorite}
+                    isSaved={isSaved}
+                    disabled={!canSave}
+                />
+            </div>
             <CloseButton
                 onClose={onClose}
             />

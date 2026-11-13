@@ -120,12 +120,10 @@ const showSearchContainer = (
     const themeClass =
         "simple-wikipedia-search-" + getSettings("theme") + "-theme";
 
-    document.body.insertAdjacentHTML(
-        "beforeend",
-        `<div id="simple-wikipedia-search" class="${themeClass}"></div>`
-    );
-
-    const container = document.getElementById("simple-wikipedia-search");
+    const container = document.createElement("div");
+    container.id = "simple-wikipedia-search";
+    container.className = themeClass;
+    document.body.appendChild(container);
 
     searchRoot = createRoot(container);
 

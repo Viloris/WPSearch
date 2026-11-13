@@ -183,6 +183,7 @@ body {
     .fullArticleView-header-text {
       flex: 1 1 auto;
       min-width: 0;
+      overflow-wrap: anywhere;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -232,6 +233,10 @@ body {
       &:hover {
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
       }
+    }
+
+    > button {
+      flex: 0 0 auto;
     }
   }
 
