@@ -1,0 +1,914 @@
+{
+    "extName": {
+        "message": "Предпросмотр Википедии"
+    },
+    "extDescription": {
+        "message": "Поиск в Википедии по выделенному тексту"
+    },
+    "donateWithPaypalLabel": {
+        "message": "Пожертвовать через PayPal"
+    },
+    "donateLabel": {
+        "message": "Пожертвовать"
+    },
+    "enableOnThisPage": {
+        "message": "Включить поиск на этой странице"
+    },
+    "disableOnThisPage": {
+        "message": "Отключить поиск на этой странице"
+    },
+    "initialTextArea": {
+        "message": "Введите текст"
+    },
+    "searchHistoryLabel": {
+        "message": "История поиска"
+    },
+    "searchTermLabel": {
+        "message": "Поисковый запрос"
+    },
+    "clearSearchHistoryLabel": {
+        "message": "Очистить историю"
+    },
+    "emptySearchHistoryLabel": {
+        "message": "Пока нет поисковых запросов"
+    },
+    "mainMenuLabel": {
+        "message": "Главная"
+    },
+    "searchLabel": {
+        "message": "Поиск"
+    },
+    "searchEmptyMessage": {
+        "message": "Введите запрос, чтобы получать результаты с задержкой, подсказки и готовые к чтению карточки статей."
+    },
+    "moreResultsFor": {
+        "message": "Больше результатов здесь:"
+    },
+    "previousResultsLabel": {
+        "message": "Назад"
+    },
+    "resultsRangeLabel": {
+        "message": "Результаты $1–$2"
+    },
+    "recentSearchTerms": {
+        "message": "Недавние"
+    },
+    "readFullArticleLabel": {
+        "message": "Читать статью полностью"
+    },
+    "feedLabel": {
+        "message": "Лента"
+    },
+    "feedLoadingLabel": {
+        "message": "Загрузка ленты..."
+    },
+    "featuredArticleLabel": {
+        "message": "Избранная статья дня"
+    },
+    "dailyLatestFeaturedArticleLabel": {
+        "message": "Последняя избранная статья"
+    },
+    "dailyFeaturedArticleLoading": {
+        "message": "Загрузка сегодняшней избранной статьи..."
+    },
+    "dailyFeaturedArticleFallback": {
+        "message": "Сегодня избранная статья недоступна; вместо неё показана самая читаемая статья."
+    },
+    "dailyFeaturedArticleError": {
+        "message": "Не удалось загрузить сегодняшнюю избранную статью."
+    },
+    "dailyFeaturedArticleRetryLabel": {
+        "message": "Повторить попытку"
+    },
+    "dailyImageOfDayLabel": {
+        "message": "Изображение дня"
+    },
+    "dailyImageArtistLabel": {
+        "message": "Фотограф"
+    },
+    "dailyImageLicenseLabel": {
+        "message": "Лицензия"
+    },
+    "dailyTrendingArticleLabel": {
+        "message": "Популярная статья"
+    },
+    "dailyTrendingArticleError": {
+        "message": "Не удалось загрузить популярную статью."
+    },
+    "dailyImageOfDayError": {
+        "message": "Не удалось загрузить изображение дня."
+    },
+    "dailyArticleImageError": {
+        "message": "Не удалось загрузить изображение статьи."
+    },
+    "dailyMostReadLabel": {
+        "message": "Самые читаемые статьи"
+    },
+    "dailyMostReadError": {
+        "message": "Не удалось загрузить самые читаемые статьи."
+    },
+    "readMoreLabel": {
+        "message": "Читать"
+    },
+    "moreResultsLabel": {
+        "message": "Далее"
+    },
+    "shareLabel": {
+        "message": "Поделиться"
+    },
+    "emailLabel": {
+        "message": "Электронная почта"
+    },
+    "downloadLabel": {
+        "message": "Скачать"
+    },
+    "downloadErrorLabel": {
+        "message": "Не удалось скачать."
+    },
+    "shareCopiedLabel": {
+        "message": "Содержимое скопировано в буфер обмена."
+    },
+    "shareErrorLabel": {
+        "message": "Не удалось поделиться."
+    },
+    "wikipediaLabel": {
+        "message": "Википедия"
+    },
+    "dailyDidYouKnowLabel": {
+        "message": "Знаете ли вы?"
+    },
+    "dailyNewsLabel": {
+        "message": "В новостях"
+    },
+    "dailyOnThisDayLabel": {
+        "message": "В этот день"
+    },
+    "favoritesLabel": {
+        "message": "Избранное"
+    },
+    "removeFromFavoritesLabel": {
+        "message": "Удалить из избранного"
+    },
+    "emptyFavoritesLabel": {
+        "message": "Пока нет избранного"
+    },
+    "addToFavoritesLabel": {
+        "message": "Добавить в избранное"
+    },
+    "removeFromFavoritesConfirmLabel": {
+        "message": "Вы уверены, что хотите удалить этот элемент из избранного?"
+    },
+    "addedToFavoritesLabel": {
+        "message": "Сохранено"
+    },
+    "loadingSearchLabel": {
+        "message": "Загрузка результатов поиска..."
+    },
+    "loadingFullArticleLabel": {
+        "message": "Загрузка полной статьи..."
+    },
+    "backFullArticleLabel": {
+        "message": "Вернуться к предыдущей статье"
+    },
+    "closeFullArticleLabel": {
+        "message": "Закрыть полную статью"
+    },
+    "closeNextResultsLabel": {
+        "message": "Закрыть дополнительные результаты"
+    },
+    "openInNewWindowLabel": {
+        "message": "Открыть в новом окне"
+    },
+    "copyLabel": {
+        "message": "Копировать"
+    },
+    "copiedLabel": {
+        "message": "Скопировано"
+    },
+    "listenLabel": {
+        "message": "Слушать"
+    },
+    "targetLangLabel": {
+        "message": "Целевой язык"
+    },
+    "allLangLabel": {
+        "message": "Все языки"
+    },
+    "recentLangLabel": {
+        "message": "Недавние языки"
+    },
+    "settingsLabel": {
+        "message": "Настройки"
+    },
+    "generalLabel": {
+        "message": "Общие"
+    },
+    "targetLangCaptionLabel": {
+        "message": "Выберите целевой язык по умолчанию."
+    },
+    "feedLangLabel": {
+        "message": "Лента Википедии"
+    },
+    "feedLangSettingLabel": {
+        "message": "Настройки ленты Википедии"
+    },
+    "feedLangCaptionLabel": {
+        "message": "Выберите Википедию, используемую в ленте по умолчанию."
+    },
+    "webPageLabel": {
+        "message": "Веб-страница"
+    },
+    "whenSelectTextLabel": {
+        "message": "Действие при выделении текста"
+    },
+    "ifAutoSearchLabel": {
+        "message": "Показывать панель поиска"
+    },
+    "ifAutoSearchCaptionLabel": {
+        "message": "Сразу показывать панель поиска, не отображая кнопку."
+    },
+    "ifShowButtonLabel": {
+        "message": "Показывать кнопку поиска"
+    },
+    "ifShowButtonCaptionLabel": {
+        "message": "Показывать кнопку поиска, которая открывает панель при нажатии."
+    },
+    "dontshowbuttonlabel": {
+        "message": "Не показывать кнопку или панель"
+    },
+    "dontshowbuttonCaptionlabel": {
+        "message": "Не показывать кнопку поиска или панель поиска."
+    },
+    "disableWikipediaSearchLabel": {
+        "message": "Отключить поиск"
+    },
+    "isDisabledInTextFieldsLabel": {
+        "message": "Отключить поиск в текстовых полях"
+    },
+    "isDisabledInTextFieldsCaptionLabel": {
+        "message": "Не показывать кнопку или панель поиска при выделении текста в текстовом поле."
+    },
+    "isDisabledInCodeElementLabel": {
+        "message": "Отключить поиск в блоках кода"
+    },
+    "isDisabledInCodeElementCaptionLabel": {
+        "message": "Не показывать кнопку или панель поиска при выделении текста в блоке кода."
+    },
+    "ifOnlySearchWhenModifierKeyPressedLabel": {
+        "message": "Искать при нажатии клавиши-модификатора"
+    },
+    "ifOnlySearchWhenModifierKeyPressedCaptionLabel": {
+        "message": "Показывать поиск только при нажатии указанной клавиши-модификатора."
+    },
+    "modifierKeyLabel": {
+        "message": "Клавиша-модификатор"
+    },
+    "shiftLabel": {
+        "message": "Shift"
+    },
+    "ctrlLabel": {
+        "message": "Ctrl"
+    },
+    "altLabel": {
+        "message": "Alt"
+    },
+    "cmdLabel": {
+        "message": "Command"
+    },
+    "disableUrlListLabel": {
+        "message": "Список URL-адресов, для которых поиск отключён"
+    },
+    "disableUrlListCaptionLabel": {
+        "message": "Если URL-адрес страницы совпадает со списком, поиск на веб-странице отключается. В списке можно использовать подстановочный знак «*»."
+    },
+    "toolbarLabel": {
+        "message": "Всплывающее окно панели инструментов"
+    },
+    "secondTargetLangLabel": {
+        "message": "Второй язык"
+    },
+    "secondTargetLangCaptionLabel": {
+        "message": "Выберите второй целевой язык."
+    },
+    "ignoredDocumentLangLabel": {
+        "message": "Отключить поиск по атрибуту lang"
+    },
+    "ignoredDocumentLangCaptionLabel": {
+        "message": "Отключать поиск, если атрибут lang элемента html страницы совпадает со списком. Введите языковые теги через запятую."
+    },
+    "waitTimeLabel": {
+        "message": "Время ожидания перед поиском"
+    },
+    "waitTimeCaptionLabel": {
+        "message": "Укажите время от ввода символа до начала поиска (в миллисекундах)."
+    },
+    "waitTime2CaptionLabel": {
+        "message": "Если выполнять поиск слишком часто за короткое время, он может стать временно недоступен."
+    },
+    "menuLabel": {
+        "message": "Контекстное меню"
+    },
+    "ifShowMenuLabel": {
+        "message": "Показывать контекстное меню"
+    },
+    "ifShowMenuCaptionLabel": {
+        "message": "Добавлять пункты в контекстное меню, которое отображается при щелчке правой кнопкой мыши на веб-странице или вкладке."
+    },
+    "styleLabel": {
+        "message": "Стиль"
+    },
+    "themeLabel": {
+        "message": "Тема"
+    },
+    "themeCaptionLabel": {
+        "message": "Выберите цветовую схему."
+    },
+    "lightLabel": {
+        "message": "Светлая"
+    },
+    "darkLabel": {
+        "message": "Тёмная"
+    },
+    "systemLabel": {
+        "message": "Системная"
+    },
+    "buttonStyleLabel": {
+        "message": "Кнопка поиска"
+    },
+    "buttonStyleCaptionLabel": {
+        "message": "Выберите стиль кнопки поиска, отображаемой на веб-странице."
+    },
+    "buttonSizeLabel": {
+        "message": "Размер"
+    },
+    "buttonPositionLabel": {
+        "message": "Положение"
+    },
+    "topRightLabel": {
+        "message": "Вверху справа"
+    },
+    "bottomRightLabel": {
+        "message": "Внизу справа"
+    },
+    "topLeftLabel": {
+        "message": "Вверху слева"
+    },
+    "bottomLeftLabel": {
+        "message": "Внизу слева"
+    },
+    "topLabel": {
+        "message": "Сверху"
+    },
+    "bottomLabel": {
+        "message": "Снизу"
+    },
+    "leftLabel": {
+        "message": "Слева"
+    },
+    "rightLabel": {
+        "message": "Справа"
+    },
+    "positionOffsetLabel": {
+        "message": "Положение — смещение"
+    },
+    "panelStyleLabel": {
+        "message": "Панель поиска"
+    },
+    "panelStyleCaptionLabel": {
+        "message": "Выберите стиль панели поиска, отображаемой на веб-странице."
+    },
+    "widthLabel": {
+        "message": "Ширина"
+    },
+    "heightLabel": {
+        "message": "Высота"
+    },
+    "fontSizeLabel": {
+        "message": "Размер шрифта"
+    },
+    "referencePointLabel": {
+        "message": "Положение — точка отсчёта"
+    },
+    "bottomSelectedTextLabel": {
+        "message": "Под выделенным текстом"
+    },
+    "topSelectedTextLabel": {
+        "message": "Над выделенным текстом"
+    },
+    "clickedPointLabel": {
+        "message": "Точка щелчка"
+    },
+    "displayDirectionLabel": {
+        "message": "Положение — направление"
+    },
+    "resultFontColorLabel": {
+        "message": "Цвет текста результатов поиска"
+    },
+    "isOverrideColorsLabel": {
+        "message": "Заменить цвета по умолчанию указанными ниже"
+    },
+    "bgColorLabel": {
+        "message": "Цвет фона"
+    },
+    "otherLabel": {
+        "message": "Другое"
+    },
+    "isShowOptionsPageWhenUpdatedLabel": {
+        "message": "Показывать страницу настроек после обновления"
+    },
+    "isShowOptionsPageWhenUpdatedCaptionLabel": {
+        "message": "Показывать страницу настроек после обновления Wikipedia Preview. Так вы сможете быстро узнать, что изменилось."
+    },
+    "isDebugModeLabel": {
+        "message": "Включить режим отладки"
+    },
+    "isDebugModeCaptionLabel": {
+        "message": "В режиме отладки журнал выводится в консоль отладчика."
+    },
+    "exportSettingsLabel": {
+        "message": "Экспорт настроек"
+    },
+    "exportSettingsCaptionLabel": {
+        "message": "Сохранить настройки на компьютере в виде файла JSON."
+    },
+    "exportButtonLabel": {
+        "message": "Экспорт"
+    },
+    "importSettingsLabel": {
+        "message": "Импорт настроек"
+    },
+    "importSettingsCaptionLabel": {
+        "message": "Загрузить файл настроек, сохранённый на компьютере."
+    },
+    "importButtonLabel": {
+        "message": "Импорт"
+    },
+    "resetSettingsLabel": {
+        "message": "Сбросить настройки"
+    },
+    "resetSettingsCaptionLabel": {
+        "message": "Восстановить все настройки по умолчанию."
+    },
+    "resetSettingsButtonLabel": {
+        "message": "Сбросить"
+    },
+    "shortcutsLabel": {
+        "message": "Сочетания клавиш"
+    },
+    "keyboardShortcutsLabel": {
+        "message": "Сочетания клавиш"
+    },
+    "setKeyboardShortCutsMessage": {
+        "message": "Настройте сочетания клавиш."
+    },
+    "typeShortcutMessage": {
+        "message": "Введите сочетание клавиш"
+    },
+    "typeLetterMessage": {
+        "message": "Введите букву"
+    },
+    "includeModifierKeysMessage": {
+        "message": "Добавьте Ctrl или Alt"
+    },
+    "includeMacModifierKeysMessage": {
+        "message": "Добавьте Command, Ctrl или Alt"
+    },
+    "invalidLetterMessage": {
+        "message": "Эту букву использовать нельзя"
+    },
+    "invalidShortcutMessage": {
+        "message": "Это сочетание клавиш использовать нельзя"
+    },
+    "clear": {
+        "message": "Очистить"
+    },
+    "reset": {
+        "message": "Сбросить"
+    },
+    "informationLabel": {
+        "message": "Информация"
+    },
+    "settingsLoadingLabel": {
+        "message": "Загрузка настроек..."
+    },
+    "settingsLoadErrorLabel": {
+        "message": "Не удалось загрузить настройки. Проверьте консоль браузера и перезагрузите страницу."
+    },
+    "additionalPermissionLabel": {
+        "message": "Включить поиск на веб-страницах"
+    },
+    "additionalPermissionCaptionLabel": {
+        "message": "Для использования Wikipedia Preview на веб-страницах требуются дополнительные разрешения."
+    },
+    "enableLabel": {
+        "message": "Включить"
+    },
+    "backersLabel": {
+        "message": "Спонсоры"
+    },
+    "licenseLabel": {
+        "message": "Лицензия"
+    },
+    "iconAttributionsLabel": {
+        "message": "Указание авторства значков и векторных изображений"
+    },
+    "donationLabel": {
+        "message": "Поддержите проект пожертвованием"
+    },
+    "donationCaptionLabel": {
+        "message": "Спасибо, что пользуетесь Wikipedia Preview.<br>Ваша поддержка очень помогает мне продолжать развивать это расширение.<br>Если вам нравится Wikipedia Preview, подумайте о пожертвовании."
+    },
+    "sponsorsLabel": {
+        "message": "Спонсоры"
+    },
+    "addonPageLabel": {
+        "message": "Страница дополнения"
+    },
+    "extensionPageLabel": {
+        "message": "Страница расширения"
+    },
+    "privacyPolicyLabel": {
+        "message": "Политика конфиденциальности"
+    },
+    "addonUrl": {
+        "message": "https://addons.mozilla.org/hu/firefox/addon/wikipedia-preview/"
+    },
+    "networkError": {
+        "message": "Ошибка: проверьте подключение к сети."
+    },
+    "unavailableError": {
+        "message": "Ошибка: достигнут лимит использования сервиса. Подождите и повторите попытку."
+    },
+    "deeplAuthError": {
+        "message": "Ошибка: не удалось выполнить аутентификацию в DeepL API. Укажите правильный ключ и тарифный план в настройках."
+    },
+    "unknownError": {
+        "message": "Ошибка: неизвестная ошибка"
+    },
+    "wikipediaSearchTextMenu": {
+        "message": "Wikipedia Preview для выделенного текста"
+    },
+    "openPopupDescription": {
+        "message": "Открыть всплывающее окно панели инструментов"
+    },
+    "shouldUseSecondTargetLangLabel": {
+        "message": "Искать во второй Википедии"
+    },
+    "shouldUseSecondTargetLangCaptionLabel": {
+        "message": "Если включено, поиск будет выполняться и в Википедии на этом языке."
+    },
+    "firstInformationText": {
+        "message": "В настройках можно добавить вторую Википедию, чтобы просматривать результаты на другом языке."
+    },
+    "lang_af": {
+        "message": "Afrikaans"
+    },
+    "lang_sq": {
+        "message": "Shqip"
+    },
+    "lang_am": {
+        "message": "አማርኛ"
+    },
+    "lang_ar": {
+        "message": "العربية"
+    },
+    "lang_hy": {
+        "message": "Հայերեն"
+    },
+    "lang_az": {
+        "message": "Azərbaycanca"
+    },
+    "lang_eu": {
+        "message": "Euskara"
+    },
+    "lang_be": {
+        "message": "Беларуская"
+    },
+    "lang_bn": {
+        "message": "বাংলা"
+    },
+    "lang_bs": {
+        "message": "Bosanski"
+    },
+    "lang_bg": {
+        "message": "Български"
+    },
+    "lang_ca": {
+        "message": "Català"
+    },
+    "lang_ceb": {
+        "message": "Sinugboanong Binisaya"
+    },
+    "lang_ny": {
+        "message": "Chichewa"
+    },
+    "lang_zh_CN": {
+        "message": "简体中文"
+    },
+    "lang_zh_TW": {
+        "message": "繁體中文"
+    },
+    "lang_co": {
+        "message": "Corsu"
+    },
+    "lang_hr": {
+        "message": "Hrvatski"
+    },
+    "lang_cs": {
+        "message": "Čeština"
+    },
+    "lang_da": {
+        "message": "Dansk"
+    },
+    "lang_nl": {
+        "message": "Nederlands"
+    },
+    "lang_en": {
+        "message": "English"
+    },
+    "lang_eo": {
+        "message": "Esperanto"
+    },
+    "lang_et": {
+        "message": "Eesti"
+    },
+    "lang_fi": {
+        "message": "Suomi"
+    },
+    "lang_fr": {
+        "message": "Français"
+    },
+    "lang_fy": {
+        "message": "Frysk"
+    },
+    "lang_gl": {
+        "message": "Galego"
+    },
+    "lang_ka": {
+        "message": "ქართული"
+    },
+    "lang_de": {
+        "message": "Deutsch"
+    },
+    "lang_el": {
+        "message": "Ελληνικά"
+    },
+    "lang_gu": {
+        "message": "ગુજરાતી"
+    },
+    "lang_ht": {
+        "message": "Kreyòl ayisyen"
+    },
+    "lang_ha": {
+        "message": "Hausa"
+    },
+    "lang_haw": {
+        "message": "ʻŌlelo Hawaiʻi"
+    },
+    "lang_he": {
+        "message": "עברית"
+    },
+    "lang_hi": {
+        "message": "हिन्दी"
+    },
+    "lang_hu": {
+        "message": "Magyar"
+    },
+    "lang_is": {
+        "message": "Íslenska"
+    },
+    "lang_ig": {
+        "message": "Asụsụ Igbo"
+    },
+    "lang_id": {
+        "message": "Bahasa Indonesia"
+    },
+    "lang_ga": {
+        "message": "Gaeilge"
+    },
+    "lang_it": {
+        "message": "Italiano"
+    },
+    "lang_ja": {
+        "message": "日本語"
+    },
+    "lang_jv": {
+        "message": "Basa Jawa"
+    },
+    "lang_kn": {
+        "message": "ಕನ್ನಡ"
+    },
+    "lang_kk": {
+        "message": "Қазақша"
+    },
+    "lang_km": {
+        "message": "ខ្មែរ"
+    },
+    "lang_rw": {
+        "message": "Kinyarwanda"
+    },
+    "lang_ky": {
+        "message": "Кыргызча"
+    },
+    "lang_ko": {
+        "message": "한국어"
+    },
+    "lang_ku": {
+        "message": "Kurdî"
+    },
+    "lang_lo": {
+        "message": "ລາວ"
+    },
+    "lang_la": {
+        "message": "Latina"
+    },
+    "lang_lv": {
+        "message": "Latviešu"
+    },
+    "lang_lt": {
+        "message": "Lietuvių"
+    },
+    "lang_lb": {
+        "message": "Lëtzebuergesch"
+    },
+    "lang_mk": {
+        "message": "Македонски"
+    },
+    "lang_mg": {
+        "message": "Malagasy"
+    },
+    "lang_ms": {
+        "message": "Bahasa Melayu"
+    },
+    "lang_ml": {
+        "message": "മലയാളം"
+    },
+    "lang_mt": {
+        "message": "Malti"
+    },
+    "lang_mi": {
+        "message": "Māori"
+    },
+    "lang_mr": {
+        "message": "मराठी"
+    },
+    "lang_mn": {
+        "message": "Монгол"
+    },
+    "lang_hmn": {
+        "message": "Hmoob"
+    },
+    "lang_my": {
+        "message": "မြန်မာ"
+    },
+    "lang_ne": {
+        "message": "नेपाली"
+    },
+    "lang_no": {
+        "message": "Norsk"
+    },
+    "lang_nb": {
+        "message": "Norsk bokmål"
+    },
+    "lang_or": {
+        "message": "ଓଡ଼ିଆ"
+    },
+    "lang_fa": {
+        "message": "فارسی"
+    },
+    "lang_pl": {
+        "message": "Polski"
+    },
+    "lang_pt": {
+        "message": "Português"
+    },
+    "lang_pa": {
+        "message": "ਪੰਜਾਬੀ"
+    },
+    "lang_ps": {
+        "message": "پښتو"
+    },
+    "lang_ro": {
+        "message": "Română"
+    },
+    "lang_ru": {
+        "message": "Русский"
+    },
+    "lang_sm": {
+        "message": "Gagana Sāmoa"
+    },
+    "lang_gd": {
+        "message": "Gàidhlig"
+    },
+    "lang_sr": {
+        "message": "Српски"
+    },
+    "lang_st": {
+        "message": "Sesotho"
+    },
+    "lang_sn": {
+        "message": "chiShona"
+    },
+    "lang_sd": {
+        "message": "سنڌي"
+    },
+    "lang_si": {
+        "message": "සිංහල"
+    },
+    "lang_sk": {
+        "message": "Slovenčina"
+    },
+    "lang_sl": {
+        "message": "Slovenščina"
+    },
+    "lang_so": {
+        "message": "Soomaali"
+    },
+    "lang_es": {
+        "message": "Español"
+    },
+    "lang_su": {
+        "message": "Basa Sunda"
+    },
+    "lang_sw": {
+        "message": "Kiswahili"
+    },
+    "lang_sv": {
+        "message": "Svenska"
+    },
+    "lang_tl": {
+        "message": "Filipino"
+    },
+    "lang_tg": {
+        "message": "Тоҷикӣ"
+    },
+    "lang_ta": {
+        "message": "தமிழ்"
+    },
+    "lang_tt": {
+        "message": "Татарча"
+    },
+    "lang_te": {
+        "message": "తెలుగు"
+    },
+    "lang_th": {
+        "message": "ไทย"
+    },
+    "lang_tr": {
+        "message": "Türkçe"
+    },
+    "lang_tk": {
+        "message": "Türkmençe"
+    },
+    "lang_uk": {
+        "message": "Українська"
+    },
+    "lang_ur": {
+        "message": "اردو"
+    },
+    "lang_ug": {
+        "message": "ئۇيغۇرچە"
+    },
+    "lang_uz": {
+        "message": "Oʻzbekcha"
+    },
+    "lang_vi": {
+        "message": "Tiếng Việt"
+    },
+    "lang_cy": {
+        "message": "Cymraeg"
+    },
+    "lang_xh": {
+        "message": "isiXhosa"
+    },
+    "lang_yi": {
+        "message": "ייִדיש"
+    },
+    "lang_yo": {
+        "message": "Yorùbá"
+    },
+    "lang_zu": {
+        "message": "isiZulu"
+    },
+    "lang_en_US": {
+        "message": "English (US)"
+    },
+    "lang_en_GB": {
+        "message": "English (UK)"
+    },
+    "lang_pt_PT": {
+        "message": "Português (Portugal)"
+    },
+    "lang_pt_BR": {
+        "message": "Português (Brasil)"
+    },
+    "lang_zh": {
+        "message": "中文"
+    },
+    "notFound": {
+        "message": "По запросу ничего не найдено."
+    },
+    "privacyPolicyMenuTitle": {
+        "message": "Политика конфиденциальности"
+    }
+}

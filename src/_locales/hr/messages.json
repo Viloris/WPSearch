@@ -1,0 +1,914 @@
+{
+    "extName": {
+        "message": "Pregled Wikipedije"
+    },
+    "extDescription": {
+        "message": "Pretražite Wikipediju na temelju odabranog teksta"
+    },
+    "donateWithPaypalLabel": {
+        "message": "Donirajte putem PayPala"
+    },
+    "donateLabel": {
+        "message": "Donirajte"
+    },
+    "enableOnThisPage": {
+        "message": "Omogući pretraživanje na ovoj stranici"
+    },
+    "disableOnThisPage": {
+        "message": "Onemogući pretraživanje na ovoj stranici"
+    },
+    "initialTextArea": {
+        "message": "Unesite tekst"
+    },
+    "searchHistoryLabel": {
+        "message": "Povijest pretraživanja"
+    },
+    "searchTermLabel": {
+        "message": "Pojam za pretraživanje"
+    },
+    "clearSearchHistoryLabel": {
+        "message": "Izbriši povijest"
+    },
+    "emptySearchHistoryLabel": {
+        "message": "Još nema pretraživanja"
+    },
+    "mainMenuLabel": {
+        "message": "Početna"
+    },
+    "searchLabel": {
+        "message": "Pretraživanje"
+    },
+    "searchEmptyMessage": {
+        "message": "Upišite pojam za pretraživanje kako biste dobili odgođene rezultate, prijedloge i kartice članaka spremne za čitanje."
+    },
+    "moreResultsFor": {
+        "message": "Više rezultata:"
+    },
+    "previousResultsLabel": {
+        "message": "Prethodno"
+    },
+    "resultsRangeLabel": {
+        "message": "Rezultati $1–$2"
+    },
+    "recentSearchTerms": {
+        "message": "Nedavno"
+    },
+    "readFullArticleLabel": {
+        "message": "Pročitaj cijeli članak"
+    },
+    "feedLabel": {
+        "message": "Sažetak"
+    },
+    "feedLoadingLabel": {
+        "message": "Učitavanje sažetka..."
+    },
+    "featuredArticleLabel": {
+        "message": "Istaknuti članak dana"
+    },
+    "dailyLatestFeaturedArticleLabel": {
+        "message": "Najnoviji istaknuti članak"
+    },
+    "dailyFeaturedArticleLoading": {
+        "message": "Učitavanje današnjeg istaknutog članka..."
+    },
+    "dailyFeaturedArticleFallback": {
+        "message": "Današnji istaknuti članak nije dostupan; prikazuje se najčitaniji članak."
+    },
+    "dailyFeaturedArticleError": {
+        "message": "Današnji istaknuti članak nije moguće učitati."
+    },
+    "dailyFeaturedArticleRetryLabel": {
+        "message": "Pokušaj ponovno"
+    },
+    "dailyImageOfDayLabel": {
+        "message": "Slika dana"
+    },
+    "dailyImageArtistLabel": {
+        "message": "Fotograf"
+    },
+    "dailyImageLicenseLabel": {
+        "message": "Licenca"
+    },
+    "dailyTrendingArticleLabel": {
+        "message": "Popularni članak"
+    },
+    "dailyTrendingArticleError": {
+        "message": "Popularni članak nije moguće učitati."
+    },
+    "dailyImageOfDayError": {
+        "message": "Sliku dana nije moguće učitati."
+    },
+    "dailyArticleImageError": {
+        "message": "Sliku članka nije moguće učitati."
+    },
+    "dailyMostReadLabel": {
+        "message": "Najčitaniji članci"
+    },
+    "dailyMostReadError": {
+        "message": "Najčitanije članke nije moguće učitati."
+    },
+    "readMoreLabel": {
+        "message": "Čitaj"
+    },
+    "moreResultsLabel": {
+        "message": "Sljedeće"
+    },
+    "shareLabel": {
+        "message": "Podijeli"
+    },
+    "emailLabel": {
+        "message": "E-pošta"
+    },
+    "downloadLabel": {
+        "message": "Preuzmi"
+    },
+    "downloadErrorLabel": {
+        "message": "Preuzimanje nije uspjelo."
+    },
+    "shareCopiedLabel": {
+        "message": "Sadržaj je kopiran u međuspremnik."
+    },
+    "shareErrorLabel": {
+        "message": "Dijeljenje nije uspjelo."
+    },
+    "wikipediaLabel": {
+        "message": "Wikipedija"
+    },
+    "dailyDidYouKnowLabel": {
+        "message": "Jeste li znali?"
+    },
+    "dailyNewsLabel": {
+        "message": "U vijestima"
+    },
+    "dailyOnThisDayLabel": {
+        "message": "Na današnji dan"
+    },
+    "favoritesLabel": {
+        "message": "Favoriti"
+    },
+    "removeFromFavoritesLabel": {
+        "message": "Ukloni iz favorita"
+    },
+    "emptyFavoritesLabel": {
+        "message": "Još nema favorita"
+    },
+    "addToFavoritesLabel": {
+        "message": "Dodaj u favorite"
+    },
+    "removeFromFavoritesConfirmLabel": {
+        "message": "Želite li zaista ukloniti ovu stavku iz favorita?"
+    },
+    "addedToFavoritesLabel": {
+        "message": "Spremljeno"
+    },
+    "loadingSearchLabel": {
+        "message": "Učitavanje rezultata pretraživanja..."
+    },
+    "loadingFullArticleLabel": {
+        "message": "Učitavanje cijelog članka..."
+    },
+    "backFullArticleLabel": {
+        "message": "Povratak na prethodni članak"
+    },
+    "closeFullArticleLabel": {
+        "message": "Zatvori cijeli članak"
+    },
+    "closeNextResultsLabel": {
+        "message": "Zatvori dodatne rezultate"
+    },
+    "openInNewWindowLabel": {
+        "message": "Otvori u novom prozoru"
+    },
+    "copyLabel": {
+        "message": "Kopiraj"
+    },
+    "copiedLabel": {
+        "message": "Kopirano"
+    },
+    "listenLabel": {
+        "message": "Slušaj"
+    },
+    "targetLangLabel": {
+        "message": "Ciljni jezik"
+    },
+    "allLangLabel": {
+        "message": "Svi jezici"
+    },
+    "recentLangLabel": {
+        "message": "Nedavni jezici"
+    },
+    "settingsLabel": {
+        "message": "Postavke"
+    },
+    "generalLabel": {
+        "message": "Općenito"
+    },
+    "targetLangCaptionLabel": {
+        "message": "Odaberite zadani ciljni jezik."
+    },
+    "feedLangLabel": {
+        "message": "Sažetak Wikipedije"
+    },
+    "feedLangSettingLabel": {
+        "message": "Postavke sažetka Wikipedije"
+    },
+    "feedLangCaptionLabel": {
+        "message": "Odaberite zadanu Wikipediju za sažetak."
+    },
+    "webPageLabel": {
+        "message": "Web-stranica"
+    },
+    "whenSelectTextLabel": {
+        "message": "Ponašanje pri odabiru teksta"
+    },
+    "ifAutoSearchLabel": {
+        "message": "Prikaži ploču za pretraživanje"
+    },
+    "ifAutoSearchCaptionLabel": {
+        "message": "Odmah prikaži ploču za pretraživanje bez prikaza gumba."
+    },
+    "ifShowButtonLabel": {
+        "message": "Prikaži gumb za pretraživanje"
+    },
+    "ifShowButtonCaptionLabel": {
+        "message": "Prikaži gumb za pretraživanje koji otvara ploču kada se klikne."
+    },
+    "dontshowbuttonlabel": {
+        "message": "Nemoj prikazivati gumb ni ploču"
+    },
+    "dontshowbuttonCaptionlabel": {
+        "message": "Nemoj prikazivati gumb za pretraživanje ni ploču za pretraživanje."
+    },
+    "disableWikipediaSearchLabel": {
+        "message": "Onemogući pretraživanje"
+    },
+    "isDisabledInTextFieldsLabel": {
+        "message": "Onemogući pretraživanje u tekstnim poljima"
+    },
+    "isDisabledInTextFieldsCaptionLabel": {
+        "message": "Nemoj prikazivati gumb ni ploču za pretraživanje pri odabiru teksta u tekstnom polju."
+    },
+    "isDisabledInCodeElementLabel": {
+        "message": "Onemogući pretraživanje u oznakama koda"
+    },
+    "isDisabledInCodeElementCaptionLabel": {
+        "message": "Nemoj prikazivati gumb ni ploču za pretraživanje pri odabiru teksta u oznaci koda."
+    },
+    "ifOnlySearchWhenModifierKeyPressedLabel": {
+        "message": "Pretražuj pritiskom na modifikacijsku tipku"
+    },
+    "ifOnlySearchWhenModifierKeyPressedCaptionLabel": {
+        "message": "Prikaži pretraživanje samo kada je pritisnuta navedena modifikacijska tipka."
+    },
+    "modifierKeyLabel": {
+        "message": "Modifikacijska tipka"
+    },
+    "shiftLabel": {
+        "message": "Shift"
+    },
+    "ctrlLabel": {
+        "message": "Ctrl"
+    },
+    "altLabel": {
+        "message": "Alt"
+    },
+    "cmdLabel": {
+        "message": "Command"
+    },
+    "disableUrlListLabel": {
+        "message": "Popis URL-ova za koje je pretraživanje onemogućeno"
+    },
+    "disableUrlListCaptionLabel": {
+        "message": "Ako se URL stranice podudara s popisom, pretraživanje na web-stranici je onemogućeno. Popis podržava zamjenski znak \"*\"."
+    },
+    "toolbarLabel": {
+        "message": "Skočni prozor alatne trake"
+    },
+    "secondTargetLangLabel": {
+        "message": "Drugi jezik"
+    },
+    "secondTargetLangCaptionLabel": {
+        "message": "Odaberite drugi ciljni jezik."
+    },
+    "ignoredDocumentLangLabel": {
+        "message": "Onemogući pretraživanje prema atributu lang"
+    },
+    "ignoredDocumentLangCaptionLabel": {
+        "message": "Onemogući pretraživanje ako se atribut lang HTML elementa stranice podudara s popisom. Unesite oznake jezika odvojene zarezima."
+    },
+    "waitTimeLabel": {
+        "message": "Vrijeme čekanja prije pretraživanja"
+    },
+    "waitTimeCaptionLabel": {
+        "message": "Odredite vrijeme od unosa znaka do početka pretraživanja (u milisekundama)."
+    },
+    "waitTime2CaptionLabel": {
+        "message": "Ako pretražujete prečesto u kratkom vremenu, usluga može privremeno postati nedostupna."
+    },
+    "menuLabel": {
+        "message": "Kontekstni izbornik"
+    },
+    "ifShowMenuLabel": {
+        "message": "Prikaži kontekstni izbornik"
+    },
+    "ifShowMenuCaptionLabel": {
+        "message": "Dodaj stavke u kontekstni izbornik koji se prikazuje pri desnom kliku na web-stranicu ili karticu."
+    },
+    "styleLabel": {
+        "message": "Izgled"
+    },
+    "themeLabel": {
+        "message": "Tema"
+    },
+    "themeCaptionLabel": {
+        "message": "Odaberite shemu boja."
+    },
+    "lightLabel": {
+        "message": "Svijetla"
+    },
+    "darkLabel": {
+        "message": "Tamna"
+    },
+    "systemLabel": {
+        "message": "Sustavska"
+    },
+    "buttonStyleLabel": {
+        "message": "Gumb za pretraživanje"
+    },
+    "buttonStyleCaptionLabel": {
+        "message": "Odredite izgled gumba za pretraživanje koji se prikazuje na web-stranici."
+    },
+    "buttonSizeLabel": {
+        "message": "Veličina"
+    },
+    "buttonPositionLabel": {
+        "message": "Položaj"
+    },
+    "topRightLabel": {
+        "message": "Gore desno"
+    },
+    "bottomRightLabel": {
+        "message": "Dolje desno"
+    },
+    "topLeftLabel": {
+        "message": "Gore lijevo"
+    },
+    "bottomLeftLabel": {
+        "message": "Dolje lijevo"
+    },
+    "topLabel": {
+        "message": "Gore"
+    },
+    "bottomLabel": {
+        "message": "Dolje"
+    },
+    "leftLabel": {
+        "message": "Lijevo"
+    },
+    "rightLabel": {
+        "message": "Desno"
+    },
+    "positionOffsetLabel": {
+        "message": "Položaj — pomak"
+    },
+    "panelStyleLabel": {
+        "message": "Ploča za pretraživanje"
+    },
+    "panelStyleCaptionLabel": {
+        "message": "Odredite izgled ploče za pretraživanje koja se prikazuje na web-stranici."
+    },
+    "widthLabel": {
+        "message": "Širina"
+    },
+    "heightLabel": {
+        "message": "Visina"
+    },
+    "fontSizeLabel": {
+        "message": "Veličina fonta"
+    },
+    "referencePointLabel": {
+        "message": "Položaj — referentna točka"
+    },
+    "bottomSelectedTextLabel": {
+        "message": "Ispod odabranog teksta"
+    },
+    "topSelectedTextLabel": {
+        "message": "Iznad odabranog teksta"
+    },
+    "clickedPointLabel": {
+        "message": "Točka klika"
+    },
+    "displayDirectionLabel": {
+        "message": "Položaj — smjer"
+    },
+    "resultFontColorLabel": {
+        "message": "Boja teksta rezultata pretraživanja"
+    },
+    "isOverrideColorsLabel": {
+        "message": "Zamijeni zadane boje bojama navedenima u nastavku"
+    },
+    "bgColorLabel": {
+        "message": "Boja pozadine"
+    },
+    "otherLabel": {
+        "message": "Ostalo"
+    },
+    "isShowOptionsPageWhenUpdatedLabel": {
+        "message": "Prikaži stranicu s postavkama nakon ažuriranja"
+    },
+    "isShowOptionsPageWhenUpdatedCaptionLabel": {
+        "message": "Prikaži stranicu s postavkama nakon ažuriranja dodatka Wikipedia Preview kako biste brzo saznali što je novo."
+    },
+    "isDebugModeLabel": {
+        "message": "Omogući način otklanjanja pogrešaka"
+    },
+    "isDebugModeCaptionLabel": {
+        "message": "Kada je uključen način otklanjanja pogrešaka, zapis se ispisuje u konzolu za otklanjanje pogrešaka."
+    },
+    "exportSettingsLabel": {
+        "message": "Izvoz postavki"
+    },
+    "exportSettingsCaptionLabel": {
+        "message": "Spremi postavke na računalo kao JSON datoteku."
+    },
+    "exportButtonLabel": {
+        "message": "Izvezi"
+    },
+    "importSettingsLabel": {
+        "message": "Uvoz postavki"
+    },
+    "importSettingsCaptionLabel": {
+        "message": "Učitaj datoteku s postavkama spremljenu na računalu."
+    },
+    "importButtonLabel": {
+        "message": "Uvezi"
+    },
+    "resetSettingsLabel": {
+        "message": "Vrati postavke na zadano"
+    },
+    "resetSettingsCaptionLabel": {
+        "message": "Vrati sve postavke na zadane vrijednosti."
+    },
+    "resetSettingsButtonLabel": {
+        "message": "Vrati na zadano"
+    },
+    "shortcutsLabel": {
+        "message": "Tipkovni prečaci"
+    },
+    "keyboardShortcutsLabel": {
+        "message": "Tipkovni prečaci"
+    },
+    "setKeyboardShortCutsMessage": {
+        "message": "Postavite tipkovne prečace."
+    },
+    "typeShortcutMessage": {
+        "message": "Unesite tipkovni prečac"
+    },
+    "typeLetterMessage": {
+        "message": "Unesite slovo"
+    },
+    "includeModifierKeysMessage": {
+        "message": "Uključite Ctrl ili Alt"
+    },
+    "includeMacModifierKeysMessage": {
+        "message": "Uključite Command, Ctrl ili Alt"
+    },
+    "invalidLetterMessage": {
+        "message": "Ovo se slovo ne može koristiti"
+    },
+    "invalidShortcutMessage": {
+        "message": "Ovaj se tipkovni prečac ne može koristiti"
+    },
+    "clear": {
+        "message": "Izbriši"
+    },
+    "reset": {
+        "message": "Vrati na zadano"
+    },
+    "informationLabel": {
+        "message": "Informacije"
+    },
+    "settingsLoadingLabel": {
+        "message": "Učitavanje postavki..."
+    },
+    "settingsLoadErrorLabel": {
+        "message": "Postavke nije moguće učitati. Provjerite konzolu preglednika i ponovno učitajte stranicu."
+    },
+    "additionalPermissionLabel": {
+        "message": "Omogući pretraživanje na web-stranicama"
+    },
+    "additionalPermissionCaptionLabel": {
+        "message": "Za upotrebu dodatka Wikipedia Preview na web-stranicama potrebna su dodatna dopuštenja."
+    },
+    "enableLabel": {
+        "message": "Omogući"
+    },
+    "backersLabel": {
+        "message": "Podupiratelji"
+    },
+    "licenseLabel": {
+        "message": "Licenca"
+    },
+    "iconAttributionsLabel": {
+        "message": "Zasluge za ikone i vektorske ilustracije"
+    },
+    "donationLabel": {
+        "message": "Podržite projekt donacijom"
+    },
+    "donationCaptionLabel": {
+        "message": "Hvala što upotrebljavate Wikipedia Preview.<br>Vaša podrška puno mi znači i pomaže u daljnjem razvoju dodatka.<br>Ako vam se sviđa Wikipedia Preview, razmislite o donaciji."
+    },
+    "sponsorsLabel": {
+        "message": "Sponzori"
+    },
+    "addonPageLabel": {
+        "message": "Stranica dodatka"
+    },
+    "extensionPageLabel": {
+        "message": "Stranica proširenja"
+    },
+    "privacyPolicyLabel": {
+        "message": "Pravila o privatnosti"
+    },
+    "addonUrl": {
+        "message": "https://addons.mozilla.org/hu/firefox/addon/wikipedia-preview/"
+    },
+    "networkError": {
+        "message": "Pogreška: provjerite mrežnu vezu."
+    },
+    "unavailableError": {
+        "message": "Pogreška: dosegnuto je ograničenje upotrebe usluge. Pričekajte i pokušajte ponovno."
+    },
+    "deeplAuthError": {
+        "message": "Pogreška: autentifikacija DeepL API-ja nije uspjela. Unesite ispravan ključ i plan na stranici s postavkama."
+    },
+    "unknownError": {
+        "message": "Pogreška: nepoznata pogreška"
+    },
+    "wikipediaSearchTextMenu": {
+        "message": "Wikipedia Preview za odabrani tekst"
+    },
+    "openPopupDescription": {
+        "message": "Otvori skočni prozor alatne trake"
+    },
+    "shouldUseSecondTargetLangLabel": {
+        "message": "Pretražuj na drugoj Wikipediji"
+    },
+    "shouldUseSecondTargetLangCaptionLabel": {
+        "message": "Ako je uključeno, pretraživat će se i Wikipedija na ovom jeziku."
+    },
+    "firstInformationText": {
+        "message": "U postavkama možete dodati drugu Wikipediju ako želite vidjeti rezultate na drugom jeziku."
+    },
+    "lang_af": {
+        "message": "Afrikaans"
+    },
+    "lang_sq": {
+        "message": "Shqip"
+    },
+    "lang_am": {
+        "message": "አማርኛ"
+    },
+    "lang_ar": {
+        "message": "العربية"
+    },
+    "lang_hy": {
+        "message": "Հայերեն"
+    },
+    "lang_az": {
+        "message": "Azərbaycanca"
+    },
+    "lang_eu": {
+        "message": "Euskara"
+    },
+    "lang_be": {
+        "message": "Беларуская"
+    },
+    "lang_bn": {
+        "message": "বাংলা"
+    },
+    "lang_bs": {
+        "message": "Bosanski"
+    },
+    "lang_bg": {
+        "message": "Български"
+    },
+    "lang_ca": {
+        "message": "Català"
+    },
+    "lang_ceb": {
+        "message": "Sinugboanong Binisaya"
+    },
+    "lang_ny": {
+        "message": "Chichewa"
+    },
+    "lang_zh_CN": {
+        "message": "简体中文"
+    },
+    "lang_zh_TW": {
+        "message": "繁體中文"
+    },
+    "lang_co": {
+        "message": "Corsu"
+    },
+    "lang_hr": {
+        "message": "Hrvatski"
+    },
+    "lang_cs": {
+        "message": "Čeština"
+    },
+    "lang_da": {
+        "message": "Dansk"
+    },
+    "lang_nl": {
+        "message": "Nederlands"
+    },
+    "lang_en": {
+        "message": "English"
+    },
+    "lang_eo": {
+        "message": "Esperanto"
+    },
+    "lang_et": {
+        "message": "Eesti"
+    },
+    "lang_fi": {
+        "message": "Suomi"
+    },
+    "lang_fr": {
+        "message": "Français"
+    },
+    "lang_fy": {
+        "message": "Frysk"
+    },
+    "lang_gl": {
+        "message": "Galego"
+    },
+    "lang_ka": {
+        "message": "ქართული"
+    },
+    "lang_de": {
+        "message": "Deutsch"
+    },
+    "lang_el": {
+        "message": "Ελληνικά"
+    },
+    "lang_gu": {
+        "message": "ગુજરાતી"
+    },
+    "lang_ht": {
+        "message": "Kreyòl ayisyen"
+    },
+    "lang_ha": {
+        "message": "Hausa"
+    },
+    "lang_haw": {
+        "message": "ʻŌlelo Hawaiʻi"
+    },
+    "lang_he": {
+        "message": "עברית"
+    },
+    "lang_hi": {
+        "message": "हिन्दी"
+    },
+    "lang_hu": {
+        "message": "Magyar"
+    },
+    "lang_is": {
+        "message": "Íslenska"
+    },
+    "lang_ig": {
+        "message": "Asụsụ Igbo"
+    },
+    "lang_id": {
+        "message": "Bahasa Indonesia"
+    },
+    "lang_ga": {
+        "message": "Gaeilge"
+    },
+    "lang_it": {
+        "message": "Italiano"
+    },
+    "lang_ja": {
+        "message": "日本語"
+    },
+    "lang_jv": {
+        "message": "Basa Jawa"
+    },
+    "lang_kn": {
+        "message": "ಕನ್ನಡ"
+    },
+    "lang_kk": {
+        "message": "Қазақша"
+    },
+    "lang_km": {
+        "message": "ខ្មែរ"
+    },
+    "lang_rw": {
+        "message": "Kinyarwanda"
+    },
+    "lang_ky": {
+        "message": "Кыргызча"
+    },
+    "lang_ko": {
+        "message": "한국어"
+    },
+    "lang_ku": {
+        "message": "Kurdî"
+    },
+    "lang_lo": {
+        "message": "ລາວ"
+    },
+    "lang_la": {
+        "message": "Latina"
+    },
+    "lang_lv": {
+        "message": "Latviešu"
+    },
+    "lang_lt": {
+        "message": "Lietuvių"
+    },
+    "lang_lb": {
+        "message": "Lëtzebuergesch"
+    },
+    "lang_mk": {
+        "message": "Македонски"
+    },
+    "lang_mg": {
+        "message": "Malagasy"
+    },
+    "lang_ms": {
+        "message": "Bahasa Melayu"
+    },
+    "lang_ml": {
+        "message": "മലയാളം"
+    },
+    "lang_mt": {
+        "message": "Malti"
+    },
+    "lang_mi": {
+        "message": "Māori"
+    },
+    "lang_mr": {
+        "message": "मराठी"
+    },
+    "lang_mn": {
+        "message": "Монгол"
+    },
+    "lang_hmn": {
+        "message": "Hmoob"
+    },
+    "lang_my": {
+        "message": "မြန်မာ"
+    },
+    "lang_ne": {
+        "message": "नेपाली"
+    },
+    "lang_no": {
+        "message": "Norsk"
+    },
+    "lang_nb": {
+        "message": "Norsk bokmål"
+    },
+    "lang_or": {
+        "message": "ଓଡ଼ିଆ"
+    },
+    "lang_fa": {
+        "message": "فارسی"
+    },
+    "lang_pl": {
+        "message": "Polski"
+    },
+    "lang_pt": {
+        "message": "Português"
+    },
+    "lang_pa": {
+        "message": "ਪੰਜਾਬੀ"
+    },
+    "lang_ps": {
+        "message": "پښتو"
+    },
+    "lang_ro": {
+        "message": "Română"
+    },
+    "lang_ru": {
+        "message": "Русский"
+    },
+    "lang_sm": {
+        "message": "Gagana Sāmoa"
+    },
+    "lang_gd": {
+        "message": "Gàidhlig"
+    },
+    "lang_sr": {
+        "message": "Српски"
+    },
+    "lang_st": {
+        "message": "Sesotho"
+    },
+    "lang_sn": {
+        "message": "chiShona"
+    },
+    "lang_sd": {
+        "message": "سنڌي"
+    },
+    "lang_si": {
+        "message": "සිංහල"
+    },
+    "lang_sk": {
+        "message": "Slovenčina"
+    },
+    "lang_sl": {
+        "message": "Slovenščina"
+    },
+    "lang_so": {
+        "message": "Soomaali"
+    },
+    "lang_es": {
+        "message": "Español"
+    },
+    "lang_su": {
+        "message": "Basa Sunda"
+    },
+    "lang_sw": {
+        "message": "Kiswahili"
+    },
+    "lang_sv": {
+        "message": "Svenska"
+    },
+    "lang_tl": {
+        "message": "Filipino"
+    },
+    "lang_tg": {
+        "message": "Тоҷикӣ"
+    },
+    "lang_ta": {
+        "message": "தமிழ்"
+    },
+    "lang_tt": {
+        "message": "Татарча"
+    },
+    "lang_te": {
+        "message": "తెలుగు"
+    },
+    "lang_th": {
+        "message": "ไทย"
+    },
+    "lang_tr": {
+        "message": "Türkçe"
+    },
+    "lang_tk": {
+        "message": "Türkmençe"
+    },
+    "lang_uk": {
+        "message": "Українська"
+    },
+    "lang_ur": {
+        "message": "اردو"
+    },
+    "lang_ug": {
+        "message": "ئۇيغۇرچە"
+    },
+    "lang_uz": {
+        "message": "Oʻzbekcha"
+    },
+    "lang_vi": {
+        "message": "Tiếng Việt"
+    },
+    "lang_cy": {
+        "message": "Cymraeg"
+    },
+    "lang_xh": {
+        "message": "isiXhosa"
+    },
+    "lang_yi": {
+        "message": "ייִדיש"
+    },
+    "lang_yo": {
+        "message": "Yorùbá"
+    },
+    "lang_zu": {
+        "message": "isiZulu"
+    },
+    "lang_en_US": {
+        "message": "English (US)"
+    },
+    "lang_en_GB": {
+        "message": "English (UK)"
+    },
+    "lang_pt_PT": {
+        "message": "Português (Portugal)"
+    },
+    "lang_pt_BR": {
+        "message": "Português (Brasil)"
+    },
+    "lang_zh": {
+        "message": "中文"
+    },
+    "notFound": {
+        "message": "Nema rezultata koji odgovaraju upitu."
+    },
+    "privacyPolicyMenuTitle": {
+        "message": "Pravila o privatnosti"
+    }
+}
