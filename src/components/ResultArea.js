@@ -4,6 +4,7 @@ import { ResultSection } from "./ResultSection";
 import InfoBar from "./InfoBar";
 import { getLocaleMessage } from "../common/i18n";
 import { getWikipediaName } from "../common/urlUtils";
+import { MoreResultButton } from "./MoreResultButton";
 
 /**
  *
@@ -46,28 +47,30 @@ export default function ResultArea({
         const { errorMessage, isError, lang, text, title, url } = result;
         const isLastResultForLanguage =
           index === visibleResults.length - 1 || visibleResults[index + 1]?.lang !== lang;
+        const localizedWikipedia = getWikipediaName(lang);
 
+        const isFirstResultInLanguage = visibleResults[index - 1]?.lang !== lang;
         return (
           <React.Fragment key={`${lang}-${index}`}>
             <div
               className={
-                index > 0 && visibleResults[index - 1]?.lang !== lang
+                index > 0 && isFirstResultInLanguage
                   ? "result-language-separator"
                   : undefined
               }
             >
-              {index > 0 && visibleResults[index - 1]?.lang !== lang && <hr />}
+              {index > 0 && isFirstResultInLanguage && <hr />}
               <ResultSection
                 addToFavorites={addToFavorites}
                 removeFromFavorites={removeFromFavorites}
                 favorites={favorites}
-                showHeader={index === 0 || visibleResults[index - 1]?.lang !== lang}
+                showHeader={index === 0 || isFirstResultInLanguage}
                 errorMessage={errorMessage}
                 isError={isError}
                 text={text}
                 title={title}
                 url={url}
-                wikipedia={getWikipediaName(lang)}
+                wikipedia={localizedWikipedia}
                 fullArticleState={fullArticles[JSON.stringify([lang, title])]}
                 loadFullArticle={loadFullArticle}
                 lang={lang}
@@ -77,13 +80,13 @@ export default function ResultArea({
             </div>
             {isLastResultForLanguage && fetchNextResults && (
               <div className="mediaButtons">
-                <button
-                  className="resultFooterButton"
-                  type="button"
-                  onClick={() => fetchNextResults(lang, 10, pageOffset, pageLimit)}
-                >
-                  {getLocaleMessage("moreResultsFor")} {getWikipediaName(lang)}
-                </button>
+                <MoreResultButton
+                  fetchNextResults={fetchNextResults}
+                  lang={lang}
+                  pageOffset={pageOffset}
+                  pageLimit={pageLimit}
+                  localizedWikipedia={localizedWikipedia}
+                />
               </div>
             )}
           </React.Fragment>
