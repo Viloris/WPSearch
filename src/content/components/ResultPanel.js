@@ -4,14 +4,13 @@ import log from "loglevel";
 import "../styles/ResultPanel.scss";
 import { getBackgroundColor } from "../../settings/defaultColors";
 import ResultArea from "../../components/ResultArea"
-import { extractTextFromHtml, sanitizeExtractHtml } from "../../common/htmlUtils";
+import { extractTextFromHtml } from "../../common/htmlUtils";
 import { getLocaleMessage } from "../../common/i18n";
 import { getWikipediaArticleUrl, getWikipediaName } from "../../common/urlUtils";
 import { CONFIG } from "../../common/constans";
 import browser from "webextension-polyfill";
-import { AddToFavoritesButton as ArticleFavoriteButton } from "../../popup/components/fullArticleView/AddToFavoritesButton";
-import { DownloadButton, ShareButton } from "../../components/MediaButtons";
 import "../../styles/articleReaderActions.scss";
+import { ResultPanelFullArticleView } from "../../components/fullArticleView";
 
 const { ARTICLE_PATH, requestMessages: { WIKIPEDIA_FULL_ARTICLE } } = CONFIG;
 
@@ -254,57 +253,14 @@ export default function ResultPanel({
         <div className="simple-wikipedia-search-move" draggable />
         <div className="simple-wikipedia-search-result-contents">
           {activeArticle ? (
-            <section className="resultPanelArticle" aria-label={activeArticle.title}>
-              <header className="resultPanelArticle-header">
-                <div className="resultPanelArticle-header-text">
-                  <a
-                    className="resultPanelArticle-title"
-                    href={activeArticle.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <h2>{activeArticle.title.replaceAll("_", " ")}</h2>
-                  </a>
-                  <span>{getWikipediaName(activeArticle.language)}</span>
-                </div>
-                <div className="articleReaderActions">
-                  <DownloadButton title={activeArticle.title} summary={activeArticleText} url={activeArticle.url} iconOnly disabled={!activeArticleText} />
-                  <ShareButton title={activeArticle.title} summary={activeArticleText} url={activeArticle.url} iconOnly />
-                  <ArticleFavoriteButton
-                    handleToggleFavorite={handleToggleArticleFavorite}
-                    isSaved={isActiveArticleSaved}
-                    disabled={!activeArticleText}
-                  />
-                </div>
-                <button
-                  className="resultPanelArticle-close"
-                  type="button"
-                  aria-label={getLocaleMessage("closeFullArticleLabel")}
-                  title={getLocaleMessage("closeFullArticleLabel")}
-                  onClick={() => setActiveArticle(null)}
-                >
-                  ×
-                </button>
-              </header>
-              <div className="resultPanelArticle-content" onClick={handleArticleClick}>
-                {activeArticle.isLoading ? (
-                  <p>{getLocaleMessage("loadingFullArticleLabel")}</p>
-                ) : activeArticle.html ? (
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: sanitizeExtractHtml(
-                        activeArticle.html,
-                        activeArticle.language.toLowerCase(),
-                        true
-                      )
-                    }}
-                  />
-                ) : (
-                  <p role="alert">{activeArticle.error || getLocaleMessage("unknownError")}</p>
-                )}
-              </div>
-            </section>
+            <ResultPanelFullArticleView
+              activeArticle={activeArticle}
+              activeArticleText={activeArticleText}
+              handleToggleArticleFavorite={handleToggleArticleFavorite}
+              isActiveArticleSaved={isActiveArticleSaved}
+              setActiveArticle={setActiveArticle}
+              handleArticleClick={handleArticleClick}
+            />
           ) : (
             <ResultArea
               results={results}
