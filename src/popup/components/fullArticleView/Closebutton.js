@@ -6,6 +6,7 @@ export function CloseButton({ onClose }) {
     return (
         <button
             type="button"
+            className="fullArticleView-close-button"
             onClick={onClose}
             aria-label={closeCaption}
             title={closeCaption}
