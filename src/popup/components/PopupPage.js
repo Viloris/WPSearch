@@ -91,6 +91,15 @@ const getStoredPopupViewState = () => {
   }
 };
 
+const hasResultsForSearchRequest = (viewState) => {
+  const searchRequest = viewState?.searchRequest;
+  return Boolean(searchRequest && viewState.resultPages.some((page) =>
+    page.id === searchRequest.searchId &&
+    page.offset === (searchRequest.offset ?? 0) &&
+    page.language === searchRequest.language
+  ));
+};
+
 const clearTimerRef = (timerRef) => {
   clearTimeout(timerRef.current);
   timerRef.current = null;
@@ -127,11 +136,14 @@ export default function PopupPage() {
   const [activeNextResultsId, setActiveNextResultsId] = useState(
     storedPopupViewState?.activeNextResultsId ?? null
   );
+  const restoredSearchHasResults = hasResultsForSearchRequest(storedPopupViewState);
   const initialResultPage = resultPages.find((page) => page.offset === 0 && !page.language);
   const activeNextResultPage = resultPages.find((page) => page.id === activeNextResultsId);
   const results = initialResultPage?.results || [];
   const [searchHistory, setSearchHistory] = useState([]);
-  const [isLoadingSearch, setIsLoadingSearch] = useState(false);
+  const [isLoadingSearch, setIsLoadingSearch] = useState(
+    Boolean(storedPopupViewState?.searchRequest && !restoredSearchHasResults)
+  );
   const [hideInformationLabel, setHideInformationLabel] = useState(false);
   const [searchRequest, setSearchRequest] = useState(storedPopupViewState?.searchRequest || null);
   const [activeView, setActiveView] = useState(
@@ -161,7 +173,9 @@ export default function PopupPage() {
     ...(storedPopupViewState?.resultPages || [])
       .map((page) => typeof page.id === "number" ? page.id : 0)
   ));
-  const restoredSearchRequestId = useRef(storedPopupViewState?.searchRequest?.searchId ?? null);
+  const restoredSearchRequestId = useRef(
+    restoredSearchHasResults ? storedPopupViewState.searchRequest.searchId : null
+  );
   const historySearchStartedAt = useRef(0);
   const wpSearchText = useWpSearch({
     searchHistoryRef,
