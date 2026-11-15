@@ -14,7 +14,7 @@
     display: flex;
     flex-direction: column;
     padding: 10px 12px 20px;
-    align-items: center;
+    align-items: flex-end;
 
     .logo {
       height: 56px;
@@ -44,7 +44,9 @@
         border-radius: 9px;
         color: var(--sub-text);
         text-decoration: none;
-        transition: color 140ms ease, background-color 140ms ease;
+        transition:
+          color 140ms ease,
+          background-color 140ms ease;
 
         &:hover {
           color: var(--highlight);
