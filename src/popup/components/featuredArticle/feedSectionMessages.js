@@ -3,15 +3,17 @@ import de from "../../../_locales/de/messages.json";
 import en from "../../../_locales/en/messages.json";
 import es from "../../../_locales/es/messages.json";
 import fr from "../../../_locales/fr/messages.json";
+import hr from "../../../_locales/hr/messages.json";
 import hu from "../../../_locales/hu/messages.json";
 import it from "../../../_locales/it/messages.json";
 import ja from "../../../_locales/ja/messages.json";
 import nl from "../../../_locales/nl/messages.json";
 import pl from "../../../_locales/pl/messages.json";
+import ru from "../../../_locales/ru/messages.json";
 import sk from "../../../_locales/sk/messages.json";
 import { getLocaleMessage, getUILanguage } from "../../../common/i18n";
 
-const locales = { cs, de, en, es, fr, hu, it, ja, nl, pl, sk };
+const locales = { cs, de, en, es, fr, hr, hu, it, ja, nl, pl, ru, sk };
 
 function getAvailableLocale(language) {
     const baseLanguage = language?.toLowerCase().split(/[-_]/)[0];
