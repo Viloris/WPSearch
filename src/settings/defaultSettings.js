@@ -17,14 +17,19 @@ const { DEFAULT_LANGUAGE, SECOND_LANGUAGE, CTRL, CMD, SHIFT, ALT,
 const WIKIPEDIA_LANGUAGES = getWikipediaLanguages();
 
 const getDefaultLangs = () => {
-    const uiLang = browser.i18n.getUILanguage();
-    const shouldUseUiLang = WIKIPEDIA_LANGUAGES.some(
-        (lang) => lang.value == uiLang
+    const uiLang = browser.i18n.getUILanguage().toLowerCase();
+    const languageCandidates = [uiLang, uiLang.split(/[-_]/)[0]];
+    const targetLang = languageCandidates.find((candidate) =>
+        WIKIPEDIA_LANGUAGES.some(
+            (lang) => lang.value.toLowerCase() === candidate
+        )
     );
-    const targetLang = shouldUseUiLang ? uiLang : DEFAULT_LANGUAGE;
+    const resolvedTargetLang = targetLang || DEFAULT_LANGUAGE;
     const secondTargetLang =
-        targetLang === DEFAULT_LANGUAGE ? SECOND_LANGUAGE : DEFAULT_LANGUAGE;
-    return { targetLang, secondTargetLang };
+        resolvedTargetLang === DEFAULT_LANGUAGE
+            ? SECOND_LANGUAGE
+            : DEFAULT_LANGUAGE;
+    return { targetLang: resolvedTargetLang, secondTargetLang };
 };
 
 const defaultLangs = getDefaultLangs();
