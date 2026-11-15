@@ -29,9 +29,6 @@ export function ReadFullArticleButton({ fullArticleState, openPopup, openInPopup
 export function OpenInWikipediaButton({ title, url, getMessage = getLocaleMessage }) {
     const wikipediaLabel = getMessage("wikipediaLabel");
     const openInNewWindowLabel = getMessage("openInNewWindowLabel");
-    /* const openWikipediaLink = () => {
-        window.open(url, "_blank");
-    } */
 
     return (
         <button
@@ -134,18 +131,6 @@ function renderEmailShareButton(onClick, getMessage) {
         </button>
     );
 }
-
-/* function renderTwitterShareLink(twitterShareUrl) {
-    return <a
-        className="resultFooterButton"
-        href={twitterShareUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        Twitter
-    </a>;
-} */
-
 
 export function ShareButton({ title, summary, url, getMessage = getLocaleMessage, iconOnly = false }) {
     const [isOpen, setIsOpen] = useState(false);
