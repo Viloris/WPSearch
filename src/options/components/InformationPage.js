@@ -118,7 +118,10 @@ export default function InformationPage() {
             {storeLabel}
           </a>
           {gitHubUrl && (
-            - <a href={gitHubUrl} target="_blank" rel="noreferrer">GitHub</a>
+            <>
+              {" - "}
+              <a href={gitHubUrl} target="_blank" rel="noreferrer">GitHub</a>
+            </>
           )}
         </p>
       ),
