@@ -39,6 +39,7 @@
     &:hover:not(:disabled) {
       color: var(--highlight, var(--simple-wikipedia-search-highlight, #2563eb));
       background: var(--highlight-bg, var(--simple-wikipedia-search-highlight-bg, #eff6ff));
+      background: color-mix(in srgb, var(--highlight-bg, var(--simple-wikipedia-search-highlight-bg, #eff6ff)) 92%, black);
       transform: translateY(-1px);
     }
 
@@ -66,6 +67,7 @@
     &:hover:not(:disabled) {
       color: var(--highlight, var(--simple-wikipedia-search-highlight, #2563eb));
       background: var(--highlight-bg, var(--simple-wikipedia-search-highlight-bg, #eff6ff));
+      background: color-mix(in srgb, var(--highlight-bg, var(--simple-wikipedia-search-highlight-bg, #eff6ff)) 92%, black);
     }
   }
 
@@ -74,6 +76,7 @@
     width: 16px;
     height: 16px;
     flex: 0 0 auto;
+    color: var(--highlight, var(--simple-wikipedia-search-highlight, #2563eb));
   }
 
   .mediaAction {

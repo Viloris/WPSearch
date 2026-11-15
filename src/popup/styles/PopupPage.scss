@@ -237,6 +237,10 @@ body {
 
     > button {
       flex: 0 0 auto;
+
+      &.fullArticleView-close-button {
+        color: var(--highlight);
+      }
     }
   }
 
@@ -253,6 +257,12 @@ body {
 
     a {
       color: var(--highlight);
+      font-weight: normal;
+    }
+
+    a b,
+    a strong {
+      font-weight: normal;
     }
 
     ul,
@@ -263,6 +273,7 @@ body {
     table {
       border-collapse: collapse;
       display: block;
+      margin-bottom: 1.5em;
       max-width: 100%;
       overflow-x: auto;
     }

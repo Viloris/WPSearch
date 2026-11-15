@@ -19,7 +19,7 @@
     border: 1px solid var(--line, var(--simple-wikipedia-search-line));
     border-radius: 50%;
     box-sizing: content-box;
-    color: var(--main-text, var(--simple-wikipedia-search-main-text));
+    color: var(--highlight, var(--simple-wikipedia-search-highlight));
     cursor: pointer;
     display: flex;
     height: 30px;
@@ -28,6 +28,7 @@
 
     &:hover:not(:disabled) {
       color: var(--highlight, var(--simple-wikipedia-search-highlight));
+      background: color-mix(in srgb, var(--highlight-bg, var(--simple-wikipedia-search-highlight-bg)) 92%, black);
     }
 
     &:focus-visible {
