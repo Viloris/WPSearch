@@ -117,6 +117,9 @@ export default function InformationPage() {
           <a href={storeLink} target="_blank" rel="noreferrer">
             {storeLabel}
           </a>
+          {gitHubUrl && (
+            - <a href={gitHubUrl} target="_blank" rel="noreferrer">GitHub</a>
+          )}
         </p>
       ),
       show: true
