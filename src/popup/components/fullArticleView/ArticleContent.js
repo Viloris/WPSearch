@@ -2,8 +2,13 @@ import React from "react";
 import { sanitizeExtractHtml } from "../../../common/htmlUtils";
 import { getLocaleMessage } from "../../../common/i18n";
 
-export function ArticleContent({ contentRef, handleContentClick, fullArticleState, language }) {
-
+export function ArticleContent({
+    contentRef,
+    handleContentClick,
+    fullArticleState,
+    language
+}) {
+    const defaultErrorText = getLocaleMessage("unknownError");
     const loadingLabel = getLocaleMessage("loadingFullArticleLabel");
     const errorLabel = fullArticleState?.error || getLocaleMessage("unknownError");
     return (
@@ -17,11 +22,15 @@ export function ArticleContent({ contentRef, handleContentClick, fullArticleStat
             ) : fullArticleState?.html ? (
                 <div
                     dangerouslySetInnerHTML={{
-                        __html: sanitizeExtractHtml(fullArticleState.html, language.toLowerCase(), true)
+                        __html: sanitizeExtractHtml(
+                            fullArticleState.html,
+                            language.toLowerCase(),
+                            true
+                        )
                     }}
                 />
             ) : (
-                <p role="alert">{errorLabel}</p>
+                <p role="alert">{errorLabel || defaultErrorText}</p>
             )}
         </div>
     )
