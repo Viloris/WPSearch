@@ -1,18 +1,7 @@
 import React from "react";
-import CopyButton from "./CopyButton";
 import "../styles/resultFooter.scss";
-import AddToFavoritesButton from "./AddToFavoritesButton";
 import { getLocaleMessage } from "../common/i18n";
-// import NewWindowIcon from "../icons/open-in-new-window.svg";
-// import BookIcon from "../icons/book-solar.svg";
-// import { getLocaleMessage } from "../common/i18n";
-import {
-  DownloadButton,
-  MoreResultButton,
-  OpenInWikipediaButton,
-  ReadFullArticleButton,
-  ShareButton
-} from "./MediaButtons";
+import { FooterActionBar } from "./FooterActionBar";
 
 /**
  *
@@ -47,59 +36,24 @@ export function ResultFooter({
 
   if (text) {
     return (
-      <div className={"mediaButtons"} lang={messageLanguage}>
-        {openPopup && searchExpression && (
-          <MoreResultButton
-            openInPopup={openInPopup}
-            getMessage={getMessage}
-          />
-        )}
-        {hasMatchingArticle && (
-          <>
-            <ReadFullArticleButton
-              fullArticleState={fullArticleState}
-              openPopup={openPopup}
-              language={language}
-              loadFullArticle={loadFullArticle}
-              title={title}
-              getMessage={getMessage}
-            />
-            <OpenInWikipediaButton
-              title={title}
-              url={url}
-              getMessage={getMessage}
-            />
-            <AddToFavoritesButton
-              className="resultFooterButton"
-              text={text}
-              addToFavorites={addToFavorites}
-              removeFromFavorites={removeFromFavorites}
-              wikipedia={wikipedia}
-              title={title}
-              url={url}
-              isSaved={isSaved}
-              getMessage={getMessage}
-            />
-          </>
-        )}
-        <CopyButton
-          className="resultFooterButton"
-          text={text}
-          getMessage={getMessage}
-        />
-        <DownloadButton
-          title={title}
-          summary={text}
-          url={url}
-          getMessage={getMessage}
-        />
-        <ShareButton
-          title={title}
-          summary={text}
-          url={url}
-          getMessage={getMessage}
-        />
-      </div>
+      <FooterActionBar
+        addToFavorites={addToFavorites}
+        fullArticleState={fullArticleState}
+        getMessage={getMessage}
+        hasMatchingArticle={hasMatchingArticle}
+        isSaved={isSaved}
+        language={language}
+        loadFullArticle={loadFullArticle}
+        messageLanguage={messageLanguage}
+        openInPopup={openInPopup}
+        openPopup={openPopup}
+        removeFromFavorites={removeFromFavorites}
+        searchExpression={searchExpression}
+        title={title}
+        text={text}
+        url={url}
+        wikipedia={wikipedia}
+      />
     );
   }
   return null;
