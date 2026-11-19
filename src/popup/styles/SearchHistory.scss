@@ -1,5 +1,7 @@
 .searchHistory {
-  margin: 0 14px 14px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 8px 8px;
 
   button {
     font: inherit;
@@ -44,7 +46,8 @@
   .searchHistoryPanel {
     display: flex;
     flex-direction: column;
-    height: var(--popup-card-height, 260px);
+    flex: 1;
+    min-height: 0;
     border: 1px solid var(--line);
     border-radius: 10px;
     background-color: var(--main-bg);
@@ -105,10 +108,9 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    height: var(--popup-card-height, 260px);
+    flex: 1;
+    min-height: 0;
     padding: 24px 16px;
-    border: 1px solid var(--line);
-    border-radius: 10px;
     background: var(--main-bg);
     color: var(--sub-text);
     text-align: center;

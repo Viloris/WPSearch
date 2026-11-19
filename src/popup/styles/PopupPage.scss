@@ -136,6 +136,17 @@ body {
     min-width: 0;
   }
 
+  &.popup-page-list {
+    height: 600px;
+    overflow-y: hidden;
+  }
+
+  > .searchHistory,
+  > .favorites-page {
+    flex: 1 1 0;
+    min-height: 0;
+  }
+
   &.popup-page-full-article {
     height: 600px;
     min-height: 600px;

@@ -562,6 +562,7 @@ export default function PopupPage() {
     <div
       className={[
         rtlLanguageClassName,
+        (activeView === FAVORITES || activeView === HISTORY) && "popup-page-list",
         isFullArticleOpen && "popup-page-full-article",
         isNextResultsVisible && "popup-page-next-results"
       ].filter(Boolean).join(" ")}
