@@ -5,6 +5,7 @@ import { AddToFavoritesButton } from "./AddToFavoritesButton";
 import { ArticleTitle } from "./ArticleTitle";
 import { DownloadButton, ShareButton } from "../../../components/MediaButtons";
 import "../../../styles/articleReaderActions.scss";
+import { findFavorite } from "../../../common/favorites";
 
 export function ArticleHeader({
     addToFavorites,
@@ -21,12 +22,12 @@ export function ArticleHeader({
     url
 }) {
     const canSave = typeof text === "string" && text.trim().length > 0;
-    const isSaved = favorites.some((favorite) => favorite.summary === text);
+    const savedFavorite = findFavorite(favorites, { summary: text, wikipedia, title, url });
     const handleToggleFavorite = () => {
         if (!canSave) return;
 
-        if (isSaved) {
-            removeFromFavorites(text);
+        if (savedFavorite) {
+            removeFromFavorites(savedFavorite.summary);
         } else {
             addToFavorites(text, wikipedia, title, url);
         }
@@ -57,7 +58,7 @@ export function ArticleHeader({
                 <ShareButton title={title} summary={text} url={url} iconOnly />
                 <AddToFavoritesButton
                     handleToggleFavorite={handleToggleFavorite}
-                    isSaved={isSaved}
+                    isSaved={Boolean(savedFavorite)}
                     disabled={!canSave}
                 />
             </div>

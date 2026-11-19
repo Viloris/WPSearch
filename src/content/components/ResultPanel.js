@@ -11,6 +11,7 @@ import { CONFIG } from "../../common/constans";
 import browser from "webextension-polyfill";
 import "../../styles/articleReaderActions.scss";
 import { ResultPanelFullArticleView } from "../../components/fullArticleView";
+import { findFavorite } from "../../common/favorites";
 
 const { ARTICLE_PATH, requestMessages: { WIKIPEDIA_FULL_ARTICLE } } = CONFIG;
 
@@ -50,14 +51,19 @@ export default function ResultPanel({
   const activeArticleText = activeArticle?.html
     ? extractTextFromHtml(activeArticle.html, activeArticle.language.toLowerCase())
     : "";
-  const isActiveArticleSaved = Boolean(activeArticleText) &&
-    favorites.some((favorite) => favorite.summary === activeArticleText);
+  const savedArticleFavorite = activeArticle && findFavorite(favorites, {
+    summary: activeArticleText,
+    wikipedia: getWikipediaName(activeArticle.language),
+    title: activeArticle.title,
+    url: activeArticle.url
+  });
+  const isActiveArticleSaved = Boolean(savedArticleFavorite);
 
   const handleToggleArticleFavorite = () => {
     if (!activeArticleText || !activeArticle) return;
 
     if (isActiveArticleSaved) {
-      removeFromFavorites(activeArticleText);
+      removeFromFavorites(savedArticleFavorite.summary);
     } else {
       addToFavorites(
         activeArticleText,

@@ -24,6 +24,20 @@ const normalizeFavorites = (savedFavorites) => {
     });
 };
 
+export const findFavorite = (favorites, { summary, wikipedia, title, url }) =>
+    favorites.find((favorite) => {
+        if (url && favorite.url === url) return true;
+
+        if (wikipedia && title && favorite.wikipedia && favorite.title) {
+            return favorite.wikipedia === wikipedia &&
+                favorite.title.replaceAll("_", " ").normalize("NFC") ===
+                title.replaceAll("_", " ").normalize("NFC");
+        }
+
+        if (url && favorite.url) return false;
+        return Boolean(summary && favorite.summary === summary);
+    });
+
 export const getFavorites = async (isMounted, setFavorites) => {
     try {
         const stored = await browser.storage.local.get("favorites");
@@ -35,11 +49,30 @@ export const getFavorites = async (isMounted, setFavorites) => {
     }
 }
 
+export const observeFavorites = (setFavorites) => {
+    let active = true;
+    let changed = false;
+    const onChanged = (changes) => {
+        if (!active || !changes.favorites) return;
+        changed = true;
+        setFavorites(normalizeFavorites(changes.favorites.newValue));
+    };
+
+    browser.storage.local.onChanged.addListener(onChanged);
+    void getFavorites(() => active && !changed, setFavorites);
+
+    return () => {
+        active = false;
+        browser.storage.local.onChanged.removeListener(onChanged);
+    };
+};
+
 export const addFavorite = async (summary, setFavorites, wikipedia, title, url) => {
     try {
         const stored = await browser.storage.local.get("favorites");
         const favorites = normalizeFavorites(stored["favorites"]);
-        if (!favorites.some((entry) => entry.summary === summary)) {
+        if (!findFavorite(favorites, { summary, wikipedia, title, url }) &&
+            !favorites.some((entry) => entry.summary === summary)) {
             const nextFavorites = [{ wikipedia, title, url, summary }, ...favorites];
             await browser.storage.local.set({ "favorites": nextFavorites });
             setFavorites(nextFavorites);

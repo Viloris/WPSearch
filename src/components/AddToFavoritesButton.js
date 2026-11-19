@@ -18,9 +18,10 @@ export default function AddToFavoritesButton({
   wikipedia,
   title,
   url,
-  isSaved = false,
+  savedFavorite,
   getMessage = getLocaleMessage
 }) {
+  const isSaved = Boolean(savedFavorite);
   const buttonClassName = [
     className,
     isSaved && "resultFooterButton--saved"
@@ -28,7 +29,7 @@ export default function AddToFavoritesButton({
 
   const handleToggleFavorite = () => {
     if (isSaved) {
-      removeFromFavorites(text);
+      removeFromFavorites(savedFavorite.summary);
     } else {
       addToFavorites(text, wikipedia, title, url);
     }

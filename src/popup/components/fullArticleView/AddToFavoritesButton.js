@@ -1,6 +1,6 @@
 import React from "react";
-import AddIcon from "../../icons/bookmark-filled.svg";
-import BlankIcon from "../../icons/bookmark-blank.svg";
+import AddIcon from "../../icons/full-article-bookmark-filled.svg";
+import BlankIcon from "../../icons/full-article-bookmark-blank.svg";
 import { getLocaleMessage } from "../../../common/i18n";
 
 export function AddToFavoritesButton({ handleToggleFavorite, isSaved, disabled }) {

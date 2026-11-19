@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/resultFooter.scss";
 import { getLocaleMessage } from "../common/i18n";
 import { FooterActionBar } from "./FooterActionBar";
+import { findFavorite } from "../common/favorites";
 
 /**
  *
@@ -25,7 +26,7 @@ export function ResultFooter({
   getMessage = getLocaleMessage,
   messageLanguage
 }) {
-  const isSaved = favorites.some((favorite) => favorite.summary === text);
+  const savedFavorite = findFavorite(favorites, { summary: text, wikipedia, title, url });
   const hasMatchingArticle = Boolean(url);
   const openInPopup = (article = null) => {
     openPopup({
@@ -41,7 +42,7 @@ export function ResultFooter({
         fullArticleState={fullArticleState}
         getMessage={getMessage}
         hasMatchingArticle={hasMatchingArticle}
-        isSaved={isSaved}
+        savedFavorite={savedFavorite}
         language={language}
         loadFullArticle={loadFullArticle}
         messageLanguage={messageLanguage}

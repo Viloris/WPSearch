@@ -2,7 +2,7 @@ import React from "react";
 import HomeIcon from "../icons/home-solar.svg";
 import SearchIcon from "../icons/search-solar.svg";
 import HistoryIcon from "../icons/history-solar.svg";
-import FavoritesIcon from "../icons/bookmark-solar.svg";
+import FavoritesIcon from "../icons/full-article-bookmark-blank.svg";
 import "../styles/MainNavigation.scss";
 
 export const navigationItems = [

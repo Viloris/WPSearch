@@ -4,7 +4,7 @@ import browser from "webextension-polyfill";
 import { getSettings } from "src/settings/settings.js";
 import { CONFIG } from "../../common/constans";
 import {
-  getFavorites,
+  observeFavorites,
   addFavorite as addFavoriteToStorage,
   removeFavorite as removeFavoriteFromStorage
 } from "../../common/favorites";
@@ -57,11 +57,7 @@ export default function SearchContainer({
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    let isMounted = true;
-    getFavorites(() => isMounted, setFavorites);
-    return () => {
-      isMounted = false;
-    };
+    return observeFavorites(setFavorites);
   }, []);
 
   /* ---------------- CORE ACTIONS ---------------- */

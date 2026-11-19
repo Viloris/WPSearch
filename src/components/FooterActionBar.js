@@ -14,7 +14,7 @@ export function FooterActionBar({
     fullArticleState,
     getMessage,
     hasMatchingArticle,
-    isSaved,
+    savedFavorite,
     language,
     loadFullArticle,
     messageLanguage,
@@ -58,7 +58,7 @@ export function FooterActionBar({
                         wikipedia={wikipedia}
                         title={title}
                         url={url}
-                        isSaved={isSaved}
+                        savedFavorite={savedFavorite}
                         getMessage={getMessage}
                     />
                 </>
