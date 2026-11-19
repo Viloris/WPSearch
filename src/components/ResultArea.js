@@ -79,7 +79,7 @@ export default function ResultArea({
               />
             </div>
             {isLastResultForLanguage && fetchNextResults && (
-              <div className="mediaButtons">
+              <div className="mediaButtons mediaButtons--more-results">
                 <MoreResultButton
                   fetchNextResults={fetchNextResults}
                   lang={lang}
