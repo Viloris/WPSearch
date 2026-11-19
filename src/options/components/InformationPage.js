@@ -119,7 +119,7 @@ export default function InformationPage() {
           </a>
           {gitHubUrl && (
             <>
-              {" - "}
+              {` \u2022 `}
               <a href={gitHubUrl} target="_blank" rel="noreferrer">GitHub</a>
             </>
           )}
