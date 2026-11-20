@@ -29,12 +29,6 @@ export function FooterActionBar({
 }) {
     return (
         <div className={"mediaButtons"} lang={messageLanguage}>
-            {openPopup && searchExpression && (
-                <MoreResultButton
-                    openInPopup={openInPopup}
-                    getMessage={getMessage}
-                />
-            )}
             {hasMatchingArticle && (
                 <>
                     <ReadFullArticleButton
@@ -80,6 +74,14 @@ export function FooterActionBar({
                 url={url}
                 getMessage={getMessage}
             />
+            {openPopup && searchExpression && (
+                <MoreResultButton
+                    openInPopup={openInPopup}
+                    getMessage={getMessage}
+                    lang={messageLanguage}
+                    wikipedia={wikipedia}
+                />
+            )}
         </div>
     )
 }
