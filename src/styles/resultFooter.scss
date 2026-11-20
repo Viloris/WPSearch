@@ -7,7 +7,7 @@
   //gap: 10px;
   margin-left: 0.5em;
   margin-top: 0.5em;
-  margin-bottom: 0.5em;
+  //margin-bottom: 0.5em;
   margin-inline-end: 5px;
   //padding-right: 10px;
   & > .resultFooterButton,
@@ -39,7 +39,7 @@
     &:hover:not(:disabled) {
       color: var(--highlight, var(--simple-wikipedia-search-highlight, #2563eb));
       background: var(--highlight-bg, var(--simple-wikipedia-search-highlight-bg, #eff6ff));
-      background: color-mix(in srgb, var(--highlight-bg, var(--simple-wikipedia-search-highlight-bg, #eff6ff)) 92%, black);
+      //background: color-mix(in srgb, var(--highlight-bg, var(--simple-wikipedia-search-highlight-bg, #eff6ff)) 92%, black);
       transform: translateY(-1px);
     }
 
@@ -55,7 +55,9 @@
   }
 
   & > .resultFooterButton:first-child,
-  #simple-wikipedia-search & > .resultFooterButton:first-child {
+  & > .resultFooterButton.resultFooterButton-more,
+  #simple-wikipedia-search & > .resultFooterButton:first-child,
+  #simple-wikipedia-search & > .resultFooterButton.resultFooterButton-more {
     background: var(--highlight-bg, var(--simple-wikipedia-search-highlight-bg, #eff6ff));
   }
 
@@ -84,6 +86,10 @@
     flex-direction: column;
     align-items: flex-start;
     position: relative;
+  }
+
+  & > .resultFooterButton.resultFooterButton-more {
+    margin-top: 8px;
   }
 
   .shareOptions {
