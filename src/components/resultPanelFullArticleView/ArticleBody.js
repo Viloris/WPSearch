@@ -1,6 +1,6 @@
 import React from "react";
-import { getLocaleMessage } from "../common/i18n";
-import { sanitizeExtractHtml } from "../common/htmlUtils";
+import { getLocaleMessage } from "../../common/i18n";
+import { sanitizeExtractHtml } from "../../common/htmlUtils";
 
 export function ArticleBody({ activeArticle, handleArticleClick }) {
     const { isLoading, html, language, error } = activeArticle;

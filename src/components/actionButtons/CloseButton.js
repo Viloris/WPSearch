@@ -1,5 +1,5 @@
 import React from "react";
-import { getLocaleMessage } from "../../../common/i18n";
+import { getLocaleMessage } from "../../common/i18n";
 
 export function CloseButton({ onClose }) {
     const closeCaption = getLocaleMessage("closeFullArticleLabel");

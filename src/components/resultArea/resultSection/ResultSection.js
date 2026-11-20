@@ -1,6 +1,6 @@
 import React from "react";
 import { ErrorSection } from "./ErrorSection";
-import { ResultContent } from "./ResultContent";
+import { ResultContent } from "./resultContent/ResultContent";
 import { ResultFooter } from "./ResultFooter";
 import { ResultHeader } from "./ResultHeader";
 

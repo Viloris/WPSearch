@@ -1,8 +1,8 @@
 import React from "react";
 import browser from "webextension-polyfill";
-import { CONFIG } from "../common/constans";
-import "./styles/infoBar.scss";
-import { getLocaleMessage } from "../common/i18n";
+import { CONFIG } from "../../common/constans";
+import "../styles/infoBar.scss";
+import { getLocaleMessage } from "../../common/i18n";
 
 /**
  *

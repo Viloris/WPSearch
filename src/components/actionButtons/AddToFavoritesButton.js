@@ -1,7 +1,7 @@
 import React from "react";
-import AddIcon from "../icons/bookmark-filled.svg"
-import BlankIcon from "../icons/bookmark-blank.svg"
-import { getLocaleMessage } from "../common/i18n";
+import AddIcon from "../../icons/bookmark-filled.svg"
+import BlankIcon from "../../icons/bookmark-blank.svg"
+import { getLocaleMessage } from "../../common/i18n";
 
 /**
  *

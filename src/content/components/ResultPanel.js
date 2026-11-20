@@ -3,14 +3,14 @@ import { getSettings, setSettings } from "src/settings/settings";
 import log from "loglevel";
 import "../styles/ResultPanel.scss";
 import { getBackgroundColor } from "../../settings/defaultColors";
-import ResultArea from "../../components/ResultArea"
+import ResultArea from "../../components/resultArea/ResultArea";
 import { extractTextFromHtml } from "../../common/htmlUtils";
 import { getLocaleMessage } from "../../common/i18n";
 import { getWikipediaArticleUrl, getWikipediaName } from "../../common/urlUtils";
 import { CONFIG } from "../../common/constans";
 import browser from "webextension-polyfill";
 import "../../styles/articleReaderActions.scss";
-import { ResultPanelFullArticleView } from "../../components/fullArticleView";
+import { ResultPanelFullArticleView } from "../../components/resultPanelFullArticleView/ResultPanelFullArticleView";
 import { findFavorite } from "../../common/favorites";
 
 const { ARTICLE_PATH, requestMessages: { WIKIPEDIA_FULL_ARTICLE } } = CONFIG;

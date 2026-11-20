@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import log from "loglevel";
-import CopyIcon from "../icons/copy-solar.svg";
-import DoneIcon from "../icons/ok-icon.svg";
-import "../styles/CopyButton.scss";
-import { getLocaleMessage } from "../common/i18n";
+import CopyIcon from "../../icons/copy-solar.svg";
+import DoneIcon from "../../icons/ok-icon.svg";
+import "../../styles/CopyButton.scss";
+import { getLocaleMessage } from "../../common/i18n";
 
 /**
  *

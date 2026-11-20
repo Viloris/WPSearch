@@ -1,10 +1,10 @@
 import React from "react";
-import { getSettings } from "../settings/settings";
-import { ResultSection } from "./ResultSection";
+import { getSettings } from "../../settings/settings";
+import { ResultSection } from "./resultSection/ResultSection";
 import InfoBar from "./InfoBar";
-import { getLocaleMessage } from "../common/i18n";
-import { getWikipediaName } from "../common/urlUtils";
-import { MoreResultButton } from "./MoreResultButton";
+import { getLocaleMessage } from "../../common/i18n";
+import { getWikipediaName } from "../../common/urlUtils";
+import { MoreResultButton } from "../actionButtons/MoreResultButton";
 
 /**
  *

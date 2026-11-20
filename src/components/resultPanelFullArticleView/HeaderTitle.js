@@ -1,5 +1,5 @@
 import React from "react";
-import { getWikipediaName } from "../common/urlUtils";
+import { getWikipediaName } from "../../common/urlUtils";
 
 export function HeaderTitle({ activeArticle }) {
     const wikipediaArticleName = getWikipediaName(activeArticle.language);

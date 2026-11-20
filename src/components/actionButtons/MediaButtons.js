@@ -1,13 +1,13 @@
 import React, { useEffect, useId, useRef, useState } from "react";
 import log from "loglevel";
-import NewWindowIcon from "../icons/open-in-new-window.svg";
-import DownloadIcon from "../icons/download-solar.svg";
-import ShareIcon from "../icons/share-solar.svg";
-import ReadIcon from "../icons/book-solar.svg";
-import { getLocaleMessage } from "../common/i18n";
-import { createFacebookShareLink, createTwitterShareLink } from "../common/urlUtils";
-import { createEmailShareTab, openWikipediaLink } from "../common/openUrl";
-import { generateEmailBody, generateEmailShareLink, generateEmailSubject } from "../common/emailUtils";
+import NewWindowIcon from "../../icons/open-in-new-window.svg";
+import DownloadIcon from "../../icons/download-solar.svg";
+import ShareIcon from "../../icons/share-solar.svg";
+import ReadIcon from "../../icons/book-solar.svg";
+import { getLocaleMessage } from "../../common/i18n";
+import { createFacebookShareLink, createTwitterShareLink } from "../../common/urlUtils";
+import { createEmailShareTab, openWikipediaLink } from "../../common/openUrl";
+import { generateEmailBody, generateEmailShareLink, generateEmailSubject } from "../../common/emailUtils";
 
 export function ReadFullArticleButton({ fullArticleState, openPopup, openInPopup, language, loadFullArticle, title, getMessage = getLocaleMessage }) {
     const readMoreLabel = getMessage("readMoreLabel")
@@ -112,8 +112,8 @@ function renderShareLink(url, title) {
         <a
             className="resultFooterButton"
             href={url}
-            target="_blank"
             rel="noopener noreferrer"
+            target="_blank"
         >
             {title}
         </a>

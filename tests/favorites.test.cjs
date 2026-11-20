@@ -105,23 +105,25 @@ test("avoids duplicates and removes the originally saved text", async () => {
 test("result and full article buttons remove the matching saved entry", () => {
     const { findFavorite } = createFavoritesModule();
     const stub = () => null;
-    const resultFooter = loadComponent("components/ResultFooter.js", {
-        "../styles/resultFooter.scss": {},
-        "../common/i18n": { getLocaleMessage: stub },
+    const resultFooter = loadComponent("components/resultArea/resultSection/ResultFooter.js", {
+        "../../../styles/resultFooter.scss": {},
+        "../../../common/i18n": { getLocaleMessage: stub },
         "./FooterActionBar": { FooterActionBar: stub },
-        "../common/favorites": { findFavorite }
+        "../../../common/favorites": { findFavorite }
     }).ResultFooter;
-    const resultButton = loadComponent("components/AddToFavoritesButton.js", {
-        "../icons/bookmark-filled.svg": stub,
-        "../icons/bookmark-blank.svg": stub,
-        "../common/i18n": { getLocaleMessage: stub }
+    const resultButton = loadComponent("components/actionButtons/AddToFavoritesButton.js", {
+        "../../icons/bookmark-filled.svg": stub,
+        "../../icons/bookmark-blank.svg": stub,
+        "../../common/i18n": { getLocaleMessage: stub }
     }).default;
     const articleHeader = loadComponent("popup/components/fullArticleView/ArticleHeader.js", {
         "./BackButton": { BackButton: stub },
-        "./Closebutton": { CloseButton: stub },
-        "./AddToFavoritesButton": { AddToFavoritesButton: stub },
         "./ArticleTitle": { ArticleTitle: stub },
-        "../../../components/MediaButtons": { DownloadButton: stub, ShareButton: stub },
+        "../../../components/actionButtons/MediaButtons": { DownloadButton: stub, ShareButton: stub },
+        "../../../components/actionButtons/FullArticleFavoriteButton": {
+            FullArticleFavoriteButton: stub
+        },
+        "../../../components/actionButtons/CloseButton": { CloseButton: stub },
         "../../../styles/articleReaderActions.scss": {},
         "../../../common/favorites": { findFavorite }
     }).ArticleHeader;

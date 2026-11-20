@@ -1,9 +1,9 @@
 import React from "react";
 import AddIcon from "../../icons/full-article-bookmark-filled.svg";
 import BlankIcon from "../../icons/full-article-bookmark-blank.svg";
-import { getLocaleMessage } from "../../../common/i18n";
+import { getLocaleMessage } from "../../common/i18n";
 
-export function AddToFavoritesButton({ handleToggleFavorite, isSaved, disabled }) {
+export function FullArticleFavoriteButton({ handleToggleFavorite, isSaved, disabled }) {
     const addToFavoritesLabel = getLocaleMessage("addToFavoritesLabel")
     return (
         <button

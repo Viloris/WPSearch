@@ -1,5 +1,5 @@
 import React from "react";
-import { splitLine } from "../common/textUtils";
+import { splitLine } from "../../../../common/textUtils";
 
 /**
  * 

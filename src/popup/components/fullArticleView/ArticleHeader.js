@@ -1,9 +1,9 @@
 import React from "react";
 import { BackButton } from "./BackButton";
-import { CloseButton } from "./Closebutton";
-import { AddToFavoritesButton } from "./AddToFavoritesButton";
 import { ArticleTitle } from "./ArticleTitle";
-import { DownloadButton, ShareButton } from "../../../components/MediaButtons";
+import { DownloadButton, ShareButton } from "../../../components/actionButtons/MediaButtons";
+import { FullArticleFavoriteButton } from "../../../components/actionButtons/FullArticleFavoriteButton";
+import { CloseButton } from "../../../components/actionButtons/CloseButton";
 import "../../../styles/articleReaderActions.scss";
 import { findFavorite } from "../../../common/favorites";
 
@@ -33,7 +33,6 @@ export function ArticleHeader({
         }
     };
     return (
-
         <header className="fullArticleView-header">
             <BackButton
                 canGoBack={canGoBack}
@@ -44,22 +43,24 @@ export function ArticleHeader({
                 language={language}
                 title={title}
             />
-            {/* <div className="fullArticleView-header-text">
-                <a href={fullArticleState?.url} target="_blank" rel="noopener noreferrer"
-                    style={{
-                        textDecoration: "none"
-                    }}>
-                    <h2>{title.replaceAll(/_/g, " ")}</h2>
-                </a>
-                <h5>{getWikipediaName(language)}</h5>
-            </div> */}
             <div className="articleReaderActions">
-                <DownloadButton title={title} summary={text} url={url} iconOnly disabled={!canSave} />
-                <ShareButton title={title} summary={text} url={url} iconOnly />
-                <AddToFavoritesButton
+                <DownloadButton
+                    iconOnly
+                    disabled={!canSave}
+                    summary={text}
+                    title={title}
+                    url={url}
+                />
+                <ShareButton
+                    iconOnly
+                    summary={text}
+                    title={title}
+                    url={url}
+                />
+                <FullArticleFavoriteButton
+                    disabled={!canSave}
                     handleToggleFavorite={handleToggleFavorite}
                     isSaved={Boolean(savedFavorite)}
-                    disabled={!canSave}
                 />
             </div>
             <CloseButton

@@ -1,7 +1,7 @@
 import React from "react";
 import { extractTextFromHtml, sanitizeExtractHtml } from "../../../common/htmlUtils";
 import { getWikipediaName } from "../../../common/urlUtils";
-import { ResultFooter } from "../../../components/ResultFooter";
+import { ResultFooter } from "../../../components/resultArea/resultSection/ResultFooter";
 import { getFeedSectionLanguage, getFeedSectionMessage } from "./feedSectionMessages";
 
 export const renderArticleCard = (

@@ -1,6 +1,6 @@
 import React from "react";
 import { getLocaleMessage } from "../../../common/i18n";
-import BookmarkIcon from "../../icons/full-article-bookmark-blank.svg";
+import BookmarkIcon from "../../../icons/full-article-bookmark-blank.svg";
 
 export function FavoritesEmpty() {
     const favoritesLabel = getLocaleMessage("favoritesLabel");

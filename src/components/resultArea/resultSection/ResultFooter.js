@@ -1,8 +1,8 @@
 import React from "react";
-import "../styles/resultFooter.scss";
-import { getLocaleMessage } from "../common/i18n";
+import "../../../styles/resultFooter.scss";
+import { getLocaleMessage } from "../../../common/i18n";
 import { FooterActionBar } from "./FooterActionBar";
-import { findFavorite } from "../common/favorites";
+import { findFavorite } from "../../../common/favorites";
 
 /**
  *

@@ -1,8 +1,7 @@
 import React from "react";
-import { DownloadButton, ShareButton } from "./MediaButtons";
-import { AddToFavoritesButton } from "../popup/components/fullArticleView/AddToFavoritesButton";
-import { CloseButton } from "../popup/components/fullArticleView/Closebutton";
-
+import { DownloadButton, ShareButton } from "../actionButtons/MediaButtons";
+import { FullArticleFavoriteButton } from "../actionButtons/FullArticleFavoriteButton";
+import { CloseButton } from "../actionButtons/CloseButton";
 export function HeaderActionBar({
     activeArticle,
     activeArticleText,
@@ -27,7 +26,7 @@ export function HeaderActionBar({
                 url={activeArticle.url}
                 iconOnly
             />
-            <AddToFavoritesButton
+            <FullArticleFavoriteButton
                 handleToggleFavorite={handleToggleArticleFavorite}
                 isSaved={isActiveArticleSaved}
                 disabled={!activeArticleText}

@@ -1,5 +1,5 @@
 import React from "react";
-import { getLocaleMessage } from "../common/i18n";
+import { getLocaleMessage } from "../../common/i18n";
 
 /**
  * 
@@ -14,9 +14,10 @@ import { getLocaleMessage } from "../common/i18n";
  */
 export function MoreResultButton({
     fetchNextResults,
-    lang, pageOffset,
+    lang,
+    localizedWikipedia,
     pageLimit,
-    localizedWikipedia
+    pageOffset,
 }) {
     const moreResultsMessage = getLocaleMessage("moreResultsFor");
 

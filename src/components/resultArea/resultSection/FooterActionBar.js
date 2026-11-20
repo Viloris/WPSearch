@@ -1,13 +1,13 @@
 import React from "react";
-import AddToFavoritesButton from "./AddToFavoritesButton";
-import CopyButton from "./CopyButton";
 import {
     DownloadButton,
     MoreResultButton,
     OpenInWikipediaButton,
     ReadFullArticleButton,
     ShareButton
-} from "./MediaButtons";
+} from "../../actionButtons/MediaButtons";
+import AddToFavoritesButton from "../../actionButtons/AddToFavoritesButton";
+import CopyButton from "../../actionButtons/CopyButton";
 
 export function FooterActionBar({
     addToFavorites,

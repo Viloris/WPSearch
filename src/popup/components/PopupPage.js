@@ -14,7 +14,7 @@ import {
 } from "../../common/i18n";
 import { fetchWikiFullArticle } from "../../api/wikipediaApi";
 import "../../components/styles/ResultArea.scss";
-import ResultArea from "../../components/ResultArea";
+import ResultArea from "../../components/resultArea/ResultArea";
 import { getTabInfo, getWikipediaArticleUrl, getWikipediaName } from "../../common/urlUtils";
 import { LoadingCaption } from "./LoadingCaption";
 import { handleToggleEnabledOnPage } from "../handleToggleEnabledOnPage";
