@@ -43,15 +43,15 @@ export function OpenInWikipediaButton({ title, url, getMessage = getLocaleMessag
     )
 }
 
-export function MoreResultButton({ openInPopup, getMessage = getLocaleMessage }) {
-    const moreResultsLabel = getMessage("moreResultsLabel");
+export function MoreResultButton({ openInPopup, getMessage = getLocaleMessage, wikipedia }) {
+    const moreResultsLabel = getMessage("moreResultsFor");
     return (
         <button
             type="button"
-            className="resultFooterButton"
+            className="resultFooterButton resultFooterButton-more"
             onClick={() => openInPopup()}
         >
-            {moreResultsLabel}
+            {moreResultsLabel} {wikipedia}
         </button>
     )
 }
